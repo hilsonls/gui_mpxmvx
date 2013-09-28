@@ -38,6 +38,19 @@ public class IpAddressTextField extends JTextField {
         return verifier.shouldYieldFocus(this);
     }
     
+    /**
+     * Verify, but don't block with a message dialog if verify fails. Return in msg param instead.
+     * @param msg   message, if verify fails
+     * @return      true if verification passes, false if not
+     */
+    public boolean verify(StringBuilder msg) {
+        boolean ok = verifier.verifyMakePretty(this);
+        if (!ok) {
+            msg.append(verifier.message);
+        }
+        return ok;
+    }
+    
     private class IPAddressVerifier extends InputVerifier {
         private String _255 = "(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
         private String ipRegEx = "^(?:" + _255 + "\\.){3}" + _255 + "$";
@@ -80,6 +93,10 @@ public class IpAddressTextField extends JTextField {
             return checkField(input, false);
         }
         
+        public boolean verifyMakePretty(JComponent input) {
+            return checkField(input, true);
+        }
+        
         protected void makeItPretty(JComponent input) {
             checkField(input, true);
         }
@@ -92,7 +109,7 @@ public class IpAddressTextField extends JTextField {
             //Value was invalid.
             if (!(jtf.getText().trim().matches(ipRegEx) || (allowEmpty && jtf.getText().trim().equals("")))) {
                 wasValid = false;
-                message = "Please insert a valid ip address";
+                message = "Please enter a valid ip address";
             }
             
             

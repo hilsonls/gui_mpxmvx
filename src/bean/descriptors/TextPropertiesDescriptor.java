@@ -273,6 +273,7 @@ public class TextPropertiesDescriptor extends org.exolab.castor.xml.util.XMLClas
         desc.setSchemaType("list");
         desc.setComponentType("bean.Line");
         desc.setHandler(handler);
+        desc.setRequired(true);
         desc.setMultivalued(true);
         addFieldDescriptor(desc);
         addSequenceElement(desc);

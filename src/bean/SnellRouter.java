@@ -27,34 +27,24 @@ public class SnellRouter implements java.io.Serializable {
     //--------------------------/
 
     /**
-     * Field _ipaddr.
+     * Field _snellControllerList.
      */
-    private bean.Ipaddr _ipaddr;
+    private java.util.List _snellControllerList;
 
     /**
-     * Field _tcpPort.
+     * Field _snellVideoMatrix.
      */
-    private bean.TcpPort _tcpPort;
+    private bean.SnellVideoMatrix _snellVideoMatrix;
 
     /**
-     * Field _useTcpIp.
+     * Field _snellAudioMatrix.
      */
-    private bean.UseTcpIp _useTcpIp;
+    private bean.SnellAudioMatrix _snellAudioMatrix;
 
     /**
-     * Field _video.
+     * Field _snellDataxxMatrix.
      */
-    private bean.Video _video;
-
-    /**
-     * Field _audioSnell.
-     */
-    private bean.AudioSnell _audioSnell;
-
-    /**
-     * Field _dataxx.
-     */
-    private bean.Dataxx _dataxx;
+    private bean.SnellDataxxMatrix _snellDataxxMatrix;
 
 
       //----------------/
@@ -63,6 +53,7 @@ public class SnellRouter implements java.io.Serializable {
 
     public SnellRouter() {
         super();
+        this._snellControllerList = new java.util.ArrayList();
     }
 
 
@@ -71,63 +62,118 @@ public class SnellRouter implements java.io.Serializable {
     //-----------/
 
     /**
-     * Returns the value of field 'audioSnell'.
      * 
-     * @return the value of field 'AudioSnell'.
+     * 
+     * @param vSnellController
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
-    public bean.AudioSnell getAudioSnell(
-    ) {
-        return this._audioSnell;
+    public void addSnellController(
+            final bean.SnellController vSnellController)
+    throws java.lang.IndexOutOfBoundsException {
+        this._snellControllerList.add(vSnellController);
     }
 
     /**
-     * Returns the value of field 'dataxx'.
      * 
-     * @return the value of field 'Dataxx'.
+     * 
+     * @param index
+     * @param vSnellController
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
-    public bean.Dataxx getDataxx(
-    ) {
-        return this._dataxx;
+    public void addSnellController(
+            final int index,
+            final bean.SnellController vSnellController)
+    throws java.lang.IndexOutOfBoundsException {
+        this._snellControllerList.add(index, vSnellController);
     }
 
     /**
-     * Returns the value of field 'ipaddr'.
+     * Method enumerateSnellController.
      * 
-     * @return the value of field 'Ipaddr'.
+     * @return an Enumeration over all possible elements of this
+     * collection
      */
-    public bean.Ipaddr getIpaddr(
+    public java.util.Enumeration enumerateSnellController(
     ) {
-        return this._ipaddr;
+        return java.util.Collections.enumeration(this._snellControllerList);
     }
 
     /**
-     * Returns the value of field 'tcpPort'.
+     * Returns the value of field 'snellAudioMatrix'.
      * 
-     * @return the value of field 'TcpPort'.
+     * @return the value of field 'SnellAudioMatrix'.
      */
-    public bean.TcpPort getTcpPort(
+    public bean.SnellAudioMatrix getSnellAudioMatrix(
     ) {
-        return this._tcpPort;
+        return this._snellAudioMatrix;
     }
 
     /**
-     * Returns the value of field 'useTcpIp'.
+     * Method getSnellController.
      * 
-     * @return the value of field 'UseTcpIp'.
+     * @param index
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
+     * @return the value of the bean.SnellController at the given
+     * index
      */
-    public bean.UseTcpIp getUseTcpIp(
-    ) {
-        return this._useTcpIp;
+    public bean.SnellController getSnellController(
+            final int index)
+    throws java.lang.IndexOutOfBoundsException {
+        // check bounds for index
+        if (index < 0 || index >= this._snellControllerList.size()) {
+            throw new IndexOutOfBoundsException("getSnellController: Index value '" + index + "' not in range [0.." + (this._snellControllerList.size() - 1) + "]");
+        }
+        
+        return (bean.SnellController) _snellControllerList.get(index);
     }
 
     /**
-     * Returns the value of field 'video'.
+     * Method getSnellController.Returns the contents of the
+     * collection in an Array.  <p>Note:  Just in case the
+     * collection contents are changing in another thread, we pass
+     * a 0-length Array of the correct type into the API call. 
+     * This way we <i>know</i> that the Array returned is of
+     * exactly the correct length.
      * 
-     * @return the value of field 'Video'.
+     * @return this collection as an Array
      */
-    public bean.Video getVideo(
+    public bean.SnellController[] getSnellController(
     ) {
-        return this._video;
+        bean.SnellController[] array = new bean.SnellController[0];
+        return (bean.SnellController[]) this._snellControllerList.toArray(array);
+    }
+
+    /**
+     * Method getSnellControllerCount.
+     * 
+     * @return the size of this collection
+     */
+    public int getSnellControllerCount(
+    ) {
+        return this._snellControllerList.size();
+    }
+
+    /**
+     * Returns the value of field 'snellDataxxMatrix'.
+     * 
+     * @return the value of field 'SnellDataxxMatrix'.
+     */
+    public bean.SnellDataxxMatrix getSnellDataxxMatrix(
+    ) {
+        return this._snellDataxxMatrix;
+    }
+
+    /**
+     * Returns the value of field 'snellVideoMatrix'.
+     * 
+     * @return the value of field 'SnellVideoMatrix'.
+     */
+    public bean.SnellVideoMatrix getSnellVideoMatrix(
+    ) {
+        return this._snellVideoMatrix;
     }
 
     /**
@@ -143,6 +189,17 @@ public class SnellRouter implements java.io.Serializable {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Method iterateSnellController.
+     * 
+     * @return an Iterator over all possible elements in this
+     * collection
+     */
+    public java.util.Iterator iterateSnellController(
+    ) {
+        return this._snellControllerList.iterator();
     }
 
     /**
@@ -178,63 +235,100 @@ public class SnellRouter implements java.io.Serializable {
     }
 
     /**
-     * Sets the value of field 'audioSnell'.
-     * 
-     * @param audioSnell the value of field 'audioSnell'.
      */
-    public void setAudioSnell(
-            final bean.AudioSnell audioSnell) {
-        this._audioSnell = audioSnell;
+    public void removeAllSnellController(
+    ) {
+        this._snellControllerList.clear();
     }
 
     /**
-     * Sets the value of field 'dataxx'.
+     * Method removeSnellController.
      * 
-     * @param dataxx the value of field 'dataxx'.
+     * @param vSnellController
+     * @return true if the object was removed from the collection.
      */
-    public void setDataxx(
-            final bean.Dataxx dataxx) {
-        this._dataxx = dataxx;
+    public boolean removeSnellController(
+            final bean.SnellController vSnellController) {
+        boolean removed = _snellControllerList.remove(vSnellController);
+        return removed;
     }
 
     /**
-     * Sets the value of field 'ipaddr'.
+     * Method removeSnellControllerAt.
      * 
-     * @param ipaddr the value of field 'ipaddr'.
+     * @param index
+     * @return the element removed from the collection
      */
-    public void setIpaddr(
-            final bean.Ipaddr ipaddr) {
-        this._ipaddr = ipaddr;
+    public bean.SnellController removeSnellControllerAt(
+            final int index) {
+        java.lang.Object obj = this._snellControllerList.remove(index);
+        return (bean.SnellController) obj;
     }
 
     /**
-     * Sets the value of field 'tcpPort'.
+     * Sets the value of field 'snellAudioMatrix'.
      * 
-     * @param tcpPort the value of field 'tcpPort'.
+     * @param snellAudioMatrix the value of field 'snellAudioMatrix'
      */
-    public void setTcpPort(
-            final bean.TcpPort tcpPort) {
-        this._tcpPort = tcpPort;
+    public void setSnellAudioMatrix(
+            final bean.SnellAudioMatrix snellAudioMatrix) {
+        this._snellAudioMatrix = snellAudioMatrix;
     }
 
     /**
-     * Sets the value of field 'useTcpIp'.
      * 
-     * @param useTcpIp the value of field 'useTcpIp'.
+     * 
+     * @param index
+     * @param vSnellController
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
-    public void setUseTcpIp(
-            final bean.UseTcpIp useTcpIp) {
-        this._useTcpIp = useTcpIp;
+    public void setSnellController(
+            final int index,
+            final bean.SnellController vSnellController)
+    throws java.lang.IndexOutOfBoundsException {
+        // check bounds for index
+        if (index < 0 || index >= this._snellControllerList.size()) {
+            throw new IndexOutOfBoundsException("setSnellController: Index value '" + index + "' not in range [0.." + (this._snellControllerList.size() - 1) + "]");
+        }
+        
+        this._snellControllerList.set(index, vSnellController);
     }
 
     /**
-     * Sets the value of field 'video'.
      * 
-     * @param video the value of field 'video'.
+     * 
+     * @param vSnellControllerArray
      */
-    public void setVideo(
-            final bean.Video video) {
-        this._video = video;
+    public void setSnellController(
+            final bean.SnellController[] vSnellControllerArray) {
+        //-- copy array
+        _snellControllerList.clear();
+        
+        for (int i = 0; i < vSnellControllerArray.length; i++) {
+                this._snellControllerList.add(vSnellControllerArray[i]);
+        }
+    }
+
+    /**
+     * Sets the value of field 'snellDataxxMatrix'.
+     * 
+     * @param snellDataxxMatrix the value of field
+     * 'snellDataxxMatrix'.
+     */
+    public void setSnellDataxxMatrix(
+            final bean.SnellDataxxMatrix snellDataxxMatrix) {
+        this._snellDataxxMatrix = snellDataxxMatrix;
+    }
+
+    /**
+     * Sets the value of field 'snellVideoMatrix'.
+     * 
+     * @param snellVideoMatrix the value of field 'snellVideoMatrix'
+     */
+    public void setSnellVideoMatrix(
+            final bean.SnellVideoMatrix snellVideoMatrix) {
+        this._snellVideoMatrix = snellVideoMatrix;
     }
 
     /**

@@ -29,6 +29,8 @@ import bean.SysTime;
 import bean.Valid;
 import bean.VideoCards;
 import bean.Workspace;
+import bean.SnellRouter;
+import bean.SnellController;
 import eccezioni.CloneBeanException;
 import eccezioni.CompareBeanException;
 import eccezioni.MVException;
@@ -859,6 +861,34 @@ public class CtrlWorkspace {
         ctrlProtocol.saveNetworkToMV(idModulo, this.getModule(idModulo).getNetwork());
         if (commit)
             ctrlProtocol.commitNetworkSettings(idModulo);
+    }
+    
+    public SnellController newSnellController(int idModulo) throws MVException {
+    	SnellController newSnellController = CtrlProtocol.getInstance().newSnellController(idModulo);
+        
+        this.getModule(idModulo).getProtocols().getSnellRouter().addSnellController(newSnellController);
+        return newSnellController;
+    }
+
+    public void removeSnellController(int idModulo, int snellControllerId) throws MVException {
+        SnellRouter snellRouter  = this.getModule(idModulo).getProtocols().getSnellRouter();
+        SnellController toRemove = null;
+        
+        for (int i = 0; i < snellRouter.getSnellControllerCount() && toRemove == null ; i++) {
+            if (snellRouter.getSnellController(i).getId()==snellControllerId) {
+                toRemove = snellRouter.getSnellController(i);
+            }
+        }
+        
+        if (toRemove == null) 
+            throw new MVException("Snell controller not found in list");
+        
+        CtrlProtocol.getInstance().removeSnellController(idModulo, snellControllerId);
+        snellRouter.removeSnellController(toRemove);
+    }
+
+    public void saveSnellControllerToMV (int idModulo, SnellController snellController) throws MVException {
+    	SnellController newSnellController = CtrlProtocol.getInstance().saveSnellControllerToMV(idModulo, snellController);
     }
     
     private void setObjects(int idModulo, Objects bean){

@@ -69,21 +69,29 @@ public class SnellRouterDescriptor extends org.exolab.castor.xml.util.XMLClassDe
         
         //-- initialize element descriptors
         
-        //-- _ipaddr
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Ipaddr.class, "_ipaddr", "ipaddr", org.exolab.castor.xml.NodeType.Element);
+        //-- _snellControllerList
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.SnellController.class, "_snellControllerList", "controller", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {
             public java.lang.Object getValue( java.lang.Object object ) 
                 throws IllegalStateException
             {
                 SnellRouter target = (SnellRouter) object;
-                return target.getIpaddr();
+                return target.getSnellController();
             }
             public void setValue( java.lang.Object object, java.lang.Object value) 
                 throws IllegalStateException, IllegalArgumentException
             {
                 try {
                     SnellRouter target = (SnellRouter) object;
-                    target.setIpaddr( (bean.Ipaddr) value);
+                    target.addSnellController( (bean.SnellController) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public void resetValue(Object object) throws IllegalStateException, IllegalArgumentException {
+                try {
+                    SnellRouter target = (SnellRouter) object;
+                    target.removeAllSnellController();
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
                 }
@@ -92,32 +100,68 @@ public class SnellRouterDescriptor extends org.exolab.castor.xml.util.XMLClassDe
                 return null;
             }
         };
-        desc.setSchemaType("bean.Ipaddr");
+        desc.setSchemaType("list");
+        desc.setComponentType("bean.SnellController");
+        desc.setHandler(handler);
+        desc.setMultivalued(true);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _snellControllerList
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(0);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
+        //-- _snellVideoMatrix
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.SnellVideoMatrix.class, "_snellVideoMatrix", "video", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                SnellRouter target = (SnellRouter) object;
+                return target.getSnellVideoMatrix();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    SnellRouter target = (SnellRouter) object;
+                    target.setSnellVideoMatrix( (bean.SnellVideoMatrix) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.SnellVideoMatrix");
         desc.setHandler(handler);
         desc.setMultivalued(false);
         addFieldDescriptor(desc);
         addSequenceElement(desc);
         
-        //-- validation code for: _ipaddr
+        //-- validation code for: _snellVideoMatrix
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
-        //-- _tcpPort
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.TcpPort.class, "_tcpPort", "tcpPort", org.exolab.castor.xml.NodeType.Element);
+        //-- _snellAudioMatrix
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.SnellAudioMatrix.class, "_snellAudioMatrix", "audio", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {
             public java.lang.Object getValue( java.lang.Object object ) 
                 throws IllegalStateException
             {
                 SnellRouter target = (SnellRouter) object;
-                return target.getTcpPort();
+                return target.getSnellAudioMatrix();
             }
             public void setValue( java.lang.Object object, java.lang.Object value) 
                 throws IllegalStateException, IllegalArgumentException
             {
                 try {
                     SnellRouter target = (SnellRouter) object;
-                    target.setTcpPort( (bean.TcpPort) value);
+                    target.setSnellAudioMatrix( (bean.SnellAudioMatrix) value);
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
                 }
@@ -126,32 +170,32 @@ public class SnellRouterDescriptor extends org.exolab.castor.xml.util.XMLClassDe
                 return null;
             }
         };
-        desc.setSchemaType("bean.TcpPort");
+        desc.setSchemaType("bean.SnellAudioMatrix");
         desc.setHandler(handler);
         desc.setMultivalued(false);
         addFieldDescriptor(desc);
         addSequenceElement(desc);
         
-        //-- validation code for: _tcpPort
+        //-- validation code for: _snellAudioMatrix
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
-        //-- _useTcpIp
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.UseTcpIp.class, "_useTcpIp", "useTcpIp", org.exolab.castor.xml.NodeType.Element);
+        //-- _snellDataxxMatrix
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.SnellDataxxMatrix.class, "_snellDataxxMatrix", "dataxx", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {
             public java.lang.Object getValue( java.lang.Object object ) 
                 throws IllegalStateException
             {
                 SnellRouter target = (SnellRouter) object;
-                return target.getUseTcpIp();
+                return target.getSnellDataxxMatrix();
             }
             public void setValue( java.lang.Object object, java.lang.Object value) 
                 throws IllegalStateException, IllegalArgumentException
             {
                 try {
                     SnellRouter target = (SnellRouter) object;
-                    target.setUseTcpIp( (bean.UseTcpIp) value);
+                    target.setSnellDataxxMatrix( (bean.SnellDataxxMatrix) value);
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
                 }
@@ -160,115 +204,13 @@ public class SnellRouterDescriptor extends org.exolab.castor.xml.util.XMLClassDe
                 return null;
             }
         };
-        desc.setSchemaType("bean.UseTcpIp");
+        desc.setSchemaType("bean.SnellDataxxMatrix");
         desc.setHandler(handler);
         desc.setMultivalued(false);
         addFieldDescriptor(desc);
         addSequenceElement(desc);
         
-        //-- validation code for: _useTcpIp
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _video
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Video.class, "_video", "video", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                SnellRouter target = (SnellRouter) object;
-                return target.getVideo();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    SnellRouter target = (SnellRouter) object;
-                    target.setVideo( (bean.Video) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("bean.Video");
-        desc.setHandler(handler);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _video
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _audioSnell
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.AudioSnell.class, "_audioSnell", "audio", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                SnellRouter target = (SnellRouter) object;
-                return target.getAudioSnell();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    SnellRouter target = (SnellRouter) object;
-                    target.setAudioSnell( (bean.AudioSnell) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("bean.AudioSnell");
-        desc.setHandler(handler);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _audioSnell
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _dataxx
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Dataxx.class, "_dataxx", "dataxx", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                SnellRouter target = (SnellRouter) object;
-                return target.getDataxx();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    SnellRouter target = (SnellRouter) object;
-                    target.setDataxx( (bean.Dataxx) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("bean.Dataxx");
-        desc.setHandler(handler);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _dataxx
+        //-- validation code for: _snellDataxxMatrix
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         { //-- local scope
         }

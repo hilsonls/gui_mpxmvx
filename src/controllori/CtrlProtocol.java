@@ -43,6 +43,7 @@ import bean.SysTime;
 import bean.Valid;
 import bean.VideoCardModeOptions;
 import bean.VideoCards;
+import bean.SnellController;
 import eccezioni.MVException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -1062,6 +1063,69 @@ public class CtrlProtocol {
             unm.setValidation(false);
             Workspace works = (Workspace) unm.unmarshal(xmlResponse);
             return works.getModule(0).getNgmServers().getNgmServer(0);
+        } catch (MarshalException ex) {
+            ex.printStackTrace();
+            throw new MVException("Marshal error");
+        } catch (ValidationException ex) {
+            ex.printStackTrace();
+            throw new MVException("Xml validation error");
+        }
+    }
+
+    public SnellController newSnellController(int idModulo) throws MVException {
+        BufferedReader xmlResponse = null;
+        Writer out = new StringWriter();
+        Workspace config = null;
+        try {
+            out.write("<workspace><module id=\""+idModulo+"\"><protocols><snellRouter><controller>new</controller></snellRouter></protocols></module></workspace>");
+            xmlResponse = sendRequest(out.toString());
+            
+            if(xmlResponse!=null){
+                config = (Workspace) Unmarshaller.unmarshal(Workspace.class, xmlResponse);
+                xmlResponse.close();
+            }
+         
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new MVException("I/O exception");
+        } catch (MarshalException ex) {
+            ex.printStackTrace();
+            throw new MVException("Marshal error");
+        } catch (ValidationException ex) {
+            ex.printStackTrace();
+            throw new MVException("Xml validation error");
+        }
+        
+        return config.getModule(0).getProtocols().getSnellRouter().getSnellController(0);
+    }    
+
+    public void removeSnellController(int idModulo, int controllerId) throws MVException {
+        String xmlRequest;
+        xmlRequest = "<workspace><module id=\""+idModulo+"\"><protocols><snellRouter><controller id=\""+controllerId+"\">delete</controller></snellRouter></protocols></module></workspace>";
+        BufferedReader response = sendRequest(xmlRequest);
+    }
+
+    public SnellController saveSnellControllerToMV(int idModulo, SnellController snellController) throws MVException {
+        BufferedReader xmlResponse = sendRequest("<workspace>"+
+                                                    "<module id=\""+idModulo+"\">"+
+                                                        "<protocols>"+
+                                                            "<snellRouter>"+
+                                                                "<controller id=\""+snellController.getId()+"\""+
+                                                                    " name=\""+snellController.getName()+"\""+
+                                                                    " ipaddr1=\""+snellController.getIpaddr1()+"\""+
+                                                                    " port1=\""+snellController.getPort1()+"\""+
+                                                                    " ipaddr2=\""+snellController.getIpaddr2()+"\""+
+                                                                    " port2=\""+snellController.getPort2()+"\""+
+                                                                "/>"+
+                                                            "</snellRouter>"+
+                                                        "</protocols>"+
+                                                    "</module>"+
+                                                "</workspace>");
+        try {
+            Unmarshaller unm = new Unmarshaller(Workspace.class);
+            unm.setValidation(false);
+            Workspace works = (Workspace) unm.unmarshal(xmlResponse);
+            return works.getModule(0).getProtocols().getSnellRouter().getSnellController(0);
         } catch (MarshalException ex) {
             ex.printStackTrace();
             throw new MVException("Marshal error");

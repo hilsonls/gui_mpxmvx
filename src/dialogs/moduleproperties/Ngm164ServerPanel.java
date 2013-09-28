@@ -107,7 +107,7 @@ public class Ngm164ServerPanel extends JPanelBGGradient{
             //ipAddrField.setText(newNgmServer.getIpaddr().getVal());
             //nameField.setText(newNgmServer.getAlias().getVal());
         } catch (MVException mve) {
-            JOptionPane.showMessageDialog(null, "An error as occurred while adding "+StyleInterface.getInstance().getDataXXNgm()+" server entry", "Operation aborted", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "An error has occurred while adding "+StyleInterface.getInstance().getDataXXNgm()+" server entry", "Operation aborted", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -130,7 +130,7 @@ public class Ngm164ServerPanel extends JPanelBGGradient{
                     //nameField.setText("");
                 }
             } catch (MVException mve) {
-                JOptionPane.showMessageDialog(null, "An error as occurred while deleting selected "+StyleInterface.getInstance().getDataXXNgm()+" server entry", "Operation aborted", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "An error has occurred while deleting selected "+StyleInterface.getInstance().getDataXXNgm()+" server entry", "Operation aborted", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

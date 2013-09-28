@@ -246,7 +246,7 @@ public class NetworkPanel extends JPanelBGGradient{
                 CtrlWorkspace.getInstance().saveNetworkToMV(idModulo, true);
                 System.exit(0);
             } catch (MVException mve) {
-                JOptionPane.showMessageDialog(null, "An error as occurred while applying network settings", "Operation aborted", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "An error has occurred while applying network settings", "Operation aborted", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -264,7 +264,7 @@ public class NetworkPanel extends JPanelBGGradient{
                 CtrlWorkspace.getInstance().addSnmpMgr(idModulo, ipAddr);
                 snmpListModel.addElement(ipAddr);
             } catch (MVException mve) {
-               JOptionPane.showMessageDialog(null, "An error as occurred while adding SNMP server entry", "Operation aborted", JOptionPane.ERROR_MESSAGE);
+               JOptionPane.showMessageDialog(null, "An error has occurred while adding SNMP server entry", "Operation aborted", JOptionPane.ERROR_MESSAGE);
             }
         }
         
@@ -279,7 +279,7 @@ public class NetworkPanel extends JPanelBGGradient{
                 CtrlWorkspace.getInstance().removeSnmpMgr(idModulo, selected);
                 snmpListModel.removeElement(selected);
             } catch (MVException mve) {
-                JOptionPane.showMessageDialog(null, "An error as occurred while deleting selected SNMP server entry", "Operation aborted", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "An error has occurred while deleting selected SNMP server entry", "Operation aborted", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

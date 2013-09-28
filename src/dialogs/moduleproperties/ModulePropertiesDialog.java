@@ -96,7 +96,7 @@ public class ModulePropertiesDialog extends JDialog {
         setModal(true);
         setDefaultCloseOperation(2);
         setLocation(100, 100);
-        setSize(460, 550);
+        setSize(460, 640);
         
         ButtonActionListener buttonActionListener = new ButtonActionListener();
         

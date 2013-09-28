@@ -100,7 +100,7 @@ class TimeNtpPanel extends JPanel {
                     
                 }
             } catch (MVException mve) {
-                JOptionPane.showMessageDialog(null, "An error as occurred while deleting selected NTP Server entry", "Operation aborted", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "An error has occurred while deleting selected NTP Server entry", "Operation aborted", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

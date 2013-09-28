@@ -36,7 +36,7 @@ public class ProtocolsPanel extends JPanelBGGradient {
         tabbedPane.setUI(new BasicTabbedPaneUI());
         tabbedPane.setBackground(StyleInterface.getInstance().getPropertiesTabbedPaneBackgroundColor());
         tabbedPane.addChangeListener(new ChangeListenerColorHandled(StyleInterface.getInstance().getPropertiesTabbedPaneBackgroundColor(), StyleInterface.getInstance().getTabbedPaneForegroundColor()));
-        tabbedPane.setBounds(5, 1, 450, 480);
+        tabbedPane.setBounds(5, 1, 450, 520);
         tabbedPane.add(protSerialPanel);
         tabbedPane.setTitleAt(0, "Serial Ports");
 
@@ -51,13 +51,13 @@ public class ProtocolsPanel extends JPanelBGGradient {
         }
         if (StyleInterface.getCompany().equalsIgnoreCase("Chromatec")) {
 
-            protSnellPanel = new ProtocolsSnellPanel(bean.getSnellRouter());
+            protSnellPanel = new ProtocolsSnellPanel(bean.getSnellRouter(), idModulo, frame);
             tabbedPane.add(protSnellPanel);
             tabbedPane.setTitleAt(2, "Snell Router Network");
 
         } 
         if (StyleInterface.getCompany().equalsIgnoreCase("Snell")){ //Snell
-            protSnellPanel = new ProtocolsSnellPanel(bean.getSnellRouter());
+            protSnellPanel = new ProtocolsSnellPanel(bean.getSnellRouter(), idModulo, frame);
             tabbedPane.add(protSnellPanel);
             tabbedPane.setTitleAt(1, "Snell Router Network");
         }

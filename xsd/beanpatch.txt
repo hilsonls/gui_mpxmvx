@@ -1,0 +1,17 @@
+:file VidAudSource.java
+:from
+
+    /**
+     * Returns the value of field 'valid'.
+     * 
+     * @return the value of field 'Valid'.
+     */
+    public boolean isValid(
+    ) {
+        return this._valid;
+    }
+
+:to // [patch-id]
+
+:done
+
