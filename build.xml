@@ -13,6 +13,8 @@
                 <attribute name="Main-Class" value="gui.MultiViewerBCS"/>
                 <attribute name="Class-Path" value="."/>
                 <attribute name="Implementation-Version" value="2.0-build_${buildDate}"/>
+            	<attribute name="Permissions" value="all-permissions"/>
+                <attribute name="Trusted-Only" value="true"/>
             </manifest>
             <fileset dir="C:/work/Chromatec/Multiviewer/gui/bin"/>
             <zipfileset excludes="META-INF/*.SF" src="lib/castor-1.2/jdbc-se2.0.jar"/>

@@ -10,7 +10,11 @@ import eccezioni.MVException;
 import gui.ComponentFactory;
 import gui.components.JCheckBoxTransBG;
 import gui.components.JPanelBGGradient;
+import gui.components.VGroupLayout;
+
+import java.awt.Component;
 import java.awt.Font;
+
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -40,51 +44,39 @@ public class PropertiesWssPanel extends JPanelBGGradient{
     
     
     public PropertiesWssPanel(Wss bean) throws MVException {
-        setLayout(null);
+        VGroupLayout layout = new VGroupLayout(this);
+        setLayout(layout);
         this.bean = bean;
         
-        modeLabel = new JLabel();
-        modeLabel.setText("Mode");
-        modeLabel.setBounds(20, 20, 80, 20);
-        add(modeLabel);
+        modeLabel = new JLabel("Mode");
         modeCombo = ComponentFactory.createComboBox(bean.getMode().getOptionsName(), bean.getMode().getVal());
-        modeCombo.setBounds(120, 20, 180, 20);
-        add(modeCombo);
+        modeCombo.setToolTipText("Type of wide screen information to detect");
     
-        colorLabel = new JLabel();
-        colorLabel.setText("Colour");
-        colorLabel.setBounds(20, 60, 80, 20);
-        add(colorLabel);
-        colorCombo = ComponentFactory.createComboBox(bean.getColour().getOptionsName(), bean.getColour().getVal());
-        colorCombo.setBounds(120, 60, 180, 20);
-        add(colorCombo);
-    
-        
-        aspectLabel = new JLabel();
+        aspectLabel = new JLabel("Aspect ratio");
         aspectLabel.setFont(new Font("Arial", Font.BOLD, 12));
-        aspectLabel.setText("Aspect ratio");
-        aspectLabel.setBounds(20, 110, 200, 20);
-        add(aspectLabel);
     
-        autoCheck = new JCheckBoxTransBG();
-        autoCheck.setText("Auto size");
+        autoCheck = new JCheckBoxTransBG("Auto size video image");
         autoCheck.setSelected(bean.getAspectEnabled().getVal());
-        autoCheck.setBounds(20, 135, 200, 20);
-        add(autoCheck);
+        autoCheck.setToolTipText("Size the video to the WSS/AFD information, or a fixed aspect ratio.");
         
-        defaultLabel = new JLabel();
-        defaultLabel.setText("Default");
-        defaultLabel.setBounds(20, 160, 80, 20);
-        add(defaultLabel);
+        defaultLabel = new JLabel("Default");
         defaultCombo = ComponentFactory.createComboBox(bean.getAspectDefault().getOptionsName(), bean.getAspectDefault().getVal());
-        defaultCombo.setBounds(120, 160, 180, 20);
-        add(defaultCombo);
+        defaultCombo.setToolTipText("Aspect ratio to use when there is no WSS/AFD information");
     
-        indicatorCheck = new JCheckBoxTransBG();
-        indicatorCheck.setText("Indicator");
+        indicatorCheck = new JCheckBoxTransBG("Indicator on");
         indicatorCheck.setSelected(bean.getAspectIndicator().getVal());
-        indicatorCheck.setBounds(20, 185, 200, 20);
-        add(indicatorCheck);
+        indicatorCheck.setToolTipText("Display aspect ratio information when available");
+
+        colorLabel = new JLabel("Indicator colour");
+        colorCombo = ComponentFactory.createComboBox(bean.getColour().getOptionsName(), bean.getColour().getVal());
+
+        layout.addRow(new Component[] {modeLabel, modeCombo});
+        layout.addGap();
+        layout.add(aspectLabel);
+        layout.add(autoCheck);
+        layout.addRow(new Component[] {defaultLabel, defaultCombo});
+        layout.add(indicatorCheck);
+        layout.addRow(new Component[] {colorLabel, colorCombo});
     }
     
     public void save() {

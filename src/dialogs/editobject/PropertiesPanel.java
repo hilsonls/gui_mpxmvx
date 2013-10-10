@@ -1,11 +1,18 @@
 package dialogs.editobject;
  
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
 import bean.ObjectSequence;
 import eccezioni.MVException;
 import gui.components.ChangeListenerColorHandled;
 import gui.components.JDioTabbedPane;
 import gui.components.JPanelBGGradient;
 import gui.style.StyleInterface;
+
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
@@ -14,6 +21,17 @@ public class PropertiesPanel extends JPanelBGGradient{
     
     private JTabbedPane tabbedPane;
     
+    private JScrollPane propVideoScrollPane;
+    private JScrollPane propAudioScrollPane;
+    private JScrollPane propErrorScrollPane;
+    private JScrollPane propTallyScrollPane;
+    private JScrollPane propVbiScrollPane;
+    private JScrollPane propWssScrollPane;
+    private JScrollPane propSagScrollPane;
+    private JScrollPane propLogoScrollPane;
+    private JScrollPane propClockScrollPane;
+    private JScrollPane propTextScrollPane;
+    private JScrollPane propTimerScrollPane;
     private PropertiesVideoPanel propVideoPanel;
     private PropertiesAudioPanel propAudioPanel;
     private PropertiesErrorPanel propErrorPanel;
@@ -25,14 +43,15 @@ public class PropertiesPanel extends JPanelBGGradient{
     private PropertiesClockPanel propClockPanel;
     private PropertiesTextPanel propTextPanel;
     private PropertiesTimerPanel propTimerPanel;
+    private FlowLayout layout;
     
     private int tileType;
 
 
 
     public PropertiesPanel(ObjectSequence bean) throws MVException {
-        setLayout(null);
-        
+        layout = new FlowLayout(FlowLayout.LEFT);
+        setLayout(layout);
         this.bean = bean;
         
         propVideoPanel = new PropertiesVideoPanel(bean.getVidAudProperties().getVidAudSource(), bean.getVideoProperties());
@@ -47,32 +66,39 @@ public class PropertiesPanel extends JPanelBGGradient{
         propTextPanel = new PropertiesTextPanel(bean.getTextProperties());
         propTimerPanel = new PropertiesTimerPanel(bean.getTimerProperties());
 
-
+        propVideoScrollPane = new JScrollPane(propVideoPanel);
+        propAudioScrollPane = new JScrollPane(propAudioPanel);
+        propErrorScrollPane = new JScrollPane(propErrorPanel);
+        propTallyScrollPane = new JScrollPane(propTallyPanel);
+        propVbiScrollPane = new JScrollPane(propVbiPanel);
+        propWssScrollPane = new JScrollPane(propWssPanel);
+        propSagScrollPane = new JScrollPane(propSagPanel);
+        propLogoScrollPane = new JScrollPane(propLogoPanel);
+        propClockScrollPane = new JScrollPane(propClockPanel);
+        propTextScrollPane = new JScrollPane(propTextPanel);
+        propTimerScrollPane = new JScrollPane(propTimerPanel);
 
         tabbedPane = new JDioTabbedPane();
         tabbedPane.setUI(new BasicTabbedPaneUI());
         tabbedPane.setBackground(StyleInterface.getInstance().getPropertiesTabbedPaneBackgroundColor());
         tabbedPane.addChangeListener(new ChangeListenerColorHandled(StyleInterface.getInstance().getPropertiesTabbedPaneBackgroundColor(), StyleInterface.getInstance().getTabbedPaneForegroundColor()));
-        tabbedPane.setBounds(5, 1, 320, 452);
-        tabbedPane.add(propVideoPanel);
-        tabbedPane.add(propAudioPanel);
-        tabbedPane.add(propErrorPanel);
-        tabbedPane.add(propTallyPanel);
-        tabbedPane.add(propVbiPanel);
-        tabbedPane.add(propWssPanel);
-        tabbedPane.add(propSagPanel);
         
-        tabbedPane.setSelectedComponent(propVideoPanel);
-        tabbedPane.setTitleAt(0, "Source");
-        tabbedPane.setTitleAt(1, "Audio");
-        tabbedPane.setTitleAt(2, "Error");
-        tabbedPane.setTitleAt(3, "Tally");
-        tabbedPane.setTitleAt(4, "VBI");
-        tabbedPane.setTitleAt(5, "WSS");
-        tabbedPane.setTitleAt(6, "SAG");
+        tileType = EditObjectDialog.TILE_TYPE_OTHER;
+        
+        addComponentListener(new ComponentAdapter() {
+            /**
+             * Resize the child pane when this panel is resized
+             */
+            @Override
+            public void componentResized(ComponentEvent e) {
+                Dimension size = getSize();
+                size.width -= layout.getHgap() * 2;
+                size.height -= layout.getVgap() * 2;
+                tabbedPane.setPreferredSize(size);
+            }
+        });
         
         add(tabbedPane);
-        //setVisible(true);
     }
     
     public void save() {
@@ -99,37 +125,45 @@ public class PropertiesPanel extends JPanelBGGradient{
     }
     
     private void checkTabsEnablingConditions() {
-        if (tileType == EditObjectDialog.TILE_TYPE_VIDEO) {
-            tabbedPane.removeAll();
-            tabbedPane.addTab("Source", propVideoPanel);
-            tabbedPane.addTab("Audio", propAudioPanel);
-            tabbedPane.addTab("Error", propErrorPanel);
-            tabbedPane.addTab("Tally", propTallyPanel);
-            tabbedPane.addTab("VBI", propVbiPanel);
-            tabbedPane.addTab("WSS", propWssPanel);
-            tabbedPane.addTab("SAG", propSagPanel);
+        tabbedPane.removeAll();
+
+        switch (tileType) {
+        case EditObjectDialog.TILE_TYPE_VIDEO:
+            tabbedPane.addTab("Source", propVideoScrollPane);
+            tabbedPane.addTab("Audio", propAudioScrollPane);
+            tabbedPane.addTab("Error", propErrorScrollPane);
+            tabbedPane.addTab("Tally", propTallyScrollPane);
+            tabbedPane.addTab("VBI", propVbiScrollPane);
+            tabbedPane.addTab("WSS", propWssScrollPane);
+            tabbedPane.addTab("SAG", propSagScrollPane);
             propVideoPanel.enableDisplayOnAllCheckBox(true);
-        } else if (tileType == EditObjectDialog.TILE_TYPE_AUDIO) {
-            tabbedPane.removeAll();
-            tabbedPane.addTab("Source", propVideoPanel);
-            tabbedPane.addTab("Audio", propAudioPanel);
-            tabbedPane.addTab("Error", propErrorPanel);
+            break;
+            
+        case EditObjectDialog.TILE_TYPE_AUDIO:
+            tabbedPane.addTab("Source", propVideoScrollPane);
+            tabbedPane.addTab("Audio", propAudioScrollPane);
+            tabbedPane.addTab("Error", propErrorScrollPane);
             propVideoPanel.enableDisplayOnAllCheckBox(false);
-        } else if (tileType == EditObjectDialog.TILE_TYPE_LOGO) {
-            tabbedPane.removeAll();
-            tabbedPane.addTab("Logo", propLogoPanel);
-        } else if (tileType == EditObjectDialog.TILE_TYPE_CLOCK) {
-            tabbedPane.removeAll();
-            tabbedPane.addTab("Clock", propClockPanel);
-        } else if (tileType == EditObjectDialog.TILE_TYPE_TEXT) {
-            tabbedPane.removeAll();
-            tabbedPane.addTab("Text", propTextPanel);
-        } else if (tileType == EditObjectDialog.TILE_TYPE_TIMER) {
-            tabbedPane.removeAll();
-            tabbedPane.addTab("Timer", propTimerPanel);
+            break;
+            
+        case EditObjectDialog.TILE_TYPE_LOGO:
+            tabbedPane.addTab("Logo", propLogoScrollPane);
+            break;
+            
+        case EditObjectDialog.TILE_TYPE_CLOCK:
+            tabbedPane.addTab("Clock", propClockScrollPane);
+            break;
+            
+        case EditObjectDialog.TILE_TYPE_TEXT:
+            tabbedPane.addTab("Text", propTextScrollPane);
+            break;
+            
+        case EditObjectDialog.TILE_TYPE_TIMER:
+            tabbedPane.addTab("Timer", propTimerScrollPane);
+            break;
+            
+        default:
+            break;
         }
-        else {
-            tabbedPane.removeAll();            
-        }
-    }    
+    }
 }

@@ -1,9 +1,13 @@
 package dialogs.editobject;
 
+import java.awt.Component;
+
 import eccezioni.MVException;
 import bean.LogoProperties;
 import gui.ComponentFactory;
 import gui.components.JPanelBGGradient;
+import gui.components.VGroupLayout;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
@@ -19,16 +23,14 @@ public class PropertiesLogoPanel extends JPanelBGGradient{
     private JComboBox fileNameCombo;
     
     public PropertiesLogoPanel(LogoProperties bean) throws MVException {
-        setLayout(null);
+        VGroupLayout layout = new VGroupLayout(this);
+        setLayout(layout);
         this.bean = bean;
         
-        fileNameLabel = new JLabel();
-        fileNameLabel.setText("File name");
-        fileNameLabel.setBounds(20, 20, 80, 20);
-        add(fileNameLabel);
+        fileNameLabel = new JLabel("Logo file name");
         fileNameCombo = ComponentFactory.createComboBox(bean.getLogoFilename().getOptionsName(), bean.getLogoFilename().getVal());
-        fileNameCombo.setBounds(120, 20, 170, 20);
-        add(fileNameCombo);
+        
+        layout.addRow(new Component[] {fileNameLabel, fileNameCombo});
     }
 
     public void save() {

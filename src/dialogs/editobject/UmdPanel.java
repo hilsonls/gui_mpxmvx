@@ -6,6 +6,9 @@ import gui.ComponentFactory;
 import gui.components.JCheckBoxTransBG;
 import gui.components.JPanelBGGradient;
 import gui.components.JSliderPanel;
+import gui.components.VGroupLayout;
+
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -56,109 +59,79 @@ public class UmdPanel extends JPanelBGGradient{
     public UmdPanel(Umd bean) throws MVException {
         MyItemListener mIL = new MyItemListener();
         
-        setLayout(null);
+        VGroupLayout layout = new VGroupLayout(this);
+        setLayout(layout);
         
         this.bean = bean;
         
-        text1Check = new JCheckBoxTransBG();
-        text1Check.setText("Text 1st line");
+        text1Check = new JCheckBoxTransBG("Text 1st line");
         text1Check.setSelected(bean.getUmdText(0).getEnabled().getVal());
-        text1Check.setBounds(20, 20, 100, 20);
         text1Check.addItemListener(mIL);
-        add(text1Check);
         text1Field = ComponentFactory.createTextField(bean.getUmdText(0).getText().getVal(), 40);
-        text1Field.setBounds(120, 20, 180, 20);
-        add(text1Field);
 
-        text2Check = new JCheckBoxTransBG();
-        text2Check.setText("Text 2nd line");
+        text2Check = new JCheckBoxTransBG("Text 2nd line");
         text2Check.setSelected(bean.getUmdText(1).getEnabled().getVal());
-        text2Check.setBounds(20, 55, 100, 20);
         text2Check.addItemListener(mIL);
-        add(text2Check);
         text2Field = ComponentFactory.createTextField(bean.getUmdText(1).getText().getVal(), 40);
-        text2Field.setBounds(120, 55, 180, 20);
-        add(text2Field);        
         
-        fontLabel = new JLabel();
-        fontLabel.setText("Font");
-        fontLabel.setBounds(20, 90, 80, 20);
-        add(fontLabel);
-        //Font font = new Font("Arial", Font.BOLD, 10);
+        fontLabel = new JLabel("Font");
         fontNameCombo = ComponentFactory.createComboBox(bean.getFont().getOptionsName(), bean.getFont().getVal());
-        fontNameCombo.setBounds(65, 90, 235, 20);
-        //fontNameCombo.setFont(font);
-        add(fontNameCombo);
         
-        fontSizeLabel = new JLabel();
-        fontSizeLabel.setText("Font size");
-        fontSizeLabel.setBounds(20, 125, 80, 20);
-        add(fontSizeLabel);
+        fontSizeLabel = new JLabel("Font size");
         fontSizeCombo = ComponentFactory.createComboBox(bean.getFontSize().getOptionsName(), bean.getFontSize().getVal());
-        fontSizeCombo.setBounds(120, 125, 55, 20);
-        add(fontSizeCombo);
 
-        foregroundLabel = new JLabel();
-        foregroundLabel.setText("Foreground");
-        foregroundLabel.setBounds(20, 160, 80, 20);
-        add(foregroundLabel);
+        foregroundLabel = new JLabel("Foreground colour");
         foregroundCombo = ComponentFactory.createComboBox(bean.getColour().getOptionsName(), bean.getColour().getVal());
-        foregroundCombo.setBounds(120, 160, 180, 20);
-        add(foregroundCombo);
         
-        backgroundLabel = new JLabel();
-        backgroundLabel.setText("Background");
-        backgroundLabel.setBounds(20, 195, 80, 20);
-        add(backgroundLabel);
+        backgroundLabel = new JLabel("Background colour");
         backgroundCombo = ComponentFactory.createComboBox(bean.getBkcolour().getOptionsName(), bean.getBkcolour().getVal());
-        backgroundCombo.setBounds(120, 195, 180, 20);
-        add(backgroundCombo);
         
-        positionLabel = new JLabel();
+        positionLabel = new JLabel("Position");
         positionLabel.setText("Position");
-        positionLabel.setBounds(20, 230, 80, 20);
-        add(positionLabel);
         positionCombo = ComponentFactory.createComboBox(bean.getUmdPosition().getOptionsName(), bean.getUmdPosition().getVal());
-        positionCombo.setBounds(120, 230, 180, 20);
-        add(positionCombo);
         
-        separatorCheck = new JCheckBoxTransBG();
-        separatorCheck.setText("Separator");
-        separatorCheck.setBounds(20, 265, 90, 20);
+        separatorCheck = new JCheckBoxTransBG("Separator");
         separatorCheck.setSelected(bean.getUmdSeparator().getVal());
         separatorCheck.addItemListener(mIL);
-        add(separatorCheck);
         separatorCombo = ComponentFactory.createComboBox(bean.getUmdSeparatorColour().getOptionsName(), bean.getUmdSeparatorColour().getVal());
-        separatorCombo.setBounds(120, 265, 180, 20);
-        add(separatorCombo);
         
-        insideCheck = new JCheckBoxTransBG();
-        insideCheck.setText("Inside tile");
-        insideCheck.setBounds(20, 300, 120, 20);
+        insideCheck = new JCheckBoxTransBG("Inside tile");
         insideCheck.setSelected(bean.getInside().getVal());
         insideCheck.addItemListener(mIL);
-        add(insideCheck);
         
-        transparentCheck = new JCheckBoxTransBG();
-        transparentCheck.setText("Transparent on video");
-        transparentCheck.setBounds(20, 335, 180, 20);
+        transparentCheck = new JCheckBoxTransBG("Transparent on video");
         transparentCheck.setSelected(bean.getTransparent().getVal());
         transparentCheck.addItemListener(mIL);
-        add(transparentCheck);
         
-        transparentLabel = new JLabel();
-        transparentLabel.setText("Transparency level");
-        transparentLabel.setBounds(20, 370, 120, 20);
-        add(transparentLabel);
+        transparentLabel = new JLabel("Transparency level");
         transparentSlider = new JSliderPanel(bean.getTransparentLevel().getMin(), bean.getTransparentLevel().getMax(), bean.getTransparentLevel().getVal());
-        transparentSlider.setBounds(145, 370, 155, 20);
-        add(transparentSlider);
         
-        visibleCheck = new JCheckBoxTransBG();
-        visibleCheck.setText("Visible");
-        visibleCheck.setBounds(20, 405, 80, 20);
+        visibleCheck = new JCheckBoxTransBG("Visible");
         visibleCheck.setSelected(bean.getVisible().getVal());
-        add(visibleCheck); 
+        
+        layout.addGrid(new Component[][] {
+                {text1Check, text1Field},
+                {text2Check, text2Field},
+        });
+        layout.addGap();
+        layout.addGrid(new Component[][] {
+                {fontLabel, fontNameCombo},
+                {fontSizeLabel, fontSizeCombo},
+        });
+        layout.addGrid(new Component[][] {
+                {foregroundLabel, foregroundCombo},
+                {backgroundLabel, backgroundCombo},
+        });
+        layout.addGrid(new Component[][] {
+                {positionLabel, positionCombo},
+                {separatorCheck, separatorCombo},
+        });
+        layout.addGap();
+        layout.add(insideCheck);
+        layout.add(transparentCheck);
+        layout.addRow(new Component[] {transparentLabel, transparentSlider});
+        layout.add(visibleCheck);
+        
     }
     
     public void save() {

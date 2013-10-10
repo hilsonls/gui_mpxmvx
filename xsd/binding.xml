@@ -1,146 +1,156 @@
 <binding xmlns="http://www.castor.org/SourceGenerator/Binding"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://www.castor.org/SourceGenerator/Binding binding.xsd"
-		defaultBinding="element">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.castor.org/SourceGenerator/Binding binding.xsd"
+    defaultBinding="element">
 
-	<elementBinding name="/module/filename">
-		<java-class name="moduleFilename"/>
-	</elementBinding>
+    <elementBinding name="/module/filename">
+        <java-class name="moduleFilename" />
+    </elementBinding>
 
-	<elementBinding name="/module/valid">
-		<java-class name="moduleValid"/>
-	</elementBinding>
-	
-	<elementBinding name="/module/gpiInNameTable/name">
-		<java-class name="gpiInNameName"/>
-	</elementBinding>
-	
-	<elementBinding name="/module/gpiInTaskTable/name">
-		<java-class name="gpiInTaskName"/>
-	</elementBinding>
+    <elementBinding name="/module/valid">
+        <java-class name="moduleValid" />
+    </elementBinding>
 
-	<elementBinding name="/module/gpiOutNameTable/name">
-		<java-class name="gpiOutNameName"/>
-	</elementBinding>
+    <elementBinding name="/module/gpiInNameTable/name">
+        <java-class name="gpiInNameName" />
+    </elementBinding>
 
-	<elementBinding name="/module/gpiOutTaskTable/name">
-		<java-class name="gpiOutTaskName"/>
-	</elementBinding>
+    <elementBinding name="/module/gpiInTaskTable/name">
+        <java-class name="gpiInTaskName" />
+    </elementBinding>
 
-	<elementBinding name="/module/gpis/gpiInfo/optionTables">
-		<java-class name="gpiOptionTables"/>
-	</elementBinding>
+    <elementBinding name="/module/gpiOutNameTable/name">
+        <java-class name="gpiOutNameName" />
+    </elementBinding>
 
-	<elementBinding name="/module/gpis/gpiInfo/numOuts">
-		<java-class name="gpiNumOuts"/>
-	</elementBinding>
+    <elementBinding name="/module/gpiOutTaskTable/name">
+        <java-class name="gpiOutTaskName" />
+    </elementBinding>
 
-	<elementBinding name="/module/objects/object">
-		<java-class name="oggetto"/>
-	</elementBinding>
+    <elementBinding name="/module/gpis/gpiInfo/optionTables">
+        <java-class name="gpiOptionTables" />
+    </elementBinding>
 
-	<elementBinding name="/module/objects/object/screen">
-		<java-class name="objectScreen"/>
-	</elementBinding>
+    <elementBinding name="/module/gpis/gpiInfo/numOuts">
+        <java-class name="gpiNumOuts" />
+    </elementBinding>
 
-	<elementBinding name="/module/objects/object/logoProperties/filename">
-		<java-class name="logoFilename"/>
-	</elementBinding>
+    <elementBinding name="/module/objects/object">
+        <java-class name="oggetto" />
+    </elementBinding>
 
-	<elementBinding name="/output/source">
-		<java-class name="outputSource"/>
-	</elementBinding>
+    <elementBinding name="/module/objects/object/screen">
+        <java-class name="objectScreen" />
+    </elementBinding>
 
-	<elementBinding name="/module/sagPresets/name">
-		<java-class name="sagName"/>
-	</elementBinding>
+    <elementBinding name="/module/objects/object/logoProperties/filename">
+        <java-class name="logoFilename" />
+    </elementBinding>
 
-	<elementBinding name="/module/audioSetup/scaleTransition/scale">
-		<java-class name="transitionScale"/>
-	</elementBinding>
+    <elementBinding name="/output/source">
+        <java-class name="outputSource" />
+    </elementBinding>
 
-	<elementBinding name="/module/screen/aspectRatio">
-		<java-class name="moduleScreenAspectRatio"/>
-	</elementBinding>
+    <elementBinding name="/module/sagPresets/name">
+        <java-class name="sagName" />
+    </elementBinding>
 
-	<elementBinding name="/module/sysTime/timezone">
-		<java-class name="sysTimeTimezone"/>
-	</elementBinding>
+    <elementBinding name="/module/audioSetup/scaleTransition/scale">
+        <java-class name="transitionScale" />
+    </elementBinding>
 
-	<elementBinding name="/module/objects/object/vidAudProperties/source">
-		<java-class name="vidAudSource"/>
-	</elementBinding>
+    <elementBinding name="/module/screen/aspectRatio">
+        <java-class name="moduleScreenAspectRatio" />
+    </elementBinding>
 
-	<elementBinding name="/module/videoCards/card/mode">
-		<java-class name="cardMode"/>
-	</elementBinding>
+    <elementBinding name="/module/sysTime/timezone">
+        <java-class name="sysTimeTimezone" />
+    </elementBinding>
 
-	<elementBinding name="/module/objects/object/videoProperties/sag/visible">
-		<java-class name="sagVisible"/>
-	</elementBinding>
+    <elementBinding name="/module/objects/object/vidAudProperties/source">
+        <java-class name="vidAudSource" />
+    </elementBinding>
 
-	<elementBinding name="/module/protocols/snellRouter/audio">
-		<java-class name="audioSnell"/>
-	</elementBinding>
+    <elementBinding name="/module/videoCards/card/mode">
+        <java-class name="cardMode" />
+    </elementBinding>
 
-	<elementBinding name="/module/objects/object/videoProperties/tally/position">
-		<java-class name="tallyPosition"/>
-	</elementBinding>
+    <elementBinding name="/module/objects/object/videoProperties/sag/visible">
+        <java-class name="sagVisible" />
+    </elementBinding>
 
-	<elementBinding name="/complexType:snellMatrixTableType/physMapInfo">
-		<java-class name="snellMatrixPhysMapInfo"/>
-	</elementBinding>
+    <elementBinding name="/module/protocols/snellRouter/audio">
+        <java-class name="audioSnell" />
+    </elementBinding>
 
-	<elementBinding name="/complexType:snellMatrixTableType/physMapInfo/numIns">
-		<java-class name="snellMatrixNumIns"/>
-	</elementBinding>
+    <elementBinding
+        name="/module/objects/object/videoProperties/tally/position">
+        <java-class name="tallyPosition" />
+    </elementBinding>
 
-	<elementBinding name="/complexType:snellMatrixTableType/physMapInfo/numOuts">
-		<java-class name="snellMatrixNumOuts"/>
-	</elementBinding>
+    <elementBinding name="/complexType:snellMatrixTableType/physMapInfo">
+        <java-class name="snellMatrixPhysMapInfo" />
+    </elementBinding>
 
-	<elementBinding name="/complexType:snellMatrixTableType/physMapInfo/numLvls">
-		<java-class name="snellMatrixNumLvls"/>
-	</elementBinding>
+    <elementBinding
+        name="/complexType:snellMatrixTableType/physMapInfo/numIns">
+        <java-class name="snellMatrixNumIns" />
+    </elementBinding>
 
-	<elementBinding name="/complexType:snellMatrixTableType/physMapInfo/numMats">
-		<java-class name="snellMatrixNumMats"/>
-	</elementBinding>
+    <elementBinding
+        name="/complexType:snellMatrixTableType/physMapInfo/numOuts">
+        <java-class name="snellMatrixNumOuts" />
+    </elementBinding>
 
-	<elementBinding name="/complexType:snellMatrixTableType/physMapInfo/numDass">
-		<java-class name="snellMatrixNumDass"/>
-	</elementBinding>
+    <elementBinding
+        name="/complexType:snellMatrixTableType/physMapInfo/numLvls">
+        <java-class name="snellMatrixNumLvls" />
+    </elementBinding>
 
-	<elementBinding name="/complexType:snellMatrixTableType/physIns">
-		<java-class name="snellMatrixPhysIns"/>
-	</elementBinding>
+    <elementBinding
+        name="/complexType:snellMatrixTableType/physMapInfo/numMats">
+        <java-class name="snellMatrixNumMats" />
+    </elementBinding>
 
-	<elementBinding name="/complexType:snellMatrixTableType/physIns/in">
-		<java-class name="snellMatrixIn"/>
-	</elementBinding>
-	
-	<elementBinding name="/module/protocols/snellRouter/video">
-		<java-class name="snellVideoMatrix"/>
-	</elementBinding>
+    <elementBinding
+        name="/complexType:snellMatrixTableType/physMapInfo/numDass">
+        <java-class name="snellMatrixNumDass" />
+    </elementBinding>
 
-	<elementBinding name="/module/protocols/snellRouter/audio">
-		<java-class name="snellAudioMatrix"/>
-	</elementBinding>
+    <elementBinding name="/complexType:snellMatrixTableType/physIns">
+        <java-class name="snellMatrixPhysIns" />
+    </elementBinding>
 
-	<elementBinding name="/module/protocols/snellRouter/dataxx">
-		<java-class name="snellDataxxMatrix"/>
-	</elementBinding>
-	
-	<elementBinding name="/module/protocols/snellRouter/controller">
-		<java-class name="snellController"/>
-	</elementBinding>
+    <elementBinding name="/complexType:snellMatrixTableType/physIns/in">
+        <java-class name="snellMatrixIn" />
+    </elementBinding>
 
-	<elementBinding name="/module/protocols/sierraRouter/physMapInfo/numIns">
-		<java-class name="numInsSierra"/>
-	</elementBinding>
+    <elementBinding name="/module/protocols/snellRouter/video">
+        <java-class name="snellVideoMatrix" />
+    </elementBinding>
 
-	<elementBinding name="/module/protocols/sierraRouter/physIns/in">
-		<java-class name="inSierra"/>
-	</elementBinding>
-	
+    <elementBinding name="/module/protocols/snellRouter/audio">
+        <java-class name="snellAudioMatrix" />
+    </elementBinding>
+
+    <elementBinding name="/module/protocols/snellRouter/dataxx">
+        <java-class name="snellDataxxMatrix" />
+    </elementBinding>
+
+    <elementBinding name="/module/protocols/snellRouter/controller">
+        <java-class name="snellController" />
+    </elementBinding>
+
+    <elementBinding name="/module/protocols/sierraRouter/physMapInfo/numIns">
+        <java-class name="numInsSierra" />
+    </elementBinding>
+
+    <elementBinding name="/module/protocols/sierraRouter/physIns/in">
+        <java-class name="inSierra" />
+    </elementBinding>
+
+    <elementBinding name="/module/objects/object/timerProperties/gpiPR">
+        <java-class name="timerPropertiesGpiPR" />
+    </elementBinding>
+
 </binding>

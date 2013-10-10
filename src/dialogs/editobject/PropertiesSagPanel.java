@@ -7,7 +7,11 @@ import gui.ComponentFactory;
 import gui.components.JCheckBoxTransBG;
 import gui.components.JPanelBGGradient;
 import gui.components.JSliderPanel;
+import gui.components.VGroupLayout;
+
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.logging.Level;
@@ -16,6 +20,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -23,6 +28,7 @@ import javax.swing.event.ChangeListener;
 public class PropertiesSagPanel extends JPanelBGGradient{
     private Sag bean;
 
+    private JPanel sagImagePanel;
     private JLabel screenAreaLabel;
     private JLabel sagCageLabel;
     
@@ -45,74 +51,72 @@ public class PropertiesSagPanel extends JPanelBGGradient{
     public PropertiesSagPanel(Sag bean) throws MVException {
         MyItemListener mIL = new MyItemListener();
         
-        setLayout(null);
+        VGroupLayout layout = new VGroupLayout(this);
+        setLayout(layout);
         
         this.bean = bean;
         
-        screenAreaLabel = new JLabel();
-        screenAreaLabel.setText("");
-        screenAreaLabel.setBounds(20, 20, 280, 200);
+        sagImagePanel = new JPanel();
+        sagImagePanel.setLayout(null);
+        sagImagePanel.setOpaque(false);
+        sagImagePanel.setSize(280, 200);
+        sagImagePanel.setMinimumSize(sagImagePanel.getSize());
+        sagImagePanel.setPreferredSize(sagImagePanel.getSize());
+        sagImagePanel.setMaximumSize(sagImagePanel.getSize());
+        
+        screenAreaLabel = new JLabel("");
+        screenAreaLabel.setBounds(0, 0, 280, 200);
         screenAreaLabel.setBackground(Color.BLUE);
         screenAreaLabel.setOpaque(true);
-        add(screenAreaLabel);
-        sagCageLabel = new JLabel();
-        sagCageLabel.setText("");
+        sagImagePanel.add(screenAreaLabel);
+        sagCageLabel = new JLabel("");
         sagCageLabel.setBounds(60, 60, 160, 80);
         sagCageLabel.setBackground(Color.GRAY);
         sagCageLabel.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 1));
         sagCageLabel.setOpaque(true);
         screenAreaLabel.add(sagCageLabel);
         
-        visibleCheck = new JCheckBoxTransBG();
-        visibleCheck.setText("Visible");
-        visibleCheck.setBounds(20, 240, 100, 20);
+        visibleCheck = new JCheckBoxTransBG("Visible");
         visibleCheck.setSelected(bean.getSagVisible().getVal());
         visibleCheck.addItemListener(mIL);
-        add(visibleCheck); 
         
-        sagLabel = new JLabel();
-        sagLabel.setText("Safe Area Cage");
-        sagLabel.setBounds(20, 275, 120, 20);
-        add(sagLabel);
+        sagLabel = new JLabel("Safe Area Cage");
         sagCombo = ComponentFactory.createComboBox(bean.getPreset().getOptionsName(), bean.getPreset().getVal());
-        sagCombo.setBounds(150, 275, 150, 20);
         sagCombo.addItemListener(mIL);
-        add(sagCombo);
         
-        customCheck = new JCheckBoxTransBG();
-        customCheck.setText("Setup Custom Cage");
-        customCheck.setBounds(20, 310, 140, 20);
+        customCheck = new JCheckBoxTransBG("Setup Custom Cage");
         customCheck.setSelected(bean.getUseCustom().getVal());
         customCheck.addItemListener(mIL);
-        add(customCheck);
         
-        verticalLabel = new JLabel();
-        verticalLabel.setText("Vertical borders");
-        verticalLabel.setBounds(20, 345, 120, 20);
-        add(verticalLabel);
+        Dimension prefSize;
+        
+        verticalLabel = new JLabel("Vertical borders");
         verticalSlider = new JSliderPanel(0, 50, 0, 1);
         verticalSlider.setValue(bean.getVborderCustom().getVal());
-        verticalSlider.setBounds(135, 345, 160, 20);
         verticalSlider.addChangeListener(mIL);
-        add(verticalSlider);
-        perc1Label = new JLabel();
-        perc1Label.setText("%");
-        perc1Label.setBounds(300, 345, 10, 20);
-        add(perc1Label);
+        prefSize = verticalSlider.getPreferredSize();
+        prefSize.width = 50;
+        verticalSlider.setPreferredSize(prefSize);
+        perc1Label = new JLabel("%");
         
-        horizontalLabel = new JLabel();
-        horizontalLabel.setText("Horizontal borders");
-        horizontalLabel.setBounds(20, 380, 120, 20);
-        add(horizontalLabel);
+        horizontalLabel = new JLabel("Horizontal borders");
         horizontalSlider = new JSliderPanel(0, 50, 0, 1);
         horizontalSlider.setValue(bean.getHborderCustom().getVal());
-        horizontalSlider.setBounds(135, 380, 160, 20);
         horizontalSlider.addChangeListener(mIL);
-        add(horizontalSlider);
-        perc2Label = new JLabel();
-        perc2Label.setText("%");
-        perc2Label.setBounds(300, 380, 10, 20);
-        add(perc2Label);
+        prefSize = horizontalSlider.getPreferredSize();
+        prefSize.width = 50;
+        horizontalSlider.setPreferredSize(prefSize);
+        perc2Label = new JLabel("%");
+
+        layout.add(sagImagePanel);
+        layout.add(visibleCheck);
+        layout.addRow(new Component[] {sagLabel, sagCombo});
+        layout.addGap();
+        layout.add(customCheck);
+        layout.addGridIndent(new Component[][] {
+                {verticalLabel, verticalSlider, perc1Label},
+                {horizontalLabel, horizontalSlider, perc2Label}
+        });
         
         checkComponentsEnablingConditions();
         computeSafeAreaLabel();

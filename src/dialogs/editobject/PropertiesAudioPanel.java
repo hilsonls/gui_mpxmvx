@@ -12,6 +12,9 @@ import gui.ComponentFactory;
 import gui.components.JCheckBoxTransBG;
 import gui.components.JPanelBGGradient;
 import gui.components.JSliderPanel;
+import gui.components.VGroupLayout;
+
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JCheckBox;
@@ -65,136 +68,93 @@ public class PropertiesAudioPanel extends JPanelBGGradient{
     
    
     public PropertiesAudioPanel(Audio bean) throws MVException {
-        setLayout(null);
+        VGroupLayout layout = new VGroupLayout(this);
+        setLayout(layout);
         
         this.bean = bean;
         
-        widthLabel = new JLabel();
-        widthLabel.setText("Width");
-        widthLabel.setBounds(20, 20, 60, 20);
-        add(widthLabel);
-        widthSlider = new JSliderPanel(bean.getWidth().getMin(), bean.getWidth().getMax(), bean.getWidth().getVal());
-        widthSlider.setBounds(100, 20, 200, 20);
-        add(widthSlider);
-    
-        scaleLabel = new JLabel();
-        scaleLabel.setText("Scale");
-        scaleLabel.setBounds(20, 55, 60, 20);
-        add(scaleLabel);
-        scaleCombo = ComponentFactory.createComboBox(bean.getScale().getOptionsName(), bean.getScale().getVal());
-        scaleCombo.setBounds(100, 55, 200, 20);
-        add(scaleCombo);
-    
-        scalePosLabel = new JLabel();
-        scalePosLabel.setText("Scale Label Position");
-        scalePosLabel.setBounds(20, 90, 140, 20);
-        add(scalePosLabel);
-        scalePosCombo = ComponentFactory.createComboBox(bean.getScalePosition().getOptionsName(), bean.getScalePosition().getVal());
-        scalePosCombo.setBounds(180, 90, 120, 20);
-        add(scalePosCombo);
+        visibleCheck = new JCheckBoxTransBG("Display audio meter");
+        visibleCheck.setSelected(bean.getVisible().getVal());
         
-        barLabel = new JLabel();
-        barLabel.setText("Bar Colours");
-        barLabel.setBounds(20, 125, 75, 20);
-        add(barLabel);
+        widthLabel = new JLabel("Meter bars width");
+        widthSlider = new JSliderPanel(bean.getWidth().getMin(), bean.getWidth().getMax(), bean.getWidth().getVal());
+    
+        scaleLabel = new JLabel("Scale type");
+        scaleCombo = ComponentFactory.createComboBox(bean.getScale().getOptionsName(), bean.getScale().getVal());
+    
+        scalePosLabel = new JLabel("Scale label position");
+        scalePosCombo = ComponentFactory.createComboBox(bean.getScalePosition().getOptionsName(), bean.getScalePosition().getVal());
+        
+        barLabel = new JLabel("Bar colours");
         barCombo = createBarsCombo();
-        barCombo.setBounds(100, 125, 65, 20);
-        add(barCombo);
-        overLabel = new JLabel();
-        overLabel.setText("Over");
-        overLabel.setBounds(180, 125, 40, 20);
-        add(overLabel);
+        overLabel = new JLabel("Over");
         overCombo = new JComboBox[16];
         for (int i = 0; i < 16; i++) {
             AudioSequenceItem asi = bean.getAudioSequence(0).getAudioSequenceItem(i);
             overCombo[i] = ComponentFactory.createComboBox(asi.getBarColourOver().getOptionsName(), asi.getBarColourOver().getVal());
-            overCombo[i].setBounds(220, 125, 80, 20);
             overCombo[i].setVisible(false);
-            add(overCombo[i]);
         }
         overCombo[0].setVisible(true);
         
     
-        upperLabel = new JLabel();
-        upperLabel.setText("Upper");
-        upperLabel.setBounds(180, 160, 50, 20);
-        add(upperLabel);
+        upperLabel = new JLabel("Upper");
         upperCombo = new JComboBox[16];
         for (int i = 0; i < 16; i++) {
             AudioSequenceItem asi = bean.getAudioSequence(0).getAudioSequenceItem(i);
             upperCombo[i] = ComponentFactory.createComboBox(asi.getBarColourUpper().getOptionsName(), asi.getBarColourUpper().getVal());
-            upperCombo[i].setBounds(220, 160, 80, 20);
             upperCombo[i].setVisible(false);
-            add(upperCombo[i]);
         }
         upperCombo[0].setVisible(true);
     
-        lowerLabel = new JLabel();
-        lowerLabel.setText("Lower");
-        lowerLabel.setBounds(180, 195, 50, 20);
-        add(lowerLabel);
+        lowerLabel = new JLabel("Lower");
         lowerCombo = new JComboBox[16];
         for (int i = 0; i < 16; i++) {
             AudioSequenceItem asi = bean.getAudioSequence(0).getAudioSequenceItem(i);
             lowerCombo[i] = ComponentFactory.createComboBox(asi.getBarColourLower().getOptionsName(), asi.getBarColourLower().getVal());
-            lowerCombo[i].setBounds(220, 195, 80, 20);
             lowerCombo[i].setVisible(false);
-            add(lowerCombo[i]);
         }
         lowerCombo[0].setVisible(true);
     
-        labelsLabel = new JLabel();
-        labelsLabel.setText("Labels");
-        labelsLabel.setBounds(20, 230, 55, 20);
-        add(labelsLabel);
+        labelsLabel = new JLabel("Labels");
         labelsCombo = ComponentFactory.createComboBox(bean.getLabelType().getOptionsName(), bean.getLabelType().getVal());
-        labelsCombo.setBounds(70, 230, 80, 20);
-        add(labelsCombo);
-        colourLabel = new JLabel();
-        colourLabel.setText("Colour");
-        colourLabel.setBounds(170, 230, 55, 20);
-        add(colourLabel);
+        colourLabel = new JLabel("Colour");
         colourCombo = ComponentFactory.createComboBox(bean.getLabelColour().getOptionsName(), bean.getLabelColour().getVal());
-        colourCombo.setBounds(220, 230, 80, 20);
-        add(colourCombo);
     
-        alarmCheck = new JCheckBoxTransBG();
-        alarmCheck.setText("Alarm Indicators");
+        alarmCheck = new JCheckBoxTransBG("Show alarm indicators");
         alarmCheck.setSelected(bean.getAlarmIndicators().getVal());
-        alarmCheck.setBounds(20, 265, 180, 20);
-        add(alarmCheck);
     
-        transparentCheck = new JCheckBoxTransBG();
-        transparentCheck.setText("Transparent on Video");
+        transparentCheck = new JCheckBoxTransBG("Transparent on video");
         transparentCheck.setSelected(bean.getTransparent().getVal());
-        transparentCheck.setBounds(20, 295, 180, 20);
-        add(transparentCheck);
     
-        transparentLabel = new JLabel();
-        transparentLabel.setText("Transparency Level");
-        transparentLabel.setBounds(20, 325, 140, 20);
-        add(transparentLabel);
+        transparentLabel = new JLabel("Transparency level");
         transparentSlider = new JSliderPanel(bean.getTransparentLevel().getMin(), bean.getTransparentLevel().getMax(), bean.getTransparentLevel().getVal());
-        transparentSlider.setBounds(160, 325, 140, 20);
-        add(transparentSlider);
     
-        displayCheck = new JCheckBoxTransBG();
-        displayCheck.setText("Display outside of picture");
+        displayCheck = new JCheckBoxTransBG("Display outside of picture");
         displayCheck.setSelected(bean.getOutsideVideo().getVal());
-        displayCheck.setBounds(20, 355, 200, 20);
-        add(displayCheck);
         
-        visibleCheck = new JCheckBoxTransBG();
-        visibleCheck.setText("Visible");
-        visibleCheck.setSelected(bean.getVisible().getVal());
-        visibleCheck.setBounds(20, 380, 120, 20);
-        add(visibleCheck);
-        
-        splitBarsCheck = new JCheckBoxTransBG();
-        splitBarsCheck.setText("Split Bars");
+        splitBarsCheck = new JCheckBoxTransBG("Split meter into 2 groups placed left and right");
         splitBarsCheck.setSelected(bean.getSplitBars().getVal());
-        splitBarsCheck.setBounds(160, 380, 200, 20);
-        add(splitBarsCheck);
+        
+        layout.add(visibleCheck);
+        layout.addGap();
+        layout.addRow(new Component[] {widthLabel, widthSlider});
+        layout.addGap();
+        layout.addRow(new Component[] {scaleLabel, scaleCombo});
+        layout.addRow(new Component[] {scalePosLabel, scalePosCombo});
+        layout.addGap();
+        layout.addGrid(new Component[][] {
+                {barLabel, barCombo, overLabel, overCombo[0], overCombo[1], overCombo[2], overCombo[3], overCombo[4], overCombo[5], overCombo[6], overCombo[7], overCombo[8], overCombo[9], overCombo[10], overCombo[11], overCombo[12], overCombo[13], overCombo[14], overCombo[15]},
+                {new JLabel(""), new JLabel(""), upperLabel, upperCombo[0], upperCombo[1], upperCombo[2], upperCombo[3], upperCombo[4], upperCombo[5], upperCombo[6], upperCombo[7], upperCombo[8], upperCombo[9], upperCombo[10], upperCombo[11], upperCombo[12], upperCombo[13], upperCombo[14], upperCombo[15]},
+                {new JLabel(""), new JLabel(""), lowerLabel, lowerCombo[0], lowerCombo[1], lowerCombo[2], lowerCombo[3], lowerCombo[4], lowerCombo[5], lowerCombo[6], lowerCombo[7], lowerCombo[8], lowerCombo[9], lowerCombo[10], lowerCombo[11], lowerCombo[12], lowerCombo[13], lowerCombo[14], lowerCombo[15]},
+        });
+        layout.addGap();
+        layout.addRow(new Component[] {labelsLabel, labelsCombo, colourLabel, colourCombo});
+        layout.addGap();
+        layout.add(alarmCheck);
+        layout.add(transparentCheck);
+        layout.addRow(new Component[] {transparentLabel, transparentSlider});
+        layout.add(displayCheck);
+        layout.add(splitBarsCheck);
     }
     
     private JComboBox createBarsCombo() {

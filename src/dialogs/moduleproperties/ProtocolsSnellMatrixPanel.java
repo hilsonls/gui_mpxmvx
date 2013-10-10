@@ -61,7 +61,7 @@ public class ProtocolsSnellMatrixPanel extends JPanelBGGradient {
 
     ProtocolsSnellMatrixPanel(SnellMatrixTableType bean, JComboBox<Object> controllerCombo) {
         setLayout(null);
-        setBounds(1, 30, 430, 400);
+        setBounds(1, 30, 530, 400);
 
         this.bean = bean;
         MyItemListener mIL = new MyItemListener();
@@ -77,11 +77,11 @@ public class ProtocolsSnellMatrixPanel extends JPanelBGGradient {
         routerTable = new JTable(tableModel);
         routerTable.getTableHeader().setReorderingAllowed(false);
         //settaggi per scroll
-        routerTable.setPreferredScrollableViewportSize(new Dimension(300, 300));
+        routerTable.setPreferredScrollableViewportSize(new Dimension(500, 300));
         routerTable.setFillsViewportHeight(true);
         //larghezza celle
-        routerTable.getColumnModel().getColumn(COL_MV_INPUT).setPreferredWidth(40);
-        routerTable.getColumnModel().getColumn(COL_CONTROLLER).setPreferredWidth(80);
+        routerTable.getColumnModel().getColumn(COL_MV_INPUT).setPreferredWidth(45);
+        routerTable.getColumnModel().getColumn(COL_CONTROLLER).setPreferredWidth(180);
         routerTable.getColumnModel().getColumn(COL_MATRIX_NUMBER).setPreferredWidth(65);
         routerTable.getColumnModel().getColumn(COL_MATRIX_LEVEL).setPreferredWidth(70);
         routerTable.getColumnModel().getColumn(COL_ROUTER_DESTINATION).setPreferredWidth(80);
@@ -149,7 +149,7 @@ public class ProtocolsSnellMatrixPanel extends JPanelBGGradient {
             }
         });
         JScrollPane scrollPane = new JScrollPane(routerTable);
-        scrollPane.setBounds(5, 35, 425, 280);
+        scrollPane.setBounds(5, 35, 520, 280);
         add(scrollPane);
 
         infoLabel = new JLabel("");
@@ -160,7 +160,7 @@ public class ProtocolsSnellMatrixPanel extends JPanelBGGradient {
         allButton = new JButton();
         allButton.setText("All");
         allButton.addActionListener(mIL);
-        allButton.setBounds(322, 315, 100, 37);
+        allButton.setBounds(422, 315, 100, 37);
         allButton.setText((tableModel.checkAllCheckbox()) ? "<html><center>Connect<br>All</center></html>" : "<html><center>Disconnect<br>All</center></html>");
         add(allButton);
         

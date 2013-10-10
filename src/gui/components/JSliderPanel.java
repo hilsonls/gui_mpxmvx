@@ -117,6 +117,10 @@ public class JSliderPanel extends JPanel {
         sliderField.setPreferredSize(new Dimension(40, 20));
         add(jSlider, "Center");
         add(sliderField, "East");
+        
+        Dimension d = getMaximumSize();
+        d.height = 20;
+        setMaximumSize(d);
     }
 
 

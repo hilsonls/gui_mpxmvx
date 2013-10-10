@@ -10,6 +10,9 @@ import eccezioni.MVException;
 import gui.ComponentFactory;
 import gui.components.JCheckBoxTransBG;
 import gui.components.JPanelBGGradient;
+import gui.components.VGroupLayout;
+
+import java.awt.Component;
 import java.awt.Font;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -32,9 +35,6 @@ public class PropertiesVbiPanel extends JPanelBGGradient{
     private JCheckBox ccVisibleCheck;
     private JComboBox ccChannelCombo;
     
-    
-    private JLabel xdsLabel;
-    
     private JCheckBox xdsVisibleCheck;
     
     
@@ -53,84 +53,56 @@ public class PropertiesVbiPanel extends JPanelBGGradient{
     private JCheckBox vitcVisibleCheck;
     
     public PropertiesVbiPanel(Vbi bean) throws MVException {
-        setLayout(null);
+        VGroupLayout layout = new VGroupLayout(this);
+        setLayout(layout);
         this.bean = bean;
         Font labelFont = new Font("Arial", Font.BOLD, 12);
         
-        ccLabel = new JLabel();
+        ccLabel = new JLabel("Closed Captioning (EIA-608)");
         ccLabel.setFont(labelFont);
-        ccLabel.setText("CC (US)");
-        ccLabel.setBounds(20, 20, 200, 20);
-        add(ccLabel);
         
-    
-        ccIndicatorCheck = new JCheckBoxTransBG();
-        ccIndicatorCheck.setText("Indicator");
+        ccIndicatorCheck = new JCheckBoxTransBG("Indicator on");
         ccIndicatorCheck.setSelected(bean.getCcIndicator().getVal());
-        ccIndicatorCheck.setBounds(20, 45, 200, 20);
-        add(ccIndicatorCheck);
+        ccIndicatorCheck.setToolTipText("Show \"CC\" at top when signal detected");
     
-        ccVisibleCheck = new JCheckBoxTransBG();
-        ccVisibleCheck.setText("Visible");
+        ccVisibleCheck = new JCheckBoxTransBG("Display service");
         ccVisibleCheck.setSelected(bean.getCcVisible().getVal());
-        ccVisibleCheck.setBounds(20, 70, 100, 20);
-        add(ccVisibleCheck);
         ccChannelCombo = ComponentFactory.createComboBox(bean.getCcType().getOptionsName(), bean.getCcType().getVal());
-        ccChannelCombo.setBounds(120, 70, 160, 20);
-        add(ccChannelCombo);
     
-    
-        xdsLabel = new JLabel();
-        xdsLabel.setFont(labelFont);
-        xdsLabel.setText("XDS (US)");
-        xdsLabel.setBounds(20, 110, 200, 20);
-        add(xdsLabel);
-    
-        xdsVisibleCheck = new JCheckBoxTransBG();
-        xdsVisibleCheck.setText("Visible");
+        xdsVisibleCheck = new JCheckBoxTransBG("Show XDS information");
         xdsVisibleCheck.setSelected(bean.getXdsVisible().getVal());
-        xdsVisibleCheck.setBounds(20, 135, 200, 20);
-        add(xdsVisibleCheck);
     
-    
-        ttLabel = new JLabel();
+        ttLabel = new JLabel("Teletext");
         ttLabel.setFont(labelFont);
-        ttLabel.setText("TT (UK)");
-        ttLabel.setBounds(20, 175, 200, 20);
-        add(ttLabel);
     
-        ttIndicatorCheck = new JCheckBoxTransBG();
-        ttIndicatorCheck.setText("Indicator");
+        ttIndicatorCheck = new JCheckBoxTransBG("Indicator on");
         ttIndicatorCheck.setSelected(bean.getTtIndicator().getVal());
-        ttIndicatorCheck.setBounds(20, 200, 200, 20);
-        add(ttIndicatorCheck);
-    
-        ttVisibleCheck = new JCheckBoxTransBG();
-        ttVisibleCheck.setText("Visible");
+        ttIndicatorCheck.setToolTipText("Show \"WST\" at top when signal detected");
+
+        ttVisibleCheck = new JCheckBoxTransBG("Display service");
         ttVisibleCheck.setSelected(bean.getTtVisible().getVal());
-        ttVisibleCheck.setBounds(20, 225, 200, 20);
-        add(ttVisibleCheck);
     
-        ttPageLabel = new JLabel();
-        ttPageLabel.setText("Page");
-        ttPageLabel.setBounds(20, 250, 80, 20);
-        add(ttPageLabel);
+        ttPageLabel = new JLabel("Page number");
         ttPageField = ComponentFactory.createTextField(bean.getTtPage().getVal(), bean.getTtPage().getMin(), bean.getTtPage().getMax());
-        ttPageField.setBounds(120, 250, 80, 20);
-        add(ttPageField);
         
-    
-        vitcLabel = new JLabel();
+        vitcLabel = new JLabel("D-VITC / Ancillary timecode");
         vitcLabel.setFont(labelFont);
-        vitcLabel.setText("VITC");
-        vitcLabel.setBounds(20, 290, 200, 20);
-        add(vitcLabel);
         
-        vitcVisibleCheck = new JCheckBoxTransBG();
-        vitcVisibleCheck.setText("Visible");
+        vitcVisibleCheck = new JCheckBoxTransBG("Visible");
         vitcVisibleCheck.setSelected(bean.getVitcVisible().getVal());
-        vitcVisibleCheck.setBounds(20, 315, 200, 20);
-        add(vitcVisibleCheck);
+        
+        layout.add(ccLabel);
+        layout.add(ccIndicatorCheck);
+        layout.addRow(new Component[] {ccVisibleCheck, ccChannelCombo});
+        layout.add(xdsVisibleCheck);
+        layout.addGap();
+        layout.add(ttLabel);
+        layout.add(ttIndicatorCheck);
+        layout.add(ttVisibleCheck);
+        layout.addRow(new Component[] {ttPageLabel, ttPageField});
+        layout.addGap();
+        layout.add(vitcLabel);
+        layout.add(vitcVisibleCheck);
     }
     
     public void save() {

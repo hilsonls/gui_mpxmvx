@@ -1,13 +1,21 @@
 package dialogs.editobject;
 
+import java.awt.Component;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 import eccezioni.MVException;
 import bean.Error;
 import gui.ComponentFactory;
 import gui.components.JCheckBoxTransBG;
 import gui.components.JPanelBGGradient;
+import gui.components.VGroupLayout;
+
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -16,6 +24,8 @@ import javax.swing.JLabel;
 public class PropertiesErrorPanel extends JPanelBGGradient{
     
     private Error bean;
+    
+    private JPanel colourPanel;
     
     private JLabel colorLabel;
     private JComboBox colorCombo;
@@ -28,36 +38,40 @@ public class PropertiesErrorPanel extends JPanelBGGradient{
     private JCheckBox visibleCheck;
     
     public PropertiesErrorPanel(Error bean) throws MVException {
-        setLayout(null);
+        VGroupLayout layout = new VGroupLayout(this);
+        setLayout(layout);
         this.bean = bean;
         
-        colorLabel = new JLabel();
-        colorLabel.setText("Colour");
-        colorLabel.setBounds(20, 20, 80, 20);
-        add(colorLabel);
-        colorCombo = ComponentFactory.createComboBox(bean.getColour().getOptionsName(), bean.getColour().getVal());
-        colorCombo.setBounds(120, 20, 170, 20);
-        add(colorCombo);
+        MyItemListener mIL = new MyItemListener();
         
-        clearLabel = new JLabel();
-        clearLabel.setText("Clear");
-        clearLabel.setBounds(20, 60, 80, 20);
-        add(clearLabel);
-        clearCombo = ComponentFactory.createComboBox(bean.getClearColour().getOptionsName(), bean.getClearColour().getVal());
-        clearCombo.setBounds(120, 60, 170, 20);
-        add(clearCombo);
-        
-        showCheck = new JCheckBoxTransBG();
-        showCheck.setText("Show alarm name");
-        showCheck.setSelected(bean.getShowName().getVal());
-        showCheck.setBounds(20, 100, 240, 20);
-        add(showCheck);
-        
-        visibleCheck = new JCheckBoxTransBG();
-        visibleCheck.setText("Visible");
+        visibleCheck = new JCheckBoxTransBG("Enable alarm alerts");
         visibleCheck.setSelected(bean.getVisible().getVal());
-        visibleCheck.setBounds(20, 140, 240, 20);
-        add(visibleCheck);
+        visibleCheck.addItemListener(mIL);
+
+        showCheck = new JCheckBoxTransBG("Display alarm messages");
+        showCheck.setSelected(bean.getShowName().getVal());
+
+        colorLabel = new JLabel("Alarm active");
+        colorCombo = ComponentFactory.createComboBox(bean.getColour().getOptionsName(), bean.getColour().getVal());
+        
+        clearLabel = new JLabel("All alarms recently cleared");
+        clearCombo = ComponentFactory.createComboBox(bean.getClearColour().getOptionsName(), bean.getClearColour().getVal());
+
+        colourPanel = new JPanel();
+        VGroupLayout colourLayout = new VGroupLayout(colourPanel);
+        colourPanel.setLayout(colourLayout);
+        colourPanel.setBorder(new TitledBorder("Border and error message colours"));
+        colourPanel.setOpaque(false);
+        colourLayout.addGrid(new Component[][] {
+                {colorLabel, colorCombo},
+                {clearLabel, clearCombo},
+        });
+
+        layout.add(visibleCheck);
+        layout.add(showCheck);
+        layout.add(colourPanel);
+        
+        checkComponentEnablingConditions();
     }
 
     public void save() {
@@ -66,4 +80,23 @@ public class PropertiesErrorPanel extends JPanelBGGradient{
         bean.getShowName().setVal(showCheck.isSelected());
         bean.getVisible().setVal(visibleCheck.isSelected());
     }
+    
+    private void checkComponentEnablingConditions() {
+        showCheck.setEnabled(visibleCheck.isSelected());
+        colourPanel.setEnabled(visibleCheck.isSelected());
+        colorLabel.setEnabled(visibleCheck.isSelected());
+        colorCombo.setEnabled(visibleCheck.isSelected());
+        clearLabel.setEnabled(visibleCheck.isSelected());
+        clearCombo.setEnabled(visibleCheck.isSelected());
+    }
+    
+    private class MyItemListener implements ItemListener {
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            checkComponentEnablingConditions();
+        }
+
+    }
+
 }

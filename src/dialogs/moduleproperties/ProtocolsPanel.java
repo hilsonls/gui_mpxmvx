@@ -36,7 +36,7 @@ public class ProtocolsPanel extends JPanelBGGradient {
         tabbedPane.setUI(new BasicTabbedPaneUI());
         tabbedPane.setBackground(StyleInterface.getInstance().getPropertiesTabbedPaneBackgroundColor());
         tabbedPane.addChangeListener(new ChangeListenerColorHandled(StyleInterface.getInstance().getPropertiesTabbedPaneBackgroundColor(), StyleInterface.getInstance().getTabbedPaneForegroundColor()));
-        tabbedPane.setBounds(5, 1, 450, 520);
+        tabbedPane.setBounds(5, 1, 540, 520);
         tabbedPane.add(protSerialPanel);
         tabbedPane.setTitleAt(0, "Serial Ports");
 

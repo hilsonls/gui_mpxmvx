@@ -29,6 +29,26 @@ implements java.io.Serializable
     //--------------------------/
 
     /**
+     * Field _mode.
+     */
+    private int _mode;
+
+    /**
+     * keeps track of state for field: _mode
+     */
+    private boolean _has_mode;
+
+    /**
+     * Field _gpip.
+     */
+    private java.lang.String _gpip;
+
+    /**
+     * Field _gpir.
+     */
+    private java.lang.String _gpir;
+
+    /**
      * Field _optionsName.
      */
     private java.lang.String _optionsName;
@@ -48,6 +68,43 @@ implements java.io.Serializable
     //-----------/
 
     /**
+     */
+    public void deleteMode(
+    ) {
+        this._has_mode= false;
+    }
+
+    /**
+     * Returns the value of field 'gpip'.
+     * 
+     * @return the value of field 'Gpip'.
+     */
+    public java.lang.String getGpip(
+    ) {
+        return this._gpip;
+    }
+
+    /**
+     * Returns the value of field 'gpir'.
+     * 
+     * @return the value of field 'Gpir'.
+     */
+    public java.lang.String getGpir(
+    ) {
+        return this._gpir;
+    }
+
+    /**
+     * Returns the value of field 'mode'.
+     * 
+     * @return the value of field 'Mode'.
+     */
+    public int getMode(
+    ) {
+        return this._mode;
+    }
+
+    /**
      * Returns the value of field 'optionsName'.
      * 
      * @return the value of field 'OptionsName'.
@@ -55,6 +112,16 @@ implements java.io.Serializable
     public java.lang.String getOptionsName(
     ) {
         return this._optionsName;
+    }
+
+    /**
+     * Method hasMode.
+     * 
+     * @return true if at least one Mode has been added
+     */
+    public boolean hasMode(
+    ) {
+        return this._has_mode;
     }
 
     /**
@@ -102,6 +169,37 @@ implements java.io.Serializable
             final org.xml.sax.ContentHandler handler)
     throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
         Marshaller.marshal(this, handler);
+    }
+
+    /**
+     * Sets the value of field 'gpip'.
+     * 
+     * @param gpip the value of field 'gpip'.
+     */
+    public void setGpip(
+            final java.lang.String gpip) {
+        this._gpip = gpip;
+    }
+
+    /**
+     * Sets the value of field 'gpir'.
+     * 
+     * @param gpir the value of field 'gpir'.
+     */
+    public void setGpir(
+            final java.lang.String gpir) {
+        this._gpir = gpir;
+    }
+
+    /**
+     * Sets the value of field 'mode'.
+     * 
+     * @param mode the value of field 'mode'.
+     */
+    public void setMode(
+            final int mode) {
+        this._mode = mode;
+        this._has_mode = true;
     }
 
     /**

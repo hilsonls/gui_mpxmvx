@@ -17,4 +17,9 @@ public class JCheckBoxTransBG extends JCheckBox {
         super();
         this.setOpaque(false);
     }
+    
+    public JCheckBoxTransBG(String text) {
+        super(text);
+        setOpaque(false);
+    }
 }

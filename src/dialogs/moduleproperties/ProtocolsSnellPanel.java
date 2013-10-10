@@ -116,7 +116,7 @@ public class ProtocolsSnellPanel extends JPanelBGGradient{
         tabbedPane.setUI(new BasicTabbedPaneUI());
         tabbedPane.setBackground(StyleInterface.getInstance().getPropertiesTabbedPaneBackgroundColor());
         tabbedPane.addChangeListener(new ChangeListenerColorHandled(StyleInterface.getInstance().getPropertiesTabbedPaneBackgroundColor(), StyleInterface.getInstance().getTabbedPaneForegroundColor()));
-        tabbedPane.setBounds(5, 120, 440, 375);
+        tabbedPane.setBounds(5, 120, 540, 375);
         tabbedPane.add(protSnellVideoPanel);
         tabbedPane.setTitleAt(0, "Video Router");
         tabbedPane.add(protSnellAudioPanel);

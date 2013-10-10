@@ -5,6 +5,8 @@
 
 package dialogs.editobject;
 
+import java.awt.Component;
+
 import bean.Ports;
 import bean.VidAudSource;
 import bean.VideoProperties;
@@ -12,6 +14,8 @@ import controllori.CtrlWorkspace;
 import eccezioni.MVException;
 import gui.ComponentFactory;
 import gui.components.JPanelBGGradient;
+import gui.components.VGroupLayout;
+
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -31,27 +35,22 @@ public class PropertiesVideoPanel extends JPanelBGGradient{
     private JCheckBox allScreenCheckBox;
     
     public PropertiesVideoPanel(VidAudSource bean, VideoProperties beanVideo) throws MVException {
-        setLayout(null);
+        VGroupLayout layout = new VGroupLayout(this);
+        setLayout(layout);
         
         this.bean = bean;
         this.beanVideo = beanVideo;
         
-        sourceLabel = new JLabel();
-        sourceLabel.setText("Source");
-        sourceLabel.setBounds(20, 20, 80, 20);
-        add(sourceLabel);
+        sourceLabel = new JLabel("Source");
         sourceCombo = ComponentFactory.createComboBox(bean.getOptionsName(), bean.getVal());
-        sourceCombo.setBounds(120, 20, 180, 20);
-        add(sourceCombo);
         
-        
-        allScreenCheckBox = new JCheckBox();
-        allScreenCheckBox.setText("Display on all screens");
-        allScreenCheckBox.setBounds(20, 50, 200, 20);
+        allScreenCheckBox = new JCheckBox("Display on all screens");
         allScreenCheckBox.setVisible(false);
         allScreenCheckBox.setOpaque(false);
        // allScreenCheckBox.setSelected(beanVideo.getDisplayOnAllScreens().getVal());
-        add(allScreenCheckBox);
+        
+        layout.addRow(new Component[] {sourceLabel, sourceCombo});
+        layout.add(allScreenCheckBox);
     }
 
     public void enableDisplayOnAllCheckBox(boolean enable){

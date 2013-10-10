@@ -1310,15 +1310,22 @@
 														<element
 															name="gpiSource" maxOccurs="1" minOccurs="0">
 															<complexType>
-																<complexContent>
-																	<extension
-																		base="tns:objectStringProperty">
-																		<attribute
-																			name="optionsName" type="string">
-																		</attribute>
+															    <complexContent>
+															        <extension
+															            base="tns:objectStringProperty">
 
-																	</extension>
-																</complexContent>
+                                                                        <attribute name="mode" type="int">
+															            </attribute>
+                                                                        <attribute
+															                name="gpip" type="string">
+															            </attribute>
+															            <attribute
+															                name="gpir" type="string">
+															            </attribute>
+                                                                        <attribute name="optionsName" type="string">
+															            </attribute>
+                                                                    </extension>
+															    </complexContent>
 															</complexType>
 														</element>
 														<element

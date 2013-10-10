@@ -65,6 +65,126 @@ public class GpiSourceDescriptor extends bean.descriptors.ObjectStringPropertyDe
         org.exolab.castor.xml.FieldValidator               fieldValidator = null;
         //-- initialize attribute descriptors
         
+        //-- _mode
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Integer.TYPE, "_mode", "mode", org.exolab.castor.xml.NodeType.Attribute);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                GpiSource target = (GpiSource) object;
+                if (!target.hasMode()) { return null; }
+                return new java.lang.Integer(target.getMode());
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    GpiSource target = (GpiSource) object;
+                    // if null, use delete method for optional primitives 
+                    if (value == null) {
+                        target.deleteMode();
+                        return;
+                    }
+                    target.setMode( ((java.lang.Integer) value).intValue());
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("int");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        
+        //-- validation code for: _mode
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+            org.exolab.castor.xml.validators.IntValidator typeValidator;
+            typeValidator = new org.exolab.castor.xml.validators.IntValidator();
+            fieldValidator.setValidator(typeValidator);
+            typeValidator.setMinInclusive(-2147483648);
+            typeValidator.setMaxInclusive(2147483647);
+        }
+        desc.setValidator(fieldValidator);
+        //-- _gpip
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.String.class, "_gpip", "gpip", org.exolab.castor.xml.NodeType.Attribute);
+        desc.setImmutable(true);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                GpiSource target = (GpiSource) object;
+                return target.getGpip();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    GpiSource target = (GpiSource) object;
+                    target.setGpip( (java.lang.String) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("string");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        
+        //-- validation code for: _gpip
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+            org.exolab.castor.xml.validators.StringValidator typeValidator;
+            typeValidator = new org.exolab.castor.xml.validators.StringValidator();
+            fieldValidator.setValidator(typeValidator);
+            typeValidator.setWhiteSpace("preserve");
+        }
+        desc.setValidator(fieldValidator);
+        //-- _gpir
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.String.class, "_gpir", "gpir", org.exolab.castor.xml.NodeType.Attribute);
+        desc.setImmutable(true);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                GpiSource target = (GpiSource) object;
+                return target.getGpir();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    GpiSource target = (GpiSource) object;
+                    target.setGpir( (java.lang.String) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("string");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        
+        //-- validation code for: _gpir
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+            org.exolab.castor.xml.validators.StringValidator typeValidator;
+            typeValidator = new org.exolab.castor.xml.validators.StringValidator();
+            fieldValidator.setValidator(typeValidator);
+            typeValidator.setWhiteSpace("preserve");
+        }
+        desc.setValidator(fieldValidator);
         //-- _optionsName
         desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.String.class, "_optionsName", "optionsName", org.exolab.castor.xml.NodeType.Attribute);
         desc.setImmutable(true);
