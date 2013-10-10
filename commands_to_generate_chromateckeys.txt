@@ -1,0 +1,18 @@
+keytool -genkey -keyalg rsa -keystore chromateckeys -alias multiviewer -keysize 2048 -validity 1800
+
+
+What is your first and last name?
+  [Unknown]:  Chromatec Video Products
+What is the name of your organizational unit?
+  [Unknown]:  IT
+What is the name of your organization?
+  [Unknown]:  Chromatec Video Products
+What is the name of your City or Locality?
+  [Unknown]:  Waterlooville
+What is the name of your State or Province?
+  [Unknown]:  Hampshire
+What is the two-letter country code for this unit?
+  [Unknown]:  UK
+
+
+keytool -selfcert -keyalg rsa -alias multiviewer -keystore chromateckeys -keysize 2048 -validity 1800
