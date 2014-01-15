@@ -32,11 +32,6 @@ public class Protocols implements java.io.Serializable {
     private bean.Ports _ports;
 
     /**
-     * Field _utahUSI.
-     */
-    private bean.UtahUSI _utahUSI;
-
-    /**
      * Field _sierraRouter.
      */
     private bean.SierraRouter _sierraRouter;
@@ -88,16 +83,6 @@ public class Protocols implements java.io.Serializable {
     public bean.SnellRouter getSnellRouter(
     ) {
         return this._snellRouter;
-    }
-
-    /**
-     * Returns the value of field 'utahUSI'.
-     * 
-     * @return the value of field 'UtahUSI'.
-     */
-    public bean.UtahUSI getUtahUSI(
-    ) {
-        return this._utahUSI;
     }
 
     /**
@@ -175,16 +160,6 @@ public class Protocols implements java.io.Serializable {
     public void setSnellRouter(
             final bean.SnellRouter snellRouter) {
         this._snellRouter = snellRouter;
-    }
-
-    /**
-     * Sets the value of field 'utahUSI'.
-     * 
-     * @param utahUSI the value of field 'utahUSI'.
-     */
-    public void setUtahUSI(
-            final bean.UtahUSI utahUSI) {
-        this._utahUSI = utahUSI;
     }
 
     /**

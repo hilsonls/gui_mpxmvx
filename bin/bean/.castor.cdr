@@ -1,4 +1,4 @@
-#Wed Oct 09 12:37:18 EST 2013
+#Fri Jan 10 15:49:10 EST 2014
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
 bean.EmbeddedInput=bean.descriptors.EmbeddedInputDescriptor
@@ -6,7 +6,6 @@ bean.AspectIndicator=bean.descriptors.AspectIndicatorDescriptor
 bean.NtpServers=bean.descriptors.NtpServersDescriptor
 bean.LabelType=bean.descriptors.LabelTypeDescriptor
 bean.BarColourLower=bean.descriptors.BarColourLowerDescriptor
-bean.UtahUSI=bean.descriptors.UtahUSIDescriptor
 bean.Gpis=bean.descriptors.GpisDescriptor
 bean.SnellMatrixNumDass=bean.descriptors.SnellMatrixNumDassDescriptor
 bean.AspectEnabled=bean.descriptors.AspectEnabledDescriptor

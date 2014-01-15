@@ -103,40 +103,6 @@ public class ProtocolsDescriptor extends org.exolab.castor.xml.util.XMLClassDesc
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
-        //-- _utahUSI
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.UtahUSI.class, "_utahUSI", "utahUSI", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Protocols target = (Protocols) object;
-                return target.getUtahUSI();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Protocols target = (Protocols) object;
-                    target.setUtahUSI( (bean.UtahUSI) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("bean.UtahUSI");
-        desc.setHandler(handler);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _utahUSI
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
         //-- _sierraRouter
         desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.SierraRouter.class, "_sierraRouter", "sierraRouter", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {

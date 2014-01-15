@@ -16,7 +16,7 @@
             	<attribute name="Permissions" value="all-permissions"/>
                 <attribute name="Trusted-Only" value="true"/>
             </manifest>
-            <fileset dir="C:/work/Chromatec/Multiviewer/gui/bin"/>
+            <fileset dir="bin"/>
             <zipfileset excludes="META-INF/*.SF" src="lib/castor-1.2/jdbc-se2.0.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="lib/castor-1.2/jta1.0.1.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="lib/castor-1.2/castor-1.2.jar"/>
