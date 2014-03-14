@@ -32,9 +32,9 @@ public class VidAudProperties implements java.io.Serializable {
     private bean.VidAudSource _vidAudSource;
 
     /**
-     * Field _audio.
+     * Field _audioList.
      */
-    private bean.Audio _audio;
+    private java.util.List _audioList;
 
     /**
      * Field _error.
@@ -48,6 +48,7 @@ public class VidAudProperties implements java.io.Serializable {
 
     public VidAudProperties() {
         super();
+        this._audioList = new java.util.ArrayList();
     }
 
 
@@ -56,13 +57,86 @@ public class VidAudProperties implements java.io.Serializable {
     //-----------/
 
     /**
-     * Returns the value of field 'audio'.
      * 
-     * @return the value of field 'Audio'.
+     * 
+     * @param vAudio
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
+     */
+    public void addAudio(
+            final bean.Audio vAudio)
+    throws java.lang.IndexOutOfBoundsException {
+        this._audioList.add(vAudio);
+    }
+
+    /**
+     * 
+     * 
+     * @param index
+     * @param vAudio
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
+     */
+    public void addAudio(
+            final int index,
+            final bean.Audio vAudio)
+    throws java.lang.IndexOutOfBoundsException {
+        this._audioList.add(index, vAudio);
+    }
+
+    /**
+     * Method enumerateAudio.
+     * 
+     * @return an Enumeration over all possible elements of this
+     * collection
+     */
+    public java.util.Enumeration enumerateAudio(
+    ) {
+        return java.util.Collections.enumeration(this._audioList);
+    }
+
+    /**
+     * Method getAudio.
+     * 
+     * @param index
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
+     * @return the value of the bean.Audio at the given index
      */
     public bean.Audio getAudio(
+            final int index)
+    throws java.lang.IndexOutOfBoundsException {
+        // check bounds for index
+        if (index < 0 || index >= this._audioList.size()) {
+            throw new IndexOutOfBoundsException("getAudio: Index value '" + index + "' not in range [0.." + (this._audioList.size() - 1) + "]");
+        }
+        
+        return (bean.Audio) _audioList.get(index);
+    }
+
+    /**
+     * Method getAudio.Returns the contents of the collection in an
+     * Array.  <p>Note:  Just in case the collection contents are
+     * changing in another thread, we pass a 0-length Array of the
+     * correct type into the API call.  This way we <i>know</i>
+     * that the Array returned is of exactly the correct length.
+     * 
+     * @return this collection as an Array
+     */
+    public bean.Audio[] getAudio(
     ) {
-        return this._audio;
+        bean.Audio[] array = new bean.Audio[0];
+        return (bean.Audio[]) this._audioList.toArray(array);
+    }
+
+    /**
+     * Method getAudioCount.
+     * 
+     * @return the size of this collection
+     */
+    public int getAudioCount(
+    ) {
+        return this._audioList.size();
     }
 
     /**
@@ -101,6 +175,17 @@ public class VidAudProperties implements java.io.Serializable {
     }
 
     /**
+     * Method iterateAudio.
+     * 
+     * @return an Iterator over all possible elements in this
+     * collection
+     */
+    public java.util.Iterator iterateAudio(
+    ) {
+        return this._audioList.iterator();
+    }
+
+    /**
      * 
      * 
      * @param out
@@ -133,13 +218,69 @@ public class VidAudProperties implements java.io.Serializable {
     }
 
     /**
-     * Sets the value of field 'audio'.
+     */
+    public void removeAllAudio(
+    ) {
+        this._audioList.clear();
+    }
+
+    /**
+     * Method removeAudio.
      * 
-     * @param audio the value of field 'audio'.
+     * @param vAudio
+     * @return true if the object was removed from the collection.
+     */
+    public boolean removeAudio(
+            final bean.Audio vAudio) {
+        boolean removed = _audioList.remove(vAudio);
+        return removed;
+    }
+
+    /**
+     * Method removeAudioAt.
+     * 
+     * @param index
+     * @return the element removed from the collection
+     */
+    public bean.Audio removeAudioAt(
+            final int index) {
+        java.lang.Object obj = this._audioList.remove(index);
+        return (bean.Audio) obj;
+    }
+
+    /**
+     * 
+     * 
+     * @param index
+     * @param vAudio
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
     public void setAudio(
-            final bean.Audio audio) {
-        this._audio = audio;
+            final int index,
+            final bean.Audio vAudio)
+    throws java.lang.IndexOutOfBoundsException {
+        // check bounds for index
+        if (index < 0 || index >= this._audioList.size()) {
+            throw new IndexOutOfBoundsException("setAudio: Index value '" + index + "' not in range [0.." + (this._audioList.size() - 1) + "]");
+        }
+        
+        this._audioList.set(index, vAudio);
+    }
+
+    /**
+     * 
+     * 
+     * @param vAudioArray
+     */
+    public void setAudio(
+            final bean.Audio[] vAudioArray) {
+        //-- copy array
+        _audioList.clear();
+        
+        for (int i = 0; i < vAudioArray.length; i++) {
+                this._audioList.add(vAudioArray[i]);
+        }
     }
 
     /**

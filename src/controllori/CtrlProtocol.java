@@ -9,6 +9,7 @@ import bean.AspectRatio;
 import bean.AudioMonitor;
 import bean.AudioOut;
 import bean.AudioSetup;
+import bean.AudioSources;
 import bean.CurrTime;
 import bean.FrontButton;
 import bean.GpiInNameTable;
@@ -590,6 +591,30 @@ public class CtrlProtocol {
             mars.setMarshalAsDocument(false);
             mars.marshal(source);
             out.write("</sources></module></workspace>");
+            xmlResponse = ctrlConnection.sendData(out.toString());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new MVException("I/O exception");
+        } catch (MarshalException ex) {
+            ex.printStackTrace();
+            throw new MVException("Marshal error");
+        } catch (ValidationException ex) {
+            ex.printStackTrace();
+            throw new MVException("Xml validation error");
+        }
+    }
+    
+    public void saveAudioSourcesToMv(int idModulo, AudioSources source) throws MVException {
+        BufferedReader xmlResponse = null;
+        CtrlConnection ctrlConnection = CtrlConnection.getInstance();
+        //Marshaller.
+        Writer out = new StringWriter();
+        try {
+            out.write("<workspace><module id=\""+idModulo+"\"><audioSources>");
+            Marshaller mars = new Marshaller(out);
+            mars.setMarshalAsDocument(false);
+            mars.marshal(source);
+            out.write("</audioSources></module></workspace>");
             xmlResponse = ctrlConnection.sendData(out.toString());
         } catch (IOException ex) {
             ex.printStackTrace();

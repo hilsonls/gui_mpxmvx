@@ -48,25 +48,27 @@ public class ProtocolsSnellMatrixPanel extends JPanelBGGradient {
     private static final int COL_CONNECTED = 6;
     private static final int NUM_COLS = 7;
 
-    SnellMatrixTableType bean;
+    private SnellMatrixTableType bean;
 
-    JLabel routerLabel;
-    JTable routerTable;
-    MyTableModel tableModel;
-    JLabel infoLabel;
-    JButton allButton;
+    private ProtocolsSnellPanel snellPanel;
+    private JLabel routerLabel;
+    private JTable routerTable;
+    private MyTableModel tableModel;
+    private JLabel infoLabel;
+    private JButton allButton;
     private boolean copied = false;
     private int copiedValue = 0;
-    JComboBox<Object> controllerCombo;
+    private JComboBox controllerCombo;
 
-    ProtocolsSnellMatrixPanel(SnellMatrixTableType bean, JComboBox<Object> controllerCombo) {
+    ProtocolsSnellMatrixPanel(SnellMatrixTableType bean, ProtocolsSnellPanel snellPanel) {
         setLayout(null);
         setBounds(1, 30, 530, 400);
 
         this.bean = bean;
         MyItemListener mIL = new MyItemListener();
 
-        this.controllerCombo = controllerCombo;
+        this.snellPanel = snellPanel;
+        this.controllerCombo = snellPanel.getControllerCombo();
 
         routerLabel = new JLabel();
         routerLabel.setText("Connections from Router to Multiviewer");
@@ -165,6 +167,13 @@ public class ProtocolsSnellMatrixPanel extends JPanelBGGradient {
         add(allButton);
         
         hackTabbedPane();
+    }
+    
+    public void stopTableCellEditing() {
+        TableCellEditor ce = routerTable.getCellEditor();
+        if (ce != null) {
+            ce.stopCellEditing();
+        }
     }
 
     private JPopupMenu createContextMenu(final int rowIndex, final int colIndex) {
@@ -380,7 +389,7 @@ public class ProtocolsSnellMatrixPanel extends JPanelBGGradient {
             for (int i = 0; i < maxIns; i++) {
                 SnellMatrixIn in = new SnellMatrixIn();
                 in.setId(((Integer) data[i][COL_MV_INPUT]).intValue());
-                in.setCon(getControllerIndex(data[i][COL_CONTROLLER].toString()));
+                in.setCon(snellPanel.getControllerIndex(data[i][COL_CONTROLLER].toString()));
                 in.setMat(((Integer) data[i][COL_MATRIX_NUMBER]).intValue());
                 in.setLvl(((Integer) data[i][COL_MATRIX_LEVEL]).intValue());
                 in.setOut(((Integer) data[i][COL_ROUTER_DESTINATION]).intValue());
@@ -389,21 +398,7 @@ public class ProtocolsSnellMatrixPanel extends JPanelBGGradient {
                 bean.getSnellMatrixPhysIns().addSnellMatrixIn(in);
             }
         }
-        
-        private int getControllerIndex(String controllerName) {
-            int index = -1;
-            
-            for (int i = 0; i < controllerCombo.getItemCount(); i++) {
-                Object obj = controllerCombo.getItemAt(i);
-                if (controllerName.equals(obj.toString())) {
-                    index = obj.hashCode();
-                    break;
-                }
-            }
-            
-            return index;
-        }
-        
+
         private String getControllerName(int index) {
             String conName;
             if (0 <= index && index < controllerCombo.getItemCount()) {

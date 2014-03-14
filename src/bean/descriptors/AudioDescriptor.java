@@ -67,8 +67,124 @@ public class AudioDescriptor extends org.exolab.castor.xml.util.XMLClassDescript
         org.exolab.castor.xml.FieldValidator               fieldValidator = null;
         //-- initialize attribute descriptors
         
+        //-- _id
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Integer.TYPE, "_id", "id", org.exolab.castor.xml.NodeType.Attribute);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Audio target = (Audio) object;
+                if (!target.hasId()) { return null; }
+                return new java.lang.Integer(target.getId());
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Audio target = (Audio) object;
+                    // if null, use delete method for optional primitives 
+                    if (value == null) {
+                        target.deleteId();
+                        return;
+                    }
+                    target.setId( ((java.lang.Integer) value).intValue());
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("int");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        
+        //-- validation code for: _id
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+            org.exolab.castor.xml.validators.IntValidator typeValidator;
+            typeValidator = new org.exolab.castor.xml.validators.IntValidator();
+            fieldValidator.setValidator(typeValidator);
+            typeValidator.setMinInclusive(-2147483648);
+            typeValidator.setMaxInclusive(2147483647);
+        }
+        desc.setValidator(fieldValidator);
         //-- initialize element descriptors
         
+        //-- _xpos
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Xpos.class, "_xpos", "xpos", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Audio target = (Audio) object;
+                return target.getXpos();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Audio target = (Audio) object;
+                    target.setXpos( (bean.Xpos) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.Xpos");
+        desc.setHandler(handler);
+        desc.setRequired(true);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _xpos
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(1);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
+        //-- _ypos
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Ypos.class, "_ypos", "ypos", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Audio target = (Audio) object;
+                return target.getYpos();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Audio target = (Audio) object;
+                    target.setYpos( (bean.Ypos) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.Ypos");
+        desc.setHandler(handler);
+        desc.setRequired(true);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _ypos
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(1);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
         //-- _width
         desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Width.class, "_width", "width", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {
@@ -100,6 +216,42 @@ public class AudioDescriptor extends org.exolab.castor.xml.util.XMLClassDescript
         addSequenceElement(desc);
         
         //-- validation code for: _width
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(1);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
+        //-- _height
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Height.class, "_height", "height", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Audio target = (Audio) object;
+                return target.getHeight();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Audio target = (Audio) object;
+                    target.setHeight( (bean.Height) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.Height");
+        desc.setHandler(handler);
+        desc.setRequired(true);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _height
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         fieldValidator.setMinOccurs(1);
         { //-- local scope
@@ -172,6 +324,42 @@ public class AudioDescriptor extends org.exolab.castor.xml.util.XMLClassDescript
         addSequenceElement(desc);
         
         //-- validation code for: _scalePosition
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(1);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
+        //-- _meterSource
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.MeterSource.class, "_meterSource", "meterSource", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Audio target = (Audio) object;
+                return target.getMeterSource();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Audio target = (Audio) object;
+                    target.setMeterSource( (bean.MeterSource) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.MeterSource");
+        desc.setHandler(handler);
+        desc.setRequired(true);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _meterSource
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         fieldValidator.setMinOccurs(1);
         { //-- local scope

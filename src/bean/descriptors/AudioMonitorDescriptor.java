@@ -69,21 +69,21 @@ public class AudioMonitorDescriptor extends org.exolab.castor.xml.util.XMLClassD
         
         //-- initialize element descriptors
         
-        //-- _outputList
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Output.class, "_outputList", "output", org.exolab.castor.xml.NodeType.Element);
+        //-- _aoutList
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Aout.class, "_aoutList", "aout", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {
             public java.lang.Object getValue( java.lang.Object object ) 
                 throws IllegalStateException
             {
                 AudioMonitor target = (AudioMonitor) object;
-                return target.getOutput();
+                return target.getAout();
             }
             public void setValue( java.lang.Object object, java.lang.Object value) 
                 throws IllegalStateException, IllegalArgumentException
             {
                 try {
                     AudioMonitor target = (AudioMonitor) object;
-                    target.addOutput( (bean.Output) value);
+                    target.addAout( (bean.Aout) value);
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
                 }
@@ -91,7 +91,7 @@ public class AudioMonitorDescriptor extends org.exolab.castor.xml.util.XMLClassD
             public void resetValue(Object object) throws IllegalStateException, IllegalArgumentException {
                 try {
                     AudioMonitor target = (AudioMonitor) object;
-                    target.removeAllOutput();
+                    target.removeAllAout();
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
                 }
@@ -101,14 +101,14 @@ public class AudioMonitorDescriptor extends org.exolab.castor.xml.util.XMLClassD
             }
         };
         desc.setSchemaType("list");
-        desc.setComponentType("bean.Output");
+        desc.setComponentType("bean.Aout");
         desc.setHandler(handler);
         desc.setRequired(true);
         desc.setMultivalued(true);
         addFieldDescriptor(desc);
         addSequenceElement(desc);
         
-        //-- validation code for: _outputList
+        //-- validation code for: _aoutList
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         fieldValidator.setMinOccurs(1);
         { //-- local scope

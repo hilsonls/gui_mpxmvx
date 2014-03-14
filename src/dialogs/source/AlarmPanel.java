@@ -31,31 +31,26 @@ import javax.swing.event.ListSelectionListener;
 
 
 public class AlarmPanel extends JPanelBGGradient{
-        private Source bean;
-        
-        private JScrollPane alarmPane;
-        private JList alarmList;
-        
-        private JLabel selectAlarmLabel;
-        private JLabel propertiesLabel;
-        private JCheckBox[] enabledCheck;
-        
-        private JLabel alarmDelaySecondsLabel;
-        private JTextField[] alarmDelaySecondsField;
-                
-        private JCheckBox[] automaticClearingCheck;
-        private JLabel automaticDelayLabel;
-        private JTextField[] automaticClearingDelayField;
-        
-        private JCheckBox[] loggingCheck;
-        private JCheckBox[] showInObjectCheck;
-        private JCheckBox[] showInAlarmListCheck;
-        private JCheckBox[] sendSNMPCheck;
-        
-        private JCheckBox useAudioAlarmSettingsCheck;
-        private JButton setupAudioAlarmsButton;
-        
-        
+    private Source bean;
+    
+    private JScrollPane alarmPane;
+    private JList alarmList;
+    
+    private JLabel selectAlarmLabel;
+    private JLabel propertiesLabel;
+    private JCheckBox[] enabledCheck;
+    
+    private JLabel alarmDelaySecondsLabel;
+    private JTextField[] alarmDelaySecondsField;
+            
+    private JCheckBox[] automaticClearingCheck;
+    private JLabel automaticDelayLabel;
+    private JTextField[] automaticClearingDelayField;
+    
+    private JCheckBox[] loggingCheck;
+    private JCheckBox[] showInObjectCheck;
+    private JCheckBox[] showInAlarmListCheck;
+    private JCheckBox[] sendSNMPCheck;
         
     class AlarmPanelCellRenderer
         implements ListCellRenderer
@@ -129,12 +124,7 @@ public class AlarmPanel extends JPanelBGGradient{
             
                 try
                 {
-                    Object obj = itemevent.getSource();
-                    if(obj == useAudioAlarmSettingsCheck){
-                        setupAudioAlarmsButton.setEnabled(((JCheckBox)obj).isSelected());
-                    }
-                    else
-                        alarmList.repaint();
+                    alarmList.repaint();
                     //int i = alarmList.getSelectedIndex();
                     //changePropertiesVisibility(lastIndex, i);
                     //lastIndex = i;
@@ -314,20 +304,6 @@ public class AlarmPanel extends JPanelBGGradient{
         automaticDelayLabel.setBounds(235,140,90,20);
         add(automaticDelayLabel);
         
-        useAudioAlarmSettingsCheck = new JCheckBoxTransBG();
-        useAudioAlarmSettingsCheck.setText("Use audio channel alarm settings");
-        useAudioAlarmSettingsCheck.setBounds(20, 370, 220, 20);
-        useAudioAlarmSettingsCheck.setSelected(bean.getAudioAlarmSettings().getUseAudioAlarmSettings().getVal());
-        useAudioAlarmSettingsCheck.addItemListener(alarmPanelItemListener); 
-        add(useAudioAlarmSettingsCheck);
-        
-        setupAudioAlarmsButton = new JButton("Setup Audio Alarms");
-        setupAudioAlarmsButton.setActionCommand("setupAudioAlarms");
-        setupAudioAlarmsButton.setBounds(255, 370, 150, 20);
-        setupAudioAlarmsButton.setEnabled(bean.getAudioAlarmSettings().getUseAudioAlarmSettings().getVal());
-        add(setupAudioAlarmsButton);
-        
-            
     }
     
     public void save() {
@@ -350,12 +326,5 @@ public class AlarmPanel extends JPanelBGGradient{
              alarm[i].getShowInList().setVal(showInAlarmListCheck[i].isSelected());
              alarm[i].getSnmp().setVal(sendSNMPCheck[i].isSelected());
         }
-        bean.getAudioAlarmSettings().getUseAudioAlarmSettings().setVal(useAudioAlarmSettingsCheck.isSelected());
-        
     }
-   
-    public void setActionListenerSetupAudioAlarmsButton(ActionListener buttonActionListener){
-        setupAudioAlarmsButton.addActionListener(buttonActionListener);
-    }
-   
 }

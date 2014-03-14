@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
+import bean.Audio;
 import bean.ObjectSequence;
 import eccezioni.MVException;
 import gui.components.ChangeListenerColorHandled;
@@ -54,8 +55,15 @@ public class PropertiesPanel extends JPanelBGGradient{
         setLayout(layout);
         this.bean = bean;
         
+        
         propVideoPanel = new PropertiesVideoPanel(bean.getVidAudProperties().getVidAudSource(), bean.getVideoProperties());
-        propAudioPanel = new PropertiesAudioPanel(bean.getVidAudProperties().getAudio());
+        Audio audioBean0 = bean.getVidAudProperties().getAudio(0);
+        Audio audioBean1 = bean.getVidAudProperties().getAudio(1);
+        if (audioBean0.getId() < audioBean1.getId()) {
+            propAudioPanel = new PropertiesAudioPanel(audioBean0, audioBean1);
+        } else {
+            propAudioPanel = new PropertiesAudioPanel(audioBean1, audioBean0);
+        }
         propErrorPanel = new PropertiesErrorPanel(bean.getVidAudProperties().getError());
         propTallyPanel = new PropertiesTallyPanel(bean.getVideoProperties().getTally());
         propVbiPanel = new PropertiesVbiPanel(bean.getVideoProperties().getVbi());

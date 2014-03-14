@@ -18,7 +18,7 @@ import bean.Height;
  * 
  * @version $Revision$ $Date$
  */
-public class HeightDescriptor extends bean.descriptors.ObjectIntPropertyDescriptor {
+public class HeightDescriptor extends bean.descriptors.ObjectIntRangePropertyDescriptor {
 
 
       //--------------------------/
@@ -57,104 +57,9 @@ public class HeightDescriptor extends bean.descriptors.ObjectIntPropertyDescript
 
     public HeightDescriptor() {
         super();
-        setExtendsWithoutFlatten(new bean.descriptors.ObjectIntPropertyDescriptor());
+        setExtendsWithoutFlatten(new bean.descriptors.ObjectIntRangePropertyDescriptor());
         _xmlName = "height";
         _elementDefinition = true;
-        org.exolab.castor.xml.util.XMLFieldDescriptorImpl  desc           = null;
-        org.exolab.castor.mapping.FieldHandler             handler        = null;
-        org.exolab.castor.xml.FieldValidator               fieldValidator = null;
-        //-- initialize attribute descriptors
-        
-        //-- _min
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Integer.TYPE, "_min", "min", org.exolab.castor.xml.NodeType.Attribute);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Height target = (Height) object;
-                if (!target.hasMin()) { return null; }
-                return new java.lang.Integer(target.getMin());
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Height target = (Height) object;
-                    // if null, use delete method for optional primitives 
-                    if (value == null) {
-                        target.deleteMin();
-                        return;
-                    }
-                    target.setMin( ((java.lang.Integer) value).intValue());
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("int");
-        desc.setHandler(handler);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        
-        //-- validation code for: _min
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        { //-- local scope
-            org.exolab.castor.xml.validators.IntValidator typeValidator;
-            typeValidator = new org.exolab.castor.xml.validators.IntValidator();
-            fieldValidator.setValidator(typeValidator);
-            typeValidator.setMinInclusive(-2147483648);
-            typeValidator.setMaxInclusive(2147483647);
-        }
-        desc.setValidator(fieldValidator);
-        //-- _max
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Integer.TYPE, "_max", "max", org.exolab.castor.xml.NodeType.Attribute);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Height target = (Height) object;
-                if (!target.hasMax()) { return null; }
-                return new java.lang.Integer(target.getMax());
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Height target = (Height) object;
-                    // if null, use delete method for optional primitives 
-                    if (value == null) {
-                        target.deleteMax();
-                        return;
-                    }
-                    target.setMax( ((java.lang.Integer) value).intValue());
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("int");
-        desc.setHandler(handler);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        
-        //-- validation code for: _max
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        { //-- local scope
-            org.exolab.castor.xml.validators.IntValidator typeValidator;
-            typeValidator = new org.exolab.castor.xml.validators.IntValidator();
-            fieldValidator.setValidator(typeValidator);
-            typeValidator.setMinInclusive(-2147483648);
-            typeValidator.setMaxInclusive(2147483647);
-        }
-        desc.setValidator(fieldValidator);
-        //-- initialize element descriptors
-        
     }
 
 

@@ -43,8 +43,8 @@ public class ProtocolsSnellPanel extends JPanelBGGradient{
     private Frame frame;
 
     private JLabel controllerLabel;
-    private JList<String> controllerList;
-    private DefaultListModel<String> controllerListModel;
+    private JList controllerList;
+    private DefaultListModel controllerListModel;
     private JButton newControllerButton;
     private JButton editControllerButton;
     private JButton deleteControllerButton;
@@ -55,7 +55,7 @@ public class ProtocolsSnellPanel extends JPanelBGGradient{
     private ProtocolsSnellMatrixPanel protSnellAudioPanel;
     private ProtocolsSnellMatrixPanel protSnellDataxxPanel;
     
-    private JComboBox<Object> controllerCombo;
+    private JComboBox controllerCombo;
     
     private SnellController editedSnellController;
 
@@ -70,7 +70,7 @@ public class ProtocolsSnellPanel extends JPanelBGGradient{
         
         editedSnellController = null;
         
-        controllerCombo = new JComboBox<Object>();  // gets options assigned in reloadControllerList method
+        controllerCombo = new JComboBox();  // gets options assigned in reloadControllerList method
 
         MyItemListener mIL = new MyItemListener();
 
@@ -78,7 +78,7 @@ public class ProtocolsSnellPanel extends JPanelBGGradient{
         controllerLabel.setText("Controllers");
         controllerLabel.setBounds(5, 5, 70, 20);
         add(controllerLabel);
-        controllerList = new JList<String>();
+        controllerList = new JList();
         reloadControllerList();
         controllerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         controllerList.setBorder(BorderFactory.createLoweredBevelBorder());
@@ -108,9 +108,9 @@ public class ProtocolsSnellPanel extends JPanelBGGradient{
         deleteControllerButton.setBounds(350, 90, 90, 20);
         add(deleteControllerButton);
 
-        protSnellVideoPanel = new ProtocolsSnellMatrixPanel(bean.getSnellVideoMatrix(), controllerCombo);
-        protSnellAudioPanel = new ProtocolsSnellMatrixPanel(bean.getSnellAudioMatrix(), controllerCombo);
-        protSnellDataxxPanel = new ProtocolsSnellMatrixPanel(bean.getSnellDataxxMatrix(), controllerCombo);
+        protSnellVideoPanel = new ProtocolsSnellMatrixPanel(bean.getSnellVideoMatrix(), this);
+        protSnellAudioPanel = new ProtocolsSnellMatrixPanel(bean.getSnellAudioMatrix(), this);
+        protSnellDataxxPanel = new ProtocolsSnellMatrixPanel(bean.getSnellDataxxMatrix(), this);
         
         tabbedPane = new JDioTabbedPane();
         tabbedPane.setUI(new BasicTabbedPaneUI());
@@ -127,6 +127,10 @@ public class ProtocolsSnellPanel extends JPanelBGGradient{
         add(tabbedPane);
 
         updateEditDeleteEnabled();
+    }
+    
+    public JComboBox getControllerCombo() {
+        return controllerCombo;
     }
 
     public void save() {
@@ -206,7 +210,7 @@ public class ProtocolsSnellPanel extends JPanelBGGradient{
     }
     
     public void reloadControllerList (){
-        controllerListModel = new DefaultListModel<String>();
+        controllerListModel = new DefaultListModel();
         Iterator<SnellController> it = bean.iterateSnellController();
         while (it.hasNext()) {
             SnellController controller = it.next();
@@ -225,13 +229,17 @@ public class ProtocolsSnellPanel extends JPanelBGGradient{
     
     private void reloadControllerCombo() {
         boolean isChildUpdateNeeded = (protSnellVideoPanel != null);
-        JComboBox<Object> origCombo = new JComboBox<Object>();
+        JComboBox origCombo = new JComboBox();
         
         /*
          * Create a copy of current combo so that changed names can be updated
          * in the controller column afterwards
          */
         if (isChildUpdateNeeded) {
+            protSnellVideoPanel.stopTableCellEditing();
+            protSnellDataxxPanel.stopTableCellEditing();
+            protSnellAudioPanel.stopTableCellEditing();
+
             for (int i = 0; i < controllerCombo.getItemCount(); i++) {
                 origCombo.addItem(controllerCombo.getItemAt(i));
             }
@@ -244,9 +252,9 @@ public class ProtocolsSnellPanel extends JPanelBGGradient{
         Iterator<SnellController> it = bean.iterateSnellController();
         while (it.hasNext()) {
             SnellController controller = it.next();
-            controllerCombo.addItem(makeComboItem(controller.getId(), controller.getName()));
+            controllerCombo.addItem(controller.getName());
         }
-        controllerCombo.addItem(makeComboItem(-1, strDefaultController));
+        controllerCombo.addItem(strDefaultController);
 
         /*
          * Update any changed names in the controller column
@@ -286,18 +294,17 @@ public class ProtocolsSnellPanel extends JPanelBGGradient{
         }
     }
     
-    private Object makeComboItem(final int id, final String item) {
-        return new Object() {
-            @Override
-            public String toString() {
-                return item;
+    public int getControllerIndex(final String name) {
+        int index = -1; // index for the strDefaultController
+        Iterator<SnellController> it = bean.iterateSnellController();
+        while (it.hasNext()) {
+            SnellController controller = it.next();
+            if (name.equals(controller.getName())) {
+                index = controller.getId();
+                break;
             }
-            
-            @Override
-            public int hashCode() {
-                return id;
-            }
-        };
+        }
+        return index;
     }
     
     private void updateEditDeleteEnabled() {

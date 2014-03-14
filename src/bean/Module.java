@@ -47,6 +47,11 @@ public class Module implements java.io.Serializable {
     private bean.Sources _sources;
 
     /**
+     * Field _audioSources.
+     */
+    private bean.AudioSources _audioSources;
+
+    /**
      * Field _objects.
      */
     private bean.Objects _objects;
@@ -210,6 +215,16 @@ public class Module implements java.io.Serializable {
     public bean.AudioSetup getAudioSetup(
     ) {
         return this._audioSetup;
+    }
+
+    /**
+     * Returns the value of field 'audioSources'.
+     * 
+     * @return the value of field 'AudioSources'.
+     */
+    public bean.AudioSources getAudioSources(
+    ) {
+        return this._audioSources;
     }
 
     /**
@@ -527,6 +542,16 @@ public class Module implements java.io.Serializable {
     public void setAudioSetup(
             final bean.AudioSetup audioSetup) {
         this._audioSetup = audioSetup;
+    }
+
+    /**
+     * Sets the value of field 'audioSources'.
+     * 
+     * @param audioSources the value of field 'audioSources'.
+     */
+    public void setAudioSources(
+            final bean.AudioSources audioSources) {
+        this._audioSources = audioSources;
     }
 
     /**

@@ -27,14 +27,9 @@ public class AudioOut implements java.io.Serializable {
     //--------------------------/
 
     /**
-     * Field _outputInfo.
+     * Field _aoutList.
      */
-    private bean.OutputInfo _outputInfo;
-
-    /**
-     * Field _outputList.
-     */
-    private java.util.List _outputList;
+    private java.util.List _aoutList;
 
 
       //----------------/
@@ -43,7 +38,7 @@ public class AudioOut implements java.io.Serializable {
 
     public AudioOut() {
         super();
-        this._outputList = new java.util.ArrayList();
+        this._aoutList = new java.util.ArrayList();
     }
 
 
@@ -54,94 +49,84 @@ public class AudioOut implements java.io.Serializable {
     /**
      * 
      * 
-     * @param vOutput
+     * @param vAout
      * @throws java.lang.IndexOutOfBoundsException if the index
      * given is outside the bounds of the collection
      */
-    public void addOutput(
-            final bean.Output vOutput)
+    public void addAout(
+            final bean.Aout vAout)
     throws java.lang.IndexOutOfBoundsException {
-        this._outputList.add(vOutput);
+        this._aoutList.add(vAout);
     }
 
     /**
      * 
      * 
      * @param index
-     * @param vOutput
+     * @param vAout
      * @throws java.lang.IndexOutOfBoundsException if the index
      * given is outside the bounds of the collection
      */
-    public void addOutput(
+    public void addAout(
             final int index,
-            final bean.Output vOutput)
+            final bean.Aout vAout)
     throws java.lang.IndexOutOfBoundsException {
-        this._outputList.add(index, vOutput);
+        this._aoutList.add(index, vAout);
     }
 
     /**
-     * Method enumerateOutput.
+     * Method enumerateAout.
      * 
      * @return an Enumeration over all possible elements of this
      * collection
      */
-    public java.util.Enumeration enumerateOutput(
+    public java.util.Enumeration enumerateAout(
     ) {
-        return java.util.Collections.enumeration(this._outputList);
+        return java.util.Collections.enumeration(this._aoutList);
     }
 
     /**
-     * Method getOutput.
+     * Method getAout.
      * 
      * @param index
      * @throws java.lang.IndexOutOfBoundsException if the index
      * given is outside the bounds of the collection
-     * @return the value of the bean.Output at the given index
+     * @return the value of the bean.Aout at the given index
      */
-    public bean.Output getOutput(
+    public bean.Aout getAout(
             final int index)
     throws java.lang.IndexOutOfBoundsException {
         // check bounds for index
-        if (index < 0 || index >= this._outputList.size()) {
-            throw new IndexOutOfBoundsException("getOutput: Index value '" + index + "' not in range [0.." + (this._outputList.size() - 1) + "]");
+        if (index < 0 || index >= this._aoutList.size()) {
+            throw new IndexOutOfBoundsException("getAout: Index value '" + index + "' not in range [0.." + (this._aoutList.size() - 1) + "]");
         }
         
-        return (bean.Output) _outputList.get(index);
+        return (bean.Aout) _aoutList.get(index);
     }
 
     /**
-     * Method getOutput.Returns the contents of the collection in
-     * an Array.  <p>Note:  Just in case the collection contents
-     * are changing in another thread, we pass a 0-length Array of
-     * the correct type into the API call.  This way we <i>know</i>
+     * Method getAout.Returns the contents of the collection in an
+     * Array.  <p>Note:  Just in case the collection contents are
+     * changing in another thread, we pass a 0-length Array of the
+     * correct type into the API call.  This way we <i>know</i>
      * that the Array returned is of exactly the correct length.
      * 
      * @return this collection as an Array
      */
-    public bean.Output[] getOutput(
+    public bean.Aout[] getAout(
     ) {
-        bean.Output[] array = new bean.Output[0];
-        return (bean.Output[]) this._outputList.toArray(array);
+        bean.Aout[] array = new bean.Aout[0];
+        return (bean.Aout[]) this._aoutList.toArray(array);
     }
 
     /**
-     * Method getOutputCount.
+     * Method getAoutCount.
      * 
      * @return the size of this collection
      */
-    public int getOutputCount(
+    public int getAoutCount(
     ) {
-        return this._outputList.size();
-    }
-
-    /**
-     * Returns the value of field 'outputInfo'.
-     * 
-     * @return the value of field 'OutputInfo'.
-     */
-    public bean.OutputInfo getOutputInfo(
-    ) {
-        return this._outputInfo;
+        return this._aoutList.size();
     }
 
     /**
@@ -160,14 +145,14 @@ public class AudioOut implements java.io.Serializable {
     }
 
     /**
-     * Method iterateOutput.
+     * Method iterateAout.
      * 
      * @return an Iterator over all possible elements in this
      * collection
      */
-    public java.util.Iterator iterateOutput(
+    public java.util.Iterator iterateAout(
     ) {
-        return this._outputList.iterator();
+        return this._aoutList.iterator();
     }
 
     /**
@@ -204,78 +189,68 @@ public class AudioOut implements java.io.Serializable {
 
     /**
      */
-    public void removeAllOutput(
+    public void removeAllAout(
     ) {
-        this._outputList.clear();
+        this._aoutList.clear();
     }
 
     /**
-     * Method removeOutput.
+     * Method removeAout.
      * 
-     * @param vOutput
+     * @param vAout
      * @return true if the object was removed from the collection.
      */
-    public boolean removeOutput(
-            final bean.Output vOutput) {
-        boolean removed = _outputList.remove(vOutput);
+    public boolean removeAout(
+            final bean.Aout vAout) {
+        boolean removed = _aoutList.remove(vAout);
         return removed;
     }
 
     /**
-     * Method removeOutputAt.
+     * Method removeAoutAt.
      * 
      * @param index
      * @return the element removed from the collection
      */
-    public bean.Output removeOutputAt(
+    public bean.Aout removeAoutAt(
             final int index) {
-        java.lang.Object obj = this._outputList.remove(index);
-        return (bean.Output) obj;
+        java.lang.Object obj = this._aoutList.remove(index);
+        return (bean.Aout) obj;
     }
 
     /**
      * 
      * 
      * @param index
-     * @param vOutput
+     * @param vAout
      * @throws java.lang.IndexOutOfBoundsException if the index
      * given is outside the bounds of the collection
      */
-    public void setOutput(
+    public void setAout(
             final int index,
-            final bean.Output vOutput)
+            final bean.Aout vAout)
     throws java.lang.IndexOutOfBoundsException {
         // check bounds for index
-        if (index < 0 || index >= this._outputList.size()) {
-            throw new IndexOutOfBoundsException("setOutput: Index value '" + index + "' not in range [0.." + (this._outputList.size() - 1) + "]");
+        if (index < 0 || index >= this._aoutList.size()) {
+            throw new IndexOutOfBoundsException("setAout: Index value '" + index + "' not in range [0.." + (this._aoutList.size() - 1) + "]");
         }
         
-        this._outputList.set(index, vOutput);
+        this._aoutList.set(index, vAout);
     }
 
     /**
      * 
      * 
-     * @param vOutputArray
+     * @param vAoutArray
      */
-    public void setOutput(
-            final bean.Output[] vOutputArray) {
+    public void setAout(
+            final bean.Aout[] vAoutArray) {
         //-- copy array
-        _outputList.clear();
+        _aoutList.clear();
         
-        for (int i = 0; i < vOutputArray.length; i++) {
-                this._outputList.add(vOutputArray[i]);
+        for (int i = 0; i < vAoutArray.length; i++) {
+                this._aoutList.add(vAoutArray[i]);
         }
-    }
-
-    /**
-     * Sets the value of field 'outputInfo'.
-     * 
-     * @param outputInfo the value of field 'outputInfo'.
-     */
-    public void setOutputInfo(
-            final bean.OutputInfo outputInfo) {
-        this._outputInfo = outputInfo;
     }
 
     /**

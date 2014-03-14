@@ -32,11 +32,6 @@ public class AudioOverAlarm implements java.io.Serializable {
     private bean.AnalogueThreshold _analogueThreshold;
 
     /**
-     * Field _digitalThreshold.
-     */
-    private bean.DigitalThreshold _digitalThreshold;
-
-    /**
      * Field _chanList.
      */
     private java.util.List _chanList;
@@ -147,16 +142,6 @@ public class AudioOverAlarm implements java.io.Serializable {
     public int getChanCount(
     ) {
         return this._chanList.size();
-    }
-
-    /**
-     * Returns the value of field 'digitalThreshold'.
-     * 
-     * @return the value of field 'DigitalThreshold'.
-     */
-    public bean.DigitalThreshold getDigitalThreshold(
-    ) {
-        return this._digitalThreshold;
     }
 
     /**
@@ -292,16 +277,6 @@ public class AudioOverAlarm implements java.io.Serializable {
         for (int i = 0; i < vChanArray.length; i++) {
                 this._chanList.add(vChanArray[i]);
         }
-    }
-
-    /**
-     * Sets the value of field 'digitalThreshold'.
-     * 
-     * @param digitalThreshold the value of field 'digitalThreshold'
-     */
-    public void setDigitalThreshold(
-            final bean.DigitalThreshold digitalThreshold) {
-        this._digitalThreshold = digitalThreshold;
     }
 
     /**

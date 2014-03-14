@@ -105,8 +105,8 @@ public class VidAudPropertiesDescriptor extends org.exolab.castor.xml.util.XMLCl
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
-        //-- _audio
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Audio.class, "_audio", "audio", org.exolab.castor.xml.NodeType.Element);
+        //-- _audioList
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Audio.class, "_audioList", "audio", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {
             public java.lang.Object getValue( java.lang.Object object ) 
                 throws IllegalStateException
@@ -119,7 +119,15 @@ public class VidAudPropertiesDescriptor extends org.exolab.castor.xml.util.XMLCl
             {
                 try {
                     VidAudProperties target = (VidAudProperties) object;
-                    target.setAudio( (bean.Audio) value);
+                    target.addAudio( (bean.Audio) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public void resetValue(Object object) throws IllegalStateException, IllegalArgumentException {
+                try {
+                    VidAudProperties target = (VidAudProperties) object;
+                    target.removeAllAudio();
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
                 }
@@ -128,14 +136,15 @@ public class VidAudPropertiesDescriptor extends org.exolab.castor.xml.util.XMLCl
                 return null;
             }
         };
-        desc.setSchemaType("bean.Audio");
+        desc.setSchemaType("list");
+        desc.setComponentType("bean.Audio");
         desc.setHandler(handler);
         desc.setRequired(true);
-        desc.setMultivalued(false);
+        desc.setMultivalued(true);
         addFieldDescriptor(desc);
         addSequenceElement(desc);
         
-        //-- validation code for: _audio
+        //-- validation code for: _audioList
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         fieldValidator.setMinOccurs(1);
         { //-- local scope

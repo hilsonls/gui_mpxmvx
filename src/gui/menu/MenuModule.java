@@ -24,6 +24,7 @@ public class MenuModule{
     private JSeparator moduleSeparator1;
     private JMenuItemBGGradient setupModuleItem;
     private JMenuItemBGGradient setupSourceItem;
+    private JMenuItemBGGradient setupExternalAudioSourceItem;
     private JMenuItemBGGradient audioSetupItem;
     private JSeparator moduleSeparator2;
     private JMenuItemBGGradient setupRemotesItem;
@@ -74,8 +75,9 @@ public class MenuModule{
         setupModuleItem.setText("Setup module");
         setupRemotesItem.setText("Setup remotes");
         setTimeItem.setText("Set Time");
-        setupSourceItem.setText("Setup source");
-        audioSetupItem.setText("Setup audio");
+        setupSourceItem.setText("Setup selected video source");
+        setupExternalAudioSourceItem.setText("Setup external audio sources");
+        audioSetupItem.setText("Setup audio meter properties");
 
     }
 
@@ -90,6 +92,7 @@ public class MenuModule{
         setupRemotesItem.setActionCommand("Remote");
         setTimeItem.setActionCommand("Time");
         setupSourceItem.setActionCommand("Source");
+        setupExternalAudioSourceItem.setActionCommand("ExternalAudioSources");
         audioSetupItem.setActionCommand("AudioSetup");
     }
 
@@ -103,6 +106,8 @@ public class MenuModule{
         setupRemotesItem.setIcon(utils.getIcon("empty.gif"));
         setTimeItem.setIcon(utils.getIcon("empty.gif"));
         setupSourceItem.setIcon(utils.getIcon("setup-source.gif"));
+        setupExternalAudioSourceItem.setIcon(utils.getIcon("setup-source.gif"));
+        audioSetupItem.setIcon(utils.getIcon("empty.gif"));
     }
 
     private void setActionListener() {
@@ -118,6 +123,7 @@ public class MenuModule{
         setupRemotesItem.addActionListener(listener);
         setTimeItem.addActionListener(listener);
         setupSourceItem.addActionListener(listener);
+        setupExternalAudioSourceItem.addActionListener(listener);
         audioSetupItem.addActionListener(listener);
     }
 
@@ -129,6 +135,7 @@ public class MenuModule{
         moduleSeparator1 = new JSeparator();
         setupModuleItem = new JMenuItemBGGradient();
         setupSourceItem = new JMenuItemBGGradient();
+        setupExternalAudioSourceItem = new JMenuItemBGGradient();
         moduleSeparator2 = new JSeparator();
         setupRemotesItem = new JMenuItemBGGradient();
         setTimeItem = new JMenuItemBGGradient();
@@ -147,6 +154,7 @@ public class MenuModule{
         menuInstance.add(moduleSeparator1);
         menuInstance.add(setupModuleItem);
         menuInstance.add(setupSourceItem);
+        menuInstance.add(setupExternalAudioSourceItem);
         menuInstance.add(audioSetupItem);
         menuInstance.add(moduleSeparator2);
         menuInstance.add(setupRemotesItem);

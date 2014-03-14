@@ -105,42 +105,6 @@ public class AudioOverAlarmDescriptor extends org.exolab.castor.xml.util.XMLClas
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
-        //-- _digitalThreshold
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.DigitalThreshold.class, "_digitalThreshold", "digitalThreshold", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                AudioOverAlarm target = (AudioOverAlarm) object;
-                return target.getDigitalThreshold();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    AudioOverAlarm target = (AudioOverAlarm) object;
-                    target.setDigitalThreshold( (bean.DigitalThreshold) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("bean.DigitalThreshold");
-        desc.setHandler(handler);
-        desc.setRequired(true);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _digitalThreshold
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
         //-- _chanList
         desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Chan.class, "_chanList", "chan", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {

@@ -9,6 +9,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class JSliderPanel extends JPanel {
+    
+    private static final int MAX_H_SIZE = 20;
+    private static final int MAX_V_SIZE = 100;
 
     private JSlider jSlider;
     private JTextField sliderField;
@@ -84,7 +87,7 @@ public class JSliderPanel extends JPanel {
         }
     }
 
-       public JSliderPanel(int decimals) {
+    public JSliderPanel(int decimals) {
 
 
         setOpaque(false);
@@ -119,7 +122,7 @@ public class JSliderPanel extends JPanel {
         add(sliderField, "East");
         
         Dimension d = getMaximumSize();
-        d.height = 20;
+        d.height = MAX_H_SIZE;
         setMaximumSize(d);
     }
 
@@ -260,5 +263,16 @@ public class JSliderPanel extends JPanel {
 
     public void removeChangeListener(ChangeListener changelistener) {
         changeListeners.removeElement(changelistener);
+    }
+    
+    public void setOrientation(int orientation) {
+        jSlider.setOrientation(orientation);
+        Dimension d = getMaximumSize();
+        d.height = orientation == SwingConstants.VERTICAL ? MAX_V_SIZE : MAX_H_SIZE;
+        setMaximumSize(d);
+   }
+    
+    public JSlider getSlider() {
+        return jSlider;
     }
 }

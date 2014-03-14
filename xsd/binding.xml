@@ -87,6 +87,11 @@
         name="/module/objects/object/videoProperties/tally/position">
         <java-class name="tallyPosition" />
     </elementBinding>
+    
+    <elementBinding
+        name="/output/pair">
+        <java-class name="outputPair"/>
+    </elementBinding>
 
     <elementBinding name="/complexType:snellMatrixTableType/physMapInfo">
         <java-class name="snellMatrixPhysMapInfo" />

@@ -17,7 +17,7 @@ public class AudioOutputPanel extends JPanelBGGradient{
     //private static final int OUTPUTS = 8;
     
     private AudioOut bean;
-    private int outsNum;
+    private int numOutputs;
     
     private JScrollPane scroll;
     
@@ -33,27 +33,27 @@ public class AudioOutputPanel extends JPanelBGGradient{
         setBounds(1, 30, 400, 400);
       
         this.bean = bean;
-        this.outsNum = bean.getOutputCount();
+        this.numOutputs = bean.getAoutCount();
         
         JPanel scrollPanel = new JPanel();
         scrollPanel.setLayout(null);
         
-        outputLabel = new JLabel[outsNum];
-        sourceCombo = new JComboBox[outsNum];
-        channelCombo = new JComboBox[outsNum];
+        outputLabel = new JLabel[numOutputs];
+        sourceCombo = new JComboBox[numOutputs];
+        channelCombo = new JComboBox[numOutputs];
         
         int i;
-        for (i=0; i<outsNum; i++) {
+        for (i=0; i<numOutputs; i++) {
             outputLabel[i] = new JLabel();
-            outputLabel[i].setText("Output "+(i+1));
+            outputLabel[i].setText("Output "+(2*i+1)+"+"+(2*i+2));
             outputLabel[i].setBounds(20, 16*(2*i)+8, 80, 20);
             scrollPanel.add(outputLabel[i]);
             
-            sourceCombo[i] = ComponentFactory.createComboBox(bean.getOutputInfo().getOptionTables().getSource(), bean.getOutput(i).getOutputSource().getVal());
+            sourceCombo[i] = new JComboBox();
             sourceCombo[i].setBounds(100, 16*(2*i)+8, 120, 20);
             scrollPanel.add(sourceCombo[i]);
             
-            channelCombo[i] = ComponentFactory.createComboBox(bean.getOutputInfo().getOptionTables().getChannel(), bean.getOutput(i).getChannel().getVal());
+            channelCombo[i] = new JComboBox();
             channelCombo[i].setBounds(240, 16*(2*i)+8, 120, 20);
             scrollPanel.add(channelCombo[i]);
             
@@ -71,12 +71,12 @@ public class AudioOutputPanel extends JPanelBGGradient{
         scroll.setBorder(null);
         
         sourceLabel = new JLabel();
-        sourceLabel.setText("Source");
+        sourceLabel.setText("Input source");
         sourceLabel.setBounds(130, 10, 80, 20);
         add(sourceLabel);
         
         channelLabel = new JLabel();
-        channelLabel.setText("Channel");
+        channelLabel.setText("Pair number");
         channelLabel.setBounds(265, 10, 80, 20);
         add(channelLabel);
 
@@ -84,9 +84,10 @@ public class AudioOutputPanel extends JPanelBGGradient{
     }
     
     public void save() {
-        for (int i=0; i<outsNum; i++) {
-            bean.getOutput(i).getOutputSource().setVal(sourceCombo[i].getSelectedItem().toString());
-            bean.getOutput(i).getChannel().setVal(channelCombo[i].getSelectedItem().toString());
+        for (int i=0; i<numOutputs; i++) {
+            // TODO
+//            bean.getOutput(i).getOutputSource().setVal(sourceCombo[i].getSelectedItem().toString());
+//            bean.getOutput(i).getOutputPair().setVal(channelCombo[i].getSelectedItem().toString());
         }
     }
 }

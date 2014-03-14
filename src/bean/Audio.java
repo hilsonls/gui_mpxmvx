@@ -27,9 +27,34 @@ public class Audio implements java.io.Serializable {
     //--------------------------/
 
     /**
+     * Field _id.
+     */
+    private int _id;
+
+    /**
+     * keeps track of state for field: _id
+     */
+    private boolean _has_id;
+
+    /**
+     * Field _xpos.
+     */
+    private bean.Xpos _xpos;
+
+    /**
+     * Field _ypos.
+     */
+    private bean.Ypos _ypos;
+
+    /**
      * Field _width.
      */
     private bean.Width _width;
+
+    /**
+     * Field _height.
+     */
+    private bean.Height _height;
 
     /**
      * Field _scale.
@@ -40,6 +65,11 @@ public class Audio implements java.io.Serializable {
      * Field _scalePosition.
      */
     private bean.ScalePosition _scalePosition;
+
+    /**
+     * Field _meterSource.
+     */
+    private bean.MeterSource _meterSource;
 
     /**
      * Field _labelType.
@@ -140,6 +170,13 @@ public class Audio implements java.io.Serializable {
     }
 
     /**
+     */
+    public void deleteId(
+    ) {
+        this._has_id= false;
+    }
+
+    /**
      * Method enumerateAudioSequence.
      * 
      * @return an Enumeration over all possible elements of this
@@ -206,6 +243,26 @@ public class Audio implements java.io.Serializable {
     }
 
     /**
+     * Returns the value of field 'height'.
+     * 
+     * @return the value of field 'Height'.
+     */
+    public bean.Height getHeight(
+    ) {
+        return this._height;
+    }
+
+    /**
+     * Returns the value of field 'id'.
+     * 
+     * @return the value of field 'Id'.
+     */
+    public int getId(
+    ) {
+        return this._id;
+    }
+
+    /**
      * Returns the value of field 'labelColour'.
      * 
      * @return the value of field 'LabelColour'.
@@ -223,6 +280,16 @@ public class Audio implements java.io.Serializable {
     public bean.LabelType getLabelType(
     ) {
         return this._labelType;
+    }
+
+    /**
+     * Returns the value of field 'meterSource'.
+     * 
+     * @return the value of field 'MeterSource'.
+     */
+    public bean.MeterSource getMeterSource(
+    ) {
+        return this._meterSource;
     }
 
     /**
@@ -303,6 +370,36 @@ public class Audio implements java.io.Serializable {
     public bean.Width getWidth(
     ) {
         return this._width;
+    }
+
+    /**
+     * Returns the value of field 'xpos'.
+     * 
+     * @return the value of field 'Xpos'.
+     */
+    public bean.Xpos getXpos(
+    ) {
+        return this._xpos;
+    }
+
+    /**
+     * Returns the value of field 'ypos'.
+     * 
+     * @return the value of field 'Ypos'.
+     */
+    public bean.Ypos getYpos(
+    ) {
+        return this._ypos;
+    }
+
+    /**
+     * Method hasId.
+     * 
+     * @return true if at least one Id has been added
+     */
+    public boolean hasId(
+    ) {
+        return this._has_id;
     }
 
     /**
@@ -440,6 +537,27 @@ public class Audio implements java.io.Serializable {
     }
 
     /**
+     * Sets the value of field 'height'.
+     * 
+     * @param height the value of field 'height'.
+     */
+    public void setHeight(
+            final bean.Height height) {
+        this._height = height;
+    }
+
+    /**
+     * Sets the value of field 'id'.
+     * 
+     * @param id the value of field 'id'.
+     */
+    public void setId(
+            final int id) {
+        this._id = id;
+        this._has_id = true;
+    }
+
+    /**
      * Sets the value of field 'labelColour'.
      * 
      * @param labelColour the value of field 'labelColour'.
@@ -457,6 +575,16 @@ public class Audio implements java.io.Serializable {
     public void setLabelType(
             final bean.LabelType labelType) {
         this._labelType = labelType;
+    }
+
+    /**
+     * Sets the value of field 'meterSource'.
+     * 
+     * @param meterSource the value of field 'meterSource'.
+     */
+    public void setMeterSource(
+            final bean.MeterSource meterSource) {
+        this._meterSource = meterSource;
     }
 
     /**
@@ -537,6 +665,26 @@ public class Audio implements java.io.Serializable {
     public void setWidth(
             final bean.Width width) {
         this._width = width;
+    }
+
+    /**
+     * Sets the value of field 'xpos'.
+     * 
+     * @param xpos the value of field 'xpos'.
+     */
+    public void setXpos(
+            final bean.Xpos xpos) {
+        this._xpos = xpos;
+    }
+
+    /**
+     * Sets the value of field 'ypos'.
+     * 
+     * @param ypos the value of field 'ypos'.
+     */
+    public void setYpos(
+            final bean.Ypos ypos) {
+        this._ypos = ypos;
     }
 
     /**

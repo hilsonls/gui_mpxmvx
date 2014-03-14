@@ -89,7 +89,7 @@ public class EditObjectDialog extends JDialog{
         Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration());
         screenSize.width -= insets.right;
         screenSize.height -= insets.bottom;
-        Dimension size = new Dimension(425, 800);
+        Dimension size = new Dimension(830, 800);
         Point location = MouseInfo.getPointerInfo().getLocation();
         if (location.x + size.width > screenSize.width) {
             location.x = screenSize.width - size.width;

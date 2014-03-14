@@ -69,57 +69,21 @@ public class AudioOutDescriptor extends org.exolab.castor.xml.util.XMLClassDescr
         
         //-- initialize element descriptors
         
-        //-- _outputInfo
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.OutputInfo.class, "_outputInfo", "outputInfo", org.exolab.castor.xml.NodeType.Element);
+        //-- _aoutList
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Aout.class, "_aoutList", "aout", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {
             public java.lang.Object getValue( java.lang.Object object ) 
                 throws IllegalStateException
             {
                 AudioOut target = (AudioOut) object;
-                return target.getOutputInfo();
+                return target.getAout();
             }
             public void setValue( java.lang.Object object, java.lang.Object value) 
                 throws IllegalStateException, IllegalArgumentException
             {
                 try {
                     AudioOut target = (AudioOut) object;
-                    target.setOutputInfo( (bean.OutputInfo) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("bean.OutputInfo");
-        desc.setHandler(handler);
-        desc.setRequired(true);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _outputInfo
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _outputList
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Output.class, "_outputList", "output", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                AudioOut target = (AudioOut) object;
-                return target.getOutput();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    AudioOut target = (AudioOut) object;
-                    target.addOutput( (bean.Output) value);
+                    target.addAout( (bean.Aout) value);
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
                 }
@@ -127,7 +91,7 @@ public class AudioOutDescriptor extends org.exolab.castor.xml.util.XMLClassDescr
             public void resetValue(Object object) throws IllegalStateException, IllegalArgumentException {
                 try {
                     AudioOut target = (AudioOut) object;
-                    target.removeAllOutput();
+                    target.removeAllAout();
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
                 }
@@ -137,14 +101,14 @@ public class AudioOutDescriptor extends org.exolab.castor.xml.util.XMLClassDescr
             }
         };
         desc.setSchemaType("list");
-        desc.setComponentType("bean.Output");
+        desc.setComponentType("bean.Aout");
         desc.setHandler(handler);
         desc.setRequired(true);
         desc.setMultivalued(true);
         addFieldDescriptor(desc);
         addSequenceElement(desc);
         
-        //-- validation code for: _outputList
+        //-- validation code for: _aoutList
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         fieldValidator.setMinOccurs(1);
         { //-- local scope

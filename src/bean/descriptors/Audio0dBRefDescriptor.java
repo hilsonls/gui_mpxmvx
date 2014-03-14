@@ -79,9 +79,11 @@ public class Audio0dBRefDescriptor extends org.exolab.castor.xml.util.XMLClassDe
             {
                 try {
                     Audio0dBRef target = (Audio0dBRef) object;
-                    // ignore null values for non optional primitives
-                    if (value == null) { return; }
-                    
+                    // if null, use delete method for optional primitives 
+                    if (value == null) {
+                        target.deleteVal();
+                        return;
+                    }
                     target.setVal( ((java.lang.Integer) value).intValue());
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
@@ -93,13 +95,11 @@ public class Audio0dBRefDescriptor extends org.exolab.castor.xml.util.XMLClassDe
         };
         desc.setSchemaType("int");
         desc.setHandler(handler);
-        desc.setRequired(true);
         desc.setMultivalued(false);
         addFieldDescriptor(desc);
         
         //-- validation code for: _val
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
         { //-- local scope
             org.exolab.castor.xml.validators.IntValidator typeValidator;
             typeValidator = new org.exolab.castor.xml.validators.IntValidator();
@@ -123,9 +123,11 @@ public class Audio0dBRefDescriptor extends org.exolab.castor.xml.util.XMLClassDe
             {
                 try {
                     Audio0dBRef target = (Audio0dBRef) object;
-                    // ignore null values for non optional primitives
-                    if (value == null) { return; }
-                    
+                    // if null, use delete method for optional primitives 
+                    if (value == null) {
+                        target.deleteMin();
+                        return;
+                    }
                     target.setMin( ((java.lang.Integer) value).intValue());
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
@@ -137,13 +139,11 @@ public class Audio0dBRefDescriptor extends org.exolab.castor.xml.util.XMLClassDe
         };
         desc.setSchemaType("int");
         desc.setHandler(handler);
-        desc.setRequired(true);
         desc.setMultivalued(false);
         addFieldDescriptor(desc);
         
         //-- validation code for: _min
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
         { //-- local scope
             org.exolab.castor.xml.validators.IntValidator typeValidator;
             typeValidator = new org.exolab.castor.xml.validators.IntValidator();
@@ -167,9 +167,11 @@ public class Audio0dBRefDescriptor extends org.exolab.castor.xml.util.XMLClassDe
             {
                 try {
                     Audio0dBRef target = (Audio0dBRef) object;
-                    // ignore null values for non optional primitives
-                    if (value == null) { return; }
-                    
+                    // if null, use delete method for optional primitives 
+                    if (value == null) {
+                        target.deleteMax();
+                        return;
+                    }
                     target.setMax( ((java.lang.Integer) value).intValue());
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
@@ -181,13 +183,11 @@ public class Audio0dBRefDescriptor extends org.exolab.castor.xml.util.XMLClassDe
         };
         desc.setSchemaType("int");
         desc.setHandler(handler);
-        desc.setRequired(true);
         desc.setMultivalued(false);
         addFieldDescriptor(desc);
         
         //-- validation code for: _max
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
         { //-- local scope
             org.exolab.castor.xml.validators.IntValidator typeValidator;
             typeValidator = new org.exolab.castor.xml.validators.IntValidator();

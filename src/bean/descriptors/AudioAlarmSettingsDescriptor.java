@@ -69,42 +69,6 @@ public class AudioAlarmSettingsDescriptor extends org.exolab.castor.xml.util.XML
         
         //-- initialize element descriptors
         
-        //-- _useAudioAlarmSettings
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.UseAudioAlarmSettings.class, "_useAudioAlarmSettings", "useAudioAlarmSettings", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                AudioAlarmSettings target = (AudioAlarmSettings) object;
-                return target.getUseAudioAlarmSettings();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    AudioAlarmSettings target = (AudioAlarmSettings) object;
-                    target.setUseAudioAlarmSettings( (bean.UseAudioAlarmSettings) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("bean.UseAudioAlarmSettings");
-        desc.setHandler(handler);
-        desc.setRequired(true);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _useAudioAlarmSettings
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
         //-- _audioLossAlarm
         desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.AudioLossAlarm.class, "_audioLossAlarm", "audioLossAlarm", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {

@@ -148,8 +148,8 @@ public class ModulePropertiesDialog extends JDialog {
         tabbedPane.setTitleAt(0, "Boards");
         tabbedPane.setTitleAt(1, "Screen");
         tabbedPane.setTitleAt(2, "Sources");
-        tabbedPane.setTitleAt(3, "Audio Monitors");
-        tabbedPane.setTitleAt(4, "Audio Outputs");
+        tabbedPane.setTitleAt(3, "Audio Monitor Outputs");
+        tabbedPane.setTitleAt(4, "External Audio Outputs");
         tabbedPane.setTitleAt(5, "GPIs");
         tabbedPane.setTitleAt(6, "Network");
         tabbedPane.setTitleAt(7, StyleInterface.getInstance().getDataXXNgm());

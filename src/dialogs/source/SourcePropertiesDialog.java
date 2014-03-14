@@ -36,7 +36,6 @@ public class SourcePropertiesDialog extends JDialog {
         
     private AudioPanel audioPanel;
     private AlarmPanel alarmPanel;
-    private AudioAlarmsPanel audioAlarmsPanel;
     private CopySourcePanel copySourcePanel;
     
     private JPanel buttonsPanel;
@@ -51,10 +50,7 @@ public class SourcePropertiesDialog extends JDialog {
 
         public void actionPerformed(ActionEvent actionevent)
         {
-            if(actionevent.getActionCommand().equals("setupAudioAlarms")){
-                setupAudioAlarmsAction();
-            }
-            else if(actionevent.getActionCommand().equals("copySources")){
+            if(actionevent.getActionCommand().equals("copySources")){
                 copySources();
             }
             Object obj = actionevent.getSource();
@@ -82,7 +78,7 @@ public class SourcePropertiesDialog extends JDialog {
         setModal(true);
         setDefaultCloseOperation(2);
         setLocation(100, 100);
-        setSize(430, 580);
+        setSize(430, 630);
         
         
         buttonsPanel = new JPanelBGGradient(StyleInterface.getInstance().getButtonPanelBackgroundTopColor(), StyleInterface.getInstance().getButtonPanelBackgroundBottomColor(),true);
@@ -104,10 +100,8 @@ public class SourcePropertiesDialog extends JDialog {
         getContentPane().add(buttonsPanel, "South");
         
        
-        audioPanel = new AudioPanel(bean);
+        audioPanel = new AudioPanel(bean.getAudio0dBRef(), bean.getAudioDigitalRef(), bean.getAudioAlarmSettings());
         alarmPanel = new AlarmPanel(bean);
-        alarmPanel.setActionListenerSetupAudioAlarmsButton(buttonActionListener);
-        audioAlarmsPanel = new AudioAlarmsPanel(bean);
         copySourcePanel = new CopySourcePanel(bean, idModulo);
         copySourcePanel.setActionListenerSetupAudioAlarmsButton(buttonActionListener);
         
@@ -119,7 +113,7 @@ public class SourcePropertiesDialog extends JDialog {
         tabbedPane.add(alarmPanel);
         tabbedPane.add(copySourcePanel);
                 
-        tabbedPane.setSelectedComponent(audioPanel);
+        tabbedPane.setSelectedComponent(alarmPanel);
         tabbedPane.setTitleAt(0, "Audio");
         tabbedPane.setTitleAt(1, "Alarm");
         tabbedPane.setTitleAt(2, "Copy");
@@ -134,7 +128,6 @@ public class SourcePropertiesDialog extends JDialog {
             //AGGIORNO I BEAN dei panels
             audioPanel.save();
             alarmPanel.save();
-            audioAlarmsPanel.save();
             copySourcePanel.save();
             
             //UPLOADO IL PORCO XML A H
@@ -164,13 +157,6 @@ public class SourcePropertiesDialog extends JDialog {
     
     }
     
-    private void setupAudioAlarmsAction(){
-        
-        Frame frame = JOptionPane.getFrameForComponent(this);
-        new AudioAlarmsDialog(frame, audioAlarmsPanel);
-                
-    }
-    
     private Source getSourceBean(int i)
     {
         if(i < 0)
@@ -188,12 +174,11 @@ public class SourcePropertiesDialog extends JDialog {
         this.cancelButton.setEnabled(false);
         for(int i = 0; i < selSources.length; i++){
             Source beanToCopy = getSourceBean(selSources[i]);
-            if(alarmCheck)
+            if(alarmCheck) {
                 alarmPanel.save(beanToCopy);
-                audioAlarmsPanel.save(beanToCopy);
+            }
             if(audioCheck){
-                audioPanel.save(beanToCopy);
-                //audioAlarmsPanel.save(beanToCopy);
+                audioPanel.save(beanToCopy.getAudio0dBRef(), beanToCopy.getAudioDigitalRef(), beanToCopy.getAudioAlarmSettings());
             }
             try {
                 if(alarmCheck || audioCheck)

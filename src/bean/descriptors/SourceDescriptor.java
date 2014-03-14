@@ -185,21 +185,21 @@ public class SourceDescriptor extends org.exolab.castor.xml.util.XMLClassDescrip
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
-        //-- _embedded
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Embedded.class, "_embedded", "embedded", org.exolab.castor.xml.NodeType.Element);
+        //-- _alarms
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Alarms.class, "_alarms", "alarms", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {
             public java.lang.Object getValue( java.lang.Object object ) 
                 throws IllegalStateException
             {
                 Source target = (Source) object;
-                return target.getEmbedded();
+                return target.getAlarms();
             }
             public void setValue( java.lang.Object object, java.lang.Object value) 
                 throws IllegalStateException, IllegalArgumentException
             {
                 try {
                     Source target = (Source) object;
-                    target.setEmbedded( (bean.Embedded) value);
+                    target.setAlarms( (bean.Alarms) value);
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
                 }
@@ -208,34 +208,34 @@ public class SourceDescriptor extends org.exolab.castor.xml.util.XMLClassDescrip
                 return null;
             }
         };
-        desc.setSchemaType("bean.Embedded");
+        desc.setSchemaType("bean.Alarms");
         desc.setHandler(handler);
         desc.setRequired(true);
         desc.setMultivalued(false);
         addFieldDescriptor(desc);
         addSequenceElement(desc);
         
-        //-- validation code for: _embedded
+        //-- validation code for: _alarms
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         fieldValidator.setMinOccurs(1);
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
-        //-- _embeddedAvail
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.EmbeddedAvail.class, "_embeddedAvail", "embeddedAvail", org.exolab.castor.xml.NodeType.Element);
+        //-- _audioAlarmSettings
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.AudioAlarmSettings.class, "_audioAlarmSettings", "audioAlarmSettings", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {
             public java.lang.Object getValue( java.lang.Object object ) 
                 throws IllegalStateException
             {
                 Source target = (Source) object;
-                return target.getEmbeddedAvail();
+                return target.getAudioAlarmSettings();
             }
             public void setValue( java.lang.Object object, java.lang.Object value) 
                 throws IllegalStateException, IllegalArgumentException
             {
                 try {
                     Source target = (Source) object;
-                    target.setEmbeddedAvail( (bean.EmbeddedAvail) value);
+                    target.setAudioAlarmSettings( (bean.AudioAlarmSettings) value);
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
                 }
@@ -244,86 +244,14 @@ public class SourceDescriptor extends org.exolab.castor.xml.util.XMLClassDescrip
                 return null;
             }
         };
-        desc.setSchemaType("bean.EmbeddedAvail");
+        desc.setSchemaType("bean.AudioAlarmSettings");
         desc.setHandler(handler);
         desc.setRequired(true);
         desc.setMultivalued(false);
         addFieldDescriptor(desc);
         addSequenceElement(desc);
         
-        //-- validation code for: _embeddedAvail
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _ngm
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Ngm.class, "_ngm", "ngm", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Source target = (Source) object;
-                return target.getNgm();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Source target = (Source) object;
-                    target.setNgm( (bean.Ngm) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("bean.Ngm");
-        desc.setHandler(handler);
-        desc.setRequired(true);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _ngm
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _ngmName
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.NgmName.class, "_ngmName", "ngmName", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Source target = (Source) object;
-                return target.getNgmName();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Source target = (Source) object;
-                    target.setNgmName( (bean.NgmName) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("bean.NgmName");
-        desc.setHandler(handler);
-        desc.setRequired(true);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _ngmName
+        //-- validation code for: _audioAlarmSettings
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         fieldValidator.setMinOccurs(1);
         { //-- local scope
@@ -398,339 +326,6 @@ public class SourceDescriptor extends org.exolab.castor.xml.util.XMLClassDescrip
         //-- validation code for: _audio0dBRef
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _alarms
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Alarms.class, "_alarms", "alarms", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Source target = (Source) object;
-                return target.getAlarms();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Source target = (Source) object;
-                    target.setAlarms( (bean.Alarms) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("bean.Alarms");
-        desc.setHandler(handler);
-        desc.setRequired(true);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _alarms
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _audioAlarmSettings
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.AudioAlarmSettings.class, "_audioAlarmSettings", "audioAlarmSettings", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Source target = (Source) object;
-                return target.getAudioAlarmSettings();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Source target = (Source) object;
-                    target.setAudioAlarmSettings( (bean.AudioAlarmSettings) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("bean.AudioAlarmSettings");
-        desc.setHandler(handler);
-        desc.setRequired(true);
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _audioAlarmSettings
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _showPhaseList
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.ShowPhase.class, "_showPhaseList", "showPhase", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Source target = (Source) object;
-                return target.getShowPhase();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Source target = (Source) object;
-                    target.addShowPhase( (bean.ShowPhase) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public void resetValue(Object object) throws IllegalStateException, IllegalArgumentException {
-                try {
-                    Source target = (Source) object;
-                    target.removeAllShowPhase();
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("list");
-        desc.setComponentType("bean.ShowPhase");
-        desc.setHandler(handler);
-        desc.setRequired(true);
-        desc.setMultivalued(true);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _showPhaseList
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _audioInputList
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.AudioInput.class, "_audioInputList", "audioInput", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Source target = (Source) object;
-                return target.getAudioInput();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Source target = (Source) object;
-                    target.addAudioInput( (bean.AudioInput) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public void resetValue(Object object) throws IllegalStateException, IllegalArgumentException {
-                try {
-                    Source target = (Source) object;
-                    target.removeAllAudioInput();
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("list");
-        desc.setComponentType("bean.AudioInput");
-        desc.setHandler(handler);
-        desc.setRequired(true);
-        desc.setMultivalued(true);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _audioInputList
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _audioPhaseList
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.AudioPhase.class, "_audioPhaseList", "audioPhase", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Source target = (Source) object;
-                return target.getAudioPhase();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Source target = (Source) object;
-                    target.addAudioPhase( (bean.AudioPhase) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public void resetValue(Object object) throws IllegalStateException, IllegalArgumentException {
-                try {
-                    Source target = (Source) object;
-                    target.removeAllAudioPhase();
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("list");
-        desc.setComponentType("bean.AudioPhase");
-        desc.setHandler(handler);
-        desc.setRequired(true);
-        desc.setMultivalued(true);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _audioPhaseList
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _ngmInputList
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.NgmInput.class, "_ngmInputList", "ngmInput", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Source target = (Source) object;
-                return target.getNgmInput();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Source target = (Source) object;
-                    target.addNgmInput( (bean.NgmInput) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public void resetValue(Object object) throws IllegalStateException, IllegalArgumentException {
-                try {
-                    Source target = (Source) object;
-                    target.removeAllNgmInput();
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("list");
-        desc.setComponentType("bean.NgmInput");
-        desc.setHandler(handler);
-        desc.setRequired(true);
-        desc.setMultivalued(true);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _ngmInputList
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _ngmPhaseList
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.NgmPhase.class, "_ngmPhaseList", "ngmPhase", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Source target = (Source) object;
-                return target.getNgmPhase();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Source target = (Source) object;
-                    target.addNgmPhase( (bean.NgmPhase) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public void resetValue(Object object) throws IllegalStateException, IllegalArgumentException {
-                try {
-                    Source target = (Source) object;
-                    target.removeAllNgmPhase();
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return null;
-            }
-        };
-        desc.setSchemaType("list");
-        desc.setComponentType("bean.NgmPhase");
-        desc.setHandler(handler);
-        desc.setRequired(true);
-        desc.setMultivalued(true);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _ngmPhaseList
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
-        fieldValidator.setMinOccurs(1);
-        { //-- local scope
-        }
-        desc.setValidator(fieldValidator);
-        //-- _sourceSequence
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.SourceSequence.class, "_sourceSequence", "-error-if-this-is-used-", org.exolab.castor.xml.NodeType.Element);
-        handler = new org.exolab.castor.xml.XMLFieldHandler() {
-            public java.lang.Object getValue( java.lang.Object object ) 
-                throws IllegalStateException
-            {
-                Source target = (Source) object;
-                return target.getSourceSequence();
-            }
-            public void setValue( java.lang.Object object, java.lang.Object value) 
-                throws IllegalStateException, IllegalArgumentException
-            {
-                try {
-                    Source target = (Source) object;
-                    target.setSourceSequence( (bean.SourceSequence) value);
-                } catch (java.lang.Exception ex) {
-                    throw new IllegalStateException(ex.toString());
-                }
-            }
-            public java.lang.Object newInstance(java.lang.Object parent) {
-                return new bean.SourceSequence();
-            }
-        };
-        desc.setSchemaType("bean.SourceSequence");
-        desc.setHandler(handler);
-        desc.setContainer(true);
-        desc.setClassDescriptor(new bean.descriptors.SourceSequenceDescriptor());
-        desc.setMultivalued(false);
-        addFieldDescriptor(desc);
-        addSequenceElement(desc);
-        
-        //-- validation code for: _sourceSequence
-        fieldValidator = new org.exolab.castor.xml.FieldValidator();
         { //-- local scope
         }
         desc.setValidator(fieldValidator);

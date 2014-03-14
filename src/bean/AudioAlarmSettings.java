@@ -27,11 +27,6 @@ public class AudioAlarmSettings implements java.io.Serializable {
     //--------------------------/
 
     /**
-     * Field _useAudioAlarmSettings.
-     */
-    private bean.UseAudioAlarmSettings _useAudioAlarmSettings;
-
-    /**
      * Field _audioLossAlarm.
      */
     private bean.AudioLossAlarm _audioLossAlarm;
@@ -103,16 +98,6 @@ public class AudioAlarmSettings implements java.io.Serializable {
     public bean.PhaseAlarm getPhaseAlarm(
     ) {
         return this._phaseAlarm;
-    }
-
-    /**
-     * Returns the value of field 'useAudioAlarmSettings'.
-     * 
-     * @return the value of field 'UseAudioAlarmSettings'.
-     */
-    public bean.UseAudioAlarmSettings getUseAudioAlarmSettings(
-    ) {
-        return this._useAudioAlarmSettings;
     }
 
     /**
@@ -200,17 +185,6 @@ public class AudioAlarmSettings implements java.io.Serializable {
     public void setPhaseAlarm(
             final bean.PhaseAlarm phaseAlarm) {
         this._phaseAlarm = phaseAlarm;
-    }
-
-    /**
-     * Sets the value of field 'useAudioAlarmSettings'.
-     * 
-     * @param useAudioAlarmSettings the value of field
-     * 'useAudioAlarmSettings'.
-     */
-    public void setUseAudioAlarmSettings(
-            final bean.UseAudioAlarmSettings useAudioAlarmSettings) {
-        this._useAudioAlarmSettings = useAudioAlarmSettings;
     }
 
     /**

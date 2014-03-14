@@ -46,8 +46,7 @@ public class CopySourcePanel extends JPanelBGGradient{
     public void setActionListenerSetupAudioAlarmsButton(ActionListener buttonActionListener){
         copyToButton.addActionListener(buttonActionListener);
     }
-        
-        
+
     private class ButtonActionListener implements ActionListener
     {
 

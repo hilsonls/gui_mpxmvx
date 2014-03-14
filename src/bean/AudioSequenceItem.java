@@ -34,6 +34,11 @@ public class AudioSequenceItem implements java.io.Serializable {
      */
     private bean.BarColourLower _barColourLower;
 
+    /**
+     * Field _barColourWrong.
+     */
+    private bean.BarColourWrong _barColourWrong;
+
 
       //----------------/
      //- Constructors -/
@@ -79,6 +84,16 @@ public class AudioSequenceItem implements java.io.Serializable {
     }
 
     /**
+     * Returns the value of field 'barColourWrong'.
+     * 
+     * @return the value of field 'BarColourWrong'.
+     */
+    public bean.BarColourWrong getBarColourWrong(
+    ) {
+        return this._barColourWrong;
+    }
+
+    /**
      * Sets the value of field 'barColourLower'.
      * 
      * @param barColourLower the value of field 'barColourLower'.
@@ -106,6 +121,16 @@ public class AudioSequenceItem implements java.io.Serializable {
     public void setBarColourUpper(
             final bean.BarColourUpper barColourUpper) {
         this._barColourUpper = barColourUpper;
+    }
+
+    /**
+     * Sets the value of field 'barColourWrong'.
+     * 
+     * @param barColourWrong the value of field 'barColourWrong'.
+     */
+    public void setBarColourWrong(
+            final bean.BarColourWrong barColourWrong) {
+        this._barColourWrong = barColourWrong;
     }
 
 }

@@ -176,6 +176,42 @@ public class AudioSequenceItemDescriptor extends org.exolab.castor.xml.util.XMLC
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
+        //-- _barColourWrong
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.BarColourWrong.class, "_barColourWrong", "barColourWrong", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                AudioSequenceItem target = (AudioSequenceItem) object;
+                return target.getBarColourWrong();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    AudioSequenceItem target = (AudioSequenceItem) object;
+                    target.setBarColourWrong( (bean.BarColourWrong) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.BarColourWrong");
+        desc.setHandler(handler);
+        desc.setRequired(true);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _barColourWrong
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(1);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
     }
 
 

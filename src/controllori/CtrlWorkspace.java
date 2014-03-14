@@ -2,6 +2,7 @@ package controllori;
 
 import bean.AspectRatio;
 import bean.AudioSetup;
+import bean.AudioSources;
 import bean.CurrTime;
 import bean.GpiInNameTable;
 import bean.GpiInTaskTable;
@@ -585,6 +586,14 @@ public class CtrlWorkspace {
             return null;
 
         return mod.getAudioSetup();
+    }
+    
+    public AudioSources getAudioSources(int idModulo) {
+        Module mod = getModule(idModulo);
+        if (mod==null) {
+            return null;
+        }
+        return mod.getAudioSources();
     }
 
     public void loadConfigFromMV() throws MVException {

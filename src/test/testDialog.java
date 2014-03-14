@@ -7,7 +7,6 @@ package test;
 
 import controllori.CtrlWorkspace;
 import dialogs.editobject.EditObjectDialog;
-import dialogs.source.AudioPanel;
 import dialogs.source.SourcePropertiesDialog;
 import gui.MultiViewerBCS;
 import java.net.MalformedURLException;
