@@ -9,6 +9,7 @@ import eccezioni.MVException;
 import gui.components.JPanelBGGradient;
 import gui.components.JSliderPanel;
 
+import java.awt.Font;
 import java.awt.Rectangle;
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
@@ -28,6 +29,8 @@ public class AudioPanel extends JPanelBGGradient{
     private JLabel anlgReferenceLabel;
     private JSliderPanel anlgReferenceSlider;
     private JLabel dbuLabel;
+    
+    private JLabel thresholdNoteLabel;
 
     private AudioAlarmsPanel audioAlarmsPanel;
         
@@ -59,7 +62,13 @@ public class AudioPanel extends JPanelBGGradient{
         
         //oggetti interfaccia utente
         
-        int x = 15; int y = 20; int width = 70; int height = 20;
+        int x = 15; int y = 5; int width = 70; int height = 20;
+        
+        thresholdNoteLabel = new JLabel();
+        thresholdNoteLabel.setFont(new Font("Arial", Font.PLAIN, 10));
+        thresholdNoteLabel.setBounds(x, y, 400, 15);
+        add(thresholdNoteLabel);
+        y += 15;
         
         adReferenceLabel = new JLabel("Digital Audio Reference");
         adReferenceLabel.setBounds(x,y,170,height);
@@ -122,4 +131,13 @@ public class AudioPanel extends JPanelBGGradient{
         audio0dBRef.setVal(anlgReferenceSlider.getValue());
         audioAlarmsPanel.save(audioAlarmSettings);
     }
+    
+    public void setThresholdNoteLabel(final String s) {
+        thresholdNoteLabel.setText(s);
+    }
+
+    public void setEnableAlarmsLabel(final String s) {
+        audioAlarmsPanel.setEnableAlarmsLabel(s);
+    }
+
 }

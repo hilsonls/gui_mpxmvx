@@ -47,7 +47,7 @@ public class AudioAlarmsPanel extends JPanelBGGradient{
     private JLabel antiphaseThresholdLabel;
     private JSliderPanel antiphaseThresholdSlider;
     private JLabel antiphaseThresholdUnitsLabel;
-
+    
     private JLabel enableAlarmsLabel;
 
     private JLabel audioLossLabel;
@@ -176,7 +176,8 @@ public class AudioAlarmsPanel extends JPanelBGGradient{
         
         enableAlarmsLabel = new JLabel("Enable Alarms");
         enableAlarmsLabel.setFont(new Font("Arial",Font.BOLD,12));
-        enableAlarmsLabel.setBounds(170,120,100,20);
+        enableAlarmsLabel.setBounds(70,120,300,20);
+        enableAlarmsLabel.setHorizontalAlignment(JLabel.CENTER);
         add(enableAlarmsLabel);
         
         audioLossLabel = new JLabel("Audio Loss");
@@ -333,4 +334,7 @@ public class AudioAlarmsPanel extends JPanelBGGradient{
         overThresholdUnitsLabel.setText("dB  (" + Integer.toString(digitalThresh) + "dBfs" + ")");
     }
 
+    public void setEnableAlarmsLabel(final String s) {
+        enableAlarmsLabel.setText(s);
+    }
 }

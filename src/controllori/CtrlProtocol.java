@@ -610,11 +610,11 @@ public class CtrlProtocol {
         //Marshaller.
         Writer out = new StringWriter();
         try {
-            out.write("<workspace><module id=\""+idModulo+"\"><audioSources>");
+            out.write("<workspace><module id=\""+idModulo+"\">");
             Marshaller mars = new Marshaller(out);
             mars.setMarshalAsDocument(false);
             mars.marshal(source);
-            out.write("</audioSources></module></workspace>");
+            out.write("</module></workspace>");
             xmlResponse = ctrlConnection.sendData(out.toString());
         } catch (IOException ex) {
             ex.printStackTrace();

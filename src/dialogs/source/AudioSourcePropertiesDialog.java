@@ -89,6 +89,8 @@ public class AudioSourcePropertiesDialog extends JDialog {
         getContentPane().add(buttonsPanel, "South");
         
         audioPanel = new AudioPanel(bean.getAudio0dBRef(), bean.getAudioDigitalRef(), bean.getAudioAlarmSettings());
+        audioPanel.setThresholdNoteLabel("Note: Meters in video tiles use the video source reference and threshold settings");
+        audioPanel.setEnableAlarmsLabel("Enable external audio channel alarms");
         add(audioPanel);
         
         setVisible(true);

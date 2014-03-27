@@ -101,6 +101,7 @@ public class SourcePropertiesDialog extends JDialog {
         
        
         audioPanel = new AudioPanel(bean.getAudio0dBRef(), bean.getAudioDigitalRef(), bean.getAudioAlarmSettings());
+        audioPanel.setEnableAlarmsLabel("Enable embedded audio channel alarms");
         alarmPanel = new AlarmPanel(bean);
         copySourcePanel = new CopySourcePanel(bean, idModulo);
         copySourcePanel.setActionListenerSetupAudioAlarmsButton(buttonActionListener);
