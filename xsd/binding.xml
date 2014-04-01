@@ -42,6 +42,10 @@
     <elementBinding name="/module/objects/object/screen">
         <java-class name="objectScreen" />
     </elementBinding>
+    
+    <elementBinding name="/module/objects/object/vidAudProperties/error/size">
+        <java-class name="objectErrorMsgSize"/>
+    </elementBinding>
 
     <elementBinding name="/module/objects/object/logoProperties/filename">
         <java-class name="logoFilename" />

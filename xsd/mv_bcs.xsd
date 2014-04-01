@@ -921,6 +921,15 @@
 			                                                        <element
 			                                                            ref="tns:visible">
 			                                                        </element>
+			                                                        <element
+			                                                            name="size">
+                                                                        <complexType>
+                                                                            <attribute
+                                                                                name="val"
+                                                                                type="int">
+                                                                            </attribute>
+                                                                        </complexType>
+			                                                        </element>
 			                                                    </sequence>
 			                                                </complexType>
 			                                            </element>
