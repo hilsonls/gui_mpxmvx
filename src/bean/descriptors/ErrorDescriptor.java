@@ -213,6 +213,42 @@ public class ErrorDescriptor extends org.exolab.castor.xml.util.XMLClassDescript
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
+        //-- _objectErrorMsgSize
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.ObjectErrorMsgSize.class, "_objectErrorMsgSize", "size", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Error target = (Error) object;
+                return target.getObjectErrorMsgSize();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Error target = (Error) object;
+                    target.setObjectErrorMsgSize( (bean.ObjectErrorMsgSize) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.ObjectErrorMsgSize");
+        desc.setHandler(handler);
+        desc.setRequired(true);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _objectErrorMsgSize
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(1);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
     }
 
 

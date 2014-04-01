@@ -46,6 +46,11 @@ public class Error implements java.io.Serializable {
      */
     private bean.Visible _visible;
 
+    /**
+     * Field _objectErrorMsgSize.
+     */
+    private bean.ObjectErrorMsgSize _objectErrorMsgSize;
+
 
       //----------------/
      //- Constructors -/
@@ -78,6 +83,16 @@ public class Error implements java.io.Serializable {
     public bean.Colour getColour(
     ) {
         return this._colour;
+    }
+
+    /**
+     * Returns the value of field 'objectErrorMsgSize'.
+     * 
+     * @return the value of field 'ObjectErrorMsgSize'.
+     */
+    public bean.ObjectErrorMsgSize getObjectErrorMsgSize(
+    ) {
+        return this._objectErrorMsgSize;
     }
 
     /**
@@ -165,6 +180,17 @@ public class Error implements java.io.Serializable {
     public void setColour(
             final bean.Colour colour) {
         this._colour = colour;
+    }
+
+    /**
+     * Sets the value of field 'objectErrorMsgSize'.
+     * 
+     * @param objectErrorMsgSize the value of field
+     * 'objectErrorMsgSize'.
+     */
+    public void setObjectErrorMsgSize(
+            final bean.ObjectErrorMsgSize objectErrorMsgSize) {
+        this._objectErrorMsgSize = objectErrorMsgSize;
     }
 
     /**
