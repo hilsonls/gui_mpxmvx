@@ -1,5 +1,6 @@
 package gui;
 
+import bean.AspectRatio;
 import bean.Objects;
 import bean.ObjectsZOrder;
 import eccezioni.ActionNotFoundException;
@@ -834,8 +835,44 @@ public class TilesWorkspace extends JPanel {
         try {
             for (int pd = 0; pd < objectsToSend.size(); pd++) {
                 TileObject tileObject = (TileObject) objectsToSend.get(pd);
-                tileObject.saveToBean();
-                CtrlWorkspace.getInstance().saveObjectToMV(ctrlActions.getIdModulo(), tileObject.getBean());
+                
+                // Adjusting the tile size can result in slight adjustments in
+                // extLeft, extRight etc. Record the original values so we can
+                // check to see if the tile needs adjusting after it has been
+                // sent to the MV. If any ext sizes have changed and the
+                // tile dimensions are locked to the video aspect ratio then
+                // the tile will need another size adjustment (its
+                // updateAspectRatio function called). This again will need
+                // to be sent to the MV, which in turn could possibly result
+                // in another change to ext sizes. This process needs to be
+                // repeated until no further changes occur to ext sizes. Limited
+                // to 5 attempts below, but is unlikely to ever be more than
+                // 3 attempts.
+                boolean tryAgain = true;
+                for (int tries = 0; tries < 5 && tryAgain; tries++) {
+                    tryAgain = false;
+                    
+                    AspectRatio arBean = tileObject.getBean().getAspectRatio();
+                    int extLeft = arBean.getExtLeft();
+                    int extRight = arBean.getExtRight();
+                    int extTop = arBean.getExtTop();
+                    int extBottom = arBean.getExtBottom();
+                    
+                    tileObject.saveToBean();
+                    CtrlWorkspace.getInstance().saveObjectToMV(ctrlActions.getIdModulo(), tileObject.getBean());
+                    
+                    AspectRatio arNewBean = tileObject.getBean().getAspectRatio();
+                    if (arNewBean.getExtLeft() != extLeft
+                            || arNewBean.getExtRight() != extRight
+                            || arNewBean.getExtTop() != extTop
+                            || arNewBean.getExtBottom() != extBottom) {
+                        tileObject.reloadExtSizesFromBean();
+                        if (tileObject.isLockedToVideoAspectRatio()) { 
+                            tileObject.updateAspectRatio();
+                            tryAgain = true;
+                        }
+                    }
+                }
             }
             CtrlWorkspace.getInstance().commitUndo(ctrlActions.getIdModulo());
             MultiViewerPanel.getInstance().updateUndoRedo();
@@ -983,60 +1020,45 @@ public class TilesWorkspace extends JPanel {
         
         
         //GESTIONE ASPECT RATIO
-        if ("4:3".equals(tileObject.getAspectRatio())) {
-            int virtualH = (int) mvScreenToVirtualY((virtualToMVScreenX(width) * 3) / 4);
-            if ((double) (y1 + (long) virtualH) > VIRTUALIZER) {
-                width = (int) mvScreenToVirtualX((virtualToMVScreenY((long) (VIRTUALIZER - (double) y1)) * 4) / 3);
+        if (tileObject.isLockedToVideoAspectRatio()) {
+            if (tileObject.getVideoAspectRatio().width > 0) {
+                Dimension vidar = tileObject.getVideoAspectRatio();
+                long virtualVideoH = mvScreenToVirtualY((virtualToMVScreenX(width - tileObject.getExtX()) * vidar.height) / vidar.width);
+                long virtualH = virtualVideoH + tileObject.getExtY();
+                if ((double) (y1 + virtualH) > VIRTUALIZER) {
+                    virtualH = (long) (VIRTUALIZER - (double) y1);
+                    virtualVideoH = virtualH - tileObject.getExtY();
+                    long virtualVideoW = mvScreenToVirtualX((virtualToMVScreenY(virtualVideoH) * vidar.width) / vidar.height);
+                    width = virtualVideoW + tileObject.getExtX();
+                    if(left)
+                        x1 = x2 - width;
+                }
+                if (virtualToMVScreenY(virtualH) < MIN_TILE_SIZE) {
+                    width = (int) mvScreenToVirtualX((virtualToMVScreenY(mvScreenToVirtualY(MIN_TILE_SIZE)) * vidar.height) / vidar.width);
+                    if(left)
+                        x1 = x2 - width;
+                }
+            }
+        } else if (tileObject.getTileAspectRatio().width > 0) {
+            Dimension tilear = tileObject.getTileAspectRatio();
+            long virtualH = mvScreenToVirtualY((virtualToMVScreenX(width) * tilear.height) / tilear.width);
+            if ((double) (y1 + virtualH) > VIRTUALIZER) {
+                width = (int) mvScreenToVirtualX((virtualToMVScreenY((long) (VIRTUALIZER - (double) y1)) * tilear.width) / tilear.height);
                 if(left)
                     x1 = x2 - width;
             }
             if (virtualToMVScreenY(virtualH) < MIN_TILE_SIZE) {
-                width = (int) mvScreenToVirtualX((virtualToMVScreenY(mvScreenToVirtualY(MIN_TILE_SIZE)) * 4) / 3);
-                if(left)
-                    x1 = x2 - width;
-            }
-        } else if ("16:9".equals(tileObject.getAspectRatio())) {
-            int virtualH = (int) mvScreenToVirtualY((virtualToMVScreenX(width) * 9) / 16);
-            if ((double) (y1 + (long) virtualH) > VIRTUALIZER) {
-                width = (int) mvScreenToVirtualX((virtualToMVScreenY((long) (VIRTUALIZER - (double) y1)) * 16) / 9);
-                if(left)
-                    x1 = x2 - width;
-            }
-            if (virtualToMVScreenY(virtualH) < MIN_TILE_SIZE) {
-                width = (int) mvScreenToVirtualX((virtualToMVScreenY(mvScreenToVirtualY(MIN_TILE_SIZE)) * 16) / 9);
-                if(left)
-                    x1 = x2 - width;
-            }
-        } else if ("4:3+".equals(tileObject.getAspectRatio())) {
-            int virtualH = (int) mvScreenToVirtualY((virtualToMVScreenX(width - tileObject.getExtX()) * 3) / 4);
-            if ((double) (y1 + (long) virtualH + tileObject.getExtY()) > VIRTUALIZER) {
-                width = (int) mvScreenToVirtualX((virtualToMVScreenY((long) (VIRTUALIZER - (double) y1) - tileObject.getExtY()) * 4) / 3 + virtualToMVScreenX(tileObject.getExtX()));
-                if(left)
-                    x1 = x2 - width;
-            }
-            if (virtualToMVScreenY(virtualH) < MIN_TILE_SIZE) {
-                width = (int) mvScreenToVirtualX((virtualToMVScreenY(mvScreenToVirtualY(MIN_TILE_SIZE)) * 4) / 3 + virtualToMVScreenX(tileObject.getExtX()));
-                if(left)
-                    x1 = x2 - width;
-            }
-        } else if ("16:9+".equals(tileObject.getAspectRatio())) {
-            int virtualH = (int) mvScreenToVirtualY((virtualToMVScreenX(width - tileObject.getExtX()) * 9) / 16);
-            if ((double) (y1 + (long) virtualH + tileObject.getExtY()) > VIRTUALIZER) {
-                width = (int) mvScreenToVirtualX((virtualToMVScreenY((long) (VIRTUALIZER - (double) y1) - tileObject.getExtY()) * 16) / 9 + virtualToMVScreenX(tileObject.getExtX()));
-                if(left)
-                    x1 = x2 - width;
-            }
-            if (virtualToMVScreenY(virtualH) < MIN_TILE_SIZE) {
-                width = (int) mvScreenToVirtualX((virtualToMVScreenY(mvScreenToVirtualY(MIN_TILE_SIZE)) * 16) / 9 + virtualToMVScreenX(tileObject.getExtX()));
+                width = (int) mvScreenToVirtualX((virtualToMVScreenY(mvScreenToVirtualY(MIN_TILE_SIZE)) * tilear.height) / tilear.width);
                 if(left)
                     x1 = x2 - width;
             }
         }
+        
         //AGGIORNO TILEOBJECT
         tileObject.setX(x1);
         tileObject.setY(y1);
-        tileObject.setWidth(width - tileObject.getExtX());
-        tileObject.setHeight(height - tileObject.getExtY());
+        tileObject.setWidth(width);
+        tileObject.setHeight(height);
         tileObject.updateAspectRatio();
     }
 

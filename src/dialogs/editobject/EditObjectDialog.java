@@ -189,6 +189,8 @@ public class EditObjectDialog extends JDialog{
                 umdPanel.setTileType(TILE_TYPE_OTHER);
                 propPanel.setTileType(TILE_TYPE_OTHER);
             }
+            
+            typePanel.setTypeChanged();
         
             if (tabbedPane == null) {
                 return;

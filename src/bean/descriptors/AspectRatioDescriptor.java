@@ -141,15 +141,15 @@ public class AspectRatioDescriptor extends bean.descriptors.ObjectStringProperty
             typeValidator.setWhiteSpace("preserve");
         }
         desc.setValidator(fieldValidator);
-        //-- _extX
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Integer.TYPE, "_extX", "extX", org.exolab.castor.xml.NodeType.Attribute);
+        //-- _extLeft
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Integer.TYPE, "_extLeft", "extLeft", org.exolab.castor.xml.NodeType.Attribute);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {
             public java.lang.Object getValue( java.lang.Object object ) 
                 throws IllegalStateException
             {
                 AspectRatio target = (AspectRatio) object;
-                if (!target.hasExtX()) { return null; }
-                return new java.lang.Integer(target.getExtX());
+                if (!target.hasExtLeft()) { return null; }
+                return new java.lang.Integer(target.getExtLeft());
             }
             public void setValue( java.lang.Object object, java.lang.Object value) 
                 throws IllegalStateException, IllegalArgumentException
@@ -158,10 +158,10 @@ public class AspectRatioDescriptor extends bean.descriptors.ObjectStringProperty
                     AspectRatio target = (AspectRatio) object;
                     // if null, use delete method for optional primitives 
                     if (value == null) {
-                        target.deleteExtX();
+                        target.deleteExtLeft();
                         return;
                     }
-                    target.setExtX( ((java.lang.Integer) value).intValue());
+                    target.setExtLeft( ((java.lang.Integer) value).intValue());
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
                 }
@@ -175,7 +175,7 @@ public class AspectRatioDescriptor extends bean.descriptors.ObjectStringProperty
         desc.setMultivalued(false);
         addFieldDescriptor(desc);
         
-        //-- validation code for: _extX
+        //-- validation code for: _extLeft
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         { //-- local scope
             org.exolab.castor.xml.validators.IntValidator typeValidator;
@@ -185,15 +185,15 @@ public class AspectRatioDescriptor extends bean.descriptors.ObjectStringProperty
             typeValidator.setMaxInclusive(2147483647);
         }
         desc.setValidator(fieldValidator);
-        //-- _extY
-        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Integer.TYPE, "_extY", "extY", org.exolab.castor.xml.NodeType.Attribute);
+        //-- _extRight
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Integer.TYPE, "_extRight", "extRight", org.exolab.castor.xml.NodeType.Attribute);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {
             public java.lang.Object getValue( java.lang.Object object ) 
                 throws IllegalStateException
             {
                 AspectRatio target = (AspectRatio) object;
-                if (!target.hasExtY()) { return null; }
-                return new java.lang.Integer(target.getExtY());
+                if (!target.hasExtRight()) { return null; }
+                return new java.lang.Integer(target.getExtRight());
             }
             public void setValue( java.lang.Object object, java.lang.Object value) 
                 throws IllegalStateException, IllegalArgumentException
@@ -202,10 +202,10 @@ public class AspectRatioDescriptor extends bean.descriptors.ObjectStringProperty
                     AspectRatio target = (AspectRatio) object;
                     // if null, use delete method for optional primitives 
                     if (value == null) {
-                        target.deleteExtY();
+                        target.deleteExtRight();
                         return;
                     }
-                    target.setExtY( ((java.lang.Integer) value).intValue());
+                    target.setExtRight( ((java.lang.Integer) value).intValue());
                 } catch (java.lang.Exception ex) {
                     throw new IllegalStateException(ex.toString());
                 }
@@ -219,7 +219,7 @@ public class AspectRatioDescriptor extends bean.descriptors.ObjectStringProperty
         desc.setMultivalued(false);
         addFieldDescriptor(desc);
         
-        //-- validation code for: _extY
+        //-- validation code for: _extRight
         fieldValidator = new org.exolab.castor.xml.FieldValidator();
         { //-- local scope
             org.exolab.castor.xml.validators.IntValidator typeValidator;
@@ -227,6 +227,136 @@ public class AspectRatioDescriptor extends bean.descriptors.ObjectStringProperty
             fieldValidator.setValidator(typeValidator);
             typeValidator.setMinInclusive(-2147483648);
             typeValidator.setMaxInclusive(2147483647);
+        }
+        desc.setValidator(fieldValidator);
+        //-- _extTop
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Integer.TYPE, "_extTop", "extTop", org.exolab.castor.xml.NodeType.Attribute);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                AspectRatio target = (AspectRatio) object;
+                if (!target.hasExtTop()) { return null; }
+                return new java.lang.Integer(target.getExtTop());
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    AspectRatio target = (AspectRatio) object;
+                    // if null, use delete method for optional primitives 
+                    if (value == null) {
+                        target.deleteExtTop();
+                        return;
+                    }
+                    target.setExtTop( ((java.lang.Integer) value).intValue());
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("int");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        
+        //-- validation code for: _extTop
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+            org.exolab.castor.xml.validators.IntValidator typeValidator;
+            typeValidator = new org.exolab.castor.xml.validators.IntValidator();
+            fieldValidator.setValidator(typeValidator);
+            typeValidator.setMinInclusive(-2147483648);
+            typeValidator.setMaxInclusive(2147483647);
+        }
+        desc.setValidator(fieldValidator);
+        //-- _extBottom
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Integer.TYPE, "_extBottom", "extBottom", org.exolab.castor.xml.NodeType.Attribute);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                AspectRatio target = (AspectRatio) object;
+                if (!target.hasExtBottom()) { return null; }
+                return new java.lang.Integer(target.getExtBottom());
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    AspectRatio target = (AspectRatio) object;
+                    // if null, use delete method for optional primitives 
+                    if (value == null) {
+                        target.deleteExtBottom();
+                        return;
+                    }
+                    target.setExtBottom( ((java.lang.Integer) value).intValue());
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("int");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        
+        //-- validation code for: _extBottom
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+            org.exolab.castor.xml.validators.IntValidator typeValidator;
+            typeValidator = new org.exolab.castor.xml.validators.IntValidator();
+            fieldValidator.setValidator(typeValidator);
+            typeValidator.setMinInclusive(-2147483648);
+            typeValidator.setMaxInclusive(2147483647);
+        }
+        desc.setValidator(fieldValidator);
+        //-- _useVideo
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Boolean.TYPE, "_useVideo", "useVideo", org.exolab.castor.xml.NodeType.Attribute);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                AspectRatio target = (AspectRatio) object;
+                if (!target.hasUseVideo()) { return null; }
+                return (target.getUseVideo() ? java.lang.Boolean.TRUE : java.lang.Boolean.FALSE);
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    AspectRatio target = (AspectRatio) object;
+                    // if null, use delete method for optional primitives 
+                    if (value == null) {
+                        target.deleteUseVideo();
+                        return;
+                    }
+                    target.setUseVideo( ((java.lang.Boolean) value).booleanValue());
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("boolean");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        
+        //-- validation code for: _useVideo
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+            org.exolab.castor.xml.validators.BooleanValidator typeValidator;
+            typeValidator = new org.exolab.castor.xml.validators.BooleanValidator();
+            fieldValidator.setValidator(typeValidator);
         }
         desc.setValidator(fieldValidator);
         //-- initialize element descriptors

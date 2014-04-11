@@ -21,9 +21,12 @@ public class TileObject {
     private long y;
     private long width;
     private long height;
-    private long extX;
-    private long extY;
-    private String aspectRatio;
+    private long extTop;
+    private long extBottom;
+    private long extLeft;
+    private long extRight;
+    private Dimension tileAspectRatio;
+    private Dimension videoAspectRatio;
     private Color bgColor;
     private Color fgColor;
     private int parentId;
@@ -49,18 +52,21 @@ public class TileObject {
 
     //TODO: forse andrebbe messo dentro ai set width e height
     public void updateAspectRatio() {
-        if (getAspectRatio().startsWith("4:3")) {
-            long altezza = tilesWorkspace.mvScreenToVirtualY((tilesWorkspace.virtualToMVScreenX(width) * 3) / 4);
-            if (altezza < tilesWorkspace.mvScreenToVirtualY(TilesWorkspace.MIN_TILE_SIZE)) {
-                altezza = tilesWorkspace.mvScreenToVirtualY(TilesWorkspace.MIN_TILE_SIZE);
+        if (isLockedToVideoAspectRatio()) {
+            if (videoAspectRatio.width > 0) {
+                long videoHeight = tilesWorkspace.mvScreenToVirtualY((tilesWorkspace.virtualToMVScreenX(width - extLeft - extRight) * videoAspectRatio.height) / videoAspectRatio.width);
+                long height = videoHeight + extTop + extBottom;
+                if (height < tilesWorkspace.mvScreenToVirtualY(TilesWorkspace.MIN_TILE_SIZE)) {
+                    height = tilesWorkspace.mvScreenToVirtualY(TilesWorkspace.MIN_TILE_SIZE);
+                }
+                setHeight((int) height);
             }
-            setHeight((int) altezza);
-        } else if (getAspectRatio().startsWith("16:9")) {
-            long altezza = tilesWorkspace.mvScreenToVirtualY((tilesWorkspace.virtualToMVScreenX(width) * 9) / 16);
-            if (altezza < tilesWorkspace.mvScreenToVirtualY(TilesWorkspace.MIN_TILE_SIZE)) {
-                altezza = tilesWorkspace.mvScreenToVirtualY(TilesWorkspace.MIN_TILE_SIZE);
+        } else if (tileAspectRatio.width > 0) {
+            long height = tilesWorkspace.mvScreenToVirtualY((tilesWorkspace.virtualToMVScreenX(width) * tileAspectRatio.height) / tileAspectRatio.width);
+            if (height < tilesWorkspace.mvScreenToVirtualY(TilesWorkspace.MIN_TILE_SIZE)) {
+                height = tilesWorkspace.mvScreenToVirtualY(TilesWorkspace.MIN_TILE_SIZE);
             }
-            setHeight((int) altezza);
+            setHeight((int) height);
         }
     }
 
@@ -81,9 +87,12 @@ public class TileObject {
         offsetY = bean.getParent().getYoffs().getVal();
         parentLockRatio = bean.getParent().getLockSizeRatio().getVal();
 
-        aspectRatio = bean.getAspectRatio().getVal();
-        extX = tilesWorkspace.mvScreenToVirtualX(bean.getAspectRatio().getExtX());
-        extY = tilesWorkspace.mvScreenToVirtualY(bean.getAspectRatio().getExtY());
+        tileAspectRatio = aspectRatioStringToDimension(bean.getAspectRatio().getVal());
+        videoAspectRatio = aspectRatioStringToDimension(bean.getObjectSequence().getVideoProperties().getWss().getAspectDefault().getVal());
+        extTop = tilesWorkspace.mvScreenToVirtualY(bean.getAspectRatio().getExtTop());
+        extBottom = tilesWorkspace.mvScreenToVirtualY(bean.getAspectRatio().getExtBottom());
+        extLeft = tilesWorkspace.mvScreenToVirtualX(bean.getAspectRatio().getExtLeft());
+        extRight = tilesWorkspace.mvScreenToVirtualX(bean.getAspectRatio().getExtRight());
         
         setX(tilesWorkspace.mvScreenToVirtualX(bean.getPosition().getX().getVal()));
         setY(tilesWorkspace.mvScreenToVirtualY(bean.getPosition().getY().getVal()));
@@ -94,6 +103,34 @@ public class TileObject {
         valid = bean.getValid().getVal();
 
         bgColor = StyleInterface.getInstance().getTileBackgroundColor(getItemType());
+    }
+    
+    public void reloadExtSizesFromBean() {
+        extTop = tilesWorkspace.mvScreenToVirtualY(bean.getAspectRatio().getExtTop());
+        extBottom = tilesWorkspace.mvScreenToVirtualY(bean.getAspectRatio().getExtBottom());
+        extLeft = tilesWorkspace.mvScreenToVirtualX(bean.getAspectRatio().getExtLeft());
+        extRight = tilesWorkspace.mvScreenToVirtualX(bean.getAspectRatio().getExtRight());
+    }
+    
+    private Dimension aspectRatioStringToDimension(final String s) {
+        Dimension d = new Dimension(-1, -1);
+        
+        try {
+            int pos = s.indexOf(':');
+            if (pos > 0 && pos < s.length() - 1) {
+                String substr = s.substring(0, pos);
+                d.width = Integer.valueOf(substr);
+                substr = s.substring(pos + 1, s.length());
+                d.height = Integer.valueOf(substr);
+                if (d.width <= 0 || d.height <= 0) {
+                    d.width = -1;
+                    d.height = -1;
+                }
+            }
+        } catch(Exception e) {
+        }
+        
+        return d;
     }
 
     public void saveToBean() {
@@ -132,13 +169,6 @@ public class TileObject {
         long height = tilesWorkspace.virtualToPCScreenY(getY() + getHeight()) - y;
         //spessore bordo : 1 nella preview , 2 in genere, 3 se oggetto selezionato
         int borderTickness = (preview) ? 1 : (isSelected) ? 3 : 2;
-
-        //EXTX EXTY
-//        if (bean.getAspectRatio().getVal().indexOf("+") != -1) {
-//            //System.out.println(bean.getAspectRatio().getExtX() + "   " + bean.getAspectRatio().getExtY());
-//            width += bean.getAspectRatio().getExtX();
-//            height += bean.getAspectRatio().getExtY();
-//        }
 
         Shape shape = graphics2d.getClip();
 
@@ -181,7 +211,7 @@ public class TileObject {
         } else {
             graphics2d.fill(tileRect);
             //GESTIONE SFONDO EXTX EXTY
-            if (extX != 0 || extY != 0) {
+            if (hasObjectsOutsideVideo()) {
                 Stroke prevThickness = graphics2d.getStroke();
                 graphics2d.setStroke(new BasicStroke(1));
                 int lastY = tileRect.width + tileRect.height;
@@ -191,7 +221,11 @@ public class TileObject {
                     graphics2d.drawLine(tileRect.x, tileRect.y + i, tileRect.x + i, tileRect.y);
                 }
                 graphics2d.setColor(bgColor);
-                Rectangle rettangoloEffettivo = new Rectangle(tileRect.x, tileRect.y, tileRect.width - (int) tilesWorkspace.virtualToPCScreenX(extX) + (int) tilesWorkspace.virtualToPCScreenX(0), tileRect.height - (int) tilesWorkspace.virtualToPCScreenY(extY) + (int) tilesWorkspace.virtualToPCScreenY(0));
+                Rectangle rettangoloEffettivo = new Rectangle(
+                        (int) tilesWorkspace.virtualToPCScreenX(tilesWorkspace.pcScreenToVirtualX(tileRect.x) + extLeft),
+                        (int) tilesWorkspace.virtualToPCScreenY(tilesWorkspace.pcScreenToVirtualY(tileRect.y) + extTop),
+                        (int) tilesWorkspace.virtualToPCScreenX(tilesWorkspace.pcScreenToVirtualX(tileRect.width) - extLeft - extRight),
+                        (int) tilesWorkspace.virtualToPCScreenY(tilesWorkspace.pcScreenToVirtualY(tileRect.height) - extTop - extBottom));
                 graphics2d.fill(rettangoloEffettivo);
                 graphics2d.setStroke(prevThickness);
             }
@@ -229,11 +263,11 @@ public class TileObject {
         }
         TextLayout textlayout = new TextLayout(itemName, font.deriveFont(Font.BOLD), graphics2d.getFontRenderContext());
         textlayout.draw(graphics2d, tileRect.x + 10, tileRect.y + 8 + fontSize);
-        itemName = "" + tilesWorkspace.virtualToMVScreenX(getWidth()) + " X " + tilesWorkspace.virtualToMVScreenY(getHeight());
+        itemName = "" + tilesWorkspace.virtualToMVScreenX(width) + " X " + tilesWorkspace.virtualToMVScreenY(height);
         textlayout = new TextLayout(itemName, font, graphics2d.getFontRenderContext());
         textlayout.draw(graphics2d, tileRect.x + 10, tileRect.y + 16 + fontSize * 2);
-        if (extX != 0 || extY != 0) {
-            itemName = "( " + tilesWorkspace.virtualToMVScreenX(width) + " X " + tilesWorkspace.virtualToMVScreenY(height) + " )";
+        if (hasObjectsOutsideVideo()) {
+            itemName = "( " + tilesWorkspace.virtualToMVScreenX(width - extLeft - extRight) + " X " + tilesWorkspace.virtualToMVScreenY(height - extTop - extBottom) + " )";
             textlayout = new TextLayout(itemName, font.deriveFont(Math.max((float)fontSize-2 , 8)), graphics2d.getFontRenderContext());
             textlayout.draw(graphics2d, tileRect.x + 10, (float)(tileRect.y + 16 + fontSize * 3.14));
         }
@@ -246,10 +280,6 @@ public class TileObject {
         long y = tilesWorkspace.virtualToPCScreenY(getY());
         long width = tilesWorkspace.virtualToPCScreenX(getX() + getWidth()) - x;
         long height = tilesWorkspace.virtualToPCScreenY(getY() + getHeight()) - y;
-//        if (bean.getAspectRatio().getVal().indexOf("+")!=-1) {
-//            width += bean.getAspectRatio().getExtX();
-//            height += bean.getAspectRatio().getExtY();
-//        }
 
         Rectangle tileRect = new Rectangle((int) x, (int) y, (int) width, (int) height);
         graphics2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .4f));
@@ -289,9 +319,6 @@ public class TileObject {
     }
 
     public long getWidth() {
-        if (bean.getAspectRatio().getVal().indexOf("+") != -1) {
-            return width + extX;
-        }
         return width;
     }
 
@@ -300,9 +327,6 @@ public class TileObject {
     }
 
     public long getHeight() {
-        if (bean.getAspectRatio().getVal().indexOf("+") != -1) {
-            return height + extY;
-        }
         return height;
     }
 
@@ -322,6 +346,10 @@ public class TileObject {
      */
     public String getItemType() {
         return bean.getType().getVal();
+    }
+    
+    public String getAspectRatio() {
+        return bean.getAspectRatio().getVal();
     }
 
     /**
@@ -346,10 +374,22 @@ public class TileObject {
         return parentLockRatio;
     }
 
-    public String getAspectRatio() {
-        return aspectRatio;
+    public Dimension getTileAspectRatio() {
+        return tileAspectRatio;
     }
-
+    
+    public Dimension getVideoAspectRatio() {
+        return videoAspectRatio;
+    }
+    
+    public boolean isLockedToVideoAspectRatio() {
+        return bean.getAspectRatio().getUseVideo() && getItemType().equals("Video"); 
+    }
+    
+    public boolean hasObjectsOutsideVideo() {
+        return getItemType().equals("Video") && (extLeft != 0 || extRight != 0 || extTop != 0 || extBottom != 0);
+    }
+    
     /**
      * @return the parentLockRatioX
      */
@@ -382,13 +422,13 @@ public class TileObject {
      * @return the extX
      */
     public long getExtX() {
-        return (aspectRatio.indexOf('+') != -1) ? extX : 0;
+        return extLeft + extRight;
     }
 
     /**
      * @return the extY
      */
     public long getExtY() {
-        return (aspectRatio.indexOf('+') != -1) ? extY : 0;
+        return extTop + extBottom;
     }
 }

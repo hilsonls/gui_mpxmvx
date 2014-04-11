@@ -33,12 +33,7 @@ public class PropertiesWssPanel extends JPanelBGGradient{
     private JLabel colorLabel;
     private JComboBox colorCombo;
     
-    private JLabel aspectLabel;
-    
     private JCheckBox autoCheck;
-    
-    private JLabel defaultLabel;
-    private JComboBox defaultCombo;
     
     private JCheckBox indicatorCheck;
     
@@ -52,17 +47,10 @@ public class PropertiesWssPanel extends JPanelBGGradient{
         modeCombo = ComponentFactory.createComboBox(bean.getMode().getOptionsName(), bean.getMode().getVal());
         modeCombo.setToolTipText("Type of wide screen information to detect");
     
-        aspectLabel = new JLabel("Aspect ratio");
-        aspectLabel.setFont(new Font("Arial", Font.BOLD, 12));
-    
-        autoCheck = new JCheckBoxTransBG("Auto size video image");
+        autoCheck = new JCheckBoxTransBG("Auto size video image to the correct aspect ratio");
         autoCheck.setSelected(bean.getAspectEnabled().getVal());
-        autoCheck.setToolTipText("Size the video to the WSS/AFD information, or a fixed aspect ratio.");
+        autoCheck.setToolTipText("Size the video to the WSS/AFD information");
         
-        defaultLabel = new JLabel("Default");
-        defaultCombo = ComponentFactory.createComboBox(bean.getAspectDefault().getOptionsName(), bean.getAspectDefault().getVal());
-        defaultCombo.setToolTipText("Aspect ratio to use when there is no WSS/AFD information");
-    
         indicatorCheck = new JCheckBoxTransBG("Indicator on");
         indicatorCheck.setSelected(bean.getAspectIndicator().getVal());
         indicatorCheck.setToolTipText("Display aspect ratio information when available");
@@ -72,9 +60,8 @@ public class PropertiesWssPanel extends JPanelBGGradient{
 
         layout.addRow(new Component[] {modeLabel, modeCombo});
         layout.addGap();
-        layout.add(aspectLabel);
         layout.add(autoCheck);
-        layout.addRow(new Component[] {defaultLabel, defaultCombo});
+        layout.addGap();
         layout.add(indicatorCheck);
         layout.addRow(new Component[] {colorLabel, colorCombo});
     }
@@ -83,7 +70,6 @@ public class PropertiesWssPanel extends JPanelBGGradient{
         bean.getMode().setVal(modeCombo.getSelectedItem().toString());
         bean.getColour().setVal(colorCombo.getSelectedItem().toString());
         bean.getAspectEnabled().setVal(autoCheck.isSelected());
-        bean.getAspectDefault().setVal(defaultCombo.getSelectedItem().toString());
         bean.getAspectIndicator().setVal(indicatorCheck.isSelected());
     }
 

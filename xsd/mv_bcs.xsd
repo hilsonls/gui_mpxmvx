@@ -379,15 +379,27 @@
 			                                            </attribute>
 
 			                                            <attribute
-			                                                name="extX"
+			                                                name="extLeft"
 			                                                type="int">
 			                                            </attribute>
 
 			                                            <attribute
-			                                                name="extY"
+			                                                name="extRight"
 			                                                type="int">
 			                                            </attribute>
 
+			                                            <attribute
+			                                                name="extTop"
+			                                                type="int">
+			                                            </attribute>
+			                                            <attribute
+			                                                name="extBottom"
+			                                                type="int">
+			                                            </attribute>
+			                                            <attribute
+			                                                name="useVideo"
+			                                                type="boolean">
+			                                            </attribute>
 			                                        </extension>
 			                                    </complexContent>
 			                                </complexType>
@@ -672,66 +684,66 @@
 			                                                                    name="f1"
 			                                                                    type="int">
 			                                                                </attribute>
-                                                                            <attribute
-                                                                                name="f2"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="f3"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="f4"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="f5"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="f6"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="f7"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="f8"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="r1"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="r2"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="r3"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="r4"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="r5"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="r6"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="r7"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                            <attribute
-                                                                                name="r8"
-                                                                                type="int">
-                                                                            </attribute>
+			                                                                <attribute
+			                                                                    name="f2"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f3"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f4"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f5"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f6"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f7"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f8"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r1"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r2"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r3"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r4"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r5"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r6"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r7"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r8"
+			                                                                    type="int">
+			                                                                </attribute>
 			                                                            </complexType>
 			                                                        </element>
 			                                                        <element
@@ -863,20 +875,20 @@
 			                                                            </element>
 			                                                            <element
 			                                                                name="barColourWrong">
-                                                                            <complexType>
-                                                                                <attribute
-                                                                                    name="val"
-                                                                                    type="string">
-                                                                                </attribute>
-                                                                                <attribute
-                                                                                    name="optionsName"
-                                                                                    type="string">
-                                                                                </attribute>
-                                                                                <attribute
-                                                                                    name="id"
-                                                                                    type="int">
-                                                                                </attribute>
-                                                                            </complexType>
+			                                                                <complexType>
+			                                                                    <attribute
+			                                                                        name="val"
+			                                                                        type="string">
+			                                                                    </attribute>
+			                                                                    <attribute
+			                                                                        name="optionsName"
+			                                                                        type="string">
+			                                                                    </attribute>
+			                                                                    <attribute
+			                                                                        name="id"
+			                                                                        type="int">
+			                                                                    </attribute>
+			                                                                </complexType>
 			                                                            </element>
 			                                                        </sequence>
 			                                                    </sequence>
@@ -923,12 +935,12 @@
 			                                                        </element>
 			                                                        <element
 			                                                            name="size">
-                                                                        <complexType>
-                                                                            <attribute
-                                                                                name="val"
-                                                                                type="int">
-                                                                            </attribute>
-                                                                        </complexType>
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                            </complexType>
 			                                                        </element>
 			                                                    </sequence>
 			                                                </complexType>

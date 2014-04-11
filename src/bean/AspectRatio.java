@@ -39,24 +39,54 @@ implements java.io.Serializable
     private java.lang.String _float;
 
     /**
-     * Field _extX.
+     * Field _extLeft.
      */
-    private int _extX;
+    private int _extLeft;
 
     /**
-     * keeps track of state for field: _extX
+     * keeps track of state for field: _extLeft
      */
-    private boolean _has_extX;
+    private boolean _has_extLeft;
 
     /**
-     * Field _extY.
+     * Field _extRight.
      */
-    private int _extY;
+    private int _extRight;
 
     /**
-     * keeps track of state for field: _extY
+     * keeps track of state for field: _extRight
      */
-    private boolean _has_extY;
+    private boolean _has_extRight;
+
+    /**
+     * Field _extTop.
+     */
+    private int _extTop;
+
+    /**
+     * keeps track of state for field: _extTop
+     */
+    private boolean _has_extTop;
+
+    /**
+     * Field _extBottom.
+     */
+    private int _extBottom;
+
+    /**
+     * keeps track of state for field: _extBottom
+     */
+    private boolean _has_extBottom;
+
+    /**
+     * Field _useVideo.
+     */
+    private boolean _useVideo;
+
+    /**
+     * keeps track of state for field: _useVideo
+     */
+    private boolean _has_useVideo;
 
 
       //----------------/
@@ -74,36 +104,77 @@ implements java.io.Serializable
 
     /**
      */
-    public void deleteExtX(
+    public void deleteExtBottom(
     ) {
-        this._has_extX= false;
+        this._has_extBottom= false;
     }
 
     /**
      */
-    public void deleteExtY(
+    public void deleteExtLeft(
     ) {
-        this._has_extY= false;
+        this._has_extLeft= false;
     }
 
     /**
-     * Returns the value of field 'extX'.
+     */
+    public void deleteExtRight(
+    ) {
+        this._has_extRight= false;
+    }
+
+    /**
+     */
+    public void deleteExtTop(
+    ) {
+        this._has_extTop= false;
+    }
+
+    /**
+     */
+    public void deleteUseVideo(
+    ) {
+        this._has_useVideo= false;
+    }
+
+    /**
+     * Returns the value of field 'extBottom'.
      * 
-     * @return the value of field 'ExtX'.
+     * @return the value of field 'ExtBottom'.
      */
-    public int getExtX(
+    public int getExtBottom(
     ) {
-        return this._extX;
+        return this._extBottom;
     }
 
     /**
-     * Returns the value of field 'extY'.
+     * Returns the value of field 'extLeft'.
      * 
-     * @return the value of field 'ExtY'.
+     * @return the value of field 'ExtLeft'.
      */
-    public int getExtY(
+    public int getExtLeft(
     ) {
-        return this._extY;
+        return this._extLeft;
+    }
+
+    /**
+     * Returns the value of field 'extRight'.
+     * 
+     * @return the value of field 'ExtRight'.
+     */
+    public int getExtRight(
+    ) {
+        return this._extRight;
+    }
+
+    /**
+     * Returns the value of field 'extTop'.
+     * 
+     * @return the value of field 'ExtTop'.
+     */
+    public int getExtTop(
+    ) {
+        return this._extTop;
     }
 
     /**
@@ -127,23 +198,73 @@ implements java.io.Serializable
     }
 
     /**
-     * Method hasExtX.
+     * Returns the value of field 'useVideo'.
      * 
-     * @return true if at least one ExtX has been added
+     * @return the value of field 'UseVideo'.
      */
-    public boolean hasExtX(
+    public boolean getUseVideo(
     ) {
-        return this._has_extX;
+        return this._useVideo;
     }
 
     /**
-     * Method hasExtY.
+     * Method hasExtBottom.
      * 
-     * @return true if at least one ExtY has been added
+     * @return true if at least one ExtBottom has been added
      */
-    public boolean hasExtY(
+    public boolean hasExtBottom(
     ) {
-        return this._has_extY;
+        return this._has_extBottom;
+    }
+
+    /**
+     * Method hasExtLeft.
+     * 
+     * @return true if at least one ExtLeft has been added
+     */
+    public boolean hasExtLeft(
+    ) {
+        return this._has_extLeft;
+    }
+
+    /**
+     * Method hasExtRight.
+     * 
+     * @return true if at least one ExtRight has been added
+     */
+    public boolean hasExtRight(
+    ) {
+        return this._has_extRight;
+    }
+
+    /**
+     * Method hasExtTop.
+     * 
+     * @return true if at least one ExtTop has been added
+     */
+    public boolean hasExtTop(
+    ) {
+        return this._has_extTop;
+    }
+
+    /**
+     * Method hasUseVideo.
+     * 
+     * @return true if at least one UseVideo has been added
+     */
+    public boolean hasUseVideo(
+    ) {
+        return this._has_useVideo;
+    }
+
+    /**
+     * Returns the value of field 'useVideo'.
+     * 
+     * @return the value of field 'UseVideo'.
+     */
+    public boolean isUseVideo(
+    ) {
+        return this._useVideo;
     }
 
     /**
@@ -194,25 +315,47 @@ implements java.io.Serializable
     }
 
     /**
-     * Sets the value of field 'extX'.
+     * Sets the value of field 'extBottom'.
      * 
-     * @param extX the value of field 'extX'.
+     * @param extBottom the value of field 'extBottom'.
      */
-    public void setExtX(
-            final int extX) {
-        this._extX = extX;
-        this._has_extX = true;
+    public void setExtBottom(
+            final int extBottom) {
+        this._extBottom = extBottom;
+        this._has_extBottom = true;
     }
 
     /**
-     * Sets the value of field 'extY'.
+     * Sets the value of field 'extLeft'.
      * 
-     * @param extY the value of field 'extY'.
+     * @param extLeft the value of field 'extLeft'.
      */
-    public void setExtY(
-            final int extY) {
-        this._extY = extY;
-        this._has_extY = true;
+    public void setExtLeft(
+            final int extLeft) {
+        this._extLeft = extLeft;
+        this._has_extLeft = true;
+    }
+
+    /**
+     * Sets the value of field 'extRight'.
+     * 
+     * @param extRight the value of field 'extRight'.
+     */
+    public void setExtRight(
+            final int extRight) {
+        this._extRight = extRight;
+        this._has_extRight = true;
+    }
+
+    /**
+     * Sets the value of field 'extTop'.
+     * 
+     * @param extTop the value of field 'extTop'.
+     */
+    public void setExtTop(
+            final int extTop) {
+        this._extTop = extTop;
+        this._has_extTop = true;
     }
 
     /**
@@ -234,6 +377,17 @@ implements java.io.Serializable
     public void setOptionsName(
             final java.lang.String optionsName) {
         this._optionsName = optionsName;
+    }
+
+    /**
+     * Sets the value of field 'useVideo'.
+     * 
+     * @param useVideo the value of field 'useVideo'.
+     */
+    public void setUseVideo(
+            final boolean useVideo) {
+        this._useVideo = useVideo;
+        this._has_useVideo = true;
     }
 
     /**

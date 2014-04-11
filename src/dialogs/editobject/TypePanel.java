@@ -1,21 +1,27 @@
 package dialogs.editobject;
 
+import bean.AspectDefault;
 import bean.Oggetto;
 import bean.Position;
 import dialogs.editobject.EditObjectDialog.TypeListener;
 import eccezioni.MVException;
 import gui.ComponentFactory;
+import gui.CtrlActions;
 import gui.TilesWorkspace;
+import gui.components.JCheckBoxTransBG;
 import gui.components.JPanelBGGradient;
 import gui.components.VGroupLayout;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -46,8 +52,18 @@ public class TypePanel extends JPanelBGGradient{
     private JLabel heightLabel;
     private JTextField heightField;
 
-    private JLabel aspectLabel;
-    private JComboBox aspectCombo;
+    private JLabel tileAspectLabel;
+    private JComboBox tileAspectCombo;
+    
+    private JLabel videoAspectLabel;
+    private JComboBox videoAspectCombo;
+    
+    private int extLeft;
+    private int extRight;
+    private int extTop;
+    private int extBottom;
+    
+    private JCheckBoxTransBG tileAspectBasedOnVideo;
         
     public TypePanel(Oggetto bean) throws MVException {
         
@@ -77,9 +93,22 @@ public class TypePanel extends JPanelBGGradient{
         heightLabel = new JLabel("Height");
         heightField = ComponentFactory.createTextField(pos.getHeight().getVal(), pos.getHeight().getMin(), pos.getHeight().getMax());
 
-        aspectLabel = new JLabel("Aspect Ratio");
-        aspectCombo = ComponentFactory.createComboBox(bean.getAspectRatio().getOptionsName(), bean.getAspectRatio().getVal());  
-        aspectCombo.addItemListener(aL);
+        tileAspectLabel = new JLabel("Tile Aspect Ratio");
+        tileAspectCombo = ComponentFactory.createComboBox(bean.getAspectRatio().getOptionsName(), bean.getAspectRatio().getVal());  
+        tileAspectCombo.addItemListener(aL);
+        extLeft = bean.getAspectRatio().getExtLeft();
+        extRight = bean.getAspectRatio().getExtRight();
+        extTop = bean.getAspectRatio().getExtTop();
+        extBottom = bean.getAspectRatio().getExtBottom();
+        
+        videoAspectLabel = new JLabel("Video Aspect Ratio");
+        AspectDefault vidAspect = bean.getObjectSequence().getVideoProperties().getWss().getAspectDefault();
+        videoAspectCombo = ComponentFactory.createComboBox(vidAspect.getOptionsName(), vidAspect.getVal());
+        videoAspectCombo.addItemListener(aL);
+        
+        tileAspectBasedOnVideo = new JCheckBoxTransBG("Adjust tile dimensions based on the video aspect ratio");
+        tileAspectBasedOnVideo.setSelected(bean.getAspectRatio().getUseVideo());
+        tileAspectBasedOnVideo.addItemListener(aL);
         
         layout.addGrid(new Component[][] {
                 {typeLabel, typeCombo},
@@ -92,7 +121,11 @@ public class TypePanel extends JPanelBGGradient{
                 {widthLabel, widthField, heightLabel, heightField} 
         });
         layout.addGap();
-        layout.addRow(new Component[] {aspectLabel, aspectCombo});
+        layout.add(tileAspectBasedOnVideo);
+        layout.addGrid(new Component[][] {
+                {tileAspectLabel, tileAspectCombo},
+                {videoAspectLabel, videoAspectCombo}
+        });
         
         updateHeight();
     }
@@ -108,47 +141,131 @@ public class TypePanel extends JPanelBGGradient{
         bean.getPosition().getY().setVal(Integer.parseInt(yField.getText()));
         bean.getPosition().getHeight().setVal(Integer.parseInt(heightField.getText()));
         bean.getPosition().getWidth().setVal(Integer.parseInt(widthField.getText()));
-        bean.getAspectRatio().setVal(aspectCombo.getSelectedItem().toString());
+        bean.getAspectRatio().setVal(tileAspectCombo.getSelectedItem().toString());
+        bean.getAspectRatio().setUseVideo(tileAspectBasedOnVideo.isSelected());
+        bean.getObjectSequence().getVideoProperties().getWss().getAspectDefault().setVal(videoAspectCombo.getSelectedItem().toString());
     }
     
     public void setTypeListener(TypeListener tL) {
         typeCombo.addActionListener(tL);
         typeCombo.setSelectedItem(typeCombo.getSelectedItem());
-    } 
+    }
+    
+    /**
+     * setTypeChanged - needs to be called back from the TypeListener
+     */
+    public void setTypeChanged() {
+        if (typeCombo.getSelectedItem().toString().equals("Video")) {
+            tileAspectBasedOnVideo.setVisible(true);
+            videoAspectLabel.setVisible(true);
+            videoAspectCombo.setVisible(true);
+            tileAspectCombo.setEnabled(!tileAspectBasedOnVideo.isSelected());
+            tileAspectLabel.setEnabled(!tileAspectBasedOnVideo.isSelected());
+        } else {
+            tileAspectBasedOnVideo.setVisible(false);
+            videoAspectLabel.setVisible(false);
+            videoAspectCombo.setVisible(false);
+            tileAspectCombo.setEnabled(true);
+            tileAspectLabel.setEnabled(true);
+        }
+        updateHeight();
+    }
     
     private void updateHeight()
     {
+        Dimension tar = aspectRatioStringToDimension(tileAspectCombo.getSelectedItem().toString());
+        Dimension var = aspectRatioStringToDimension(videoAspectCombo.getSelectedItem().toString());
+        boolean isVideoTile = "Video".equals(typeCombo.getSelectedItem().toString());
+        boolean isAspectLocked;
+        boolean isAspectLockedToVideo;
+        if (isVideoTile && tileAspectBasedOnVideo.isSelected()) {
+            isAspectLocked = var.width > 0;
+            isAspectLockedToVideo = var.width > 0;
+        } else {
+            isAspectLocked = tar.width > 0;
+            isAspectLockedToVideo = false;
+        }
         
-        String s = aspectCombo.getSelectedItem().toString();
-        heightField.setEnabled("None".equals(s));
-        heightLabel.setEnabled("None".equals(s));
+        heightField.setEnabled(!isAspectLocked);
+        heightLabel.setEnabled(!isAspectLocked);
         
-        int width = Integer.parseInt(widthField.getText());
-        int height=0;
-        if (s.startsWith("4:3")) {
-            height = (((width*76800)/4)*3)/76800;
-            if (height<TilesWorkspace.MIN_TILE_SIZE) {
-                height = TilesWorkspace.MIN_TILE_SIZE;
-                width = (((height*76800)/3)*4)/76800;
-                widthField.setText(""+width);
+        if (isAspectLocked) {
+            int width = Integer.parseInt(widthField.getText());
+            int height=0;
+            CtrlActions ctrlActions = CtrlActions.getInstance();
+            int screenHeight = ctrlActions.getTilesWorkspace().getMvVres();
+            int ypos = Integer.parseInt(yField.getText());
+
+            if (isAspectLockedToVideo) {
+                int videoWidth = width - extLeft - extRight;
+                int videoHeight = videoWidth * var.height / var.width;
+                height = videoHeight + extTop + extBottom;
+                if (TilesWorkspace.MIN_TILE_SIZE <= height && height <= screenHeight - ypos) {
+                    // height is OK
+                } else {
+                    if (height < TilesWorkspace.MIN_TILE_SIZE) {
+                        height = TilesWorkspace.MIN_TILE_SIZE;
+                    } else {
+                        height = screenHeight - ypos;
+                    }
+                    videoHeight = height - extTop - extBottom;
+                    videoWidth = videoHeight * var.width / var.height;
+                    width = videoWidth + extLeft + extRight;
+                    if (width < 1) {
+                        width = 1;
+                    }
+                    widthField.setText("" + width);
+                }
+                heightField.setText("" + height);
+            } else {
+                height = width * tar.height / tar.width;
+                if (TilesWorkspace.MIN_TILE_SIZE <= height && height <= screenHeight - ypos) {
+                    // height is OK
+                } else {
+                    if (height < TilesWorkspace.MIN_TILE_SIZE) {
+                        height = TilesWorkspace.MIN_TILE_SIZE;
+                    } else {
+                        height = screenHeight - ypos;
+                    }
+                    width = height * tar.width / tar.height;
+                    widthField.setText("" + width);
+                }
+                heightField.setText("" + height);
             }
-            heightField.setText(""+height);
-        } else if (s.startsWith("16:9")) {
-            height = (((width*76800)/16)*9)/76800;
-            if (height<TilesWorkspace.MIN_TILE_SIZE) {
-                height = TilesWorkspace.MIN_TILE_SIZE;
-                width = (((height*76800)/9)*16)/76800;
-                widthField.setText(""+width);
-            }
-            heightField.setText(""+height);
         }
     }
+    
+    private Dimension aspectRatioStringToDimension(final String s) {
+        Dimension d = new Dimension(-1, -1);
+        
+        try {
+            int pos = s.indexOf(':');
+            if (pos > 0 && pos < s.length() - 1) {
+                String substr = s.substring(0, pos);
+                d.width = Integer.valueOf(substr);
+                substr = s.substring(pos + 1, s.length());
+                d.height = Integer.valueOf(substr);
+                if (d.width <= 0 || d.height <= 0) {
+                    d.width = -1;
+                    d.height = -1;
+                }
+            }
+        } catch(Exception e) {
+        }
+        
+        return d;
+    }
+
     
     class AspectListener implements ItemListener, ActionListener, FocusListener
     {
 
         public void itemStateChanged(ItemEvent itemevent)
         {
+            if (itemevent.getSource() == tileAspectBasedOnVideo) {
+                // enable / disable tile aspect ratio setting
+                setTypeChanged();
+            }
             updateHeight();
         }
 
