@@ -19,6 +19,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -69,6 +71,7 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
     private static LinkedHashMap<String, Integer> audioFormatStoIMap;
     private static LinkedHashMap<Integer, String> audioFormatItoSMap;
 
+    private JLabel bottomRowLabel;
     private JCheckBox[] bottomRowCheck;
     
     private JPanel sourcesPanel;
@@ -160,11 +163,13 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         splitRowsCheck = new JCheckBox("Use 2 rows of bars");
         splitRowsCheck.setOpaque(false);
         splitRowsCheck.setSelected(bean.getSplitBars().getVal());
+        splitRowsCheck.addItemListener(new Use2RowsListener());
         
         sourcesLabel = new JLabel("Audio sources:");
         sourcePairLabel = new JLabel[NUM_METER_PAIRS];
         sourcePairCombo = new JComboBox[NUM_METER_PAIRS];
         audioFormatCombo = new JComboBox[NUM_METER_PAIRS];
+        bottomRowLabel = new JLabel("2nd row");
         bottomRowCheck = new JCheckBox[NUM_METER_PAIRS];
         for (int i = 0; i < NUM_METER_PAIRS; i++) {
             sourcePairLabel[i] = new JLabel("Pair " + (i+1));
@@ -190,7 +195,7 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         sourcesPanel.setBorder(new TitledBorder("Meter layout"));
         sourcesPanelLayout.add(splitRowsCheck);
         sourcesPanelLayout.addGrid(new Component[][] {
-                {new JLabel(""), new JLabel("Audio source"), new JLabel("Audio format"), new JLabel("2nd row")},
+                {new JLabel(""), new JLabel("Audio source"), new JLabel("Audio format"), bottomRowLabel},
                 {sourcePairLabel[0], sourcePairCombo[0], audioFormatCombo[0], bottomRowCheck[0]},
                 {sourcePairLabel[1], sourcePairCombo[1], audioFormatCombo[1], bottomRowCheck[1]},
                 {sourcePairLabel[2], sourcePairCombo[2], audioFormatCombo[2], bottomRowCheck[2]},
@@ -277,6 +282,8 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         layout.add(alarmCheck);
         layout.addRow(new Component[] {transparentCheck, new JLabel(""), transparentLabel, transparentSlider});
         layout.add(displayOutsideCheck);
+        
+        check2ndRowEnablingConditions();
     }
     
     private JComboBox createBarsCombo() {
@@ -493,4 +500,22 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
             }
         }
     }
+    
+    private void check2ndRowEnablingConditions() {
+        boolean en = splitRowsCheck.isSelected();
+        for (int i = 0; i < NUM_METER_PAIRS; i++) {
+            bottomRowCheck[i].setEnabled(en);
+        }
+        bottomRowLabel.setEnabled(en);
+    }
+    
+    private class Use2RowsListener implements ItemListener {
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            check2ndRowEnablingConditions();
+        }
+
+    }
+    
 }
