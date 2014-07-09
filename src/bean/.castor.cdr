@@ -1,4 +1,4 @@
-#Tue Apr 08 17:33:17 EST 2014
+#Wed Jul 09 09:21:29 EST 2014
 bean.ObjectErrorMsgSize=bean.descriptors.ObjectErrorMsgSizeDescriptor
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
@@ -73,6 +73,7 @@ bean.Mode=bean.descriptors.ModeDescriptor
 bean.Border=bean.descriptors.BorderDescriptor
 bean.UmdSeparator=bean.descriptors.UmdSeparatorDescriptor
 bean.CardMode=bean.descriptors.CardModeDescriptor
+bean.AlarmBarFlash=bean.descriptors.AlarmBarFlashDescriptor
 bean.DisplayDate=bean.descriptors.DisplayDateDescriptor
 bean.SnellRouter=bean.descriptors.SnellRouterDescriptor
 bean.SysTimeTimezone=bean.descriptors.SysTimeTimezoneDescriptor

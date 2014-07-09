@@ -95,6 +95,7 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
     private JComboBox colourCombo;
     
     private JCheckBox alarmCheck;
+    private JCheckBox alarmBarFlashCheck;
     
     private JCheckBox transparentCheck;
     private JLabel transparentLabel;
@@ -258,6 +259,9 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
     
         alarmCheck = new JCheckBoxTransBG("Show alarm indicators");
         alarmCheck.setSelected(bean.getAlarmIndicators().getVal());
+        
+        alarmBarFlashCheck = new JCheckBoxTransBG("Flash bars when an audio alarm is present");
+        alarmBarFlashCheck.setSelected(bean.getAlarmBarFlash().getVal());
     
         transparentCheck = new JCheckBoxTransBG("Transparent on video");
         transparentCheck.setSelected(bean.getTransparent().getVal());
@@ -280,6 +284,7 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         layout.addRow(new Component[] {labelsLabel, labelsCombo, colourLabel, colourCombo});
         layout.addGap();
         layout.add(alarmCheck);
+        layout.add(alarmBarFlashCheck);
         layout.addRow(new Component[] {transparentCheck, new JLabel(""), transparentLabel, transparentSlider});
         layout.add(displayOutsideCheck);
         
@@ -469,6 +474,7 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         bean.getLabelType().setVal(labelsCombo.getSelectedItem().toString());
         bean.getLabelColour().setVal(colourCombo.getSelectedItem().toString());
         bean.getAlarmIndicators().setVal(alarmCheck.isSelected());
+        bean.getAlarmBarFlash().setVal(alarmBarFlashCheck.isSelected());
         bean.getTransparent().setVal(transparentCheck.isSelected());
         bean.getTransparentLevel().setVal(transparentSlider.getValue());
         bean.getOutsideVideo().setVal(displayOutsideCheck.isSelected());

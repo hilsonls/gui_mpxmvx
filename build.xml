@@ -24,7 +24,7 @@
             <zipfileset excludes="META-INF/*.SF" src="lib/apache-commons-logging-1.1.3/commons-logging-1.1.3.jar"/>
         </jar>
 
-        <!-- Sign the application -->
+        <!-- Sign the application - self signing method>
         <exec executable="jarsigner">
             <arg value="-keystore"/>
             <arg value="chromateckeys"/>
@@ -32,6 +32,21 @@
             <arg value="chrom456"/>
             <arg value="Applet.jar"/>
             <arg value="multiviewer"/>
+        </exec>
+        <-->
+    	
+    	<!-- Sign the application - Globalsign -->
+        <exec executable="jarsigner">
+        	<arg value="-storetype"/>
+        	<arg value="PKCS12"/>
+            <arg value="-keystore"/>
+            <arg value="codesign.pfx"/>
+        	<arg value="storepass"/>
+        	<arg value="chrom456mult"/>
+            <arg value="Applet.jar"/>
+        	<arg value="&quot;1&quot;"/>
+        	<arg value="-tsa"/>
+        	<arg value="http://timestamp.globalsign.com/scripts/timestamp.dll"/>
         </exec>
     </target>
 </project>

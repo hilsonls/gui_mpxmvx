@@ -87,6 +87,11 @@ public class Audio implements java.io.Serializable {
     private bean.AlarmIndicators _alarmIndicators;
 
     /**
+     * Field _alarmBarFlash.
+     */
+    private bean.AlarmBarFlash _alarmBarFlash;
+
+    /**
      * Field _transparent.
      */
     private bean.Transparent _transparent;
@@ -185,6 +190,16 @@ public class Audio implements java.io.Serializable {
     public java.util.Enumeration enumerateAudioSequence(
     ) {
         return java.util.Collections.enumeration(this._audioSequenceList);
+    }
+
+    /**
+     * Returns the value of field 'alarmBarFlash'.
+     * 
+     * @return the value of field 'AlarmBarFlash'.
+     */
+    public bean.AlarmBarFlash getAlarmBarFlash(
+    ) {
+        return this._alarmBarFlash;
     }
 
     /**
@@ -489,6 +504,16 @@ public class Audio implements java.io.Serializable {
             final int index) {
         java.lang.Object obj = this._audioSequenceList.remove(index);
         return (bean.AudioSequence) obj;
+    }
+
+    /**
+     * Sets the value of field 'alarmBarFlash'.
+     * 
+     * @param alarmBarFlash the value of field 'alarmBarFlash'.
+     */
+    public void setAlarmBarFlash(
+            final bean.AlarmBarFlash alarmBarFlash) {
+        this._alarmBarFlash = alarmBarFlash;
     }
 
     /**

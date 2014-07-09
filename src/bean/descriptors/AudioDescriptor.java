@@ -473,6 +473,42 @@ public class AudioDescriptor extends org.exolab.castor.xml.util.XMLClassDescript
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
+        //-- _alarmBarFlash
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.AlarmBarFlash.class, "_alarmBarFlash", "alarmBarFlash", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Audio target = (Audio) object;
+                return target.getAlarmBarFlash();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Audio target = (Audio) object;
+                    target.setAlarmBarFlash( (bean.AlarmBarFlash) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.AlarmBarFlash");
+        desc.setHandler(handler);
+        desc.setRequired(true);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _alarmBarFlash
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(1);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
         //-- _transparent
         desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Transparent.class, "_transparent", "transparent", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {

@@ -787,6 +787,9 @@
 			                                                            </complexType>
 			                                                        </element>
 			                                                        <element
+			                                                            name="alarmBarFlash" type="tns:objectBooleanProperty">
+			                                                        </element>
+			                                                        <element
 			                                                            ref="tns:transparent">
 			                                                        </element>
 			                                                        <element
