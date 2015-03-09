@@ -1,0 +1,2916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" 
+	targetNamespace="http://www.example.org/mv_bcs"
+	xmlns:tns="http://www.example.org/mv_bcs">
+
+	<element name="workspace">
+		<complexType>
+			<sequence>
+				<element ref="tns:module" maxOccurs="unbounded"
+					minOccurs="1">
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="liveRead">
+		<complexType>
+			<sequence>
+				<element ref="tns:module" maxOccurs="unbounded"
+					minOccurs="1">
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+
+
+	<element name="module">
+		<complexType>
+			<all>
+			    <element name="videoCards" minOccurs="0"
+			        maxOccurs="1">
+			        <complexType>
+			            <sequence>
+			                <element name="card" maxOccurs="unbounded"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <sequence>
+			                            <element name="mode"
+			                                maxOccurs="1" minOccurs="0">
+			                                <complexType>
+			                                    <sequence>
+			                                        <element
+			                                            name="sourceInput"
+			                                            maxOccurs="unbounded"
+			                                            minOccurs="1">
+			                                            <complexType>
+			                                                <sequence>
+			                                                    <element
+			                                                        ref="tns:optionsList">
+			                                                    </element>
+			                                                </sequence>
+			                                                <attribute
+			                                                    name="val"
+			                                                    type="string"
+			                                                    use="required">
+			                                                </attribute>
+			                                                <attribute
+			                                                    name="id"
+			                                                    type="int"
+			                                                    use="required">
+			                                                </attribute>
+			                                            </complexType>
+			                                        </element>
+			                                    </sequence>
+			                                    <attribute name="val"
+			                                        type="string"
+			                                        use="required">
+			                                    </attribute>
+			                                    <attribute
+			                                        name="optionsName"
+			                                        type="string"
+			                                        use="required">
+			                                    </attribute>
+			                                </complexType>
+			                            </element>
+			                            <element ref="tns:name"
+			                                maxOccurs="1" minOccurs="0">
+			                            </element>
+			                            <element
+			                                name="videoCardModeOptions"
+			                                maxOccurs="1" minOccurs="0">
+			                                <complexType>
+			                                    <sequence>
+			                                        <element
+			                                            name="modeOption"
+			                                            maxOccurs="unbounded"
+			                                            minOccurs="1">
+			                                            <complexType>
+			                                                <sequence>
+			                                                    <element
+			                                                        name="sourceInputOptions"
+			                                                        maxOccurs="unbounded"
+			                                                        minOccurs="1">
+			                                                        <complexType>
+			                                                            <sequence>
+			                                                                <element
+			                                                                    ref="tns:name"
+			                                                                    maxOccurs="unbounded"
+			                                                                    minOccurs="1">
+			                                                                </element>
+			                                                            </sequence>
+			                                                            <attribute
+			                                                                name="id"
+			                                                                type="int"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                        </complexType>
+			                                                    </element>
+			                                                </sequence>
+			                                                <attribute
+			                                                    name="val"
+			                                                    type="string"
+			                                                    use="required">
+			                                                </attribute>
+			                                            </complexType>
+			                                        </element>
+			                                    </sequence>
+			                                </complexType>
+			                            </element>
+			                        </sequence>
+			                        <attribute name="id" type="int"
+			                            use="required">
+			                        </attribute>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="sources" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="source" maxOccurs="unbounded"
+			                    minOccurs="1">
+			                    <complexType>
+			                        <sequence>
+			                            <element ref="tns:username">
+			                            </element>
+			                            <element ref="tns:type">
+			                            </element>
+			                            <element name="alarms">
+			                                <complexType>
+			                                    <sequence>
+			                                        <element
+			                                            name="alarm"
+			                                            maxOccurs="unbounded"
+			                                            minOccurs="1">
+			                                            <complexType>
+			                                                <sequence>
+			                                                    <element
+			                                                        ref="tns:title">
+			                                                    </element>
+			                                                    <element
+			                                                        ref="tns:enabled">
+			                                                    </element>
+			                                                    <element
+			                                                        name="delay">
+			                                                        <complexType>
+			                                                            <attribute
+			                                                                name="val"
+			                                                                type="int"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                            <attribute
+			                                                                name="min"
+			                                                                type="int"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                            <attribute
+			                                                                name="max"
+			                                                                type="int"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                        </complexType>
+			                                                    </element>
+			                                                    <element
+			                                                        name="autoReset">
+			                                                        <complexType>
+			                                                            <attribute
+			                                                                name="val"
+			                                                                type="boolean"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                        </complexType>
+			                                                    </element>
+			                                                    <element
+			                                                        name="autoResetDelay">
+			                                                        <complexType>
+			                                                            <attribute
+			                                                                name="val"
+			                                                                type="int"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                            <attribute
+			                                                                name="min"
+			                                                                type="int"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                            <attribute
+			                                                                name="max"
+			                                                                type="int"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                        </complexType>
+			                                                    </element>
+			                                                    <element
+			                                                        name="logging">
+			                                                        <complexType>
+			                                                            <attribute
+			                                                                name="val"
+			                                                                type="boolean"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                        </complexType>
+			                                                    </element>
+			                                                    <element
+			                                                        name="showInObjects">
+			                                                        <complexType>
+			                                                            <attribute
+			                                                                name="val"
+			                                                                type="boolean"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                        </complexType>
+			                                                    </element>
+			                                                    <element
+			                                                        name="showInList">
+			                                                        <complexType>
+			                                                            <attribute
+			                                                                name="val"
+			                                                                type="boolean"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                        </complexType>
+			                                                    </element>
+			                                                    <element
+			                                                        name="snmp"
+			                                                        type="tns:objectBooleanProperty">
+			                                                    </element>
+			                                                    <element
+			                                                        name="useInterval">
+			                                                        <complexType>
+			                                                            <attribute
+			                                                                name="val"
+			                                                                type="boolean"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                        </complexType>
+			                                                    </element>
+			                                                    <element
+			                                                        name="intervalName">
+			                                                        <complexType>
+			                                                            <attribute
+			                                                                name="val"
+			                                                                type="string"
+			                                                                use="required">
+			                                                            </attribute>
+			                                                            <attribute
+			                                                                name="optionsName"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                        </complexType>
+			                                                    </element>
+			                                                </sequence>
+			                                                <attribute
+			                                                    name="id"
+			                                                    type="int"
+			                                                    use="required">
+			                                                </attribute>
+			                                            </complexType>
+			                                        </element>
+			                                    </sequence>
+			                                </complexType>
+			                            </element>
+			                            <element
+			                                ref="tns:audioAlarmSettings">
+			                            </element>
+			                            <element
+			                                ref="tns:audioDigitalRef">
+                                        </element>
+			                            <element
+                                            ref="tns:audio0dBRef">
+                                        </element>
+			                        </sequence>
+			                        <attribute name="id" type="int"
+			                            use="required">
+			                        </attribute>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="audioSources" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element ref="tns:audioDigitalRef"></element>
+			                <element ref="tns:audio0dBRef"></element>
+			                <element ref="tns:audioAlarmSettings"></element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="objects" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="object" maxOccurs="unbounded"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <sequence>
+			                            <element ref="tns:type">
+			                            </element>
+			                            <element ref="tns:username">
+			                            </element>
+			                            <element name="valid"
+			                                maxOccurs="1" minOccurs="0">
+			                                <complexType>
+			                                    <complexContent>
+			                                        <extension
+			                                            base="tns:objectBooleanProperty">
+			                                            <attribute
+			                                                name="invalidElement"
+			                                                type="string">
+			                                            </attribute>
+			                                        </extension>
+			                                    </complexContent>
+			                                </complexType>
+			                            </element>
+			                            <element name="screen">
+			                                <complexType>
+			                                    <complexContent>
+			                                        <extension
+			                                            base="tns:objectIntProperty">
+			                                            <attribute
+			                                                name="min"
+			                                                type="int">
+			                                            </attribute>
+			                                            <attribute
+			                                                name="max"
+			                                                type="int">
+			                                            </attribute>
+			                                        </extension>
+			                                    </complexContent>
+			                                </complexType>
+			                            </element>
+			                            <element ref="tns:filename"
+			                                maxOccurs="1" minOccurs="0">
+			                            </element>
+			                            <element name="position">
+			                                <complexType>
+			                                    <all>
+			                                        <element
+			                                            ref="tns:x">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:y">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:width">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:height">
+			                                        </element>
+			                                    </all>
+			                                </complexType>
+			                            </element>
+			                            <element name="aspectRatio">
+			                                <complexType>
+			                                    <complexContent>
+			                                        <extension
+			                                            base="tns:objectStringProperty">
+			                                            <attribute
+			                                                name="optionsName"
+			                                                type="string">
+			                                            </attribute>
+
+			                                            <attribute
+			                                                name="float"
+			                                                type="string">
+			                                            </attribute>
+
+			                                            <attribute
+			                                                name="extLeft"
+			                                                type="int">
+			                                            </attribute>
+
+			                                            <attribute
+			                                                name="extRight"
+			                                                type="int">
+			                                            </attribute>
+
+			                                            <attribute
+			                                                name="extTop"
+			                                                type="int">
+			                                            </attribute>
+			                                            <attribute
+			                                                name="extBottom"
+			                                                type="int">
+			                                            </attribute>
+			                                            <attribute
+			                                                name="useVideo"
+			                                                type="boolean">
+			                                            </attribute>
+			                                        </extension>
+			                                    </complexContent>
+			                                </complexType>
+			                            </element>
+			                            <element name="border">
+			                                <complexType>
+			                                    <all>
+			                                        <element
+			                                            name="separator">
+			                                            <complexType>
+			                                                <complexContent>
+			                                                    <extension
+			                                                        base="tns:objectIntProperty">
+			                                                        <attribute
+			                                                            name="min"
+			                                                            type="int">
+			                                                        </attribute>
+			                                                        <attribute
+			                                                            name="max"
+			                                                            type="int">
+			                                                        </attribute>
+			                                                    </extension>
+			                                                </complexContent>
+			                                            </complexType>
+			                                        </element>
+			                                        <element
+			                                            ref="tns:width">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:colour">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:style">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:visible">
+			                                        </element>
+			                                    </all>
+			                                </complexType>
+			                            </element>
+			                            <element name="parent">
+			                                <complexType>
+			                                    <complexContent>
+			                                        <extension
+			                                            base="tns:objectStringProperty">
+			                                            <all>
+			                                                <element
+			                                                    name="anchorPoint">
+			                                                    <complexType>
+			                                                        <complexContent>
+			                                                            <extension
+			                                                                base="tns:objectStringProperty">
+			                                                                <attribute
+			                                                                    name="intval"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="optionsName"
+			                                                                    type="string">
+			                                                                </attribute>
+			                                                            </extension>
+			                                                        </complexContent>
+			                                                    </complexType>
+			                                                </element>
+			                                                <element
+			                                                    ref="tns:xoffs">
+			                                                </element>
+			                                                <element
+			                                                    ref="tns:yoffs">
+			                                                </element>
+			                                                <element
+			                                                    name="lockSizeRatio"
+			                                                    type="tns:objectBooleanProperty">
+			                                                </element>
+			                                            </all>
+			                                            <attribute
+			                                                name="objid"
+			                                                type="int">
+			                                            </attribute>
+			                                            <attribute
+			                                                name="optionsName"
+			                                                type="string">
+			                                            </attribute>
+			                                        </extension>
+			                                    </complexContent>
+			                                </complexType>
+			                            </element>
+			                            <element name="umd">
+			                                <complexType>
+			                                    <sequence>
+			                                        <element
+			                                            ref="tns:font">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:fontSize">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:colour">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:bkcolour">
+			                                        </element>
+			                                        <element
+			                                            name="umdPosition">
+			                                            <complexType>
+			                                                <complexContent>
+			                                                    <extension
+			                                                        base="tns:objectStringProperty">
+			                                                        <attribute
+			                                                            name="optionsName"
+			                                                            type="string">
+			                                                        </attribute>
+			                                                    </extension>
+			                                                </complexContent>
+			                                            </complexType>
+			                                        </element>
+			                                        <element
+			                                            name="umdSeparator"
+			                                            type="tns:objectBooleanProperty">
+			                                        </element>
+			                                        <element
+			                                            name="umdSeparatorColour">
+			                                            <complexType>
+			                                                <complexContent>
+			                                                    <extension
+			                                                        base="tns:objectStringProperty">
+			                                                        <attribute
+			                                                            name="optionsName"
+			                                                            type="string">
+			                                                        </attribute>
+			                                                    </extension>
+			                                                </complexContent>
+			                                            </complexType>
+			                                        </element>
+			                                        <element
+			                                            name="inside"
+			                                            type="tns:objectBooleanProperty">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:visible">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:transparent">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:transparentLevel">
+			                                        </element>
+			                                        <element
+			                                            name="umdText"
+			                                            maxOccurs="unbounded"
+			                                            minOccurs="1">
+			                                            <complexType>
+			                                                <sequence>
+			                                                    <element
+			                                                        ref="tns:enabled">
+			                                                    </element>
+			                                                    <element
+			                                                        ref="tns:text">
+			                                                    </element>
+
+			                                                </sequence>
+			                                                <attribute
+			                                                    name="id"
+			                                                    type="int"
+			                                                    use="required">
+			                                                </attribute>
+			                                            </complexType>
+			                                        </element>
+			                                    </sequence>
+			                                </complexType>
+			                            </element>
+			                            <sequence maxOccurs="1"
+			                                minOccurs="0">
+			                                <element
+			                                    name="vidAudProperties">
+			                                    <complexType>
+			                                        <sequence>
+			                                            <element
+			                                                name="source">
+			                                                <complexType>
+			                                                    <attribute
+			                                                        name="val"
+			                                                        type="string"
+			                                                        use="required">
+			                                                    </attribute>
+			                                                    <attribute
+			                                                        name="optionsName"
+			                                                        type="string"
+			                                                        use="required">
+			                                                    </attribute>
+			                                                    <attribute
+			                                                        name="valid"
+			                                                        type="boolean"
+			                                                        use="optional">
+			                                                    </attribute>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                name="audio"
+			                                                maxOccurs="unbounded"
+			                                                minOccurs="1">
+			                                                <complexType>
+			                                                    <sequence>
+			                                                        <element
+			                                                            ref="tns:xpos">
+			                                                        </element>
+			                                                        <element
+			                                                            ref="tns:ypos">
+			                                                        </element>
+			                                                        <element
+			                                                            ref="tns:width">
+			                                                        </element>
+			                                                        <element
+			                                                            ref="tns:height">
+			                                                        </element>
+			                                                        <element
+			                                                            name="scale">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="optionsName"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="scalePosition">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="optionsName"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="meterSource">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="p1"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="p2"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="p3"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="p4"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="p5"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="p6"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="p7"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="p8"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f1"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f2"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f3"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f4"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f5"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f6"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f7"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="f8"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r1"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r2"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r3"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r4"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r5"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r6"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r7"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="r8"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="labelType">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="optionsName"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="labelColour">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="optionsName"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="alarmIndicators">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="boolean"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            ref="tns:transparent">
+			                                                        </element>
+			                                                        <element
+			                                                            ref="tns:transparentLevel">
+			                                                        </element>
+			                                                        <element
+			                                                            name="outsideVideo">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="boolean"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            ref="tns:visible">
+			                                                        </element>
+			                                                        <element
+			                                                            name="splitBars"
+			                                                            type="tns:objectBooleanProperty">
+			                                                        </element>
+
+			                                                        <sequence
+			                                                            maxOccurs="16"
+			                                                            minOccurs="1">
+			                                                            <element
+			                                                                name="barColourOver">
+			                                                                <complexType>
+			                                                                    <attribute
+			                                                                        name="val"
+			                                                                        type="string"
+			                                                                        use="required">
+			                                                                    </attribute>
+			                                                                    <attribute
+			                                                                        name="optionsName"
+			                                                                        type="string"
+			                                                                        use="required">
+			                                                                    </attribute>
+			                                                                    <attribute
+			                                                                        name="id"
+			                                                                        type="int"
+			                                                                        use="required">
+			                                                                    </attribute>
+			                                                                </complexType>
+			                                                            </element>
+			                                                            <element
+			                                                                name="barColourUpper">
+			                                                                <complexType>
+			                                                                    <attribute
+			                                                                        name="val"
+			                                                                        type="string"
+			                                                                        use="required">
+			                                                                    </attribute>
+			                                                                    <attribute
+			                                                                        name="optionsName"
+			                                                                        type="string"
+			                                                                        use="required">
+			                                                                    </attribute>
+			                                                                    <attribute
+			                                                                        name="id"
+			                                                                        type="int"
+			                                                                        use="required">
+			                                                                    </attribute>
+			                                                                </complexType>
+			                                                            </element>
+			                                                            <element
+			                                                                name="barColourLower">
+			                                                                <complexType>
+			                                                                    <attribute
+			                                                                        name="val"
+			                                                                        type="string"
+			                                                                        use="required">
+			                                                                    </attribute>
+			                                                                    <attribute
+			                                                                        name="optionsName"
+			                                                                        type="string"
+			                                                                        use="required">
+			                                                                    </attribute>
+			                                                                    <attribute
+			                                                                        name="id"
+			                                                                        type="int"
+			                                                                        use="required">
+			                                                                    </attribute>
+			                                                                </complexType>
+			                                                            </element>
+			                                                            <element
+			                                                                name="barColourWrong">
+			                                                                <complexType>
+			                                                                    <attribute
+			                                                                        name="val"
+			                                                                        type="string">
+			                                                                    </attribute>
+			                                                                    <attribute
+			                                                                        name="optionsName"
+			                                                                        type="string">
+			                                                                    </attribute>
+			                                                                    <attribute
+			                                                                        name="id"
+			                                                                        type="int">
+			                                                                    </attribute>
+			                                                                </complexType>
+			                                                            </element>
+			                                                        </sequence>
+			                                                    </sequence>
+			                                                    <attribute
+			                                                        name="id"
+			                                                        type="int">
+			                                                    </attribute>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                name="error">
+			                                                <complexType>
+			                                                    <sequence>
+			                                                        <element
+			                                                            ref="tns:colour">
+			                                                        </element>
+			                                                        <element
+			                                                            name="clearColour">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="optionsName"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="showName">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="boolean"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            ref="tns:visible">
+			                                                        </element>
+			                                                        <element
+			                                                            name="size">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="int">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                    </sequence>
+			                                                </complexType>
+			                                            </element>
+			                                        </sequence>
+			                                    </complexType>
+			                                </element>
+			                                <element
+			                                    name="videoProperties">
+			                                    <complexType>
+			                                        <sequence>
+			                                            <element
+			                                                name="tally">
+			                                                <complexType>
+			                                                    <sequence>
+			                                                        <element
+			                                                            ref="tns:type">
+			                                                        </element>
+			                                                        <element
+			                                                            ref="tns:style">
+			                                                        </element>
+			                                                        <element
+			                                                            name="shape">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="optionsName"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="position">
+			                                                            <complexType>
+			                                                                <complexContent>
+			                                                                    <extension
+			                                                                        base="tns:objectStringProperty">
+			                                                                        <attribute
+			                                                                            name="optionsName"
+			                                                                            type="string">
+			                                                                        </attribute>
+			                                                                    </extension>
+			                                                                </complexContent>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="disabledColourSource">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="optionsName"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="disabledColour">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="optionsName"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            ref="tns:visible">
+			                                                        </element>
+			                                                    </sequence>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                name="vbi">
+			                                                <complexType>
+			                                                    <sequence>
+			                                                        <element
+			                                                            name="ccIndicator">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="boolean"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="ccVisible">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="boolean"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="ccType">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="optionsName"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="xdsVisible">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="boolean"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="ttIndicator">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="boolean"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="ttVisible">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="boolean"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="ttPage">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="int"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="min"
+			                                                                    type="int"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="max"
+			                                                                    type="int"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="vitcVisible">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="boolean"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                    </sequence>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                name="wss">
+			                                                <complexType>
+			                                                    <sequence>
+			                                                        <element
+			                                                            name="mode">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="optionsName"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            ref="tns:colour">
+			                                                        </element>
+			                                                        <element
+			                                                            name="aspectEnabled">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="boolean"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="aspectDefault">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                                <attribute
+			                                                                    name="optionsName"
+			                                                                    type="string"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="aspectIndicator">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="boolean"
+			                                                                    use="required">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                    </sequence>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                name="displayOnAllScreens"
+			                                                maxOccurs="1"
+			                                                minOccurs="0"
+			                                                type="tns:objectBooleanProperty">
+			                                            </element>
+			                                            <element
+			                                                name="sag"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <sequence>
+			                                                        <element
+			                                                            name="visible"
+			                                                            type="tns:objectBooleanProperty">
+			                                                        </element>
+			                                                        <element
+			                                                            name="preset">
+			                                                            <complexType>
+			                                                                <complexContent>
+			                                                                    <extension
+			                                                                        base="tns:objectStringProperty">
+			                                                                        <attribute
+			                                                                            name="optionsName"
+			                                                                            type="string">
+			                                                                        </attribute>
+
+			                                                                        <attribute
+			                                                                            name="vborder"
+			                                                                            type="float">
+			                                                                        </attribute>
+
+			                                                                        <attribute
+			                                                                            name="hborder"
+			                                                                            type="float">
+			                                                                        </attribute>
+
+			                                                                    </extension>
+			                                                                </complexContent>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="useCustom"
+			                                                            type="tns:objectBooleanProperty">
+			                                                        </element>
+			                                                        <element
+			                                                            name="vborderCustom">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="float">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                        <element
+			                                                            name="hborderCustom">
+			                                                            <complexType>
+			                                                                <attribute
+			                                                                    name="val"
+			                                                                    type="float">
+			                                                                </attribute>
+			                                                            </complexType>
+			                                                        </element>
+			                                                    </sequence>
+			                                                </complexType>
+			                                            </element>
+			                                        </sequence>
+			                                    </complexType>
+			                                </element>
+			                                <element
+			                                    name="textProperties">
+			                                    <complexType>
+			                                        <sequence>
+			                                            <element
+			                                                name="alignment"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <complexContent>
+			                                                        <extension
+			                                                            base="tns:objectStringProperty">
+			                                                            <attribute
+			                                                                name="optionsName"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                        </extension>
+			                                                    </complexContent>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                ref="tns:font"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                            </element>
+			                                            <element
+			                                                ref="tns:fontSize"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                            </element>
+			                                            <element
+			                                                ref="tns:colour"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                            </element>
+			                                            <element
+			                                                ref="tns:bkcolour"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                            </element>
+			                                            <element
+			                                                name="line"
+			                                                maxOccurs="unbounded"
+			                                                minOccurs="1">
+			                                                <complexType>
+			                                                    <sequence>
+			                                                        <element
+			                                                            ref="tns:text">
+			                                                        </element>
+			                                                        <element
+			                                                            ref="tns:enabled">
+			                                                        </element>
+			                                                    </sequence>
+			                                                    <attribute
+			                                                        name="id"
+			                                                        type="int">
+			                                                    </attribute>
+			                                                </complexType>
+			                                            </element>
+			                                        </sequence>
+			                                    </complexType>
+			                                </element>
+			                                <element
+			                                    name="umdProperties">
+			                                </element>
+			                                <element
+			                                    name="tallyProperties">
+			                                </element>
+			                                <element
+			                                    name="logoProperties">
+			                                    <complexType>
+			                                        <sequence>
+			                                            <element
+			                                                name="filename"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <complexContent>
+			                                                        <extension
+			                                                            base="tns:objectStringProperty">
+			                                                            <attribute
+			                                                                name="optionsName"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                        </extension>
+			                                                    </complexContent>
+			                                                </complexType>
+			                                            </element>
+			                                        </sequence>
+			                                    </complexType>
+			                                </element>
+			                                <element
+			                                    name="clockProperties">
+			                                    <complexType>
+			                                        <sequence>
+			                                            <element
+			                                                name="digital"
+			                                                maxOccurs="1"
+			                                                minOccurs="0"
+			                                                type="tns:objectBooleanProperty">
+			                                            </element>
+			                                            <element
+			                                                name="hour24time"
+			                                                maxOccurs="1"
+			                                                minOccurs="0"
+			                                                type="tns:objectBooleanProperty">
+			                                            </element>
+			                                            <element
+			                                                name="timezoneEnabled"
+			                                                maxOccurs="1"
+			                                                minOccurs="0"
+			                                                type="tns:objectBooleanProperty">
+			                                            </element>
+			                                            <element
+			                                                name="timezone"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <complexContent>
+			                                                        <extension
+			                                                            base="tns:objectStringProperty">
+			                                                            <attribute
+			                                                                name="optionsName"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                        </extension>
+			                                                    </complexContent>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                name="offset"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <complexContent>
+			                                                        <extension
+			                                                            base="tns:objectStringProperty">
+			                                                            <attribute
+			                                                                name="optionsName"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                        </extension>
+			                                                    </complexContent>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                ref="tns:colour"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                            </element>
+			                                            <element
+			                                                ref="tns:bkcolour"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                            </element>
+			                                            <element
+			                                                name="displayDate"
+			                                                maxOccurs="1"
+			                                                minOccurs="0"
+			                                                type="tns:objectBooleanProperty">
+			                                            </element>
+			                                            <element
+			                                                name="dateFormat"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <complexContent>
+			                                                        <extension
+			                                                            base="tns:objectStringProperty">
+			                                                            <attribute
+			                                                                name="optionsName"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                        </extension>
+			                                                    </complexContent>
+			                                                </complexType>
+			                                            </element>
+			                                        </sequence>
+			                                    </complexType>
+			                                </element>
+			                                <element
+			                                    name="timerProperties">
+			                                    <complexType>
+			                                        <sequence>
+			                                            <element
+			                                                name="triggerGpi"
+			                                                maxOccurs="1"
+			                                                minOccurs="0"
+			                                                type="tns:objectBooleanProperty">
+			                                            </element>
+			                                            <element
+			                                                name="gpiSource"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <complexContent>
+			                                                        <extension
+			                                                            base="tns:objectStringProperty">
+
+			                                                            <attribute
+			                                                                name="mode"
+			                                                                type="int">
+			                                                            </attribute>
+			                                                            <attribute
+			                                                                name="gpip"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                            <attribute
+			                                                                name="gpir"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                            <attribute
+			                                                                name="optionsName"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                        </extension>
+			                                                    </complexContent>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                name="startTime"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <complexContent>
+			                                                        <extension
+			                                                            base="tns:objectIntProperty">
+			                                                            <attribute
+			                                                                name="min"
+			                                                                type="int">
+			                                                            </attribute>
+			                                                            <attribute
+			                                                                name="max"
+			                                                                type="int">
+			                                                            </attribute>
+			                                                        </extension>
+			                                                    </complexContent>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                name="stopTime"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <complexContent>
+			                                                        <extension
+			                                                            base="tns:objectIntProperty">
+			                                                            <attribute
+			                                                                name="min"
+			                                                                type="int">
+			                                                            </attribute>
+			                                                            <attribute
+			                                                                name="max"
+			                                                                type="int">
+			                                                            </attribute>
+			                                                        </extension>
+			                                                    </complexContent>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                name="countDown"
+			                                                maxOccurs="1"
+			                                                minOccurs="0"
+			                                                type="tns:objectBooleanProperty">
+			                                            </element>
+			                                            <element
+			                                                name="showFrames"
+			                                                maxOccurs="1"
+			                                                minOccurs="0"
+			                                                type="tns:objectBooleanProperty">
+			                                            </element>
+			                                            <element
+			                                                ref="tns:font"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                            </element>
+			                                            <element
+			                                                ref="tns:fontSize"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                            </element>
+			                                            <element
+			                                                name="fgColour"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <complexContent>
+			                                                        <extension
+			                                                            base="tns:objectStringProperty">
+			                                                            <attribute
+			                                                                name="optionsName"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                        </extension>
+			                                                    </complexContent>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                name="transColour"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <complexContent>
+			                                                        <extension
+			                                                            base="tns:objectStringProperty">
+			                                                            <attribute
+			                                                                name="optionsName"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                        </extension>
+			                                                    </complexContent>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                name="destColour"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <complexContent>
+			                                                        <extension
+			                                                            base="tns:objectStringProperty">
+			                                                            <attribute
+			                                                                name="optionsName"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                        </extension>
+			                                                    </complexContent>
+			                                                </complexType>
+			                                            </element>
+			                                            <element
+			                                                name="bgColour"
+			                                                maxOccurs="1"
+			                                                minOccurs="0">
+			                                                <complexType>
+			                                                    <complexContent>
+			                                                        <extension
+			                                                            base="tns:objectStringProperty">
+			                                                            <attribute
+			                                                                name="optionsName"
+			                                                                type="string">
+			                                                            </attribute>
+			                                                        </extension>
+			                                                    </complexContent>
+			                                                </complexType>
+			                                            </element>
+
+			                                        </sequence>
+			                                    </complexType>
+			                                </element>
+			                            </sequence>
+			                        </sequence>
+			                        <attribute name="id" type="int"
+			                            use="required">
+			                        </attribute>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="objectsZOrder" maxOccurs="1"
+			        minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="objectZOrder"
+			                    maxOccurs="unbounded" minOccurs="0">
+			                    <complexType>
+			                        <attribute name="id" type="int"
+			                            use="required">
+			                        </attribute>
+			                        <attribute name="pos" type="int"
+			                            use="required">
+			                        </attribute>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element ref="tns:optionsList" maxOccurs="1"
+			        minOccurs="0">
+			    </element>
+			    <element name="filename" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <complexContent>
+			                <extension
+			                    base="tns:objectStringProperty">
+			                    <attribute name="optionsName"
+			                        type="string">
+			                    </attribute>
+			                </extension>
+			            </complexContent>
+			        </complexType>
+			    </element>
+			    <element name="layout" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="bkgnd">
+			                    <complexType>
+			                        <sequence>
+			                            <element ref="tns:colour">
+			                            </element>
+			                            <element name="useBitmap"
+			                                type="tns:objectBooleanProperty">
+			                            </element>
+			                            <element name="bitmapFile">
+			                                <complexType>
+			                                    <complexContent>
+			                                        <extension
+			                                            base="tns:objectStringProperty">
+			                                            <attribute
+			                                                name="optionsName"
+			                                                type="string">
+			                                            </attribute>
+			                                        </extension>
+			                                    </complexContent>
+			                                </complexType>
+			                            </element>
+			                            <element ref="tns:style">
+			                            </element>
+			                        </sequence>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="valid" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <complexContent>
+			                <extension
+			                    base="tns:objectBooleanProperty">
+			                    <attribute name="invalidMsg"
+			                        type="string">
+			                    </attribute>
+			                </extension>
+			            </complexContent>
+			        </complexType>
+			    </element>
+			    <element name="screen" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="numScreens"
+			                    type="tns:objectIntProperty">
+			                </element>
+			                <element name="resolution">
+			                    <complexType>
+			                        <complexContent>
+			                            <extension
+			                                base="tns:objectStringProperty">
+			                                <attribute
+			                                    name="optionsName"
+			                                    type="string">
+			                                </attribute>
+			                                <attribute name="hres"
+			                                    type="int" use="optional">
+			                                </attribute>
+			                                <attribute name="vres"
+			                                    type="int" use="optional">
+			                                </attribute>
+			                            </extension>
+			                        </complexContent>
+			                    </complexType>
+			                </element>
+			                <element name="aspectRatio">
+			                    <complexType>
+			                        <complexContent>
+			                            <extension
+			                                base="tns:objectStringProperty">
+			                                <attribute
+			                                    name="optionsName"
+			                                    type="string">
+			                                </attribute>
+			                                <attribute name="float"
+			                                    type="string">
+			                                </attribute>
+			                            </extension>
+			                        </complexContent>
+			                    </complexType>
+			                </element>
+			                <element name="genlock"
+			                    type="tns:objectBooleanProperty">
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="audioMonitor" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element ref="tns:aout"
+			                    maxOccurs="unbounded" minOccurs="1">
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="audioOut" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element ref="tns:aout"
+			                    maxOccurs="unbounded" minOccurs="1">
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="network" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="hostname"
+			                    type="tns:objectStringProperty">
+			                </element>
+			                <element ref="tns:dhcp"></element>
+			                <element ref="tns:ipaddr"></element>
+			                <element ref="tns:netmask"></element>
+			                <element ref="tns:gateway"></element>
+			                <element name="dns" maxOccurs="unbounded"
+			                    minOccurs="1">
+			                    <complexType>
+			                        <complexContent>
+			                            <extension
+			                                base="tns:objectStringProperty">
+			                                <attribute name="id"
+			                                    type="int">
+			                                </attribute>
+			                            </extension>
+			                        </complexContent>
+			                    </complexType>
+			                </element>
+			                <element name="snmpv2c"
+			                    type="tns:objectBooleanProperty">
+			                </element>
+			                <element name="snmpMgrs">
+			                    <complexType>
+			                        <sequence>
+			                            <element name="snmpMgr"
+			                                maxOccurs="unbounded"
+			                                minOccurs="0">
+			                                <complexType>
+			                                    <complexContent>
+			                                        <extension
+			                                            base="tns:objectStringProperty">
+			                                            <attribute
+			                                                name="id"
+			                                                type="int">
+			                                            </attribute>
+
+			                                        </extension>
+			                                    </complexContent>
+			                                </complexType>
+			                            </element>
+			                        </sequence>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="ngmServers" maxOccurs="1"
+			        minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="ngmServer"
+			                    maxOccurs="unbounded" minOccurs="0">
+			                    <complexType>
+			                        <sequence>
+			                            <element name="alias"
+			                                type="tns:objectStringProperty">
+			                            </element>
+			                            <element ref="tns:ipaddr">
+			                            </element>
+			                        </sequence>
+			                        <attribute name="id" type="int"
+			                            use="required">
+			                        </attribute>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="remoteControl" maxOccurs="1"
+			        minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="remotesAvail">
+			                    <complexType>
+			                        <sequence>
+			                            <element name="remote"
+			                                maxOccurs="unbounded"
+			                                minOccurs="1">
+			                                <complexType>
+			                                    <sequence>
+			                                        <element
+			                                            name="collectiveMode"
+			                                            type="tns:objectBooleanProperty"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                        </element>
+			                                        <element name="mac"
+			                                            type="tns:objectStringProperty"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:dhcp"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:ipaddr"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:netmask"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                        </element>
+			                                        <element
+			                                            ref="tns:gateway"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                        </element>
+			                                        <element name="mvs"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                            <complexType>
+			                                                <sequence>
+			                                                    <element
+			                                                        name="mv"
+			                                                        maxOccurs="unbounded"
+			                                                        minOccurs="1">
+			                                                        <complexType>
+			                                                            <complexContent>
+			                                                                <extension
+			                                                                    base="tns:objectStringProperty">
+			                                                                    <attribute
+			                                                                        name="id"
+			                                                                        type="int"
+			                                                                        use="required">
+			                                                                    </attribute>
+
+			                                                                </extension>
+			                                                            </complexContent>
+			                                                        </complexType>
+			                                                    </element>
+			                                                </sequence>
+			                                            </complexType>
+			                                        </element>
+			                                    </sequence>
+			                                    <attribute name="id"
+			                                        type="int" use="required">
+			                                    </attribute>
+			                                </complexType>
+			                            </element>
+			                        </sequence>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="product" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <attribute name="company" type="string">
+			            </attribute>
+			            <attribute name="model" type="string">
+			            </attribute>
+			        </complexType>
+			    </element>
+			    <element name="sysTime" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <all>
+			                <element name="syncMode" maxOccurs="1"
+			                    minOccurs="0" type="tns:objectStringProperty">
+			                </element>
+			                <element name="currTime" maxOccurs="1"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <attribute name="hour" type="int">
+			                        </attribute>
+			                        <attribute name="minute"
+			                            type="int">
+			                        </attribute>
+			                        <attribute name="second"
+			                            type="int">
+			                        </attribute>
+			                        <attribute name="day" type="int">
+			                        </attribute>
+			                        <attribute name="month"
+			                            type="int">
+			                        </attribute>
+			                        <attribute name="year" type="int">
+			                        </attribute>
+			                    </complexType>
+			                </element>
+			                <element name="ntpServers" maxOccurs="1"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <sequence>
+			                            <element name="ntpServer"
+			                                maxOccurs="unbounded"
+			                                minOccurs="0">
+			                                <complexType>
+			                                    <complexContent>
+			                                        <extension
+			                                            base="tns:objectStringProperty">
+			                                            <attribute
+			                                                name="id"
+			                                                type="int">
+			                                            </attribute>
+			                                        </extension>
+			                                    </complexContent>
+			                                </complexType>
+			                            </element>
+			                        </sequence>
+			                    </complexType>
+			                </element>
+			                <element name="vitcSource" maxOccurs="1"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <complexContent>
+			                            <extension
+			                                base="tns:objectStringProperty">
+			                                <attribute
+			                                    name="optionsName"
+			                                    type="string">
+			                                </attribute>
+
+			                            </extension>
+			                        </complexContent>
+			                    </complexType>
+			                </element>
+			                <element name="timezone" maxOccurs="1"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <complexContent>
+			                            <extension
+			                                base="tns:objectStringProperty">
+			                                <attribute
+			                                    name="optionsName"
+			                                    type="string">
+			                                </attribute>
+			                            </extension>
+			                        </complexContent>
+			                    </complexType>
+			                </element>
+			            </all>
+			        </complexType>
+			    </element>
+			    <element name="sagPresets" maxOccurs="1"
+			        minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="name" maxOccurs="unbounded"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <attribute name="val"
+			                            type="string">
+			                        </attribute>
+			                        <attribute name="hborder"
+			                            type="float">
+			                        </attribute>
+			                        <attribute name="vborder"
+			                            type="float">
+			                        </attribute>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="protocols" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="ports" maxOccurs="1"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <sequence>
+			                            <element name="port"
+			                                maxOccurs="unbounded"
+			                                minOccurs="0">
+			                                <complexType>
+			                                    <sequence>
+			                                        <element name="baud"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                            <complexType>
+			                                                <complexContent>
+			                                                    <extension
+			                                                        base="tns:objectStringProperty">
+			                                                        <attribute
+			                                                            name="optionsName"
+			                                                            type="string">
+			                                                        </attribute>
+			                                                    </extension>
+			                                                </complexContent>
+			                                            </complexType>
+			                                        </element>
+			                                        <element name="bits"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                            <complexType>
+			                                                <complexContent>
+			                                                    <extension
+			                                                        base="tns:objectIntProperty">
+			                                                        <attribute
+			                                                            name="min"
+			                                                            type="int">
+			                                                        </attribute>
+			                                                        <attribute
+			                                                            name="max"
+			                                                            type="int">
+			                                                        </attribute>
+			                                                    </extension>
+			                                                </complexContent>
+			                                            </complexType>
+			                                        </element>
+			                                        <element
+			                                            name="parity"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                            <complexType>
+			                                                <complexContent>
+			                                                    <extension
+			                                                        base="tns:objectStringProperty">
+			                                                        <attribute
+			                                                            name="optionsName"
+			                                                            type="string">
+			                                                        </attribute>
+			                                                    </extension>
+			                                                </complexContent>
+			                                            </complexType>
+			                                        </element>
+			                                        <element name="stop"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                            <complexType>
+			                                                <complexContent>
+			                                                    <extension
+			                                                        base="tns:objectIntProperty">
+			                                                        <attribute
+			                                                            name="min"
+			                                                            type="int">
+			                                                        </attribute>
+
+			                                                        <attribute
+			                                                            name="max"
+			                                                            type="int">
+			                                                        </attribute>
+
+			                                                    </extension>
+			                                                </complexContent>
+			                                            </complexType>
+			                                        </element>
+			                                        <element name="flow"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                            <complexType>
+			                                                <complexContent>
+			                                                    <extension
+			                                                        base="tns:objectStringProperty">
+			                                                        <attribute
+			                                                            name="optionsName"
+			                                                            type="string">
+			                                                        </attribute>
+			                                                    </extension>
+			                                                </complexContent>
+			                                            </complexType>
+			                                        </element>
+			                                        <element
+			                                            name="protocol"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                            <complexType>
+			                                                <complexContent>
+			                                                    <extension
+			                                                        base="tns:objectStringProperty">
+			                                                        <attribute
+			                                                            name="optionsName"
+			                                                            type="string">
+			                                                        </attribute>
+			                                                    </extension>
+			                                                </complexContent>
+			                                            </complexType>
+			                                        </element>
+			                                    </sequence>
+			                                    <attribute name="id"
+			                                        type="int">
+			                                    </attribute>
+			                                </complexType>
+			                            </element>
+			                        </sequence>
+			                    </complexType>
+			                </element>
+			                <element name="sierraRouter" maxOccurs="1"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <sequence>
+			                            <element ref="tns:ipaddr"
+			                                maxOccurs="1" minOccurs="0">
+			                            </element>
+			                            <element ref="tns:tcpPort"
+			                                maxOccurs="1" minOccurs="0">
+			                            </element>
+			                            <element ref="tns:enabled"
+			                                maxOccurs="1" minOccurs="0">
+			                            </element>
+			                            <element name="physMapInfo"
+			                                maxOccurs="1" minOccurs="0">
+			                                <complexType>
+			                                    <sequence>
+			                                        <element
+			                                            name="numOuts"
+			                                            type="tns:objectIntProperty"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                        </element>
+			                                        <element
+			                                            name="numIns"
+			                                            type="tns:objectIntProperty"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                        </element>
+			                                        <element
+			                                            name="numLvls"
+			                                            type="tns:objectIntProperty"
+			                                            maxOccurs="1"
+			                                            minOccurs="0">
+			                                        </element>
+			                                    </sequence>
+			                                </complexType>
+			                            </element>
+			                            <element name="physIns"
+			                                maxOccurs="1" minOccurs="0">
+			                                <complexType>
+			                                    <sequence>
+			                                        <element name="in"
+			                                            maxOccurs="unbounded"
+			                                            minOccurs="0">
+			                                            <complexType>
+			                                                <attribute
+			                                                    name="id"
+			                                                    type="int">
+			                                                </attribute>
+			                                                <attribute
+			                                                    name="out"
+			                                                    type="int">
+			                                                </attribute>
+			                                                <attribute
+			                                                    name="lvl"
+			                                                    type="int">
+			                                                </attribute>
+			                                                <attribute
+			                                                    name="en"
+			                                                    type="boolean">
+			                                                </attribute>
+			                                            </complexType>
+			                                        </element>
+			                                    </sequence>
+			                                </complexType>
+			                            </element>
+			                        </sequence>
+			                    </complexType>
+			                </element>
+			                <element name="snellRouter" maxOccurs="1"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <sequence>
+			                            <element name="controller"
+			                                maxOccurs="unbounded"
+			                                minOccurs="0">
+			                                <complexType>
+			                                    <attribute name="id"
+			                                        type="int">
+			                                    </attribute>
+			                                    <attribute name="name"
+			                                        type="string">
+			                                    </attribute>
+			                                    <attribute
+			                                        name="ipaddr1"
+			                                        type="string">
+			                                    </attribute>
+			                                    <attribute name="port1"
+			                                        type="int">
+			                                    </attribute>
+			                                    <attribute
+			                                        name="ipaddr2"
+			                                        type="string">
+			                                    </attribute>
+			                                    <attribute name="port2"
+			                                        type="int">
+			                                    </attribute>
+			                                </complexType>
+			                            </element>
+			                            <element name="video"
+			                                type="tns:snellMatrixTableType"
+			                                maxOccurs="1" minOccurs="0">
+			                            </element>
+			                            <element name="audio"
+			                                type="tns:snellMatrixTableType"
+			                                maxOccurs="1" minOccurs="0">
+			                            </element>
+			                            <element name="dataxx"
+			                                type="tns:snellMatrixTableType"
+			                                maxOccurs="1" minOccurs="0">
+			                            </element>
+			                        </sequence>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="gpis" maxOccurs="1" minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="gpiInfo" maxOccurs="1"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <sequence>
+			                            <element name="optionTables"
+			                                maxOccurs="1" minOccurs="0">
+			                                <complexType>
+			                                    <attribute
+			                                        name="gpiInName"
+			                                        type="string">
+			                                    </attribute>
+			                                    <attribute
+			                                        name="gpiInTask"
+			                                        type="string">
+			                                    </attribute>
+			                                    <attribute
+			                                        name="gpiOutName"
+			                                        type="string">
+			                                    </attribute>
+			                                    <attribute
+			                                        name="gpiOutTask"
+			                                        type="string">
+			                                    </attribute>
+			                                </complexType>
+			                            </element>
+			                            <element name="numIns"
+			                                maxOccurs="1" minOccurs="0"
+			                                type="tns:objectIntProperty">
+			                            </element>
+			                            <element name="numOuts"
+			                                maxOccurs="1" minOccurs="0"
+			                                type="tns:objectIntProperty">
+			                            </element>
+			                        </sequence>
+			                    </complexType>
+			                </element>
+			                <element name="gpiIn" maxOccurs="unbounded"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <complexContent>
+			                            <extension
+			                                base="tns:objectStringProperty">
+			                                <attribute name="id"
+			                                    type="int">
+			                                </attribute>
+			                                <attribute name="intval"
+			                                    type="int">
+			                                </attribute>
+			                            </extension>
+			                        </complexContent>
+			                    </complexType>
+			                </element>
+			                <element name="gpiOut" maxOccurs="unbounded"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <complexContent>
+			                            <extension
+			                                base="tns:objectStringProperty">
+			                                <attribute name="id"
+			                                    type="int">
+			                                </attribute>
+			                                <attribute name="intval"
+			                                    type="int">
+			                                </attribute>
+			                            </extension>
+			                        </complexContent>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="gpiInNameTable" maxOccurs="1"
+			        minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="name" maxOccurs="unbounded"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <all></all>
+			                        <attribute name="intval"
+			                            type="int">
+			                        </attribute>
+			                        <attribute name="val"
+			                            type="string">
+			                        </attribute>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="gpiInTaskTable" maxOccurs="1"
+			        minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="name" maxOccurs="unbounded"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <attribute name="intval"
+			                            type="int">
+			                        </attribute>
+			                        <attribute name="val"
+			                            type="string">
+			                        </attribute>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="gpiOutNameTable" maxOccurs="1"
+			        minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="name" maxOccurs="unbounded"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <attribute name="intval"
+			                            type="int">
+			                        </attribute>
+			                        <attribute name="val"
+			                            type="string">
+			                        </attribute>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="gpiOutTaskTable" maxOccurs="1"
+			        minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="name" maxOccurs="unbounded"
+			                    minOccurs="0">
+			                    <complexType>
+			                        <attribute name="intval"
+			                            type="int">
+			                        </attribute>
+			                        <attribute name="val"
+			                            type="string">
+			                        </attribute>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="audioSetup" maxOccurs="1"
+			        minOccurs="0">
+			        <complexType>
+			            <sequence>
+			                <element name="scaleTransition"
+			                    maxOccurs="unbounded" minOccurs="0">
+			                    <complexType>
+			                        <sequence>
+			                            <element name="scale"
+			                                type="tns:objectStringProperty">
+			                            </element>
+			                            <element name="upperExtent"
+			                                type="tns:objectIntProperty">
+			                            </element>
+			                            <element name="lowerExtent"
+			                                type="tns:objectIntProperty">
+			                            </element>
+			                            <element name="units"
+			                                type="tns:objectStringProperty">
+			                            </element>
+			                            <element name="upperNormal">
+			                                <complexType>
+			                                    <complexContent>
+			                                        <extension
+			                                            base="tns:objectIntProperty">
+			                                            <attribute
+			                                                name="min"
+			                                                type="int">
+			                                            </attribute>
+			                                            <attribute
+			                                                name="max"
+			                                                type="int">
+			                                            </attribute>
+			                                            <attribute
+			                                                name="default"
+			                                                type="int">
+			                                            </attribute>
+			                                        </extension>
+			                                    </complexContent>
+			                                </complexType>
+			                            </element>
+			                            <element name="lowerNormal">
+			                                <complexType>
+			                                    <complexContent>
+			                                        <extension
+			                                            base="tns:objectIntProperty">
+			                                            <attribute
+			                                                name="min"
+			                                                type="int">
+			                                            </attribute>
+			                                            <attribute
+			                                                name="max"
+			                                                type="int">
+			                                            </attribute>
+			                                            <attribute
+			                                                name="default"
+			                                                type="int">
+			                                            </attribute>
+			                                        </extension>
+			                                    </complexContent>
+			                                </complexType>
+			                            </element>
+			                        </sequence>
+			                        <attribute name="id" type="int">
+			                        </attribute>
+			                    </complexType>
+			                </element>
+			            </sequence>
+			        </complexType>
+			    </element>
+			    <element name="frontButton" maxOccurs="1"
+			        minOccurs="0">
+			        <complexType>
+			            <complexContent>
+			                <extension base="tns:objectIntProperty">
+			                    <attribute name="min" type="int">
+			                    </attribute>
+			                    <attribute name="max" type="int">
+			                    </attribute>
+			                </extension>
+			            </complexContent>
+			        </complexType>
+			    </element>
+			</all>
+			<attribute name="id" type="int"
+				use="required">
+			</attribute>
+		</complexType>
+	</element>
+
+	<complexType name="objectIntProperty">
+		<attribute name="val" type="int" use="required"></attribute>
+	</complexType>
+    
+    <complexType name="objectIntRangeProperty">
+        <attribute name="val" type="int" use="required"></attribute>
+        <attribute name="min" type="int" use="optional"></attribute>
+        <attribute name="max" type="int" use="optional"></attribute>
+    </complexType>
+
+	<complexType name="objectStringProperty">
+		<attribute name="val" type="string" use="required"></attribute>
+	</complexType>
+
+	<complexType name="objectBooleanProperty">
+		<attribute name="val" type="boolean" use="required"></attribute>
+	</complexType>
+
+
+	<element name="colour">
+		<complexType>
+			<complexContent>
+				<extension base="tns:objectStringProperty">
+					<attribute name="optionsName" type="string" use="optional"></attribute>
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
+	<element name="bkcolour">
+		<complexType>
+			<complexContent>
+				<extension
+					base="tns:objectStringProperty">
+					<attribute
+						name="optionsName" type="string">
+					</attribute>
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
+	<element name="name">
+		<complexType>
+			<attribute name="val" type="string" use="required"></attribute>
+		</complexType>
+	</element>
+
+	<element name="filename" type="tns:objectStringProperty">
+	</element>
+
+	<element name="font">
+		<complexType>
+			<complexContent>
+				<extension base="tns:objectStringProperty">
+					<attribute name="optionsName" type="string" use="optional"></attribute>
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
+	<element name="fontSize">
+		<complexType>
+			<complexContent>
+				<extension base="tns:objectStringProperty">
+					<attribute name="optionsName" type="string" use="optional"></attribute>
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
+	<element name="x" type="tns:objectIntProperty">
+	</element>
+
+	<element name="y" type="tns:objectIntProperty">
+	</element>
+
+    <element name="xpos" type="tns:objectIntRangeProperty">
+    </element>
+
+    <element name="ypos" type="tns:objectIntRangeProperty">
+    </element>
+
+    <element name="width" type="tns:objectIntRangeProperty">
+    </element>
+
+    <element name="height" type="tns:objectIntRangeProperty">
+    </element>
+
+	<element name="xoffs" type="tns:objectIntProperty">
+	</element>
+
+	<element name="yoffs" type="tns:objectIntProperty">
+	</element>
+	
+	<element name="style">
+		<complexType>
+			<complexContent>
+				<extension base="tns:objectStringProperty">
+					<attribute name="optionsName" type="string" use="optional"></attribute>
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+	
+	<element
+		name="type">
+		<complexType>
+			<complexContent>
+				<extension base="tns:objectStringProperty">
+					<attribute name="optionsName" type="string"></attribute>
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
+	<element name="username" type="tns:objectStringProperty">
+	</element>
+
+	<element name="visible" type="tns:objectBooleanProperty">
+	</element>
+
+	<element name="enabled" type="tns:objectBooleanProperty">
+	</element>
+
+	<element name="transparent" type="tns:objectBooleanProperty">
+	</element>
+
+	<element name="transparentLevel">
+		<complexType>
+			<complexContent>
+				<extension base="tns:objectIntProperty">
+					<attribute name="min" type="int" use="optional"></attribute>
+					<attribute name="max" type="int" use="optional"></attribute>
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+	
+	<element name="aout">
+		<complexType>
+            <attribute name="id" type="int" use="required"></attribute>
+            <attribute name="source" type="int" use="required"></attribute>
+            <attribute name="pair" type="int" use="required"></attribute>
+		</complexType>
+	</element>
+
+	<element name="ipaddr" type="tns:objectStringProperty">
+	</element>
+
+	<element name="netmask" type="tns:objectStringProperty">
+	</element>
+
+	<element name="gateway" type="tns:objectStringProperty">
+	</element>
+	
+	<element name="dhcp" type="tns:objectBooleanProperty">
+	</element>
+	
+	<element name="text" type="tns:objectStringProperty">
+	</element>
+
+	<element name="title">
+		<complexType>
+			<attribute name="val" type="string" use="required"></attribute>
+		</complexType>
+	</element>
+
+	<element name="tcpPort">
+		<complexType>
+			<complexContent>
+				<extension base="tns:objectIntProperty">
+					<attribute name="min" type="int" use="optional"></attribute>
+					<attribute name="max" type="int" use="optional"></attribute>
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+	
+	<element name="analogueThreshold">
+		<complexType>
+			<attribute name="val" type="int" use="required"></attribute>
+			<attribute name="min" type="int" use="required"></attribute>
+			<attribute name="max" type="int" use="required"></attribute>
+		</complexType>
+	</element>
+
+	<element name="digitalThreshold">
+		<complexType>
+			<attribute name="val" type="int" use="required"></attribute>
+			<attribute name="min" type="int" use="required"></attribute>
+			<attribute name="max" type="int" use="required"></attribute>
+		</complexType>
+	</element>
+
+	<element name="threshold">
+		<complexType>
+			<attribute name="val" type="int" use="required"></attribute>
+			<attribute name="min" type="int" use="required"></attribute>
+			<attribute name="max" type="int" use="required"></attribute>
+		</complexType>
+	</element>
+	
+	<element name="chan">
+		<complexType>
+			<attribute name="val" type="boolean" use="required"></attribute>
+			<attribute name="id" type="int" use="required"></attribute>
+		</complexType>
+	</element>
+
+	<element name="pair">
+		<complexType>
+			<attribute name="val" type="boolean" use="required"></attribute>
+			<attribute name="id" type="int" use="required"></attribute>
+		</complexType>
+	</element>
+
+    <element name="audioDigitalRef">
+        <complexType>
+            <attribute name="val" type="int"></attribute>
+            <attribute name="min" type="int"></attribute>
+            <attribute name="max" type="int"></attribute>
+        </complexType>
+    </element>
+
+    <element name="audio0dBRef">
+        <complexType>
+            <attribute name="val" type="int"></attribute>
+            <attribute name="min" type="int"></attribute>
+            <attribute name="max" type="int"></attribute>
+        </complexType>
+    </element>
+
+    <element
+        name="audioAlarmSettings">
+        <complexType>
+            <sequence>
+                <element
+                    name="audioLossAlarm">
+                    <complexType>
+                        <sequence>
+                            <element
+                                ref="tns:analogueThreshold">
+                            </element>
+                            <element
+                                ref="tns:chan"
+                                maxOccurs="unbounded"
+                                minOccurs="1">
+                            </element>
+                        </sequence>
+                    </complexType>
+                </element>
+                <element
+                    name="audioOverAlarm">
+                    <complexType>
+                        <sequence>
+                            <element
+                                ref="tns:analogueThreshold">
+                            </element>
+                            <element
+                                ref="tns:chan"
+                                maxOccurs="unbounded"
+                                minOccurs="1">
+                            </element>
+                        </sequence>
+                    </complexType>
+                </element>
+                <element
+                    name="phaseAlarm">
+                    <complexType>
+                        <sequence>
+                            <element
+                                ref="tns:threshold">
+                            </element>
+                            <element
+                                ref="tns:pair"
+                                maxOccurs="unbounded"
+                                minOccurs="1">
+                            </element>
+                        </sequence>
+                    </complexType>
+                </element>
+                <element
+                    name="carrierLossAlarm">
+                    <complexType>
+                        <sequence>
+                            <element
+                                ref="tns:pair"
+                                maxOccurs="unbounded"
+                                minOccurs="1">
+                            </element>
+                        </sequence>
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+
+	<element name="optionsList">
+		<complexType>
+			<sequence>
+				<element ref="tns:name"
+					maxOccurs="unbounded" minOccurs="0">
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="separatorColour">
+		<complexType>
+			<complexContent>
+				<extension base="tns:objectStringProperty">
+					<attribute name="optionsName" type="string" use="optional"></attribute>
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
+	<complexType name="snellMatrixTableType">
+		<sequence>
+			<element
+				name="physMapInfo" maxOccurs="1" minOccurs="0">
+				<complexType>
+					<sequence>
+						<element
+							name="numIns" type="tns:objectIntProperty"
+							maxOccurs="1" minOccurs="0">
+						</element>
+						<element
+							name="numOuts" maxOccurs="1" minOccurs="0">
+							<complexType>
+								<attribute
+									name="min" type="int">
+								</attribute>
+								<attribute
+									name="max" type="int">
+								</attribute>
+							</complexType>
+						</element>
+						<element
+							name="numLvls" maxOccurs="1" minOccurs="0">
+							<complexType>
+								<attribute
+									name="min" type="int">
+								</attribute>
+								<attribute
+									name="max" type="int">
+								</attribute>
+							</complexType>
+						</element>
+						<element
+							name="numMats" maxOccurs="1" minOccurs="0">
+							<complexType>
+								<attribute
+									name="min" type="int">
+								</attribute>
+								<attribute
+									name="max" type="int">
+								</attribute>
+							</complexType>
+						</element>
+						<element
+							name="numDass" maxOccurs="1" minOccurs="0">
+							<complexType>
+								<attribute
+									name="min" type="int">
+								</attribute>
+								<attribute
+									name="max" type="int">
+								</attribute>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+			<element
+				name="physIns" maxOccurs="1" minOccurs="0">
+				<complexType>
+					<sequence>
+						<element
+							name="in" maxOccurs="unbounded" minOccurs="0">
+							<complexType>
+								<attribute
+									name="id" type="int">
+								</attribute>
+								<attribute
+									name="out" type="int">
+								</attribute>
+								<attribute
+									name="lvl" type="int">
+								</attribute>
+								<attribute
+									name="en" type="boolean">
+								</attribute>
+								<attribute
+									name="mat" type="int">
+								</attribute>
+								<attribute
+									name="dass" type="int">
+								</attribute>
+								<attribute
+									name="con" type="int">
+								</attribute>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+
+
+    <complexType name="NewType"></complexType>
+</schema>

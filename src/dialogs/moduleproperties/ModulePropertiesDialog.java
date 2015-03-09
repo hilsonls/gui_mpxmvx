@@ -198,21 +198,24 @@ public class ModulePropertiesDialog extends JDialog {
             int h = CtrlWorkspace.getInstance().getModule(ctrlActions.getIdModulo()).getScreen().getResolution().getHres();
             int v = CtrlWorkspace.getInstance().getModule(ctrlActions.getIdModulo()).getScreen().getResolution().getVres();
             if (screenPanel.oldHres != h  ||  screenPanel.oldVres != v){
-                 ctrlActions.getTilesWorkspace().setMvHres(h);
-                 ctrlActions.getTilesWorkspace().setMvVres(v);
-                 ctrlActions.getTilesWorkspace().proporzioniWorkspace();
-                 ctrlActions.getPreviewWorkspace().setMvHres(h);
-                 ctrlActions.getPreviewWorkspace().setMvVres(v);
-                 ctrlActions.getPreviewWorkspace().proporzioniWorkspace();
+                 for (int i = 0; i < ctrlActions.numScreens; i++) {
+                     ctrlActions.getTilesWorkspace(i).setMvHres(h);
+                     ctrlActions.getTilesWorkspace(i).setMvVres(v);
+                     ctrlActions.getTilesWorkspace(i).proporzioniWorkspace();
+                     ctrlActions.getPreviewWorkspace(i).setMvHres(h);
+                     ctrlActions.getPreviewWorkspace(i).setMvVres(v);
+                     ctrlActions.getPreviewWorkspace(i).proporzioniWorkspace();
+                 }
                  
                  CtrlWorkspace.getInstance().loadObjectsFromMV(idModulo);
                              
                  
                  
         
-                 
-                 ctrlActions.getTilesWorkspace().loadTilesFromBean();
-                 ctrlActions.getTilesWorkspace().applyZOrder();
+                 for (int i = 0; i < ctrlActions.numScreens; i++) {
+                     ctrlActions.getTilesWorkspace(i).loadTilesFromBean();
+                     ctrlActions.getTilesWorkspace(i).applyZOrder();
+                 }
                  
                  //handler.viewer.loadTilesFromBean();
                  //handler.viewer.applyZOrder();
