@@ -170,7 +170,7 @@ public class MultiViewerPanel extends JFrame {
             infoPanel2.add(infoLabel);
             infoPanel.setBottomComponent(infoPanel2);
 
-            treeAndLayoutPanel.setPreferredSize(new Dimension(200,300));
+            treeAndLayoutPanel.setPreferredSize(new Dimension(200,500));
             treeAndLayoutPanel.setDividerSize(3);
             treeAndLayoutPanel.setResizeWeight(1D);
             treeAndLayoutPanel.setTopComponent(treeScrollPane);
