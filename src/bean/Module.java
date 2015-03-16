@@ -166,6 +166,11 @@ public class Module implements java.io.Serializable {
      */
     private bean.FrontButton _frontButton;
 
+    /**
+     * Field _routers.
+     */
+    private bean.Routers _routers;
+
 
       //----------------/
      //- Constructors -/
@@ -405,6 +410,16 @@ public class Module implements java.io.Serializable {
     public bean.RemoteControl getRemoteControl(
     ) {
         return this._remoteControl;
+    }
+
+    /**
+     * Returns the value of field 'routers'.
+     * 
+     * @return the value of field 'Routers'.
+     */
+    public bean.Routers getRouters(
+    ) {
+        return this._routers;
     }
 
     /**
@@ -733,6 +748,16 @@ public class Module implements java.io.Serializable {
     public void setRemoteControl(
             final bean.RemoteControl remoteControl) {
         this._remoteControl = remoteControl;
+    }
+
+    /**
+     * Sets the value of field 'routers'.
+     * 
+     * @param routers the value of field 'routers'.
+     */
+    public void setRouters(
+            final bean.Routers routers) {
+        this._routers = routers;
     }
 
     /**

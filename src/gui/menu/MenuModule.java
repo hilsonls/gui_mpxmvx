@@ -5,9 +5,12 @@ import gui.components.JMenuBGGradient;
 import gui.components.JMenuItemBGGradient;
 import gui.utils.GUIUtils;
 import gui.utils.MyMenuActionListener;
+
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JSeparator;
+
+import controllori.CtrlWorkspace;
 
 /**
  *
@@ -26,6 +29,7 @@ public class MenuModule{
     private JMenuItemBGGradient setupSourceItem;
     private JMenuItemBGGradient setupExternalAudioSourceItem;
     private JMenuItemBGGradient audioSetupItem;
+    private JMenuItemBGGradient setupRouterItem;
     private JSeparator moduleSeparator2;
     private JMenuItemBGGradient setupRemotesItem;
     private JMenuItemBGGradient setTimeItem;
@@ -78,6 +82,7 @@ public class MenuModule{
         setupSourceItem.setText("Setup selected video source");
         setupExternalAudioSourceItem.setText("Setup external audio sources");
         audioSetupItem.setText("Setup audio meter properties");
+        setupRouterItem.setText("SDI I/O Router");
 
     }
 
@@ -94,6 +99,7 @@ public class MenuModule{
         setupSourceItem.setActionCommand("Source");
         setupExternalAudioSourceItem.setActionCommand("ExternalAudioSources");
         audioSetupItem.setActionCommand("AudioSetup");
+        setupRouterItem.setActionCommand("SetupRouter");
     }
 
     private void setIcon() {
@@ -108,6 +114,7 @@ public class MenuModule{
         setupSourceItem.setIcon(utils.getIcon("setup-source.gif"));
         setupExternalAudioSourceItem.setIcon(utils.getIcon("setup-source.gif"));
         audioSetupItem.setIcon(utils.getIcon("empty.gif"));
+        setupRouterItem.setIcon(utils.getIcon("empty.gif"));
     }
 
     private void setActionListener() {
@@ -125,6 +132,7 @@ public class MenuModule{
         setupSourceItem.addActionListener(listener);
         setupExternalAudioSourceItem.addActionListener(listener);
         audioSetupItem.addActionListener(listener);
+        setupRouterItem.addActionListener(listener);
     }
 
     private void constructItemMenu() {
@@ -144,6 +152,7 @@ public class MenuModule{
         rebootModuleItem = new JMenuItemBGGradient();
         resetModuleItem = new JMenuItemBGGradient();
         audioSetupItem = new JMenuItemBGGradient();
+        setupRouterItem = new JMenuItemBGGradient();
 
     }
 
@@ -156,6 +165,7 @@ public class MenuModule{
         menuInstance.add(setupSourceItem);
         menuInstance.add(setupExternalAudioSourceItem);
         menuInstance.add(audioSetupItem);
+        menuInstance.add(setupRouterItem);
         menuInstance.add(moduleSeparator2);
         menuInstance.add(setupRemotesItem);
         menuInstance.add(setTimeItem);
@@ -167,6 +177,7 @@ public class MenuModule{
 
     public void updateMenu(){
         autoUpdateItem.setSelected(CtrlActions.getInstance().isAutoUpdate());
+        setupRouterItem.setEnabled(CtrlWorkspace.getInstance().areAnyRoutersAvail(0));
     }
    
 }

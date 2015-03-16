@@ -278,10 +278,10 @@
 			                            </element>
 			                            <element
 			                                ref="tns:audioDigitalRef">
-                                        </element>
+			                            </element>
 			                            <element
-                                            ref="tns:audio0dBRef">
-                                        </element>
+			                                ref="tns:audio0dBRef">
+			                            </element>
 			                        </sequence>
 			                        <attribute name="id" type="int"
 			                            use="required">
@@ -291,7 +291,8 @@
 			            </sequence>
 			        </complexType>
 			    </element>
-			    <element name="audioSources" maxOccurs="1" minOccurs="0">
+			    <element name="audioSources" maxOccurs="1"
+			        minOccurs="0">
 			        <complexType>
 			            <sequence>
 			                <element ref="tns:audioDigitalRef"></element>
@@ -787,7 +788,8 @@
 			                                                            </complexType>
 			                                                        </element>
 			                                                        <element
-			                                                            name="alarmBarFlash" type="tns:objectBooleanProperty">
+			                                                            name="alarmBarFlash"
+			                                                            type="tns:objectBooleanProperty">
 			                                                        </element>
 			                                                        <element
 			                                                            ref="tns:transparent">
@@ -1744,7 +1746,8 @@
 			            </sequence>
 			        </complexType>
 			    </element>
-			    <element name="audioMonitor" maxOccurs="1" minOccurs="0">
+			    <element name="audioMonitor" maxOccurs="1"
+			        minOccurs="0">
 			        <complexType>
 			            <sequence>
 			                <element ref="tns:aout"
@@ -2496,6 +2499,9 @@
 			            </complexContent>
 			        </complexType>
 			    </element>
+			    <element name="routers" type="tns:routerCollection" maxOccurs="1"
+			        minOccurs="0">
+			    </element>
 			</all>
 			<attribute name="id" type="int"
 				use="required">
@@ -2915,5 +2921,39 @@
 	</complexType>
 
 
-    <complexType name="NewType"></complexType>
+	<complexType name="routerIn">
+	    <attribute name="id" type="int"></attribute>
+	    <attribute name="physName" type="string"></attribute>
+	    <attribute name="ren" type="boolean"></attribute>
+	</complexType>
+
+	<complexType name="routerOut">
+	    <attribute name="id" type="int"></attribute>
+	    <attribute name="in" type="int"></attribute>
+	    <attribute name="physName" type="string"></attribute>
+	    <attribute name="ren" type="boolean"></attribute>
+	</complexType>
+
+	<complexType name="routerCollection">
+        <sequence>
+            <element name="router" type="tns:routerType" maxOccurs="unbounded"
+                minOccurs="0">
+            </element>
+        </sequence>
+    </complexType>
+
+	<complexType name="routerType">
+	    <sequence>
+	        <element name="in" type="tns:routerIn" maxOccurs="unbounded"
+	            minOccurs="0">
+	        </element>
+	        <element name="out" type="tns:routerOut"
+	            maxOccurs="unbounded" minOccurs="0">
+	        </element>
+	    </sequence>
+        <attribute name="id" type="int"></attribute>
+        <attribute name="label" type="string"></attribute>
+	    <attribute name="numIns" type="int"></attribute>
+	    <attribute name="numOuts" type="int"></attribute>
+	</complexType>
 </schema>

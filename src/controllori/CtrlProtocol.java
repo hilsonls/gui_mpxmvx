@@ -30,6 +30,7 @@ import bean.Objects;
 import bean.ObjectsZOrder;
 import bean.Port;
 import bean.Protocols;
+import bean.Router;
 import bean.Workspace;
 import bean.Oggetto;
 import bean.OptionsList;
@@ -46,6 +47,7 @@ import bean.VideoCardModeOptions;
 import bean.VideoCards;
 import bean.SnellController;
 import eccezioni.MVException;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -56,6 +58,7 @@ import java.io.Writer;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.util.HashMap;
+
 import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.Marshaller;
 import org.exolab.castor.xml.Unmarshaller;
@@ -1886,5 +1889,45 @@ public class CtrlProtocol {
         }
     }
 
+    public void saveRouterOut(int idModulo, int idRouter, int dest, int src) throws MVException {
+        BufferedReader xmlResponse = null;
+        Writer out = new StringWriter();
+        try {
+            out.write("<workspace><module id=\""+idModulo+"\">");
+            out.write("<routers><router id=\""+idRouter+"\">");
+            out.write("<out id=\""+dest+"\" in=\""+src+"\"/>");
+            out.write("</router></routers></module></workspace>");
+            xmlResponse = sendRequest(out.toString());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new MVException("I/O exception");
+        }
+    }
+    
+    public Router loadRouter(int idModulo, int idRouter) throws MVException {
+        Router router = null;
+        Writer out = new StringWriter();
+        try {
+            out.write("<workspace><module id=\""+idModulo+"\">");
+            out.write("<routers><router id=\""+idRouter+"\">");
+            out.write("query</router></routers></module></workspace>");
+            BufferedReader response = sendRequest(out.toString());
+            Workspace works = Workspace.unmarshal(response);
+            router = works.getModule(idModulo).getRouters().getRouter(idRouter);
+        } catch (MarshalException ex) {
+            System.out.println("Marshall Exception in querying router "+idRouter);
+            System.out.println("Request sent: "+out.toString());
+            //ex.printStackTrace();
+        } catch (ValidationException ex) {
+            System.out.println("Validation Exception in querying router: "+idRouter);
+            System.out.println("Request sent: "+out.toString());
+            //ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new MVException("I/O exception");
+        }
+
+        return router;
+    }
     
 }

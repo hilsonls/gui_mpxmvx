@@ -32,6 +32,7 @@ import bean.VideoCards;
 import bean.Workspace;
 import bean.SnellRouter;
 import bean.SnellController;
+import bean.Router;
 import eccezioni.CloneBeanException;
 import eccezioni.CompareBeanException;
 import eccezioni.MVException;
@@ -595,6 +596,28 @@ public class CtrlWorkspace {
         }
         return mod.getAudioSources();
     }
+    
+    public Router getRouter(int idModulo, int idRouter) {
+        Module mod = getModule(idModulo);
+        if (mod == null)
+            return null;
+        if (idRouter < 0)
+            if (mod.getRouters().getRouterCount() == 0)
+                return null;
+            else
+                return mod.getRouters().getRouter(0);
+        for (int i = 0; i < mod.getRouters().getRouterCount(); i++)
+            if (mod.getRouters().getRouter(i).getId() == idRouter)
+                return mod.getRouters().getRouter(i);
+        return null;
+    }
+    
+    public boolean areAnyRoutersAvail(int idModulo) {
+        Module mod = getModule(idModulo);
+        if (mod == null)
+            return false;
+        return (mod.getRouters().getRouterCount() > 0);
+    }
 
     public void loadConfigFromMV() throws MVException {
         //try {
@@ -982,6 +1005,16 @@ public class CtrlWorkspace {
             liveRead.addModule(newModule);
 
         }
+    }
+    
+    public void saveRouterOut(int idModulo, int idRouter, int out, int in) throws MVException {
+        CtrlProtocol ctrlProtocol = CtrlProtocol.getInstance();
+        ctrlProtocol.saveRouterOut(idModulo, idRouter, out, in);
+    }
+    
+    public Router loadRouter(int idModulo, int idRouter) throws MVException {
+        CtrlProtocol ctrlProtocol = CtrlProtocol.getInstance();
+        return ctrlProtocol.loadRouter(idModulo, idRouter);
     }
 
 //    public Source getSourceBySourceName(int idModulo, String sourceName) {

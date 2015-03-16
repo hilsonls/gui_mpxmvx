@@ -59,8 +59,12 @@ public class VGroupLayout extends GroupLayout {
      * @param hcomp array of components to add to the new row.
      */
     public void addRow(Component[] hcomp) {
+        addRow(hcomp, GroupLayout.Alignment.BASELINE);
+    }
+    
+    public void addRow(Component[] hcomp, Alignment align) {
         SequentialGroup hg = createSequentialGroup();
-        ParallelGroup vg = createParallelGroup(GroupLayout.Alignment.BASELINE);
+        ParallelGroup vg = createParallelGroup(align);
         for (Component c : hcomp) {
             hg.addComponent(c);
             vg.addComponent(c);
@@ -78,9 +82,12 @@ public class VGroupLayout extends GroupLayout {
      * rows by passing a row of null components between the 2 other rows.
      */
     public void addGrid(Component[][] grid) {
-        addGrid(0, grid);
+        addGrid(0, grid, Alignment.BASELINE, Alignment.LEADING);
     }
 
+    public void addGrid(Component[][] grid, Alignment rowAlign, Alignment colAlign) {
+        addGrid(0, grid, rowAlign, colAlign);
+    }
     /**
      * Add a 2-dimensional array (grid) of components indented.
      * @param grid 2-d array of components to add (grid[row][column]).
@@ -88,10 +95,11 @@ public class VGroupLayout extends GroupLayout {
      * rows by passing a row of null components between the 2 other rows.
      */
     public void addGridIndent(Component[][] grid) {
-        addGrid(DEFAULT_INDENT, grid);
+        addGrid(DEFAULT_INDENT, grid, Alignment.BASELINE, Alignment.LEADING);
     }
 
-    private void addGrid(int indent, Component[][] grid) {
+    private void addGrid(int indent, Component[][] grid, Alignment rowAlign,
+            Alignment colAlign) {
         int numRows = grid.length;
         int numCols = grid[0].length;
         SequentialGroup hg = createSequentialGroup();
@@ -103,7 +111,7 @@ public class VGroupLayout extends GroupLayout {
         // a new horizontal sequential group consisting of a set of parallel
         // groups, one for each column 
         for (int col = 0; col < numCols; col++) {
-            ParallelGroup pg = createParallelGroup();
+            ParallelGroup pg = createParallelGroup(colAlign);
             for (int row = 0; row < numRows; row++) {
                 if (grid[row][col] != null) {
                     pg.addComponent(grid[row][col]);
@@ -120,7 +128,7 @@ public class VGroupLayout extends GroupLayout {
             if (grid[row][0] == null) {
                 addGap();
             } else {
-                ParallelGroup pg = createParallelGroup(Alignment.BASELINE);
+                ParallelGroup pg = createParallelGroup(rowAlign);
                 for (int col = 0; col < numCols; col++) {
                     pg.addComponent(grid[row][col]);
                 }
