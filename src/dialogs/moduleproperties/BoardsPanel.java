@@ -60,7 +60,15 @@ public class BoardsPanel extends JPanelBGGradient{
         for (int i = 0; i < cardsCount; i++) {
             VideoCardModeOptions vcmo = CtrlProtocol.getInstance().loadVideoCardModeOptionsFromMV(idModulo, i);
             comboCombi[i] = new HashMap<String, DefaultComboBoxModel[]>();
-            for (int j = 0; j < vcmo.getModeOptionCount(); j++) {
+            if (vcmo == null) {
+                DefaultComboBoxModel[] dcbm = new DefaultComboBoxModel[4];
+                for (int k = 0; k < 4; k++) {
+                    dcbm[k] = new DefaultComboBoxModel();
+                    dcbm[k].addElement("Source " + (k + 1));
+                    dcbm[k].setSelectedItem("Source " + (k + 1));
+                }
+                comboCombi[i].put("Mode 1", dcbm);
+            } else for (int j = 0; j < vcmo.getModeOptionCount(); j++) {
                 DefaultComboBoxModel[] dcbm = new DefaultComboBoxModel[vcmo.getModeOption(j).getSourceInputOptionsCount()];
                 for (int k = 0; k < vcmo.getModeOption(j).getSourceInputOptionsCount(); k++) {
                     dcbm[k] = new DefaultComboBoxModel();

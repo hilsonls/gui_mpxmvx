@@ -81,7 +81,7 @@ public class ModulePropertiesDialog extends JDialog {
         //memorizzo l'id del modulo;
         this.idModulo = idModulo;
         
-        this.videoCards = CtrlWorkspace.getInstance().getVideoCards(idModulo);
+        this.videoCards = CtrlProtocol.getInstance().loadVideoCardsFromMV(idModulo);
         this.screen = CtrlWorkspace.getInstance().getModule(idModulo).getScreen();
         this.sources = CtrlWorkspace.getInstance().getModule(idModulo).getSources();
         this.audioMonitor = CtrlWorkspace.getInstance().getModule(idModulo).getAudioMonitor();

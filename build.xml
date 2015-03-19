@@ -37,16 +37,14 @@
     	
     	<!-- Sign the application - Globalsign -->
         <exec executable="jarsigner">
-        	<arg value="-storetype"/>
-        	<arg value="PKCS12"/>
             <arg value="-keystore"/>
-            <arg value="codesign.pfx"/>
-        	<arg value="storepass"/>
-        	<arg value="chrom456mult"/>
+            <arg value="chromateckeys"/>
+            <arg value="-tsa"/>
+            <arg value="http://timestamp.globalsign.com/scripts/timestamp.dll"/>
             <arg value="Applet.jar"/>
-        	<arg value="&quot;1&quot;"/>
-        	<arg value="-tsa"/>
-        	<arg value="http://timestamp.globalsign.com/scripts/timestamp.dll"/>
+        	<arg value="storepass"/>
+        	<arg value="chrom456"/>
+        	<arg value="&quot;multiviewer&quot;"/>
         </exec>
     </target>
 </project>

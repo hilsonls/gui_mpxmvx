@@ -1213,8 +1213,11 @@ public class CtrlProtocol {
                 throw new MVException("Xml validation error");
             }
         }
-                    
-        return config.getModule(0).getVideoCards().getCard(0).getVideoCardModeOptions();
+        
+        VideoCards cards = config.getModule(0).getVideoCards();
+        if (cards != null && cards.getCardCount() > 0)
+            return cards.getCard(0).getVideoCardModeOptions();
+        return null;
     }
     
     public Sources loadSourcesFromMV(int idModulo) throws MVException
