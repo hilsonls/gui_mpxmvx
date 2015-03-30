@@ -90,6 +90,7 @@ public class ModulePropertiesDialog extends JDialog {
         this.network = CtrlWorkspace.getInstance().getModule(idModulo).getNetwork();
         this.ngmServers = CtrlWorkspace.getInstance().getModule(idModulo).getNgmServers();
         this.protocols = CtrlWorkspace.getInstance().getModule(idModulo).getProtocols();
+        this.protocols.setPorts(CtrlProtocol.getInstance().loadProtocolsPortsFromMV(idModulo));
         
         setTitle("Module Properties ("+idModulo+")");
         setResizable(false);

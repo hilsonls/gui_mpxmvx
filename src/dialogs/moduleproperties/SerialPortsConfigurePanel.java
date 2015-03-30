@@ -1,9 +1,12 @@
 package dialogs.moduleproperties;
 
+import java.awt.Color;
+
 import bean.Port;
 import eccezioni.MVException;
 import gui.ComponentFactory;
 import gui.components.JPanelBGGradient;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
@@ -32,6 +35,8 @@ public class SerialPortsConfigurePanel extends JPanelBGGradient{
 
     private JLabel protocolLabel;
     private JComboBox protocolCombo;
+    
+    private JLabel controllerLabel;
 
     public SerialPortsConfigurePanel(Port bean) throws MVException {
 
@@ -93,6 +98,24 @@ public class SerialPortsConfigurePanel extends JPanelBGGradient{
         protocolCombo = ComponentFactory.createComboBox(bean.getProtocol().getOptionsName(), bean.getProtocol().getVal());
         protocolCombo.setBounds(130, 170, 150, 20);
         add(protocolCombo);
+        
+        int controlSlot;
+        if (bean.getController() != null)
+            controlSlot = bean.getController().getVal();
+        else
+            controlSlot = -1;
+        if (controlSlot >= 0) {
+            controllerLabel = new JLabel();
+            controllerLabel.setBounds(50, 200, 250, 20);
+            controllerLabel.setText("Card in slot " + controlSlot + " has control of the serial port");
+            controllerLabel.setForeground(Color.RED);
+            add(controllerLabel);
+            baudCombo.setEnabled(false);
+            bitsCombo.setEnabled(false);
+            parityCombo.setEnabled(false);
+            stopCombo.setEnabled(false);
+            flowCombo.setEnabled(false);
+        }
     }
 
     public void save() {

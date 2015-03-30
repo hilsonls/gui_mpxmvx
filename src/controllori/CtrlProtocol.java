@@ -29,6 +29,7 @@ import bean.NtpServers;
 import bean.Objects;
 import bean.ObjectsZOrder;
 import bean.Port;
+import bean.Ports;
 import bean.Protocols;
 import bean.Router;
 import bean.Workspace;
@@ -1435,6 +1436,29 @@ public class CtrlProtocol {
         }
                     
         return config.getModule(0).getVideoCards();
+    }
+    
+    public Ports loadProtocolsPortsFromMV(int idModulo) throws MVException
+    {
+        BufferedReader xmlResponse = null;
+        Workspace config = null;
+        CtrlConnection ctrlConnection = CtrlConnection.getInstance();
+        xmlResponse = ctrlConnection.sendData("<workspace><module id=\""+idModulo+"\"><protocols><ports>query</ports></protocols></module></workspace>");
+        
+        if (xmlResponse != null) {
+            try {
+                config = (Workspace) Unmarshaller.unmarshal(Workspace.class, xmlResponse);
+                xmlResponse.close();
+            } catch (IOException ex) {
+                throw new MVException("I/O Exception");
+            } catch (MarshalException ex) {
+                ex.printStackTrace();
+                throw new MVException("Unmarshall error");
+            } catch (ValidationException ex) {
+                throw new MVException("Xml validation error");
+            }
+        }
+        return config.getModule(0).getProtocols().getPorts();
     }
     
     /*public boolean sendCommand(String xmlCommand) {

@@ -2142,6 +2142,10 @@
 			                                                </complexContent>
 			                                            </complexType>
 			                                        </element>
+			                                        <element
+			                                            name="controller"
+			                                            type="tns:objectIntProperty" maxOccurs="1" minOccurs="0">
+			                                        </element>
 			                                    </sequence>
 			                                    <attribute name="id"
 			                                        type="int">

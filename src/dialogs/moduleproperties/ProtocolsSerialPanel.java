@@ -65,7 +65,7 @@ public class ProtocolsSerialPanel extends JPanelBGGradient{
         JScrollPane sp = new JScrollPane();
         sp.setOpaque(true);
         sp.getViewport().add(serialPortsList);
-        sp.setBounds(15, 45, 300, 200);
+        sp.setBounds(15, 45, 350, 200);
         add(sp);
        
 
@@ -73,7 +73,7 @@ public class ProtocolsSerialPanel extends JPanelBGGradient{
         configureButton = new JButton();
         configureButton.setText("Configure");
         configureButton.addActionListener(mIL);
-        configureButton.setBounds(120, 260, 90, 20);
+        configureButton.setBounds(145, 260, 90, 20);
         add(configureButton);
 
 
@@ -132,6 +132,11 @@ public class ProtocolsSerialPanel extends JPanelBGGradient{
             portString += "," + port.getParity().getVal().charAt(0);
             portString += "," + port.getBits().getVal();
             portString += "," + port.getStop().getVal();
+            if (port.getController() != null) {
+                if (port.getController().getVal() >= 0)
+                    portString += " (Controlled by card in slot "
+                            + port.getController().getVal() + ")";
+            }
             serialPortsListModel.addElement(portString);
         }
         serialPortsList.setModel(serialPortsListModel);
