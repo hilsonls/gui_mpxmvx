@@ -1,4 +1,4 @@
-#Mon Mar 16 11:25:20 AEDT 2015
+#Mon Mar 30 17:35:04 AEDT 2015
 bean.ObjectErrorMsgSize=bean.descriptors.ObjectErrorMsgSizeDescriptor
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
@@ -109,6 +109,7 @@ bean.AspectRatio=bean.descriptors.AspectRatioDescriptor
 bean.TransColour=bean.descriptors.TransColourDescriptor
 bean.Source=bean.descriptors.SourceDescriptor
 bean.Alarms=bean.descriptors.AlarmsDescriptor
+bean.Controller=bean.descriptors.ControllerDescriptor
 bean.ShowName=bean.descriptors.ShowNameDescriptor
 bean.Alarm=bean.descriptors.AlarmDescriptor
 bean.BitmapFile=bean.descriptors.BitmapFileDescriptor

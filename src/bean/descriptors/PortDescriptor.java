@@ -317,6 +317,40 @@ public class PortDescriptor extends org.exolab.castor.xml.util.XMLClassDescripto
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
+        //-- _controller
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Controller.class, "_controller", "controller", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Port target = (Port) object;
+                return target.getController();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Port target = (Port) object;
+                    target.setController( (bean.Controller) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.Controller");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _controller
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
     }
 
 

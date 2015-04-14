@@ -66,6 +66,11 @@ public class Port implements java.io.Serializable {
      */
     private bean.Protocol _protocol;
 
+    /**
+     * Field _controller.
+     */
+    private bean.Controller _controller;
+
 
       //----------------/
      //- Constructors -/
@@ -105,6 +110,16 @@ public class Port implements java.io.Serializable {
     public bean.Bits getBits(
     ) {
         return this._bits;
+    }
+
+    /**
+     * Returns the value of field 'controller'.
+     * 
+     * @return the value of field 'Controller'.
+     */
+    public bean.Controller getController(
+    ) {
+        return this._controller;
     }
 
     /**
@@ -232,6 +247,16 @@ public class Port implements java.io.Serializable {
     public void setBits(
             final bean.Bits bits) {
         this._bits = bits;
+    }
+
+    /**
+     * Sets the value of field 'controller'.
+     * 
+     * @param controller the value of field 'controller'.
+     */
+    public void setController(
+            final bean.Controller controller) {
+        this._controller = controller;
     }
 
     /**
