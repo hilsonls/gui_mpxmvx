@@ -108,7 +108,7 @@ public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
             pairTable = new String[NUM_EXTERNAL_PAIRS + 1];
             pairTable[0] = "None";
             for (int i = 0; i < NUM_EXTERNAL_PAIRS; i++) {
-                pairTable[i+1] = "Pair " + (i*2+1) + "+" + (i*2+2);
+                pairTable[i+1] = "Channel " + (i*2+1) + "+" + (i*2+2);
             }
         }
     }
