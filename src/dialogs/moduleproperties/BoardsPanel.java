@@ -4,12 +4,16 @@ import bean.CardMode;
 import bean.VideoCardModeOptions;
 import bean.VideoCards;
 import controllori.CtrlProtocol;
+import controllori.CtrlWorkspace;
+import controllori.ProductType;
 import eccezioni.MVException;
 import gui.components.JPanelBGGradient;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -119,11 +123,12 @@ public class BoardsPanel extends JPanelBGGradient{
             add(cardConfigCombo[i]);
         }
         
-        
+        boolean showSources = (CtrlWorkspace.getInstance().getProductType(idModulo) != ProductType.ProductTypeAM);
         
         source1Label = new JLabel("Source 1");
         source1Label.setBounds(20, 260, 120, 20);
-        add(source1Label);
+        if (showSources)
+            add(source1Label);
         source1Combo = new JComboBox[cardsCount];
         for (int i = 0; i < cardsCount; i++) {
             //source1Combo[i] = ComponentFactory.createComboBox(videoCards.getCard(i).getCardMode().getSourceInput(0).getOptionsList(), videoCards.getCard(i).getCardMode().getSourceInput(0).getVal());
@@ -131,13 +136,15 @@ public class BoardsPanel extends JPanelBGGradient{
             source1Combo[i].setSelectedItem(videoCards.getCard(i).getCardMode().getSourceInput(0).getVal());
             source1Combo[i].setBounds(160, 260, 200, 20);
             source1Combo[i].setVisible(false);
-            add(source1Combo[i]);
+            if (showSources)
+                add(source1Combo[i]);
         }
         
         
         source2Label = new JLabel("Source 2");
         source2Label.setBounds(20, 300, 120, 20);
-        add(source2Label);
+        if (showSources)
+            add(source2Label);
         source2Combo = new JComboBox[cardsCount];
         for (int i = 0; i < cardsCount; i++) {
             //source2Combo[i] = ComponentFactory.createComboBox(videoCards.getCard(i).getCardMode().getSourceInput(1).getOptionsList(), videoCards.getCard(i).getCardMode().getSourceInput(1).getVal());
@@ -145,13 +152,15 @@ public class BoardsPanel extends JPanelBGGradient{
             source2Combo[i].setSelectedItem(videoCards.getCard(i).getCardMode().getSourceInput(1).getVal());
             source2Combo[i].setBounds(160, 300, 200, 20);
             source2Combo[i].setVisible(false);
-            add(source2Combo[i]);
+            if (showSources)
+                add(source2Combo[i]);
         }
         
         
         source3Label = new JLabel("Source 3");
         source3Label.setBounds(20, 340, 120, 20);
-        add(source3Label);
+        if (showSources)
+            add(source3Label);
         source3Combo = new JComboBox[cardsCount];
         for (int i = 0; i < cardsCount; i++) {
             //source3Combo[i] = ComponentFactory.createComboBox(videoCards.getCard(i).getCardMode().getSourceInput(2).getOptionsList(), videoCards.getCard(i).getCardMode().getSourceInput(2).getVal());
@@ -159,13 +168,15 @@ public class BoardsPanel extends JPanelBGGradient{
             source3Combo[i].setSelectedItem(videoCards.getCard(i).getCardMode().getSourceInput(2).getVal());
             source3Combo[i].setBounds(160, 340, 200, 20);
             source3Combo[i].setVisible(false);
-            add(source3Combo[i]);
+            if (showSources)
+                add(source3Combo[i]);
         }
         
         
         source4Label = new JLabel("Source 4");
         source4Label.setBounds(20, 380, 120, 20);
-        add(source4Label);
+        if (showSources)
+            add(source4Label);
         source4Combo = new JComboBox[cardsCount];
         for (int i = 0; i < cardsCount; i++) {
             //source4Combo[i] = ComponentFactory.createComboBox(videoCards.getCard(i).getCardMode().getSourceInput(3).getOptionsList(), videoCards.getCard(i).getCardMode().getSourceInput(3).getVal());
@@ -173,7 +184,8 @@ public class BoardsPanel extends JPanelBGGradient{
             source4Combo[i].setSelectedItem(videoCards.getCard(i).getCardMode().getSourceInput(3).getVal());
             source4Combo[i].setBounds(160, 380, 200, 20);
             source4Combo[i].setVisible(false);
-            add(source4Combo[i]);
+            if (showSources)
+                add(source4Combo[i]);
         }
         
         if ( cardsCount > 0 ){
