@@ -17,6 +17,7 @@ import bean.Protocols;
 import bean.Sources;
 import controllori.CtrlProtocol;
 import controllori.CtrlWorkspace;
+import controllori.ProductType;
 import eccezioni.CloneBeanException;
 import eccezioni.MVException;
 import gui.CtrlActions;
@@ -24,12 +25,14 @@ import gui.components.ChangeListenerColorHandled;
 import gui.components.JDioTabbedPane;
 import gui.components.JPanelBGGradient;
 import gui.style.StyleInterface;
+
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -74,12 +77,15 @@ public class ModulePropertiesDialog extends JDialog {
     private NgmServers ngmServers;
     private Protocols protocols;
     private CtrlActions ctrlActions;
+    private boolean showSources;
     
     public ModulePropertiesDialog(Frame frame, int idModulo) throws MVException {
         super(frame);
         this.ctrlActions = CtrlActions.getInstance();
         //memorizzo l'id del modulo;
         this.idModulo = idModulo;
+        
+        showSources = (CtrlWorkspace.getInstance().getProductType(idModulo) != ProductType.ProductTypeAM);
         
         this.videoCards = CtrlProtocol.getInstance().loadVideoCardsFromMV(idModulo);
         this.screen = CtrlWorkspace.getInstance().getModule(idModulo).getScreen();
@@ -121,7 +127,10 @@ public class ModulePropertiesDialog extends JDialog {
         
         boardsPanel = new BoardsPanel(videoCards, idModulo);
         screenPanel = new ScreenPanel(screen, idModulo);
-        sourcePanel = new SourcePanel(sources);
+        if (showSources)
+            sourcePanel = new SourcePanel(sources);
+        else
+            sourcePanel = null;
         audioMonitorPanel = new AudioMonitorPanel(audioMonitor);
         audioOutputPanel = new AudioOutputPanel(audioOut);
         gpisPanel = new GPIsPanel(gpis, idModulo);
@@ -135,26 +144,29 @@ public class ModulePropertiesDialog extends JDialog {
         tabbedPane.addChangeListener(new ChangeListenerColorHandled());
         //tabbedPane.setBounds(1, 1, 340, 450);
         //Aggiungo i vari panel al tabbedPane
+        int paneIndex = 0;
         tabbedPane.add(boardsPanel);
+        tabbedPane.setTitleAt(paneIndex++, "Boards");
         tabbedPane.add(screenPanel);
-        tabbedPane.add(sourcePanel);
+        tabbedPane.setTitleAt(paneIndex++, "Screen");
+        if (sourcePanel != null) {
+            tabbedPane.add(sourcePanel);
+            tabbedPane.setTitleAt(paneIndex++, "Sources");
+        }
         tabbedPane.add(audioMonitorPanel);
+        tabbedPane.setTitleAt(paneIndex++, "Audio Monitor Outputs");
         tabbedPane.add(audioOutputPanel);
+        tabbedPane.setTitleAt(paneIndex++, "External Audio Outputs");
         tabbedPane.add(gpisPanel);
+        tabbedPane.setTitleAt(paneIndex++, "GPIs");
         tabbedPane.add(networkPanel);
+        tabbedPane.setTitleAt(paneIndex++, "Network");
         tabbedPane.add(ngm164ServerPanel);
+        tabbedPane.setTitleAt(paneIndex++, StyleInterface.getInstance().getDataXXNgm());
         tabbedPane.add(protocolsPanel);
+        tabbedPane.setTitleAt(paneIndex++, "Protocols");
         
         tabbedPane.setSelectedComponent(boardsPanel);
-        tabbedPane.setTitleAt(0, "Boards");
-        tabbedPane.setTitleAt(1, "Screen");
-        tabbedPane.setTitleAt(2, "Sources");
-        tabbedPane.setTitleAt(3, "Audio Monitor Outputs");
-        tabbedPane.setTitleAt(4, "External Audio Outputs");
-        tabbedPane.setTitleAt(5, "GPIs");
-        tabbedPane.setTitleAt(6, "Network");
-        tabbedPane.setTitleAt(7, StyleInterface.getInstance().getDataXXNgm());
-        tabbedPane.setTitleAt(8, "Protocols");
         
         getContentPane().add(tabbedPane, "Center");
         setVisible(true);
@@ -178,7 +190,8 @@ public class ModulePropertiesDialog extends JDialog {
             //AGGIORNO I BEAN dei panels
             boardsPanel.save();
             screenPanel.save();
-            sourcePanel.save();
+            if (sourcePanel != null)
+                sourcePanel.save();
             audioMonitorPanel.save();
             audioOutputPanel.save();
             gpisPanel.save();
