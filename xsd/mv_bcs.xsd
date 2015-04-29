@@ -1925,6 +1925,7 @@
 			            </attribute>
 			            <attribute name="model" type="string">
 			            </attribute>
+			            <attribute name="type" type="string"></attribute>
 			        </complexType>
 			    </element>
 			    <element name="sysTime" maxOccurs="1" minOccurs="0">

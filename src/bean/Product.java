@@ -36,6 +36,11 @@ public class Product implements java.io.Serializable {
      */
     private java.lang.String _model;
 
+    /**
+     * Field _type.
+     */
+    private java.lang.String _type;
+
 
       //----------------/
      //- Constructors -/
@@ -68,6 +73,16 @@ public class Product implements java.io.Serializable {
     public java.lang.String getModel(
     ) {
         return this._model;
+    }
+
+    /**
+     * Returns the value of field 'type'.
+     * 
+     * @return the value of field 'Type'.
+     */
+    public java.lang.String getType(
+    ) {
+        return this._type;
     }
 
     /**
@@ -135,6 +150,16 @@ public class Product implements java.io.Serializable {
     public void setModel(
             final java.lang.String model) {
         this._model = model;
+    }
+
+    /**
+     * Sets the value of field 'type'.
+     * 
+     * @param type the value of field 'type'.
+     */
+    public void setType(
+            final java.lang.String type) {
+        this._type = type;
     }
 
     /**

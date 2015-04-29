@@ -11,6 +11,7 @@ import javax.swing.JMenu;
 import javax.swing.JSeparator;
 
 import controllori.CtrlWorkspace;
+import controllori.ProductType;
 
 /**
  *
@@ -157,6 +158,8 @@ public class MenuModule{
     }
 
     private void addMenuItems() {
+        ProductType productType = CtrlWorkspace.getInstance().getProductType(0);
+        
         menuInstance.add(autoUpdateItem);
         menuInstance.add(updateLayoutItem);
         menuInstance.add(getLayoutItem);
@@ -165,7 +168,8 @@ public class MenuModule{
         menuInstance.add(setupSourceItem);
         menuInstance.add(setupExternalAudioSourceItem);
         menuInstance.add(audioSetupItem);
-        menuInstance.add(setupRouterItem);
+        if (productType == ProductType.ProductTypeMV)
+            menuInstance.add(setupRouterItem);
         menuInstance.add(moduleSeparator2);
         menuInstance.add(setupRemotesItem);
         menuInstance.add(setTimeItem);

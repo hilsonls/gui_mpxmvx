@@ -618,6 +618,23 @@ public class CtrlWorkspace {
             return false;
         return (mod.getRouters().getRouterCount() > 0);
     }
+    
+    public String getProductTypeCode(int idModulo) {
+        Module mod = getModule(idModulo);
+        if (mod == null)
+            return "MV";
+        String type = mod.getProduct().getType();
+        if (type == null)
+            return "MV";
+        return type;
+    }
+    
+    public ProductType getProductType(int idModulo) {
+        String pt = getProductTypeCode(idModulo);
+        if (pt.equals("AM"))
+            return ProductType.ProductTypeAM;
+        return ProductType.ProductTypeMV;
+    }
 
     public void loadConfigFromMV() throws MVException {
         //try {
