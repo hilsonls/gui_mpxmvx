@@ -3,11 +3,15 @@ package controllori.actions;
 
 import controllori.Action;
 import controllori.CtrlWorkspace;
+import controllori.ProductType;
+import dialogs.source.AMProductSourcePropertiesDialog;
 import dialogs.source.AudioSourcePropertiesDialog;
 import eccezioni.MVException;
 import gui.CtrlActions;
 import gui.TileObject;
+
 import java.awt.Frame;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -25,7 +29,15 @@ public class ExternalAudioSources extends Action {
     public void doAction() throws MVException {
         Frame frame = JOptionPane.getFrameForComponent(CtrlActions.getInstance().getTilesWorkspace());
         CtrlActions ctrlActions = CtrlActions.getInstance();
-        new AudioSourcePropertiesDialog(frame, ctrlActions.getIdModulo(), CtrlWorkspace.getInstance().getAudioSources(CtrlActions.getInstance().getIdModulo()));
+        int idModulo = ctrlActions.getIdModulo();
+        if (CtrlWorkspace.getInstance().getProductType(idModulo) == ProductType.ProductTypeAM)
+            new AMProductSourcePropertiesDialog(frame,
+                    CtrlWorkspace.getInstance().getModule(idModulo).getSources().getSource(0),
+                    CtrlWorkspace.getInstance().getAudioSources(idModulo),
+                    idModulo);
+        else
+            new AudioSourcePropertiesDialog(frame, idModulo,
+                    CtrlWorkspace.getInstance().getAudioSources(idModulo));
     }
 
 }

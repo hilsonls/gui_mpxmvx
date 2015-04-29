@@ -69,6 +69,7 @@ public class MenuModule{
     }
 
     private void setText(){
+        ProductType productType = CtrlWorkspace.getInstance().getProductType(0);
 
         menuInstance.setText("Module");
         autoUpdateItem.setText("Auto update");
@@ -81,8 +82,11 @@ public class MenuModule{
         setupRemotesItem.setText("Setup remotes");
         setTimeItem.setText("Set Time");
         setupSourceItem.setText("Setup selected video source");
-        setupExternalAudioSourceItem.setText("Setup external audio sources");
-        audioSetupItem.setText("Setup audio meter properties");
+        if (productType == ProductType.ProductTypeMV)
+            setupExternalAudioSourceItem.setText("Setup external audio sources");
+        else
+            setupExternalAudioSourceItem.setText("Audio settings and alarms");
+        audioSetupItem.setText("Audio meter properties");
         setupRouterItem.setText("SDI I/O Router");
 
     }
@@ -165,13 +169,15 @@ public class MenuModule{
         menuInstance.add(getLayoutItem);
         menuInstance.add(moduleSeparator1);
         menuInstance.add(setupModuleItem);
-        menuInstance.add(setupSourceItem);
+        if (productType == ProductType.ProductTypeMV)
+            menuInstance.add(setupSourceItem);
         menuInstance.add(setupExternalAudioSourceItem);
         menuInstance.add(audioSetupItem);
         if (productType == ProductType.ProductTypeMV)
             menuInstance.add(setupRouterItem);
         menuInstance.add(moduleSeparator2);
-        menuInstance.add(setupRemotesItem);
+        if (productType == ProductType.ProductTypeMV)
+            menuInstance.add(setupRemotesItem);
         menuInstance.add(setTimeItem);
         menuInstance.add(moduleSeparator3);
         menuInstance.add(haltModuleItem);
