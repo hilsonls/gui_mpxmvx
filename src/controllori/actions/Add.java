@@ -5,6 +5,7 @@ import bean.Oggetto;
 import controllori.Action;
 import controllori.CtrlProtocol;
 import controllori.CtrlWorkspace;
+import controllori.ProductType;
 import eccezioni.CloneBeanException;
 import eccezioni.MVException;
 import gui.CtrlActions;
@@ -32,8 +33,14 @@ public class Add extends Action {
         //aggiunge bean al punto giusto nel workspace
         CtrlWorkspace.getInstance().addObject(ctrlActions.getIdModulo(), bean);
 
-        ctrlActions.getTilesWorkspace().addTileObject(bean);
+        // Set initial object type to suit the product
+        if (CtrlWorkspace.getInstance().getProductType(ctrlActions.getIdModulo()) == ProductType.ProductTypeAM)
+            bean.getType().setVal("Audio");
+        else
+            bean.getType().setVal("Video");
+        CtrlWorkspace.getInstance().saveObjectToMV(ctrlActions.getIdModulo(), bean);
 
+        ctrlActions.getTilesWorkspace().addTileObject(bean);
 
     }
 
