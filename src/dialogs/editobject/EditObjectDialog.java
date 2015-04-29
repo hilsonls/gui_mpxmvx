@@ -125,7 +125,7 @@ public class EditObjectDialog extends JDialog{
         buttonsPanel.add(cancelButton);
         getContentPane().add(buttonsPanel, "South");
         
-        typePanel = new TypePanel(bean);
+        typePanel = new TypePanel(bean, idModulo);
         borderPanel = new BorderPanel(bean.getBorder());
         parentPanel = new ParentPanel(bean.getParent());
         propPanel = new PropertiesPanel(bean.getObjectSequence());

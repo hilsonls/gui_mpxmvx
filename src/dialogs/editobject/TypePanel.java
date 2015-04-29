@@ -26,6 +26,9 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import controllori.CtrlWorkspace;
+import controllori.ProductType;
+
 /**
  *
  * @author Er Principe da'a Marana
@@ -65,7 +68,7 @@ public class TypePanel extends JPanelBGGradient{
     
     private JCheckBoxTransBG tileAspectBasedOnVideo;
         
-    public TypePanel(Oggetto bean) throws MVException {
+    public TypePanel(Oggetto bean, int modulo) throws MVException {
         
         VGroupLayout layout = new VGroupLayout(this);
         setLayout(layout);
@@ -75,6 +78,8 @@ public class TypePanel extends JPanelBGGradient{
         
         typeLabel = new JLabel("Type");
         typeCombo = ComponentFactory.createComboBox(bean.getType().getOptionsName(), bean.getType().getVal() );
+        if (CtrlWorkspace.getInstance().getProductType(modulo) == ProductType.ProductTypeAM)
+            typeCombo.removeItem("Video");
             
         nameLabel = new JLabel("Name");
         nameField = ComponentFactory.createTextField(bean.getUsername().getVal(), 40);
