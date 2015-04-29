@@ -128,7 +128,7 @@ public class EditObjectDialog extends JDialog{
         typePanel = new TypePanel(bean, idModulo);
         borderPanel = new BorderPanel(bean.getBorder());
         parentPanel = new ParentPanel(bean.getParent());
-        propPanel = new PropertiesPanel(bean.getObjectSequence());
+        propPanel = new PropertiesPanel(bean.getObjectSequence(), idModulo);
         umdPanel = new UmdPanel(bean.getUmd());
         
         typePanel.setTypeListener(new TypeListener());

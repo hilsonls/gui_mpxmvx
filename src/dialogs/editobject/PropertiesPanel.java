@@ -17,6 +17,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
+import controllori.CtrlWorkspace;
+import controllori.ProductType;
+
 public class PropertiesPanel extends JPanelBGGradient{
     private ObjectSequence bean;
     
@@ -47,13 +50,14 @@ public class PropertiesPanel extends JPanelBGGradient{
     private FlowLayout layout;
     
     private int tileType;
+    private int idModulo;
 
 
-
-    public PropertiesPanel(ObjectSequence bean) throws MVException {
+    public PropertiesPanel(ObjectSequence bean, int idModulo) throws MVException {
         layout = new FlowLayout(FlowLayout.LEFT);
         setLayout(layout);
         this.bean = bean;
+        this.idModulo = idModulo;
         
         
         propVideoPanel = new PropertiesVideoPanel(bean.getVidAudProperties().getVidAudSource(), bean.getVideoProperties());
@@ -148,7 +152,8 @@ public class PropertiesPanel extends JPanelBGGradient{
             break;
             
         case EditObjectDialog.TILE_TYPE_AUDIO:
-            tabbedPane.addTab("Source", propVideoScrollPane);
+            if (CtrlWorkspace.getInstance().getProductType(idModulo) != ProductType.ProductTypeAM)
+                tabbedPane.addTab("Source", propVideoScrollPane);
             tabbedPane.addTab("Audio", propAudioScrollPane);
             tabbedPane.addTab("Error", propErrorScrollPane);
             propVideoPanel.enableDisplayOnAllCheckBox(false);
