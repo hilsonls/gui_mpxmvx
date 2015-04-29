@@ -38,14 +38,17 @@ import eccezioni.CompareBeanException;
 import eccezioni.MVException;
 import gui.ComponentFactory;
 import gui.components.JIDStringNode;
+
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+
 import javax.swing.JList;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
+
 import org.exolab.castor.xml.Marshaller;
 import org.exolab.castor.xml.Unmarshaller;
 
@@ -416,12 +419,14 @@ public class CtrlWorkspace {
     
         root = new JIDStringNode("-_-");
         oggetti = new JIDStringNode("Objects");
-        sorgenti = new JIDStringNode("Sources");
+        if (CtrlWorkspace.getInstance().getProductType(idModulo) != ProductType.ProductTypeAM)
+            sorgenti = new JIDStringNode("Sources");
         layouts = new JIDStringNode("Layouts");
         
         
         root.add(oggetti);
-        root.add(sorgenti);
+        if (sorgenti != null)
+            root.add(sorgenti);
         root.add(layouts);
 
         Iterator iter = this.getModule(idModulo).getObjects().iterateOggetto();
@@ -434,18 +439,21 @@ public class CtrlWorkspace {
             if (current.getType().getVal().equals("Video") || current.getType().getVal().equals("Audio"))
                 sourceOccupati.add(current.getObjectSequence().getVidAudProperties().getVidAudSource().getVal());
         }
-            
-        iter = this.getModule(idModulo).getSources().iterateSource();
-        while (iter.hasNext()){
-            //sorgente = tipo + username + numero
-            Source src = (Source)iter.next();
-            String sorgente = "["+src.getType().getVal()+"] "+ ((src.getUsername().getVal().equals(""))?"Source "+src.getId():src.getUsername().getVal()+" ("+src.getId()+")");
-            int status = 0;
-            if (sourceOccupati.contains("Source "+src.getId()+" "))
-                status = 1;
-            oggetto = new JIDStringNode(src.getId(),sorgente, status);
-            sorgenti.add(oggetto);
+        
+        if (sorgenti != null) {
+            iter = this.getModule(idModulo).getSources().iterateSource();
+            while (iter.hasNext()){
+                //sorgente = tipo + username + numero
+                Source src = (Source)iter.next();
+                String sorgente = "["+src.getType().getVal()+"] "+ ((src.getUsername().getVal().equals(""))?"Source "+src.getId():src.getUsername().getVal()+" ("+src.getId()+")");
+                int status = 0;
+                if (sourceOccupati.contains("Source "+src.getId()+" "))
+                    status = 1;
+                oggetto = new JIDStringNode(src.getId(),sorgente, status);
+                sorgenti.add(oggetto);
+            }
         }
+        
         try {
             //fa schifo però è per fare prima
             JList filenameList = ComponentFactory.createList(config.getModule(idModulo).getModuleFilename().getOptionsName(), config.getModule(idModulo).getModuleFilename().getVal(), true);
