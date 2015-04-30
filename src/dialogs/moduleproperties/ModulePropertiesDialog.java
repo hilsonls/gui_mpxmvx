@@ -77,7 +77,7 @@ public class ModulePropertiesDialog extends JDialog {
     private NgmServers ngmServers;
     private Protocols protocols;
     private CtrlActions ctrlActions;
-    private boolean showSources;
+    private boolean audioMeterProduct;
     
     public ModulePropertiesDialog(Frame frame, int idModulo) throws MVException {
         super(frame);
@@ -85,7 +85,7 @@ public class ModulePropertiesDialog extends JDialog {
         //memorizzo l'id del modulo;
         this.idModulo = idModulo;
         
-        showSources = (CtrlWorkspace.getInstance().getProductType(idModulo) != ProductType.ProductTypeAM);
+        audioMeterProduct = (CtrlWorkspace.getInstance().getProductType(idModulo) == ProductType.ProductTypeAM);
         
         this.videoCards = CtrlProtocol.getInstance().loadVideoCardsFromMV(idModulo);
         this.screen = CtrlWorkspace.getInstance().getModule(idModulo).getScreen();
@@ -127,7 +127,7 @@ public class ModulePropertiesDialog extends JDialog {
         
         boardsPanel = new BoardsPanel(videoCards, idModulo);
         screenPanel = new ScreenPanel(screen, idModulo);
-        if (showSources)
+        if (!audioMeterProduct)
             sourcePanel = new SourcePanel(sources);
         else
             sourcePanel = null;
@@ -136,7 +136,10 @@ public class ModulePropertiesDialog extends JDialog {
         gpisPanel = new GPIsPanel(gpis, idModulo);
         networkPanel = new NetworkPanel(network, idModulo, frame);
         ngm164ServerPanel = new Ngm164ServerPanel(ngmServers, idModulo, frame);
-        protocolsPanel = new ProtocolsPanel(protocols, idModulo, frame);
+        if (!audioMeterProduct)
+            protocolsPanel = new ProtocolsPanel(protocols, idModulo, frame);
+        else
+            protocolsPanel = null;
 
         
         
@@ -163,8 +166,10 @@ public class ModulePropertiesDialog extends JDialog {
         tabbedPane.setTitleAt(paneIndex++, "Network");
         tabbedPane.add(ngm164ServerPanel);
         tabbedPane.setTitleAt(paneIndex++, StyleInterface.getInstance().getDataXXNgm());
-        tabbedPane.add(protocolsPanel);
-        tabbedPane.setTitleAt(paneIndex++, "Protocols");
+        if (protocolsPanel != null) {
+            tabbedPane.add(protocolsPanel);
+            tabbedPane.setTitleAt(paneIndex++, "Protocols");
+        }
         
         tabbedPane.setSelectedComponent(boardsPanel);
         
@@ -196,7 +201,8 @@ public class ModulePropertiesDialog extends JDialog {
             audioOutputPanel.save();
             gpisPanel.save();
             networkPanel.save();
-            protocolsPanel.save();
+            if (protocolsPanel != null)
+                protocolsPanel.save();
             
             //OPERAZIONI RELATIVE AL SOURCE PANEL
             CtrlWorkspace.getInstance().saveSourcesUsernameToMV(idModulo);
