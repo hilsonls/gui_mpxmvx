@@ -135,7 +135,10 @@ public class ModulePropertiesDialog extends JDialog {
         audioOutputPanel = new AudioOutputPanel(audioOut, idModulo);
         gpisPanel = new GPIsPanel(gpis, idModulo);
         networkPanel = new NetworkPanel(network, idModulo, frame);
-        ngm164ServerPanel = new Ngm164ServerPanel(ngmServers, idModulo, frame);
+        if (!audioMeterProduct)
+            ngm164ServerPanel = new Ngm164ServerPanel(ngmServers, idModulo, frame);
+        else
+            ngm164ServerPanel = null;
         if (!audioMeterProduct)
             protocolsPanel = new ProtocolsPanel(protocols, idModulo, frame);
         else
@@ -164,8 +167,10 @@ public class ModulePropertiesDialog extends JDialog {
         tabbedPane.setTitleAt(paneIndex++, "GPIs");
         tabbedPane.add(networkPanel);
         tabbedPane.setTitleAt(paneIndex++, "Network");
-        tabbedPane.add(ngm164ServerPanel);
-        tabbedPane.setTitleAt(paneIndex++, StyleInterface.getInstance().getDataXXNgm());
+        if (ngm164ServerPanel != null) {
+            tabbedPane.add(ngm164ServerPanel);
+            tabbedPane.setTitleAt(paneIndex++, StyleInterface.getInstance().getDataXXNgm());
+        }
         if (protocolsPanel != null) {
             tabbedPane.add(protocolsPanel);
             tabbedPane.setTitleAt(paneIndex++, "Protocols");
