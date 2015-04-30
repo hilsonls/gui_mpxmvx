@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import controllori.CtrlWorkspace;
+import controllori.ProductType;
 import eccezioni.MVException;
 import gui.components.JPanelBGGradient;
 
@@ -29,19 +31,30 @@ public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
     private JScrollPane scroll;
     
     private static String[] pairTable;
+    
+    private boolean isAudioMeterProduct;
 
-    protected void init() throws MVException {
+    protected void init(int idModulo) throws MVException {
         setLayout(null);
         setBounds(1, 30, 400, 400);
         
+        isAudioMeterProduct = (CtrlWorkspace.getInstance().getProductType(idModulo) == ProductType.ProductTypeAM);
+        
         numOutputs = getAoutCount();
         mIL = new MyItemListener();
+        
+        int inputSourceColumnX = 100;
+        int pairNumberColumnX = inputSourceColumnX;
+        if (!isAudioMeterProduct)
+            pairNumberColumnX += 140;
+        int scrollPanelWidth = pairNumberColumnX + 120;
 
         inputSourceColumnLabel = new JLabel("Input source");
-        inputSourceColumnLabel.setBounds(110, 15, 80, 20);
-        add(inputSourceColumnLabel);
+        inputSourceColumnLabel.setBounds(inputSourceColumnX + 10, 15, 80, 20);
+        if (!isAudioMeterProduct)
+            add(inputSourceColumnLabel);
         pairNumberLabel = new JLabel("Pair number");
-        pairNumberLabel.setBounds(250, 15, 80, 20);
+        pairNumberLabel.setBounds(pairNumberColumnX + 10, 15, 80, 20);
         add(pairNumberLabel);
 
         outputLabel = new JLabel[numOutputs];
@@ -58,22 +71,23 @@ public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
             scrollPanel.add(outputLabel[i]);
             
             sourceCombo[i] = new JComboBox();
-            sourceCombo[i].setBounds(100, 16*2*i+8, 120, 20);
+            sourceCombo[i].setBounds(inputSourceColumnX, 16*2*i+8, 120, 20);
             sourceCombo[i].addItemListener(mIL);
-            scrollPanel.add(sourceCombo[i]);
+            if (!isAudioMeterProduct)
+                scrollPanel.add(sourceCombo[i]);
             
             pairCombo[i] = new JComboBox();
-            pairCombo[i].setBounds(240, 16*2*i+8, 120, 20);
+            pairCombo[i].setBounds(pairNumberColumnX, 16*2*i+8, 120, 20);
             scrollPanel.add(pairCombo[i]);
         }
         
-        scrollPanel.setPreferredSize(new Dimension(370, 32*numOutputs+8));
+        scrollPanel.setPreferredSize(new Dimension(scrollPanelWidth, 32*numOutputs+8));
         scrollPanel.setOpaque(false);
         scrollPanel.setBorder(null);
 
         scroll = new JScrollPane();
         scroll.setOpaque(false);
-        scroll.setBounds(-1, 32, 390, 386);
+        scroll.setBounds(-1, 32, scrollPanelWidth + 20, 386);
         scroll.getViewport().add(scrollPanel);
         scroll.getViewport().setOpaque(false);
         scroll.setBorder(null);
@@ -85,7 +99,10 @@ public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
             int aoutId = getAoutId(i);
             int aoutSource = getAoutSource(i);
             
-            sourceCombo[aoutId].setSelectedIndex(aoutSource);
+            if (isAudioMeterProduct)
+                sourceCombo[aoutId].setSelectedItem("External Audio");
+            else
+                sourceCombo[aoutId].setSelectedIndex(aoutSource);
             updatePairComboContents(aoutId);
             int selectedIndex = getAoutPair(i) + 1;  // -1 = None, 0 = Pair 1+2, 1 = Pair 2+3 etc.
             if (selectedIndex < pairCombo[aoutId].getItemCount()) {
@@ -117,7 +134,7 @@ public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
         buildPairTable();
         
         int itemCount = pairCombo[id].getItemCount();
-        int expectedItemCount = sourceCombo[id].getSelectedIndex() == NUM_VIDEO_SOURCES ? NUM_EXTERNAL_PAIRS + 1 : NUM_EMBEDDED_PAIRS + 1;
+        int expectedItemCount = sourceCombo[id].getSelectedItem().toString().equals("External Audio") ? NUM_EXTERNAL_PAIRS + 1 : NUM_EMBEDDED_PAIRS + 1;
         if (itemCount != expectedItemCount) {
             int origItemSelected = pairCombo[id].getSelectedIndex();
             pairCombo[id].removeAllItems();

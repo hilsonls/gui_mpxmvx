@@ -131,8 +131,8 @@ public class ModulePropertiesDialog extends JDialog {
             sourcePanel = new SourcePanel(sources);
         else
             sourcePanel = null;
-        audioMonitorPanel = new AudioMonitorPanel(audioMonitor);
-        audioOutputPanel = new AudioOutputPanel(audioOut);
+        audioMonitorPanel = new AudioMonitorPanel(audioMonitor, idModulo);
+        audioOutputPanel = new AudioOutputPanel(audioOut, idModulo);
         gpisPanel = new GPIsPanel(gpis, idModulo);
         networkPanel = new NetworkPanel(network, idModulo, frame);
         ngm164ServerPanel = new Ngm164ServerPanel(ngmServers, idModulo, frame);

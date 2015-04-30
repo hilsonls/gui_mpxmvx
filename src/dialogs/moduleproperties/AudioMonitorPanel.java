@@ -11,9 +11,9 @@ public class AudioMonitorPanel extends AudioOutputPanelGeneric {
     
     private AudioMonitor bean;
 
-    public AudioMonitorPanel(AudioMonitor bean) throws MVException {
+    public AudioMonitorPanel(AudioMonitor bean, int idModulo) throws MVException {
         this.bean = bean;
-        init();
+        init(idModulo);
     }
     
     @Override public void save() {
