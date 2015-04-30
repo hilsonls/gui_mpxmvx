@@ -2,14 +2,18 @@ package gui;
 
 import bean.AspectRatio;
 import eccezioni.MVException;
+
 import java.awt.*;
 import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
+
 import bean.Oggetto;
 import bean.Source;
 import controllori.CtrlProtocol;
 import controllori.CtrlWorkspace;
+import controllori.ProductType;
 import gui.style.StyleInterface;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,10 +41,13 @@ public class TileObject {
     private double parentLockRatioX;
     private double parentLockRatioY;
     private boolean valid;
+    private boolean isAudioMeterProduct;
 
     public TileObject(TilesWorkspace tilesWorkspace, Oggetto bean) {
 
         this.tilesWorkspace = tilesWorkspace;
+        
+        isAudioMeterProduct = (CtrlWorkspace.getInstance().getProductType(CtrlActions.getInstance().getIdModulo()) == ProductType.ProductTypeAM);
 
         loadFromBean(bean);
         //colore del testo
@@ -254,7 +261,7 @@ public class TileObject {
         long fontSize = (long) tileRect.getWidth() / 47 + 8;
         Font font = new Font("Lucida", Font.PLAIN, (int) fontSize);
         String itemName = getItemName();
-        if(getItemType().equals("Video")||getItemType().equals("Audio")){
+        if (!isAudioMeterProduct && (getItemType().equals("Video")||getItemType().equals("Audio"))) {
             String sorgente = getBean().getObjectSequence().getVidAudProperties().getVidAudSource().getVal();
             int idsrc = Integer.valueOf(sorgente.replaceAll("Source ","").trim());
             Source src = CtrlWorkspace.getInstance().getSource(CtrlActions.getInstance().getIdModulo(), idsrc);
