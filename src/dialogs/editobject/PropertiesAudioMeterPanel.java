@@ -10,6 +10,7 @@ import bean.MeterSource;
 import bean.AudioSequenceItem;
 import eccezioni.MVException;
 import gui.ComponentFactory;
+import gui.CtrlActions;
 import gui.components.JCheckBoxTransBG;
 import gui.components.JPanelBGGradient;
 import gui.components.JSliderPanel;
@@ -35,6 +36,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+
+import controllori.CtrlWorkspace;
+import controllori.ProductType;
 
 public class PropertiesAudioMeterPanel extends JPanelBGGradient{
     private Audio bean;
@@ -103,11 +107,15 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
     
     private JCheckBox displayOutsideCheck;
     
+    private boolean isAmProduct;
+    
     public PropertiesAudioMeterPanel(Audio bean) throws MVException {
         VGroupLayout layout = new VGroupLayout(this);
         setLayout(layout);
         
         this.bean = bean;
+        
+        isAmProduct = (CtrlWorkspace.getInstance().getProductType(CtrlActions.getInstance().getIdModulo()) == ProductType.ProductTypeAM);
 
         scaleLabel = new JLabel("Scale type");
         scaleCombo = ComponentFactory.createComboBox(bean.getScale().getOptionsName(), bean.getScale().getVal());
@@ -307,11 +315,17 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
             
             sourcePairItoSMap.put(-1, "None");
             
-            for (int i = 0; i < NUM_EMBEDDED_PAIRS; i++) {
-                sourcePairItoSMap.put(i, "Embedded " + (i*2+1) + "+" + (i*2+2));
-            }
-            for (int i = 0; i < NUM_EXTERNAL_PAIRS; i++) {
-                sourcePairItoSMap.put(i + NUM_EMBEDDED_PAIRS, "External " + (i*2+1) + "+" + (i*2+2));
+            if (!isAmProduct) {
+                for (int i = 0; i < NUM_EMBEDDED_PAIRS; i++) {
+                    sourcePairItoSMap.put(i, "Embedded " + (i*2+1) + "+" + (i*2+2));
+                }
+                for (int i = 0; i < NUM_EXTERNAL_PAIRS; i++) {
+                    sourcePairItoSMap.put(i + NUM_EMBEDDED_PAIRS, "External " + (i*2+1) + "+" + (i*2+2));
+                }
+            } else {
+                for (int i = 0; i < NUM_EXTERNAL_PAIRS; i++) {
+                    sourcePairItoSMap.put(i + NUM_EMBEDDED_PAIRS, "Channel " + (i*2+1) + "+" + (i*2+2));
+                }
             }
             
             Iterator<Entry<Integer, String>> it = sourcePairItoSMap.entrySet().iterator();
@@ -328,7 +342,7 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
 
         Set<String> items = sourcePairStoIMap.keySet();
 
-        for (int i = 0; i < NUM_EMBEDDED_PAIRS; i++) {
+        for (int i = 0; i < NUM_METER_PAIRS; i++) {
             sourcePairCombo[i] = new JComboBox();
             Iterator<String> it = items.iterator();
             while (it.hasNext()) {
@@ -337,7 +351,7 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         }
         
         String[] item;
-        item = new String[NUM_EMBEDDED_PAIRS];
+        item = new String[NUM_METER_PAIRS];
         item[0] = sourcePairItoSMap.get(bean.getMeterSource().getP1());
         item[1] = sourcePairItoSMap.get(bean.getMeterSource().getP2());
         item[2] = sourcePairItoSMap.get(bean.getMeterSource().getP3());
@@ -347,7 +361,7 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         item[6] = sourcePairItoSMap.get(bean.getMeterSource().getP7());
         item[7] = sourcePairItoSMap.get(bean.getMeterSource().getP8());
         
-        for (int i = 0; i < NUM_EMBEDDED_PAIRS; i++) {
+        for (int i = 0; i < NUM_METER_PAIRS; i++) {
             if (item[i] == null) {
                 sourcePairCombo[i].setSelectedIndex(0);
             } else {
