@@ -8,6 +8,7 @@ package dialogs.editobject;
 import bean.Audio;
 import bean.MeterSource;
 import bean.AudioSequenceItem;
+import bean.VidAudProperties;
 import eccezioni.MVException;
 import gui.ComponentFactory;
 import gui.CtrlActions;
@@ -42,6 +43,8 @@ import controllori.ProductType;
 
 public class PropertiesAudioMeterPanel extends JPanelBGGradient{
     private Audio bean;
+    private VidAudProperties vidAudPropBean;
+    private PropertiesAudioPanel parentAudioPanel;
     
     private static final int NUM_METER_PAIRS = 8;
     private static final int NUM_EMBEDDED_PAIRS = 8;
@@ -107,13 +110,17 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
     
     private JCheckBox displayOutsideCheck;
     
+    private JCheckBox autoFitCheck;
+    
     private boolean isAmProduct;
     
-    public PropertiesAudioMeterPanel(Audio bean) throws MVException {
+    public PropertiesAudioMeterPanel(PropertiesAudioPanel parentAudioPanel, Audio bean) throws MVException {
         VGroupLayout layout = new VGroupLayout(this);
         setLayout(layout);
         
         this.bean = bean;
+        this.parentAudioPanel = parentAudioPanel;
+        this.vidAudPropBean = parentAudioPanel.getVidAudPropBean();
         
         isAmProduct = (CtrlWorkspace.getInstance().getProductType(CtrlActions.getInstance().getIdModulo()) == ProductType.ProductTypeAM);
 
@@ -122,6 +129,10 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         
         scalePosLabel = new JLabel("Scale label position");
         scalePosCombo = ComponentFactory.createComboBox(bean.getScalePosition().getOptionsName(), bean.getScalePosition().getVal());
+        
+        autoFitCheck = new JCheckBoxTransBG("Auto fit");
+        autoFitCheck.setSelected(vidAudPropBean.isAutoFitAudioMeters());
+        autoFitCheck.addItemListener(new AutoFitCheckListener());
         
         vposSlider = new JSliderPanel(bean.getYpos().getMin(), bean.getYpos().getMax(), bean.getYpos().getVal());
         vposSlider.setOrientation(SwingConstants.VERTICAL);
@@ -166,6 +177,7 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         VGroupLayout positionSizeLayout = new VGroupLayout(positionSizePanel);
         positionSizePanel.setLayout(positionSizeLayout);
         positionSizePanel.setOpaque(false);
+        positionSizeLayout.add(autoFitCheck);
         positionSizeLayout.add(positionPanel);
         positionSizeLayout.add(sizePanel);
         
@@ -535,7 +547,26 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         public void itemStateChanged(ItemEvent e) {
             check2ndRowEnablingConditions();
         }
-
     }
     
+    private class AutoFitCheckListener implements ItemListener {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            boolean autoFit = autoFitCheck.isSelected();
+            vposSlider.setEnabled(!autoFit);
+            hposSlider.setEnabled(!autoFit);
+            vsizeSlider.setEnabled(!autoFit);
+            widthSlider.setEnabled(!autoFit);
+            parentAudioPanel.updateAutoFit(autoFit);
+        }
+    }
+
+    public boolean isAutoFit() {
+        return autoFitCheck.isSelected();
+    }
+    
+    public void updateAutoFit(boolean b) {
+        if (autoFitCheck.isSelected() != b)
+            autoFitCheck.setSelected(b);
+    }
 }

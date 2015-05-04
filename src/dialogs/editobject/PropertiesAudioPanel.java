@@ -19,10 +19,12 @@ import javax.swing.JTabbedPane;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 import bean.Audio;
+import bean.VidAudProperties;
 import eccezioni.MVException;
 
 public class PropertiesAudioPanel extends JPanelBGGradient {
     private Audio[] bean;
+    private VidAudProperties vidAudPropBean;
     
     private static final int NUM_METERS = 2;
     
@@ -35,14 +37,23 @@ public class PropertiesAudioPanel extends JPanelBGGradient {
     private PropertiesAudioMeterPanel [] propAudioMeterPanel;
     
     private VGroupLayout layout;
-    
-    public PropertiesAudioPanel(Audio bean0, Audio bean1) throws MVException {
+
+    public PropertiesAudioPanel(VidAudProperties vidAudPropBean) throws MVException {
         layout = new VGroupLayout(this);
         setLayout(layout);
         
+        this.vidAudPropBean = vidAudPropBean;
         this.bean = new Audio[NUM_METERS];
-        this.bean[0] = bean0;
-        this.bean[1] = bean1;
+        
+        Audio audioBean0 = vidAudPropBean.getAudio(0);
+        Audio audioBean1 = vidAudPropBean.getAudio(1);
+        if (audioBean0.getId() < audioBean1.getId()) {
+            this.bean[0] = audioBean0;
+            this.bean[1] = audioBean1;
+        } else {
+            this.bean[0] = audioBean1;
+            this.bean[1] = audioBean0;
+        }
         
         showMeter1 = new JCheckBoxTransBG("Display meter 1");
         showMeter1.setSelected(bean[0].getVisible().getVal());
@@ -59,7 +70,7 @@ public class PropertiesAudioPanel extends JPanelBGGradient {
 
         for (int i = 0; i < NUM_METERS; i++) {
             // TODO change bean to bean.getAudioMeter...
-            propAudioMeterPanel[i] = new PropertiesAudioMeterPanel(bean[i]);
+            propAudioMeterPanel[i] = new PropertiesAudioMeterPanel(this, bean[i]);
             propAudioMeterScrollPane[i] = new JScrollPane(propAudioMeterPanel[i]);
             tabbedPane.addTab("Audio meter " + (i+1), propAudioMeterScrollPane[i]);
         }
@@ -86,8 +97,18 @@ public class PropertiesAudioPanel extends JPanelBGGradient {
     public void save() {
         bean[0].getVisible().setVal(showMeter1.isSelected());
         bean[1].getVisible().setVal(showMeter2.isSelected());
+        vidAudPropBean.setAutoFitAudioMeters(propAudioMeterPanel[0].isAutoFit());
         propAudioMeterPanel[0].save();
         propAudioMeterPanel[1].save();
     }
 
+    public void updateAutoFit(boolean autoFit) {
+        for (int i = 0; i < NUM_METERS; i++) {
+            propAudioMeterPanel[i].updateAutoFit(autoFit);
+        }
+    }
+    
+    public VidAudProperties getVidAudPropBean() {
+        return vidAudPropBean;
+    }
 }

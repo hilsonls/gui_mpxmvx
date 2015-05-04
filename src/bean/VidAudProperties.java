@@ -27,6 +27,16 @@ public class VidAudProperties implements java.io.Serializable {
     //--------------------------/
 
     /**
+     * Field _autoFitAudioMeters.
+     */
+    private boolean _autoFitAudioMeters;
+
+    /**
+     * keeps track of state for field: _autoFitAudioMeters
+     */
+    private boolean _has_autoFitAudioMeters;
+
+    /**
      * Field _vidAudSource.
      */
     private bean.VidAudSource _vidAudSource;
@@ -85,6 +95,13 @@ public class VidAudProperties implements java.io.Serializable {
     }
 
     /**
+     */
+    public void deleteAutoFitAudioMeters(
+    ) {
+        this._has_autoFitAudioMeters= false;
+    }
+
+    /**
      * Method enumerateAudio.
      * 
      * @return an Enumeration over all possible elements of this
@@ -140,6 +157,16 @@ public class VidAudProperties implements java.io.Serializable {
     }
 
     /**
+     * Returns the value of field 'autoFitAudioMeters'.
+     * 
+     * @return the value of field 'AutoFitAudioMeters'.
+     */
+    public boolean getAutoFitAudioMeters(
+    ) {
+        return this._autoFitAudioMeters;
+    }
+
+    /**
      * Returns the value of field 'error'.
      * 
      * @return the value of field 'Error'.
@@ -157,6 +184,26 @@ public class VidAudProperties implements java.io.Serializable {
     public bean.VidAudSource getVidAudSource(
     ) {
         return this._vidAudSource;
+    }
+
+    /**
+     * Method hasAutoFitAudioMeters.
+     * 
+     * @return true if at least one AutoFitAudioMeters has been adde
+     */
+    public boolean hasAutoFitAudioMeters(
+    ) {
+        return this._has_autoFitAudioMeters;
+    }
+
+    /**
+     * Returns the value of field 'autoFitAudioMeters'.
+     * 
+     * @return the value of field 'AutoFitAudioMeters'.
+     */
+    public boolean isAutoFitAudioMeters(
+    ) {
+        return this._autoFitAudioMeters;
     }
 
     /**
@@ -281,6 +328,18 @@ public class VidAudProperties implements java.io.Serializable {
         for (int i = 0; i < vAudioArray.length; i++) {
                 this._audioList.add(vAudioArray[i]);
         }
+    }
+
+    /**
+     * Sets the value of field 'autoFitAudioMeters'.
+     * 
+     * @param autoFitAudioMeters the value of field
+     * 'autoFitAudioMeters'.
+     */
+    public void setAutoFitAudioMeters(
+            final boolean autoFitAudioMeters) {
+        this._autoFitAudioMeters = autoFitAudioMeters;
+        this._has_autoFitAudioMeters = true;
     }
 
     /**

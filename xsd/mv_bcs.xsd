@@ -951,6 +951,10 @@
 			                                                </complexType>
 			                                            </element>
 			                                        </sequence>
+			                                        <attribute
+			                                            name="autoFitAudioMeters"
+			                                            type="boolean">
+			                                        </attribute>
 			                                    </complexType>
 			                                </element>
 			                                <element
