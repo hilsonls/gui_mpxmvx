@@ -42,7 +42,7 @@ public class ScreenPanel extends JPanelBGGradient{
         resolutionLabel.setBounds(20, 20, 80, 20);
         add(resolutionLabel);
         resolutionCombo = ComponentFactory.createComboBox(bean.getResolution().getOptionsName(), bean.getResolution().getVal());
-        resolutionCombo.setBounds(120, 20, 180, 20);
+        resolutionCombo.setBounds(120, 20, 300, 20);
         add(resolutionCombo);
         oldHres =  bean.getResolution().getHres();
         oldVres =  bean.getResolution().getVres();
