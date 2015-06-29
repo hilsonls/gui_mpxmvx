@@ -19,6 +19,7 @@ import gui.components.VGroupLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -33,6 +34,13 @@ public class PropertiesVideoPanel extends JPanelBGGradient{
     private JComboBox sourceCombo;
     
     private JCheckBox allScreenCheckBox;
+    
+    private bean.InputResolutionDisplay beanInRes;
+    private JCheckBox resolutionDisplayCheckBox;
+    private JLabel resolutionSecondsLabel;
+    private JTextField resolutionSecondsField;
+    private JLabel resolutionColorLabel;
+    private JComboBox resolutionColorCombo;
     
     public PropertiesVideoPanel(VidAudSource bean, VideoProperties beanVideo) throws MVException {
         VGroupLayout layout = new VGroupLayout(this);
@@ -51,6 +59,22 @@ public class PropertiesVideoPanel extends JPanelBGGradient{
         
         layout.addRow(new Component[] {sourceLabel, sourceCombo});
         layout.add(allScreenCheckBox);
+
+        beanInRes = beanVideo.getInputResolutionDisplay();
+        if (beanInRes != null) {
+            resolutionDisplayCheckBox = new JCheckBox("Display resolution");
+            resolutionDisplayCheckBox.setSelected(beanInRes.isOn());
+            resolutionDisplayCheckBox.setOpaque(false);
+            resolutionSecondsLabel = new JLabel("Duration of display (secs)");
+            resolutionSecondsField = ComponentFactory.createTextField(beanInRes.getDuration(), 0, 0x7fffffff);
+            resolutionColorLabel = new JLabel("Colour");
+            resolutionColorCombo = ComponentFactory.createComboBox(beanInRes.getColour().getOptionsName(), beanInRes.getColour().getVal());
+            
+            layout.addGap();
+            layout.add(resolutionDisplayCheckBox);
+            layout.addRow(new Component[] {resolutionSecondsLabel, resolutionSecondsField});
+            layout.addRow(new Component[] {resolutionColorLabel, resolutionColorCombo});
+        }
     }
 
     public void enableDisplayOnAllCheckBox(boolean enable){
@@ -68,5 +92,10 @@ public class PropertiesVideoPanel extends JPanelBGGradient{
     public void save() {
         bean.setVal(sourceCombo.getSelectedItem().toString());
         beanVideo.getDisplayOnAllScreens().setVal(allScreenCheckBox.isSelected());
+        if (beanInRes != null) {
+            beanInRes.setOn(resolutionDisplayCheckBox.isSelected());
+            beanInRes.getColour().setVal(resolutionColorCombo.getSelectedItem().toString());
+            beanInRes.setDuration(Integer.valueOf(resolutionSecondsField.getText()));
+        }
     }
 }

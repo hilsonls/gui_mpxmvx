@@ -245,6 +245,42 @@ public class VideoPropertiesDescriptor extends org.exolab.castor.xml.util.XMLCla
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
+        //-- _inputResolutionDisplay
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.InputResolutionDisplay.class, "_inputResolutionDisplay", "inputResolutionDisplay", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                VideoProperties target = (VideoProperties) object;
+                return target.getInputResolutionDisplay();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    VideoProperties target = (VideoProperties) object;
+                    target.setInputResolutionDisplay( (bean.InputResolutionDisplay) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.InputResolutionDisplay");
+        desc.setHandler(handler);
+        desc.setRequired(true);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _inputResolutionDisplay
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(1);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
     }
 
 

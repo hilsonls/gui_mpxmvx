@@ -1,4 +1,4 @@
-#Tue Jun 16 13:57:42 AEST 2015
+#Sun Jun 28 22:45:39 AEST 2015
 bean.ObjectErrorMsgSize=bean.descriptors.ObjectErrorMsgSizeDescriptor
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
@@ -211,6 +211,7 @@ bean.SyncMode=bean.descriptors.SyncModeDescriptor
 bean.Delay=bean.descriptors.DelayDescriptor
 bean.AudioAlarmSettings=bean.descriptors.AudioAlarmSettingsDescriptor
 bean.Umd=bean.descriptors.UmdDescriptor
+bean.InputResolutionDisplay=bean.descriptors.InputResolutionDisplayDescriptor
 bean.Y=bean.descriptors.YDescriptor
 bean.X=bean.descriptors.XDescriptor
 bean.GpiIn=bean.descriptors.GpiInDescriptor

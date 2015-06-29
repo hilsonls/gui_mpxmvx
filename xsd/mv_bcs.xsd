@@ -1264,6 +1264,24 @@
 			                                                    </sequence>
 			                                                </complexType>
 			                                            </element>
+			                                            <element
+			                                                name="inputResolutionDisplay">
+			                                                <complexType>
+			                                                    <sequence>
+			                                                        <element
+			                                                            ref="tns:colour">
+			                                                        </element>
+			                                                    </sequence>
+			                                                    <attribute
+			                                                        name="on"
+			                                                        type="boolean">
+			                                                    </attribute>
+			                                                    <attribute
+			                                                        name="duration"
+			                                                        type="int">
+			                                                    </attribute>
+			                                                </complexType>
+			                                            </element>
 			                                        </sequence>
 			                                    </complexType>
 			                                </element>

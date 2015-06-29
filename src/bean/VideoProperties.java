@@ -51,6 +51,11 @@ public class VideoProperties implements java.io.Serializable {
      */
     private bean.Sag _sag;
 
+    /**
+     * Field _inputResolutionDisplay.
+     */
+    private bean.InputResolutionDisplay _inputResolutionDisplay;
+
 
       //----------------/
      //- Constructors -/
@@ -73,6 +78,16 @@ public class VideoProperties implements java.io.Serializable {
     public bean.DisplayOnAllScreens getDisplayOnAllScreens(
     ) {
         return this._displayOnAllScreens;
+    }
+
+    /**
+     * Returns the value of field 'inputResolutionDisplay'.
+     * 
+     * @return the value of field 'InputResolutionDisplay'.
+     */
+    public bean.InputResolutionDisplay getInputResolutionDisplay(
+    ) {
+        return this._inputResolutionDisplay;
     }
 
     /**
@@ -171,6 +186,17 @@ public class VideoProperties implements java.io.Serializable {
     public void setDisplayOnAllScreens(
             final bean.DisplayOnAllScreens displayOnAllScreens) {
         this._displayOnAllScreens = displayOnAllScreens;
+    }
+
+    /**
+     * Sets the value of field 'inputResolutionDisplay'.
+     * 
+     * @param inputResolutionDisplay the value of field
+     * 'inputResolutionDisplay'.
+     */
+    public void setInputResolutionDisplay(
+            final bean.InputResolutionDisplay inputResolutionDisplay) {
+        this._inputResolutionDisplay = inputResolutionDisplay;
     }
 
     /**
