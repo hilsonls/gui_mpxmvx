@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -63,6 +65,8 @@ public class NtpServerAddDialog extends JDialog {
         getContentPane().add(buttonsPanel, "South");
         
         ntpServerAddPanel = new NtpServerAddPanel(bean);
+        ntpServerAddPanel.getHostField().getDocument().addDocumentListener(new HostActionListener());
+        okButton.setEnabled(!ntpServerAddPanel.getHostField().getText().isEmpty());
         getContentPane().add(ntpServerAddPanel, "Center");
         setVisible(true);
         
@@ -77,6 +81,24 @@ public class NtpServerAddDialog extends JDialog {
                 okAction();
             else if(obj == cancelButton)
                 cancelAction();
+        }
+    }
+    
+    private class HostActionListener implements DocumentListener {
+
+        @Override
+        public void changedUpdate(DocumentEvent arg0) {
+            okButton.setEnabled(!ntpServerAddPanel.getHostField().getText().isEmpty());
+        }
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            okButton.setEnabled(!ntpServerAddPanel.getHostField().getText().isEmpty());
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            okButton.setEnabled(!ntpServerAddPanel.getHostField().getText().isEmpty());
         }
     }
     

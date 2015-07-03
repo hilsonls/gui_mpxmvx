@@ -2,7 +2,6 @@ package dialogs.systime;
 
 import bean.NtpServer;
 import gui.components.JPanelBGGradient;
-import gui.components.NotEmptyTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -26,7 +25,7 @@ public class NtpServerAddPanel extends JPanelBGGradient{
         hostLabel.setText("NTP server name");
         hostLabel.setBounds(20, 20, 120, 20);
         add(hostLabel);
-        hostField = new NotEmptyTextField("NTP Server must have a name");
+        hostField = new JTextField();
         hostField.setText("");
         hostField.setEditable(true);
         hostField.setBounds(160, 20, 180, 20);
@@ -37,23 +36,7 @@ public class NtpServerAddPanel extends JPanelBGGradient{
         bean.setVal(hostField.getText());        
     }
 
-    public void verifyFields() {
-        hostField.requestFocusInWindow();
-        //getIpAddrField().requestFocusInWindow();
-        //getAliasField().requestFocusInWindow();
-       
+    public JTextField getHostField() {
+        return hostField;
     }
-/*
-    public JTextField getIpAddrField() {
-        return ipAddrField;
-    }
-
-    public JTextField getAliasField() {
-        return aliasField;
-    }
-  */  
-    
-    
-    
-    
 }
