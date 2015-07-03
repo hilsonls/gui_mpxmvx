@@ -19,6 +19,7 @@ import bean.GpiOutTaskTable;
 import bean.Gpis;
 import bean.Layout;
 import bean.LiveRead;
+import bean.LogFiles;
 import bean.Module;
 import bean.ModuleFilename;
 import bean.ModuleValid;
@@ -1577,6 +1578,25 @@ public class CtrlProtocol {
             throw new MVException("Xml validation error");
         }
 
+        return ret;
+    }
+    
+    public LogFiles queryLogFiles(int idModulo) throws MVException {
+        LogFiles ret = null;
+        String xmlRequest;
+        xmlRequest = "<logFiles>query</logFiles>";
+        BufferedReader response = sendRequest(xmlRequest);
+        
+        try {
+            ret = LogFiles.unmarshal(response);
+        } catch (MarshalException ex) {
+            ex.printStackTrace();
+            throw new MVException("Unmarshal error");
+        } catch (ValidationException ex) {
+            ex.printStackTrace();
+            throw new MVException("Xml validation error");
+        }
+        
         return ret;
     }
 

@@ -25,6 +25,20 @@
 		</complexType>
 	</element>
 
+	<element name="logFiles">
+		<complexType>
+			<sequence>
+			    <element name="logFile" maxOccurs="unbounded" minOccurs="0">
+                    <complexType>
+                        <sequence>
+                            <element name="logContent" type="string" maxOccurs="1" minOccurs="1"></element>
+                        </sequence>
+                        <attribute name="name" type="string"></attribute>
+                    </complexType>
+			    </element>
+			</sequence>
+		</complexType>
+	</element>
 
 	<element name="module">
 		<complexType>

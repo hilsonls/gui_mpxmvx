@@ -1,4 +1,4 @@
-#Sun Jun 28 22:45:39 AEST 2015
+#Tue Jun 30 22:19:12 AEST 2015
 bean.ObjectErrorMsgSize=bean.descriptors.ObjectErrorMsgSizeDescriptor
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
@@ -141,6 +141,7 @@ bean.SplitBars=bean.descriptors.SplitBarsDescriptor
 bean.FrontButton=bean.descriptors.FrontButtonDescriptor
 bean.Tally=bean.descriptors.TallyDescriptor
 bean.Visible=bean.descriptors.VisibleDescriptor
+bean.LogFile=bean.descriptors.LogFileDescriptor
 bean.ObjectZOrder=bean.descriptors.ObjectZOrderDescriptor
 bean.Sources=bean.descriptors.SourcesDescriptor
 bean.NumScreens=bean.descriptors.NumScreensDescriptor
@@ -202,6 +203,7 @@ bean.PhaseAlarm=bean.descriptors.PhaseAlarmDescriptor
 bean.TtIndicator=bean.descriptors.TtIndicatorDescriptor
 bean.SierraRouter=bean.descriptors.SierraRouterDescriptor
 bean.GpiOutTaskTable=bean.descriptors.GpiOutTaskTableDescriptor
+bean.LogFiles=bean.descriptors.LogFilesDescriptor
 bean.UmdText=bean.descriptors.UmdTextDescriptor
 bean.Protocols=bean.descriptors.ProtocolsDescriptor
 bean.Sag=bean.descriptors.SagDescriptor

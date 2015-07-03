@@ -19,6 +19,7 @@ public class MenuHelp{
     private JMenu menuInstance = null;
     
     private JMenuItemBGGradient aboutItem;
+    private JMenuItemBGGradient logItem;
 
     //pattern Singleton
     public static MenuHelp getInstance() {
@@ -52,12 +53,14 @@ public class MenuHelp{
 
         menuInstance.setText("Help");
         aboutItem.setText("About");
+        logItem.setText("Logging");
         
 
     }
 
     private void setActionCommand() {
         aboutItem.setActionCommand("About");
+        logItem.setActionCommand("Logging");
         
     }
 
@@ -70,6 +73,7 @@ public class MenuHelp{
         MyMenuActionListener listener = MyMenuActionListener.getInstance();
 
         aboutItem.addActionListener(listener);
+        logItem.addActionListener(listener);
         
     }
 
@@ -77,11 +81,13 @@ public class MenuHelp{
 
         
         aboutItem = new JMenuItemBGGradient();
+        logItem = new JMenuItemBGGradient();
 
     }
 
     private void addMenuItems() {
         menuInstance.add(aboutItem);
+        menuInstance.add(logItem);
         
     }
 
