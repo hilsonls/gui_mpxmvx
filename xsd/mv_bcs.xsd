@@ -1779,6 +1779,9 @@
 			                <element name="genlock"
 			                    type="tns:objectBooleanProperty">
 			                </element>
+			                <element name="hdcp"
+                                type="tns:objectBooleanProperty">
+                            </element>
 			            </sequence>
 			        </complexType>
 			    </element>

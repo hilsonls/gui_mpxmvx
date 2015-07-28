@@ -26,6 +26,7 @@ public class ScreenPanel extends JPanelBGGradient{
     
     private JCheckBox genlockCheck;
     
+    private JCheckBox hdcpCheck;
     
     public int oldHres;
     public int oldVres;
@@ -62,6 +63,14 @@ public class ScreenPanel extends JPanelBGGradient{
         genlockCheck.setBounds(20, 100, 180, 20);
         genlockCheck.setSelected(bean.getGenlock().getVal());
         add(genlockCheck);
+        
+        if (bean.getHdcp() != null) {
+            hdcpCheck = new JCheckBoxTransBG();
+            hdcpCheck.setText("Enable HDCP");
+            hdcpCheck.setBounds(20, 130, 180, 20);
+            hdcpCheck.setSelected(bean.getHdcp().getVal());
+            add(hdcpCheck);
+        }
     }
     
     public void save() {
@@ -69,5 +78,7 @@ public class ScreenPanel extends JPanelBGGradient{
         bean.getResolution().setVal(resolutionCombo.getSelectedItem().toString());
         bean.getModuleScreenAspectRatio().setVal(aspectCombo.getSelectedItem().toString());
         bean.getGenlock().setVal(genlockCheck.isSelected());
+        if (bean.getHdcp() != null)
+            bean.getHdcp().setVal(hdcpCheck.isSelected());
     }
 }

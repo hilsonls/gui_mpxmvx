@@ -46,6 +46,11 @@ public class Screen implements java.io.Serializable {
      */
     private bean.Genlock _genlock;
 
+    /**
+     * Field _hdcp.
+     */
+    private bean.Hdcp _hdcp;
+
 
       //----------------/
      //- Constructors -/
@@ -68,6 +73,16 @@ public class Screen implements java.io.Serializable {
     public bean.Genlock getGenlock(
     ) {
         return this._genlock;
+    }
+
+    /**
+     * Returns the value of field 'hdcp'.
+     * 
+     * @return the value of field 'Hdcp'.
+     */
+    public bean.Hdcp getHdcp(
+    ) {
+        return this._hdcp;
     }
 
     /**
@@ -155,6 +170,16 @@ public class Screen implements java.io.Serializable {
     public void setGenlock(
             final bean.Genlock genlock) {
         this._genlock = genlock;
+    }
+
+    /**
+     * Sets the value of field 'hdcp'.
+     * 
+     * @param hdcp the value of field 'hdcp'.
+     */
+    public void setHdcp(
+            final bean.Hdcp hdcp) {
+        this._hdcp = hdcp;
     }
 
     /**

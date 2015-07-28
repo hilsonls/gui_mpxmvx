@@ -213,6 +213,42 @@ public class ScreenDescriptor extends org.exolab.castor.xml.util.XMLClassDescrip
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
+        //-- _hdcp
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Hdcp.class, "_hdcp", "hdcp", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Screen target = (Screen) object;
+                return target.getHdcp();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Screen target = (Screen) object;
+                    target.setHdcp( (bean.Hdcp) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.Hdcp");
+        desc.setHandler(handler);
+        desc.setRequired(true);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _hdcp
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(1);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
     }
 
 
