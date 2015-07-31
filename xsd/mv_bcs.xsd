@@ -1804,6 +1804,16 @@
 			            </sequence>
 			        </complexType>
 			    </element>
+                <element name="embAudioOut" maxOccurs="unbounded" minOccurs="0">
+                    <complexType>
+                        <sequence>
+                            <element ref="tns:aout"
+                                maxOccurs="unbounded" minOccurs="1">
+                            </element>
+                        </sequence>
+                        <attribute name="id" type="int"></attribute>
+                    </complexType>
+                </element>
 			    <element name="network" maxOccurs="1" minOccurs="0">
 			        <complexType>
 			            <sequence>

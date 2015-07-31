@@ -518,6 +518,50 @@ public class ModuleDescriptor extends org.exolab.castor.xml.util.XMLClassDescrip
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
+        //-- _embAudioOutList
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.EmbAudioOut.class, "_embAudioOutList", "embAudioOut", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Module target = (Module) object;
+                return target.getEmbAudioOut();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Module target = (Module) object;
+                    target.addEmbAudioOut( (bean.EmbAudioOut) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public void resetValue(Object object) throws IllegalStateException, IllegalArgumentException {
+                try {
+                    Module target = (Module) object;
+                    target.removeAllEmbAudioOut();
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("list");
+        desc.setComponentType("bean.EmbAudioOut");
+        desc.setHandler(handler);
+        desc.setMultivalued(true);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _embAudioOutList
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(0);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
         //-- _network
         desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Network.class, "_network", "network", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {

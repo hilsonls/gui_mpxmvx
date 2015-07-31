@@ -97,6 +97,11 @@ public class Module implements java.io.Serializable {
     private bean.AudioOut _audioOut;
 
     /**
+     * Field _embAudioOutList.
+     */
+    private java.util.List _embAudioOutList;
+
+    /**
      * Field _network.
      */
     private bean.Network _network;
@@ -178,6 +183,7 @@ public class Module implements java.io.Serializable {
 
     public Module() {
         super();
+        this._embAudioOutList = new java.util.ArrayList();
     }
 
 
@@ -186,10 +192,49 @@ public class Module implements java.io.Serializable {
     //-----------/
 
     /**
+     * 
+     * 
+     * @param vEmbAudioOut
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
+     */
+    public void addEmbAudioOut(
+            final bean.EmbAudioOut vEmbAudioOut)
+    throws java.lang.IndexOutOfBoundsException {
+        this._embAudioOutList.add(vEmbAudioOut);
+    }
+
+    /**
+     * 
+     * 
+     * @param index
+     * @param vEmbAudioOut
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
+     */
+    public void addEmbAudioOut(
+            final int index,
+            final bean.EmbAudioOut vEmbAudioOut)
+    throws java.lang.IndexOutOfBoundsException {
+        this._embAudioOutList.add(index, vEmbAudioOut);
+    }
+
+    /**
      */
     public void deleteId(
     ) {
         this._has_id= false;
+    }
+
+    /**
+     * Method enumerateEmbAudioOut.
+     * 
+     * @return an Enumeration over all possible elements of this
+     * collection
+     */
+    public java.util.Enumeration enumerateEmbAudioOut(
+    ) {
+        return java.util.Collections.enumeration(this._embAudioOutList);
     }
 
     /**
@@ -230,6 +275,50 @@ public class Module implements java.io.Serializable {
     public bean.AudioSources getAudioSources(
     ) {
         return this._audioSources;
+    }
+
+    /**
+     * Method getEmbAudioOut.
+     * 
+     * @param index
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
+     * @return the value of the bean.EmbAudioOut at the given index
+     */
+    public bean.EmbAudioOut getEmbAudioOut(
+            final int index)
+    throws java.lang.IndexOutOfBoundsException {
+        // check bounds for index
+        if (index < 0 || index >= this._embAudioOutList.size()) {
+            throw new IndexOutOfBoundsException("getEmbAudioOut: Index value '" + index + "' not in range [0.." + (this._embAudioOutList.size() - 1) + "]");
+        }
+        
+        return (bean.EmbAudioOut) _embAudioOutList.get(index);
+    }
+
+    /**
+     * Method getEmbAudioOut.Returns the contents of the collection
+     * in an Array.  <p>Note:  Just in case the collection contents
+     * are changing in another thread, we pass a 0-length Array of
+     * the correct type into the API call.  This way we <i>know</i>
+     * that the Array returned is of exactly the correct length.
+     * 
+     * @return this collection as an Array
+     */
+    public bean.EmbAudioOut[] getEmbAudioOut(
+    ) {
+        bean.EmbAudioOut[] array = new bean.EmbAudioOut[0];
+        return (bean.EmbAudioOut[]) this._embAudioOutList.toArray(array);
+    }
+
+    /**
+     * Method getEmbAudioOutCount.
+     * 
+     * @return the size of this collection
+     */
+    public int getEmbAudioOutCount(
+    ) {
+        return this._embAudioOutList.size();
     }
 
     /**
@@ -498,6 +587,17 @@ public class Module implements java.io.Serializable {
     }
 
     /**
+     * Method iterateEmbAudioOut.
+     * 
+     * @return an Iterator over all possible elements in this
+     * collection
+     */
+    public java.util.Iterator iterateEmbAudioOut(
+    ) {
+        return this._embAudioOutList.iterator();
+    }
+
+    /**
      * 
      * 
      * @param out
@@ -527,6 +627,37 @@ public class Module implements java.io.Serializable {
             final org.xml.sax.ContentHandler handler)
     throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
         Marshaller.marshal(this, handler);
+    }
+
+    /**
+     */
+    public void removeAllEmbAudioOut(
+    ) {
+        this._embAudioOutList.clear();
+    }
+
+    /**
+     * Method removeEmbAudioOut.
+     * 
+     * @param vEmbAudioOut
+     * @return true if the object was removed from the collection.
+     */
+    public boolean removeEmbAudioOut(
+            final bean.EmbAudioOut vEmbAudioOut) {
+        boolean removed = _embAudioOutList.remove(vEmbAudioOut);
+        return removed;
+    }
+
+    /**
+     * Method removeEmbAudioOutAt.
+     * 
+     * @param index
+     * @return the element removed from the collection
+     */
+    public bean.EmbAudioOut removeEmbAudioOutAt(
+            final int index) {
+        java.lang.Object obj = this._embAudioOutList.remove(index);
+        return (bean.EmbAudioOut) obj;
     }
 
     /**
@@ -567,6 +698,41 @@ public class Module implements java.io.Serializable {
     public void setAudioSources(
             final bean.AudioSources audioSources) {
         this._audioSources = audioSources;
+    }
+
+    /**
+     * 
+     * 
+     * @param index
+     * @param vEmbAudioOut
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
+     */
+    public void setEmbAudioOut(
+            final int index,
+            final bean.EmbAudioOut vEmbAudioOut)
+    throws java.lang.IndexOutOfBoundsException {
+        // check bounds for index
+        if (index < 0 || index >= this._embAudioOutList.size()) {
+            throw new IndexOutOfBoundsException("setEmbAudioOut: Index value '" + index + "' not in range [0.." + (this._embAudioOutList.size() - 1) + "]");
+        }
+        
+        this._embAudioOutList.set(index, vEmbAudioOut);
+    }
+
+    /**
+     * 
+     * 
+     * @param vEmbAudioOutArray
+     */
+    public void setEmbAudioOut(
+            final bean.EmbAudioOut[] vEmbAudioOutArray) {
+        //-- copy array
+        _embAudioOutList.clear();
+        
+        for (int i = 0; i < vEmbAudioOutArray.length; i++) {
+                this._embAudioOutList.add(vEmbAudioOutArray[i]);
+        }
     }
 
     /**

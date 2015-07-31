@@ -11,6 +11,7 @@ import bean.AudioOut;
 import bean.AudioSetup;
 import bean.AudioSources;
 import bean.CurrTime;
+import bean.EmbAudioOut;
 import bean.FrontButton;
 import bean.GpiInNameTable;
 import bean.GpiInTaskTable;
@@ -958,6 +959,30 @@ public class CtrlProtocol {
             Marshaller mars = new Marshaller(out);
             mars.setMarshalAsDocument(false);
             mars.marshal(audioMonitor);
+            out.write("</module></workspace>");
+            xmlResponse = sendRequest(out.toString());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new MVException("I/O exception");
+        } catch (MarshalException ex) {
+            ex.printStackTrace();
+            throw new MVException("Marshal error");
+        } catch (ValidationException ex) {
+            ex.printStackTrace();
+            throw new MVException("Xml validation error");
+        }
+    }
+    
+    public void saveEmbeddedAudioMonitorToMV(int idModulo, EmbAudioOut[] embAudioOut) throws MVException {
+        BufferedReader xmlResponse = null;
+        Writer out = new StringWriter();
+        try {
+            out.write("<workspace><module id=\""+idModulo+"\">");
+            for (int i = 0; i < embAudioOut.length; i++) {
+                Marshaller mars = new Marshaller(out);
+                mars.setMarshalAsDocument(false);
+                mars.marshal(embAudioOut[i]);
+            }
             out.write("</module></workspace>");
             xmlResponse = sendRequest(out.toString());
         } catch (IOException ex) {

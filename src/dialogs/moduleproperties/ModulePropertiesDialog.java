@@ -5,6 +5,7 @@ package dialogs.moduleproperties;
  * @author Marco Ricci & Antonio Poggi
  */
 
+import bean.EmbAudioOut;
 import bean.Screen;
 import bean.VideoCards;
 import bean.AudioMonitor;
@@ -38,6 +39,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -53,7 +55,8 @@ public class ModulePropertiesDialog extends JDialog {
     private BoardsPanel boardsPanel;
     private ScreenPanel screenPanel;
     private SourcePanel sourcePanel;
-    private AudioMonitorPanel audioMonitorPanel;
+    private AudioMonitorPanelCollection audioMonitorPanel;
+    private EmbeddedAudioMonitorPanel embAudioOutPanel[];
     private AudioOutputPanel audioOutputPanel;
     private GPIsPanel gpisPanel;
     private NetworkPanel networkPanel;
@@ -71,6 +74,7 @@ public class ModulePropertiesDialog extends JDialog {
     private Screen  screen;
     private Sources sources;
     private AudioMonitor audioMonitor;
+    private EmbAudioOut embAudioOut[];
     private AudioOut audioOut;
     private Gpis gpis;
     private Network network;
@@ -91,6 +95,9 @@ public class ModulePropertiesDialog extends JDialog {
         this.screen = CtrlWorkspace.getInstance().getModule(idModulo).getScreen();
         this.sources = CtrlWorkspace.getInstance().getModule(idModulo).getSources();
         this.audioMonitor = CtrlWorkspace.getInstance().getModule(idModulo).getAudioMonitor();
+        this.embAudioOut = new EmbAudioOut[CtrlWorkspace.getInstance().getModule(idModulo).getEmbAudioOutCount()];
+        for (int i = 0; i < CtrlWorkspace.getInstance().getModule(idModulo).getEmbAudioOutCount(); i++)
+            this.embAudioOut[i] = CtrlWorkspace.getInstance().getModule(idModulo).getEmbAudioOut(i);
         this.audioOut = CtrlWorkspace.getInstance().getModule(idModulo).getAudioOut();
         this.gpis  = CtrlWorkspace.getInstance().getModule(idModulo).getGpis();
         this.network = CtrlWorkspace.getInstance().getModule(idModulo).getNetwork();
@@ -131,7 +138,20 @@ public class ModulePropertiesDialog extends JDialog {
             sourcePanel = new SourcePanel(sources);
         else
             sourcePanel = null;
-        audioMonitorPanel = new AudioMonitorPanel(audioMonitor, idModulo);
+        
+        audioMonitorPanel = new AudioMonitorPanelCollection(idModulo);
+        AudioMonitorPanel audMonPanel = new AudioMonitorPanel(audioMonitor, idModulo);
+        audMonPanel.setOpaque(false);
+        audMonPanel.setBorder(new TitledBorder("Stereo monitor out"));
+        audioMonitorPanel.add(audMonPanel);
+        embAudioOutPanel = new EmbeddedAudioMonitorPanel[CtrlWorkspace.getInstance().getModule(idModulo).getEmbAudioOutCount()];
+        for (int i = 0; i < CtrlWorkspace.getInstance().getModule(idModulo).getEmbAudioOutCount(); i++) {
+            embAudioOutPanel[i] = new EmbeddedAudioMonitorPanel(embAudioOut[i], idModulo);
+            embAudioOutPanel[i].setOpaque(false);
+            embAudioOutPanel[i].setBorder(new TitledBorder("SDI/HDMI out " + (i + 1) + " embedded"));
+            audioMonitorPanel.add(embAudioOutPanel[i]);
+        }
+        
         audioOutputPanel = new AudioOutputPanel(audioOut, idModulo);
         gpisPanel = new GPIsPanel(gpis, idModulo);
         networkPanel = new NetworkPanel(network, idModulo, frame);
@@ -250,6 +270,7 @@ public class ModulePropertiesDialog extends JDialog {
             
             //OPERAZIONI RELATIVE ALL'AUDIOMONITOR
             CtrlWorkspace.getInstance().saveAudioMonitorToMV(idModulo);
+            CtrlWorkspace.getInstance().saveEmbeddedAudioMonitorToMV(idModulo);
             //OPERAZIONI RELATIVE AI GPIS
             CtrlWorkspace.getInstance().saveGPIsToMV(idModulo);
             

@@ -1,5 +1,6 @@
 package dialogs.moduleproperties;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -13,6 +14,7 @@ import controllori.CtrlWorkspace;
 import controllori.ProductType;
 import eccezioni.MVException;
 import gui.components.JPanelBGGradient;
+import gui.components.VGroupLayout;
 
 public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
     private final int NUM_VIDEO_SOURCES = 64;
@@ -23,9 +25,6 @@ public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
 
     protected int numOutputs;
 
-    private JLabel inputSourceColumnLabel;
-    private JLabel pairNumberLabel;
-    private JLabel[] outputLabel;
     protected JComboBox[] sourceCombo;
     protected JComboBox[] pairCombo;
     private JScrollPane scroll;
@@ -35,64 +34,62 @@ public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
     private boolean isAudioMeterProduct;
 
     protected void init(int idModulo) throws MVException {
-        setLayout(null);
-        setBounds(1, 30, 400, 400);
+        VGroupLayout layout = new VGroupLayout(this);
+        setLayout(layout);
         
         isAudioMeterProduct = (CtrlWorkspace.getInstance().getProductType(idModulo) == ProductType.ProductTypeAM);
         
         numOutputs = getAoutCount();
         mIL = new MyItemListener();
         
-        int inputSourceColumnX = 100;
-        int pairNumberColumnX = inputSourceColumnX;
+        Component grid[][];
+        int pairColumn;
+        
+        if (isAudioMeterProduct) {
+            grid = new Component[numOutputs + 1][2];
+            pairColumn = 1;
+        } else {
+            grid = new Component[numOutputs + 1][3];
+            pairColumn = 2;
+        }
+        
+        grid[0][0] = new JLabel("");
         if (!isAudioMeterProduct)
-            pairNumberColumnX += 140;
-        int scrollPanelWidth = pairNumberColumnX + 120;
-
-        inputSourceColumnLabel = new JLabel("Input source");
-        inputSourceColumnLabel.setBounds(inputSourceColumnX + 10, 15, 80, 20);
-        if (!isAudioMeterProduct)
-            add(inputSourceColumnLabel);
-        pairNumberLabel = new JLabel("Pair number");
-        pairNumberLabel.setBounds(pairNumberColumnX + 10, 15, 80, 20);
-        add(pairNumberLabel);
-
-        outputLabel = new JLabel[numOutputs];
+            grid[0][1] = new JLabel("Input source");
+        grid[0][pairColumn] = new JLabel("Pair number");
+        
         sourceCombo = new JComboBox[numOutputs];
         pairCombo = new JComboBox[numOutputs];
 
         JPanel scrollPanel = new JPanel();
-        scrollPanel.setLayout(null);
+        VGroupLayout scrollLayout = new VGroupLayout(scrollPanel);
+        scrollPanel.setLayout(scrollLayout);
 
         for (int i=0; i<numOutputs; i++) {
-            outputLabel[i] = new JLabel();
-            outputLabel[i].setText("Output "+(2*i+1)+"+"+(2*i+2));
-            outputLabel[i].setBounds(20, 16*2*i+8, 80, 20);
-            scrollPanel.add(outputLabel[i]);
+            JLabel outputLabel = new JLabel();
+            outputLabel.setText("Output "+(2*i+1)+"+"+(2*i+2));
+            grid[i + 1][0] = outputLabel;
             
             sourceCombo[i] = new JComboBox();
-            sourceCombo[i].setBounds(inputSourceColumnX, 16*2*i+8, 120, 20);
             sourceCombo[i].addItemListener(mIL);
             if (!isAudioMeterProduct)
-                scrollPanel.add(sourceCombo[i]);
+                grid[i + 1][1] = sourceCombo[i];
             
             pairCombo[i] = new JComboBox();
-            pairCombo[i].setBounds(pairNumberColumnX, 16*2*i+8, 120, 20);
-            scrollPanel.add(pairCombo[i]);
+            grid[i + 1][pairColumn] = pairCombo[i];
         }
         
-        scrollPanel.setPreferredSize(new Dimension(scrollPanelWidth, 32*numOutputs+8));
+        scrollLayout.addGrid(grid);
         scrollPanel.setOpaque(false);
         scrollPanel.setBorder(null);
 
         scroll = new JScrollPane();
         scroll.setOpaque(false);
-        scroll.setBounds(-1, 32, scrollPanelWidth + 20, 386);
         scroll.getViewport().add(scrollPanel);
         scroll.getViewport().setOpaque(false);
         scroll.setBorder(null);
         
-        add(scroll);
+        layout.add(scroll);
         
         createSourceComboContents();
         for (int i = 0; i < numOutputs; i++) {

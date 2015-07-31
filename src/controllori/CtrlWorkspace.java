@@ -743,6 +743,11 @@ public class CtrlWorkspace {
         CtrlProtocol ctrlProtocol = CtrlProtocol.getInstance();
         ctrlProtocol.saveAudioMonitorToMV(idModulo, this.getModule(idModulo).getAudioMonitor());
     }
+    
+    public void saveEmbeddedAudioMonitorToMV(int idModulo) throws MVException {
+        CtrlProtocol ctrlProtocol = CtrlProtocol.getInstance();
+        ctrlProtocol.saveEmbeddedAudioMonitorToMV(idModulo, this.getModule(idModulo).getEmbAudioOut());
+    }
 
     public void saveAudioSetupToMV(int idModulo) throws MVException{
         CtrlProtocol ctrlProtocol = CtrlProtocol.getInstance();

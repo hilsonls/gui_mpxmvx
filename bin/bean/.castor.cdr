@@ -1,4 +1,4 @@
-#Thu Jul 23 12:12:15 AEST 2015
+#Tue Jul 28 17:00:56 AEST 2015
 bean.ObjectErrorMsgSize=bean.descriptors.ObjectErrorMsgSizeDescriptor
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
@@ -160,6 +160,7 @@ bean.TransitionScale=bean.descriptors.TransitionScaleDescriptor
 bean.RouterIn=bean.descriptors.RouterInDescriptor
 bean.ObjectScreen=bean.descriptors.ObjectScreenDescriptor
 bean.UseInterval=bean.descriptors.UseIntervalDescriptor
+bean.EmbAudioOut=bean.descriptors.EmbAudioOutDescriptor
 bean.Snmpv2c=bean.descriptors.Snmpv2cDescriptor
 bean.Preset=bean.descriptors.PresetDescriptor
 bean.Timezone=bean.descriptors.TimezoneDescriptor
