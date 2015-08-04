@@ -618,6 +618,14 @@
 			                                                minOccurs="1">
 			                                                <complexType>
 			                                                    <sequence>
+                                                                    <element
+                                                                        name="multichan"
+                                                                        type="tns:objectBooleanProperty">
+                                                                    </element>
+                                                                    <element
+                                                                        name="numPairs"
+                                                                        type="tns:objectIntProperty">
+                                                                    </element>
 			                                                        <element
 			                                                            ref="tns:xpos">
 			                                                        </element>

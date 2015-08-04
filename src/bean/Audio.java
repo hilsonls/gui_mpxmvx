@@ -37,6 +37,16 @@ public class Audio implements java.io.Serializable {
     private boolean _has_id;
 
     /**
+     * Field _multichan.
+     */
+    private bean.Multichan _multichan;
+
+    /**
+     * Field _numPairs.
+     */
+    private bean.NumPairs _numPairs;
+
+    /**
      * Field _xpos.
      */
     private bean.Xpos _xpos;
@@ -305,6 +315,26 @@ public class Audio implements java.io.Serializable {
     public bean.MeterSource getMeterSource(
     ) {
         return this._meterSource;
+    }
+
+    /**
+     * Returns the value of field 'multichan'.
+     * 
+     * @return the value of field 'Multichan'.
+     */
+    public bean.Multichan getMultichan(
+    ) {
+        return this._multichan;
+    }
+
+    /**
+     * Returns the value of field 'numPairs'.
+     * 
+     * @return the value of field 'NumPairs'.
+     */
+    public bean.NumPairs getNumPairs(
+    ) {
+        return this._numPairs;
     }
 
     /**
@@ -610,6 +640,26 @@ public class Audio implements java.io.Serializable {
     public void setMeterSource(
             final bean.MeterSource meterSource) {
         this._meterSource = meterSource;
+    }
+
+    /**
+     * Sets the value of field 'multichan'.
+     * 
+     * @param multichan the value of field 'multichan'.
+     */
+    public void setMultichan(
+            final bean.Multichan multichan) {
+        this._multichan = multichan;
+    }
+
+    /**
+     * Sets the value of field 'numPairs'.
+     * 
+     * @param numPairs the value of field 'numPairs'.
+     */
+    public void setNumPairs(
+            final bean.NumPairs numPairs) {
+        this._numPairs = numPairs;
     }
 
     /**

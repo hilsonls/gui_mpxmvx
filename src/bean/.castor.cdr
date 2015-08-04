@@ -1,4 +1,4 @@
-#Tue Jul 28 17:00:56 AEST 2015
+#Tue Aug 04 09:32:49 AEST 2015
 bean.ObjectErrorMsgSize=bean.descriptors.ObjectErrorMsgSizeDescriptor
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
@@ -188,6 +188,7 @@ bean.Yoffs=bean.descriptors.YoffsDescriptor
 bean.VitcSource=bean.descriptors.VitcSourceDescriptor
 bean.ShowInObjects=bean.descriptors.ShowInObjectsDescriptor
 bean.In=bean.descriptors.InDescriptor
+bean.NumPairs=bean.descriptors.NumPairsDescriptor
 bean.Type=bean.descriptors.TypeDescriptor
 bean.OptionsList=bean.descriptors.OptionsListDescriptor
 bean.LowerNormal=bean.descriptors.LowerNormalDescriptor
@@ -247,6 +248,7 @@ bean.Module=bean.descriptors.ModuleDescriptor
 bean.DestColour=bean.descriptors.DestColourDescriptor
 bean.Font=bean.descriptors.FontDescriptor
 bean.Audio0dBRef=bean.descriptors.Audio0dBRefDescriptor
+bean.Multichan=bean.descriptors.MultichanDescriptor
 bean.FontSize=bean.descriptors.FontSizeDescriptor
 bean.Router=bean.descriptors.RouterDescriptor
 bean.Hour24time=bean.descriptors.Hour24timeDescriptor

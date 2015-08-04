@@ -35,6 +35,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
@@ -65,6 +66,11 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
     private JSliderPanel widthSlider;
     
     private JPanel positionSizePanel;
+    
+    private JCheckBox multichannelCheck;
+    private JCheckBox showRemainingPairsCheck;
+    private JLabel numMultiPairsLabel;
+    private JTextField numMultiPairsField;
     
     private JCheckBox splitRowsCheck;
     
@@ -181,6 +187,13 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         positionSizeLayout.add(positionPanel);
         positionSizeLayout.add(sizePanel);
         
+        if (bean.getMultichan() != null) {
+            multichannelCheck = new JCheckBox("Multi-channel metering");
+            multichannelCheck.setOpaque(false);
+            multichannelCheck.setSelected(bean.getMultichan().getVal());
+            multichannelCheck.addItemListener(new MultichannelListener());
+        }
+        
         splitRowsCheck = new JCheckBox("Use 2 rows of bars");
         splitRowsCheck.setOpaque(false);
         splitRowsCheck.setSelected(bean.getSplitBars().getVal());
@@ -214,6 +227,8 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         sourcesPanel.setLayout(sourcesPanelLayout);
         sourcesPanel.setOpaque(false);
         sourcesPanel.setBorder(new TitledBorder("Meter layout"));
+        if (multichannelCheck != null)
+            sourcesPanelLayout.add(multichannelCheck);
         sourcesPanelLayout.add(splitRowsCheck);
         sourcesPanelLayout.addGrid(new Component[][] {
                 {new JLabel(""), new JLabel("Audio source"), new JLabel("Audio format"), bottomRowLabel},
@@ -226,6 +241,25 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
                 {sourcePairLabel[6], sourcePairCombo[6], audioFormatCombo[6], bottomRowCheck[6]},
                 {sourcePairLabel[7], sourcePairCombo[7], audioFormatCombo[7], bottomRowCheck[7]}
         });
+        if (multichannelCheck != null) {
+            showRemainingPairsCheck = new JCheckBox("Show all remaining pairs");
+            showRemainingPairsCheck.setOpaque(false);
+            showRemainingPairsCheck.setSelected(bean.getNumPairs().getVal() < 0);
+            showRemainingPairsCheck.addItemListener(new ShowRemainingPairsListener());
+            numMultiPairsLabel = new JLabel("Number of pairs");
+            
+            // -ve value of numPairs means show all remaining pairs
+            // The value to use when show all remaining pairs gets unticked is
+            // the -ve of this
+            int numPairs = bean.getNumPairs().getVal();
+            if (numPairs < 0)
+                numPairs = -numPairs;
+            numMultiPairsField = ComponentFactory.createTextField(numPairs);
+            sourcesPanelLayout.add(showRemainingPairsCheck);
+            sourcesPanelLayout.addRow(new Component[] {numMultiPairsLabel, numMultiPairsField});
+            checkMultichannelEnablingConditions();
+            checkShowRemainingPairsConditions();
+        }
         
         tlPanel = new JPanel();
         VGroupLayout tlLayout = new VGroupLayout(tlPanel);
@@ -505,6 +539,23 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         bean.getTransparentLevel().setVal(transparentSlider.getValue());
         bean.getOutsideVideo().setVal(displayOutsideCheck.isSelected());
         bean.getSplitBars().setVal(splitRowsCheck.isSelected());
+        if (bean.getMultichan() != null) {
+            bean.getMultichan().setVal(multichannelCheck.isSelected());
+            boolean showRemainingPairs = showRemainingPairsCheck.isSelected();
+            int numPairs = Integer.parseInt(numMultiPairsField.getText());
+            if (numPairs == 0) {
+                showRemainingPairs = true;
+                numPairs = 32;
+            } else if (numPairs < 0) {
+                showRemainingPairs = true;
+                numPairs = -numPairs;
+            }
+
+            if (showRemainingPairs)
+                bean.getNumPairs().setVal(-numPairs);
+            else
+                bean.getNumPairs().setVal(numPairs);
+        }
     }
     
     public class BarSelectionListener implements ActionListener {
@@ -546,6 +597,45 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         @Override
         public void itemStateChanged(ItemEvent e) {
             check2ndRowEnablingConditions();
+        }
+    }
+    
+    private void checkMultichannelEnablingConditions() {
+        boolean en = multichannelCheck.isSelected();
+        
+        bottomRowLabel.setVisible(!en);
+        bottomRowCheck[0].setVisible(!en);
+        for (int i = 1; i < NUM_METER_PAIRS; i++) {
+            sourcePairLabel[i].setVisible(!en);
+            sourcePairCombo[i].setVisible(!en);
+            audioFormatCombo[i].setVisible(!en);
+            bottomRowCheck[i].setVisible(!en);
+            numMultiPairsLabel.setVisible(en);
+            numMultiPairsField.setVisible(en);
+            showRemainingPairsCheck.setVisible(en);
+        }
+    }
+    
+    private class MultichannelListener implements ItemListener {
+        
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            checkMultichannelEnablingConditions();
+        }
+    }
+    
+    private void checkShowRemainingPairsConditions() {
+        boolean en = showRemainingPairsCheck.isSelected();
+        
+        numMultiPairsLabel.setEnabled(!en);
+        numMultiPairsField.setEnabled(!en);
+    }
+    
+    private class ShowRemainingPairsListener implements ItemListener {
+        
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            checkShowRemainingPairsConditions();
         }
     }
     
