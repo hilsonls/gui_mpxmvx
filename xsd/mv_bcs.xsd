@@ -638,15 +638,15 @@
 			                                                        <element
 			                                                            ref="tns:height">
 			                                                        </element>
-                                                                    <element
-                                                                        name="intraPairSpace"
-                                                                        type="tns:objectIntRangeProperty">
+			                                                        <element
+			                                                            name="intraPairSpace"
+			                                                            type="tns:objectIntRangeProperty">
 			                                                        </element>
-                                                                    <element
-                                                                        name="interPairSpace"
-                                                                        type="tns:objectIntRangeProperty">
-                                                                    </element>
-                                                                    <element
+			                                                        <element
+			                                                            name="interPairSpace"
+			                                                            type="tns:objectIntRangeProperty">
+			                                                        </element>
+			                                                        <element
 			                                                            name="scale">
 			                                                            <complexType>
 			                                                                <attribute
@@ -807,7 +807,11 @@
 			                                                                </attribute>
 			                                                            </complexType>
 			                                                        </element>
-			                                                        <element
+                                                                    <element
+                                                                        name="labelRotate"
+                                                                        type="tns:objectBooleanProperty">
+			                                                        </element>
+                                                                    <element
 			                                                            name="alarmIndicators">
 			                                                            <complexType>
 			                                                                <attribute

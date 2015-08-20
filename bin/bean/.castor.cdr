@@ -1,4 +1,4 @@
-#Wed Aug 19 17:36:27 AEST 2015
+#Thu Aug 20 17:31:15 AEST 2015
 bean.ObjectErrorMsgSize=bean.descriptors.ObjectErrorMsgSizeDescriptor
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
@@ -178,6 +178,7 @@ bean.AudioOverAlarm=bean.descriptors.AudioOverAlarmDescriptor
 bean.SnellMatrixNumLvls=bean.descriptors.SnellMatrixNumLvlsDescriptor
 bean.XdsVisible=bean.descriptors.XdsVisibleDescriptor
 bean.Baud=bean.descriptors.BaudDescriptor
+bean.LabelRotate=bean.descriptors.LabelRotateDescriptor
 bean.Shape=bean.descriptors.ShapeDescriptor
 bean.CurrTime=bean.descriptors.CurrTimeDescriptor
 bean.GpiOptionTables=bean.descriptors.GpiOptionTablesDescriptor

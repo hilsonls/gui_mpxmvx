@@ -102,6 +102,11 @@ public class Audio implements java.io.Serializable {
     private bean.LabelColour _labelColour;
 
     /**
+     * Field _labelRotate.
+     */
+    private bean.LabelRotate _labelRotate;
+
+    /**
      * Field _alarmIndicators.
      */
     private bean.AlarmIndicators _alarmIndicators;
@@ -325,6 +330,16 @@ public class Audio implements java.io.Serializable {
     public bean.LabelColour getLabelColour(
     ) {
         return this._labelColour;
+    }
+
+    /**
+     * Returns the value of field 'labelRotate'.
+     * 
+     * @return the value of field 'LabelRotate'.
+     */
+    public bean.LabelRotate getLabelRotate(
+    ) {
+        return this._labelRotate;
     }
 
     /**
@@ -670,6 +685,16 @@ public class Audio implements java.io.Serializable {
     public void setLabelColour(
             final bean.LabelColour labelColour) {
         this._labelColour = labelColour;
+    }
+
+    /**
+     * Sets the value of field 'labelRotate'.
+     * 
+     * @param labelRotate the value of field 'labelRotate'.
+     */
+    public void setLabelRotate(
+            final bean.LabelRotate labelRotate) {
+        this._labelRotate = labelRotate;
     }
 
     /**

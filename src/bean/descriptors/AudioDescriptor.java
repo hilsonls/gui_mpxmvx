@@ -581,6 +581,42 @@ public class AudioDescriptor extends org.exolab.castor.xml.util.XMLClassDescript
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
+        //-- _labelRotate
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.LabelRotate.class, "_labelRotate", "labelRotate", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Audio target = (Audio) object;
+                return target.getLabelRotate();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Audio target = (Audio) object;
+                    target.setLabelRotate( (bean.LabelRotate) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.LabelRotate");
+        desc.setHandler(handler);
+        desc.setRequired(true);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _labelRotate
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(1);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
         //-- _alarmIndicators
         desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.AlarmIndicators.class, "_alarmIndicators", "alarmIndicators", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {

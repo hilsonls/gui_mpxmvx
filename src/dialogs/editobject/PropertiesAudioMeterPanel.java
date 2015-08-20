@@ -106,6 +106,7 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
     
     private JLabel labelsLabel;
     private JComboBox labelsCombo;
+    private JCheckBox labelsRotateCheck;
     private JLabel colourLabel;
     private JComboBox colourCombo;
     
@@ -333,6 +334,10 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
 
         labelsLabel = new JLabel("Bar labels");
         labelsCombo = ComponentFactory.createComboBox(bean.getLabelType().getOptionsName(), bean.getLabelType().getVal());
+        if (bean.getLabelRotate() != null) {
+            labelsRotateCheck = new JCheckBoxTransBG("Rotate text");
+            labelsRotateCheck.setSelected(bean.getLabelRotate().getVal());
+        }
         colourLabel = new JLabel("Colour");
         colourCombo = ComponentFactory.createComboBox(bean.getLabelColour().getOptionsName(), bean.getLabelColour().getVal());
     
@@ -360,7 +365,12 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
                 wrongLabel, wrongCombo[0], wrongCombo[1], wrongCombo[2], wrongCombo[3], wrongCombo[4], wrongCombo[5], wrongCombo[6], wrongCombo[7], wrongCombo[8], wrongCombo[9], wrongCombo[10], wrongCombo[11], wrongCombo[12], wrongCombo[13], wrongCombo[14], wrongCombo[15]
         });
         layout.addGap();
-        layout.addRow(new Component[] {labelsLabel, labelsCombo, colourLabel, colourCombo});
+        Component labelRow[];
+        if (labelsRotateCheck != null)
+            labelRow = new Component[] {labelsLabel, labelsCombo, labelsRotateCheck, colourLabel, colourCombo};
+        else
+            labelRow = new Component[] {labelsLabel, labelsCombo, colourLabel, colourCombo};
+        layout.addRow(labelRow);
         layout.addGap();
         layout.add(alarmCheck);
         layout.add(alarmBarFlashCheck);
@@ -563,6 +573,8 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         }
         
         bean.getLabelType().setVal(labelsCombo.getSelectedItem().toString());
+        if (labelsRotateCheck != null)
+            bean.getLabelRotate().setVal(labelsRotateCheck.isSelected());
         bean.getLabelColour().setVal(colourCombo.getSelectedItem().toString());
         bean.getAlarmIndicators().setVal(alarmCheck.isSelected());
         bean.getAlarmBarFlash().setVal(alarmBarFlashCheck.isSelected());
