@@ -67,6 +67,16 @@ public class Audio implements java.io.Serializable {
     private bean.Height _height;
 
     /**
+     * Field _intraPairSpace.
+     */
+    private bean.IntraPairSpace _intraPairSpace;
+
+    /**
+     * Field _interPairSpace.
+     */
+    private bean.InterPairSpace _interPairSpace;
+
+    /**
      * Field _scale.
      */
     private bean.Scale _scale;
@@ -285,6 +295,26 @@ public class Audio implements java.io.Serializable {
     public int getId(
     ) {
         return this._id;
+    }
+
+    /**
+     * Returns the value of field 'interPairSpace'.
+     * 
+     * @return the value of field 'InterPairSpace'.
+     */
+    public bean.InterPairSpace getInterPairSpace(
+    ) {
+        return this._interPairSpace;
+    }
+
+    /**
+     * Returns the value of field 'intraPairSpace'.
+     * 
+     * @return the value of field 'IntraPairSpace'.
+     */
+    public bean.IntraPairSpace getIntraPairSpace(
+    ) {
+        return this._intraPairSpace;
     }
 
     /**
@@ -610,6 +640,26 @@ public class Audio implements java.io.Serializable {
             final int id) {
         this._id = id;
         this._has_id = true;
+    }
+
+    /**
+     * Sets the value of field 'interPairSpace'.
+     * 
+     * @param interPairSpace the value of field 'interPairSpace'.
+     */
+    public void setInterPairSpace(
+            final bean.InterPairSpace interPairSpace) {
+        this._interPairSpace = interPairSpace;
+    }
+
+    /**
+     * Sets the value of field 'intraPairSpace'.
+     * 
+     * @param intraPairSpace the value of field 'intraPairSpace'.
+     */
+    public void setIntraPairSpace(
+            final bean.IntraPairSpace intraPairSpace) {
+        this._intraPairSpace = intraPairSpace;
     }
 
     /**

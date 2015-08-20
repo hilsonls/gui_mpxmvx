@@ -1,4 +1,4 @@
-#Tue Aug 04 09:32:49 AEST 2015
+#Wed Aug 19 17:36:27 AEST 2015
 bean.ObjectErrorMsgSize=bean.descriptors.ObjectErrorMsgSizeDescriptor
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
@@ -82,6 +82,7 @@ bean.SysTimeTimezone=bean.descriptors.SysTimeTimezoneDescriptor
 bean.BarColourOver=bean.descriptors.BarColourOverDescriptor
 bean.TextProperties=bean.descriptors.TextPropertiesDescriptor
 bean.LowerExtent=bean.descriptors.LowerExtentDescriptor
+bean.InterPairSpace=bean.descriptors.InterPairSpaceDescriptor
 bean.LogoFilename=bean.descriptors.LogoFilenameDescriptor
 bean.Line=bean.descriptors.LineDescriptor
 bean.AudioSequenceItem=bean.descriptors.AudioSequenceItemDescriptor
@@ -160,6 +161,7 @@ bean.TransitionScale=bean.descriptors.TransitionScaleDescriptor
 bean.RouterIn=bean.descriptors.RouterInDescriptor
 bean.ObjectScreen=bean.descriptors.ObjectScreenDescriptor
 bean.UseInterval=bean.descriptors.UseIntervalDescriptor
+bean.IntraPairSpace=bean.descriptors.IntraPairSpaceDescriptor
 bean.EmbAudioOut=bean.descriptors.EmbAudioOutDescriptor
 bean.Snmpv2c=bean.descriptors.Snmpv2cDescriptor
 bean.Preset=bean.descriptors.PresetDescriptor

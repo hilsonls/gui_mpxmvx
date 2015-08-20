@@ -618,14 +618,14 @@
 			                                                minOccurs="1">
 			                                                <complexType>
 			                                                    <sequence>
-                                                                    <element
-                                                                        name="multichan"
-                                                                        type="tns:objectBooleanProperty">
-                                                                    </element>
-                                                                    <element
-                                                                        name="numPairs"
-                                                                        type="tns:objectIntProperty">
-                                                                    </element>
+			                                                        <element
+			                                                            name="multichan"
+			                                                            type="tns:objectBooleanProperty">
+			                                                        </element>
+			                                                        <element
+			                                                            name="numPairs"
+			                                                            type="tns:objectIntProperty">
+			                                                        </element>
 			                                                        <element
 			                                                            ref="tns:xpos">
 			                                                        </element>
@@ -638,7 +638,15 @@
 			                                                        <element
 			                                                            ref="tns:height">
 			                                                        </element>
-			                                                        <element
+                                                                    <element
+                                                                        name="intraPairSpace"
+                                                                        type="tns:objectIntRangeProperty">
+			                                                        </element>
+                                                                    <element
+                                                                        name="interPairSpace"
+                                                                        type="tns:objectIntRangeProperty">
+                                                                    </element>
+                                                                    <element
 			                                                            name="scale">
 			                                                            <complexType>
 			                                                                <attribute

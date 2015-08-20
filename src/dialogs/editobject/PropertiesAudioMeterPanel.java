@@ -38,6 +38,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import controllori.CtrlWorkspace;
 import controllori.ProductType;
@@ -118,6 +120,9 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
     
     private JCheckBox autoFitCheck;
     
+    private JSliderPanel intraPairSpacingSlider;
+    private JSliderPanel interPairSpacingSlider;
+    
     private boolean isAmProduct;
     
     public PropertiesAudioMeterPanel(PropertiesAudioPanel parentAudioPanel, Audio bean) throws MVException {
@@ -179,6 +184,22 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         sizeLayout.add(vsizeSlider);
         sizeLayout.add(widthSlider);
         
+        if (bean.getIntraPairSpace() != null) {
+            intraPairSpacingSlider = new JSliderPanel(bean.getIntraPairSpace().getMin(), bean.getIntraPairSpace().getMax(), bean.getIntraPairSpace().getVal());
+            d = intraPairSpacingSlider.getSlider().getPreferredSize();
+            d.width = 50;
+            intraPairSpacingSlider.getSlider().setPreferredSize(d);
+            intraPairSpacingSlider.addChangeListener(new IntraPairSpacingListener());
+        }
+        
+        if (bean.getInterPairSpace() != null) {
+            interPairSpacingSlider = new JSliderPanel(bean.getInterPairSpace().getMin(), bean.getInterPairSpace().getMax(), bean.getInterPairSpace().getVal());
+            d = interPairSpacingSlider.getSlider().getPreferredSize();
+            d.width = 50;
+            interPairSpacingSlider.getSlider().setPreferredSize(d);
+            interPairSpacingSlider.addChangeListener(new InterPairSpacingListener());
+        }
+        
         positionSizePanel = new JPanel();
         VGroupLayout positionSizeLayout = new VGroupLayout(positionSizePanel);
         positionSizePanel.setLayout(positionSizeLayout);
@@ -186,6 +207,10 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         positionSizeLayout.add(autoFitCheck);
         positionSizeLayout.add(positionPanel);
         positionSizeLayout.add(sizePanel);
+        if (intraPairSpacingSlider != null)
+            positionSizeLayout.addRow(new Component[] {new JLabel("Intra-pair spacing"), intraPairSpacingSlider});
+        if (interPairSpacingSlider != null)
+            positionSizeLayout.addRow(new Component[] {new JLabel("Inter-pair spacing"), interPairSpacingSlider});
         
         if (bean.getMultichan() != null) {
             multichannelCheck = new JCheckBox("Multi-channel metering");
@@ -343,6 +368,8 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         layout.add(displayOutsideCheck);
         
         check2ndRowEnablingConditions();
+        checkAudioFitConditions();
+        checkInterPairSpacing();
     }
     
     private JComboBox createBarsCombo() {
@@ -496,6 +523,10 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         bean.getYpos().setVal(vposSlider.getValue());
         bean.getWidth().setVal(widthSlider.getValue());
         bean.getHeight().setVal(vsizeSlider.getValue());
+        if (intraPairSpacingSlider != null)
+            bean.getIntraPairSpace().setVal(intraPairSpacingSlider.getValue());
+        if (interPairSpacingSlider != null)
+            bean.getInterPairSpace().setVal(interPairSpacingSlider.getValue());
         bean.getScale().setVal(scaleCombo.getSelectedItem().toString());
         bean.getScalePosition().setVal(scalePosCombo.getSelectedItem().toString());
         bean.getMeterSource().setP1(sourcePairStoIMap.get(sourcePairCombo[0].getSelectedItem()));
@@ -639,15 +670,51 @@ public class PropertiesAudioMeterPanel extends JPanelBGGradient{
         }
     }
     
+    private void checkAudioFitConditions() {
+        boolean autoFit = autoFitCheck.isSelected();
+        vposSlider.setEnabled(!autoFit);
+        hposSlider.setEnabled(!autoFit);
+        vsizeSlider.setEnabled(!autoFit);
+        widthSlider.setEnabled(!autoFit);
+    }
+    
     private class AutoFitCheckListener implements ItemListener {
         @Override
         public void itemStateChanged(ItemEvent e) {
-            boolean autoFit = autoFitCheck.isSelected();
-            vposSlider.setEnabled(!autoFit);
-            hposSlider.setEnabled(!autoFit);
-            vsizeSlider.setEnabled(!autoFit);
-            widthSlider.setEnabled(!autoFit);
-            parentAudioPanel.updateAutoFit(autoFit);
+            checkAudioFitConditions();
+            parentAudioPanel.updateAutoFit(autoFitCheck.isSelected());
+        }
+    }
+    
+    private void checkInterPairSpacing() {
+        if (intraPairSpacingSlider != null && interPairSpacingSlider != null) {
+            int intra = intraPairSpacingSlider.getValue();
+            int inter = interPairSpacingSlider.getValue();
+            if (inter < intra)
+                interPairSpacingSlider.setValue(intra);
+        }
+    }
+    
+    private class IntraPairSpacingListener implements ChangeListener {
+        @Override
+        public void stateChanged(ChangeEvent arg0) {
+            checkInterPairSpacing();
+        }
+    }
+
+    private void checkIntraPairSpacing() {
+        if (intraPairSpacingSlider != null && interPairSpacingSlider != null) {
+            int intra = intraPairSpacingSlider.getValue();
+            int inter = interPairSpacingSlider.getValue();
+            if (inter < intra)
+                intraPairSpacingSlider.setValue(inter);
+        }
+    }
+
+    private class InterPairSpacingListener implements ChangeListener {
+        @Override
+        public void stateChanged(ChangeEvent arg0) {
+            checkIntraPairSpacing();
         }
     }
 
