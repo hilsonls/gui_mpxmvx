@@ -1,4 +1,4 @@
-#Thu Aug 20 17:31:15 AEST 2015
+#Sat Aug 22 12:38:36 AEST 2015
 bean.ObjectErrorMsgSize=bean.descriptors.ObjectErrorMsgSizeDescriptor
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
@@ -110,6 +110,7 @@ bean.AspectRatio=bean.descriptors.AspectRatioDescriptor
 bean.TransColour=bean.descriptors.TransColourDescriptor
 bean.Source=bean.descriptors.SourceDescriptor
 bean.Alarms=bean.descriptors.AlarmsDescriptor
+bean.AudioLabelGroup=bean.descriptors.AudioLabelGroupDescriptor
 bean.Controller=bean.descriptors.ControllerDescriptor
 bean.ShowName=bean.descriptors.ShowNameDescriptor
 bean.Alarm=bean.descriptors.AlarmDescriptor
@@ -128,6 +129,7 @@ bean.GpiOutNameTable=bean.descriptors.GpiOutNameTableDescriptor
 bean.PhysIns=bean.descriptors.PhysInsDescriptor
 bean.ObjectsZOrder=bean.descriptors.ObjectsZOrderDescriptor
 bean.HborderCustom=bean.descriptors.HborderCustomDescriptor
+bean.Label=bean.descriptors.LabelDescriptor
 bean.Resolution=bean.descriptors.ResolutionDescriptor
 bean.NumOuts=bean.descriptors.NumOutsDescriptor
 bean.SagVisible=bean.descriptors.SagVisibleDescriptor
@@ -179,6 +181,7 @@ bean.SnellMatrixNumLvls=bean.descriptors.SnellMatrixNumLvlsDescriptor
 bean.XdsVisible=bean.descriptors.XdsVisibleDescriptor
 bean.Baud=bean.descriptors.BaudDescriptor
 bean.LabelRotate=bean.descriptors.LabelRotateDescriptor
+bean.AudioLabels=bean.descriptors.AudioLabelsDescriptor
 bean.Shape=bean.descriptors.ShapeDescriptor
 bean.CurrTime=bean.descriptors.CurrTimeDescriptor
 bean.GpiOptionTables=bean.descriptors.GpiOptionTablesDescriptor

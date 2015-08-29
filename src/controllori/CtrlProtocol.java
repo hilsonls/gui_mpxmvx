@@ -6,6 +6,7 @@
 package controllori;
 
 import bean.AspectRatio;
+import bean.AudioLabels;
 import bean.AudioMonitor;
 import bean.AudioOut;
 import bean.AudioSetup;
@@ -1019,6 +1020,26 @@ public class CtrlProtocol {
         }
     }
     
+    public void saveAudioLabelsToMV(int idModulo, AudioLabels audioLabels) throws MVException {
+        BufferedReader xmlResponse = null;
+        Writer out = new StringWriter();
+        try {
+            Marshaller mars = new Marshaller(out);
+            mars.setMarshalAsDocument(false);
+            mars.marshal(audioLabels);
+            xmlResponse = sendRequest(out.toString());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new MVException("I/O exception");
+        } catch (MarshalException ex) {
+            ex.printStackTrace();
+            throw new MVException("Marshal error");
+        } catch (ValidationException ex) {
+            ex.printStackTrace();
+            throw new MVException("Xml validation error");
+        }
+    }
+    
     public void saveAudioOutputToMV(int idModulo, AudioOut audioOutput) throws MVException {
         BufferedReader xmlResponse = null;
         Writer out = new StringWriter();
@@ -1614,6 +1635,25 @@ public class CtrlProtocol {
         
         try {
             ret = LogFiles.unmarshal(response);
+        } catch (MarshalException ex) {
+            ex.printStackTrace();
+            throw new MVException("Unmarshal error");
+        } catch (ValidationException ex) {
+            ex.printStackTrace();
+            throw new MVException("Xml validation error");
+        }
+        
+        return ret;
+    }
+    
+    public AudioLabels queryAudioLabels(int idModulo) throws MVException {
+        AudioLabels ret = null;
+        String xmlRequest;
+        xmlRequest = "<audioLabels>query</audioLabels>";
+        BufferedReader response = sendRequest(xmlRequest);
+        
+        try {
+            ret = AudioLabels.unmarshal(response);
         } catch (MarshalException ex) {
             ex.printStackTrace();
             throw new MVException("Unmarshal error");

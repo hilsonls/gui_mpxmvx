@@ -40,6 +40,28 @@
 		</complexType>
 	</element>
 
+    <element name="audioLabels">
+        <complexType>
+            <sequence>
+                <element name="audioLabelGroup" maxOccurs="unbounded" minOccurs="0">
+                    <complexType>
+                        <sequence>
+                            <element name="label" maxOccurs="unbounded" minOccurs="0">
+                                <complexType>
+                                    <attribute name="id" type="integer"></attribute>
+                                    <attribute name="name" type="string"></attribute>
+                                </complexType>
+                            </element>
+                        </sequence>
+                        <attribute name="name" type="string"
+                            use="required">
+                        </attribute>
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+
 	<element name="module">
 		<complexType>
 			<all>

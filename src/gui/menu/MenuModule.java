@@ -30,6 +30,7 @@ public class MenuModule{
     private JMenuItemBGGradient setupSourceItem;
     private JMenuItemBGGradient setupExternalAudioSourceItem;
     private JMenuItemBGGradient audioSetupItem;
+    private JMenuItemBGGradient audioChannelNames;
     private JMenuItemBGGradient setupRouterItem;
     private JSeparator moduleSeparator2;
     private JMenuItemBGGradient setupRemotesItem;
@@ -87,6 +88,7 @@ public class MenuModule{
         else
             setupExternalAudioSourceItem.setText("Audio settings and alarms");
         audioSetupItem.setText("Audio meter properties");
+        audioChannelNames.setText("Audio channel names");
         setupRouterItem.setText("SDI I/O Router");
 
     }
@@ -104,6 +106,7 @@ public class MenuModule{
         setupSourceItem.setActionCommand("Source");
         setupExternalAudioSourceItem.setActionCommand("ExternalAudioSources");
         audioSetupItem.setActionCommand("AudioSetup");
+        audioChannelNames.setActionCommand("AudioChannelNames");
         setupRouterItem.setActionCommand("SetupRouter");
     }
 
@@ -119,6 +122,7 @@ public class MenuModule{
         setupSourceItem.setIcon(utils.getIcon("setup-source.gif"));
         setupExternalAudioSourceItem.setIcon(utils.getIcon("setup-source.gif"));
         audioSetupItem.setIcon(utils.getIcon("empty.gif"));
+        audioChannelNames.setIcon(utils.getIcon("empty.gif"));
         setupRouterItem.setIcon(utils.getIcon("empty.gif"));
     }
 
@@ -137,6 +141,7 @@ public class MenuModule{
         setupSourceItem.addActionListener(listener);
         setupExternalAudioSourceItem.addActionListener(listener);
         audioSetupItem.addActionListener(listener);
+        audioChannelNames.addActionListener(listener);
         setupRouterItem.addActionListener(listener);
     }
 
@@ -157,6 +162,7 @@ public class MenuModule{
         rebootModuleItem = new JMenuItemBGGradient();
         resetModuleItem = new JMenuItemBGGradient();
         audioSetupItem = new JMenuItemBGGradient();
+        audioChannelNames = new JMenuItemBGGradient();
         setupRouterItem = new JMenuItemBGGradient();
 
     }
@@ -173,6 +179,7 @@ public class MenuModule{
             menuInstance.add(setupSourceItem);
         menuInstance.add(setupExternalAudioSourceItem);
         menuInstance.add(audioSetupItem);
+        menuInstance.add(audioChannelNames);
         if (productType == ProductType.ProductTypeMV)
             menuInstance.add(setupRouterItem);
         menuInstance.add(moduleSeparator2);
