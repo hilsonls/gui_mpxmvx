@@ -2042,4 +2042,18 @@ public class CtrlProtocol {
         return router;
     }
     
+    public void sendTimerAction(int idModulo, int idTile, String strAction, String extraAttr) throws MVException {
+        BufferedReader xmlResponse = null;
+        Writer out = new StringWriter();
+        try {
+            out.write("<timerControl tileId=\"" + idTile + "\" action=\"" + strAction + "\"");
+            if (extraAttr.length() > 0)
+                out.write(" " + extraAttr);
+            out.write("/>");
+            xmlResponse = sendRequest(out.toString());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new MVException("I/O exception");
+        }
+    }
 }

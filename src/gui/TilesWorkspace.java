@@ -3,26 +3,31 @@ package gui;
 import bean.AspectRatio;
 import bean.Objects;
 import bean.ObjectsZOrder;
+import dialogs.timercontrol.TimerControlDialog;
 import eccezioni.ActionNotFoundException;
 import eccezioni.CloneBeanException;
 import eccezioni.MVException;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 import java.util.Vector;
+
 import javax.swing.*;
+
 import bean.Oggetto;
-
-
 import controllori.ActionSet;
 import controllori.CtrlWorkspace;
 import gui.menu.PopupMenuMV;
 import gui.style.StyleInterface;
 import gui.utils.GUIUtils;
 import gui.workspace.ResizeWorkspaceListener;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class TilesWorkspace extends JPanel {
 
@@ -102,7 +107,6 @@ public class TilesWorkspace extends JPanel {
     private int idScreen;
 
     private boolean tileHit;
-
 
     public TileObject getSelectedObject() {
         if (tileObjects.size() <= 0) {
@@ -434,7 +438,7 @@ public class TilesWorkspace extends JPanel {
             remove(this.popupMenu);
         }
         if (tileHit) {
-            popupMenu = PopupMenuMV.getInstance().getPopupMenu();
+            popupMenu = PopupMenuMV.getInstance().getPopupMenu(getSelectedObject());
         } else {
             popupMenu = PopupMenuMV.getInstance().getPopupScreenMenu();
         }
@@ -1276,6 +1280,26 @@ public class TilesWorkspace extends JPanel {
 
     }
 
+    private HashMap<String, TimerControlDialog> getTilesWithTimerControl() {
+        HashMap<String, TimerControlDialog> res = new HashMap<String, TimerControlDialog>();
+        for (int j = 0; j < tileObjects.size(); j++) {
+            TileObject tileObject = (TileObject) tileObjects.elementAt(j);
+            TimerControlDialog dialog = tileObject.getTimerControlDialog();
+            if (dialog != null)
+                res.put(tileObject.getItemName(), dialog);
+        }
+        return res;
+    }
+
+    private void setTilesWithTimerControl(HashMap<String, TimerControlDialog> map) {
+        for (int j = 0; j < tileObjects.size(); j++) {
+            TileObject tileObject = (TileObject) tileObjects.elementAt(j);
+            TimerControlDialog dialog = map.get(tileObject.getItemName());
+            if (dialog != null)
+                tileObject.setTimerControlDialog(dialog);
+        }
+    }
+
     public void loadTilesFromBean(Objects objs) {
         //Tengo traccia dell'id dell'oggetto selezionato
         int id = -1;
@@ -1283,6 +1307,8 @@ public class TilesWorkspace extends JPanel {
             id = getSelectedObject().getId();
         }
 
+        HashMap<String, TimerControlDialog> tilesWithTimerControl = getTilesWithTimerControl();
+        
         //CANCELLO ELEMENTI A SCHERMO
         tileObjects.removeAllElements();
 
@@ -1292,6 +1318,8 @@ public class TilesWorkspace extends JPanel {
                 addTileObject((Oggetto) iteratoreDiSalsicce.next());
             }
         }
+        
+        setTilesWithTimerControl(tilesWithTimerControl);
 
         if (id != -1) {
             setSelectedObject(id);
@@ -1563,7 +1591,65 @@ public class TilesWorkspace extends JPanel {
     public long virtualToMVScreenY(long pointY) {
         return Math.round((double) (pointY * (long) getMvVres()) / VIRTUALIZER);
     }
-
-
     
+    public void addTimerControl(TileObject obj, TimerControlDialog tcd) {
+        for (int j = 0; j < tileObjects.size(); j++) {
+            TileObject tileObject = (TileObject) tileObjects.elementAt(j);
+            if (obj == tileObject) {
+                obj.setTimerControlDialog(tcd);
+                break;
+            }
+        }
+    }
+    
+    public void removeTimerControl(TimerControlDialog tcd) {
+        for (int j = 0; j < tileObjects.size(); j++) {
+            TileObject tileObject = (TileObject) tileObjects.elementAt(j);
+            if (tileObject.getTimerControlDialog() == tcd) {
+                tileObject.setTimerControlDialog(null);
+            }
+        }
+    }
+
+    public boolean isTimerControlValid(TimerControlDialog tcd) {
+        boolean valid = false;
+        for (int j = 0; j < tileObjects.size(); j++) {
+            TileObject tileObject = (TileObject) tileObjects.elementAt(j);
+            if (tileObject.getTimerControlDialog() == tcd
+                    && tileObject.getBean().getType().getVal().compareTo("Timer") == 0
+                    && tileObject.getBean().getObjectSequence().getTimerProperties().getTriggerGpi().getVal()) {
+                valid = true;
+                break;
+            }
+        }
+        
+        return valid;
+    }
+    
+    public int getTimerControlTileId(TimerControlDialog tcd) {
+        int id = -1;
+        for (int j = 0; j < tileObjects.size(); j++) {
+            TileObject tileObject = (TileObject) tileObjects.elementAt(j);
+            if (tileObject.getTimerControlDialog() == tcd) {
+                id = tileObject.getId();
+                break;
+            }
+        }
+        
+        return id;
+    }
+
+    public TileObject getTimerControlTileObject(TimerControlDialog tcd) {
+        TileObject obj = null;
+        for (int j = 0; j < tileObjects.size(); j++) {
+            TileObject tileObject = (TileObject) tileObjects.elementAt(j);
+            if (tileObject.getTimerControlDialog() == tcd) {
+                obj = tileObject;
+                break;
+            }
+        }
+        
+        return obj;
+    }
+
 }

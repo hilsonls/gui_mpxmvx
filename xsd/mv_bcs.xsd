@@ -61,6 +61,13 @@
             </sequence>
         </complexType>
     </element>
+    
+    <element name="timerControl">
+        <complexType>
+            <attribute name="tileId" type="integer"></attribute>
+            <attribute name="time" type="integer"></attribute>
+        </complexType>
+    </element>
 
 	<element name="module">
 		<complexType>

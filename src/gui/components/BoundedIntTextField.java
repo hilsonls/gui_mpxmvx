@@ -153,7 +153,12 @@ public class BoundedIntTextField extends JTextField {
             } else borderToChange = false;
 
             if (change && wasValid && leadZero) {
-                jtf.setText(jtf.getText());
+                String s = jtf.getText();
+                int len = s.length();
+                if (len > maxLen) {
+                    s = s.substring(len - maxLen, len);
+                }
+                jtf.setText(s);
             }
 
             repaint();

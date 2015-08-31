@@ -1,4 +1,4 @@
-#Sat Aug 22 12:38:36 AEST 2015
+#Mon Aug 31 21:47:04 AEST 2015
 bean.ObjectErrorMsgSize=bean.descriptors.ObjectErrorMsgSizeDescriptor
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
@@ -45,6 +45,7 @@ bean.Out=bean.descriptors.OutDescriptor
 bean.SnellDataxxMatrix=bean.descriptors.SnellDataxxMatrixDescriptor
 bean.Vbi=bean.descriptors.VbiDescriptor
 bean.ObjectIntProperty=bean.descriptors.ObjectIntPropertyDescriptor
+bean.TimerControl=bean.descriptors.TimerControlDescriptor
 bean.UpperNormal=bean.descriptors.UpperNormalDescriptor
 bean.ScalePosition=bean.descriptors.ScalePositionDescriptor
 bean.Threshold=bean.descriptors.ThresholdDescriptor

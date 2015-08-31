@@ -1046,6 +1046,11 @@ public class CtrlWorkspace {
         CtrlProtocol ctrlProtocol = CtrlProtocol.getInstance();
         return ctrlProtocol.loadRouter(idModulo, idRouter);
     }
+    
+    public void sendTimerAction(int idModulo, int idTile, String strAction, String extraAttr) throws MVException {
+        CtrlProtocol ctrlProtocol = CtrlProtocol.getInstance();
+        ctrlProtocol.sendTimerAction(idModulo, idTile, strAction, extraAttr);
+    }
 
 //    public Source getSourceBySourceName(int idModulo, String sourceName) {
 //

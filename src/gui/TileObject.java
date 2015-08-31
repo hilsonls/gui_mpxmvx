@@ -1,6 +1,7 @@
 package gui;
 
 import bean.AspectRatio;
+import dialogs.timercontrol.TimerControlDialog;
 import eccezioni.MVException;
 
 import java.awt.*;
@@ -42,6 +43,8 @@ public class TileObject {
     private double parentLockRatioY;
     private boolean valid;
     private boolean isAudioMeterProduct;
+    
+    private TimerControlDialog timerControlDialog;
 
     public TileObject(TilesWorkspace tilesWorkspace, Oggetto bean) {
 
@@ -437,5 +440,13 @@ public class TileObject {
      */
     public long getExtY() {
         return extTop + extBottom;
+    }
+    
+    public void setTimerControlDialog(TimerControlDialog d) {
+        timerControlDialog = d;
+    }
+    
+    public TimerControlDialog getTimerControlDialog() {
+        return timerControlDialog;
     }
 }

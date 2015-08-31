@@ -2,10 +2,12 @@ package gui.menu;
 
 import gui.CtrlActions;
 import gui.MultiViewerPopupMenu;
+import gui.TileObject;
 import gui.components.JMenuBGGradient;
 import gui.components.JMenuItemBGGradient;
 import gui.utils.GUIUtils;
 import gui.utils.MyMenuActionListener;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
@@ -37,6 +39,7 @@ public class PopupMenuMV{
     private JMenuItemBGGradient editObjectItemPU;
     private JMenuItemBGGradient cutObjectItemPU;
     private JMenuItemBGGradient setupLayoutItemPUS;
+    private JMenuItemBGGradient openTimerCtrlPU;
 
    
     //pattern Singleton
@@ -48,6 +51,17 @@ public class PopupMenuMV{
     }
 
     public MultiViewerPopupMenu getPopupMenu(){
+        openTimerCtrlPU.setVisible(false);
+        return popupMenuInstance;
+    }
+    
+    public MultiViewerPopupMenu getPopupMenu(TileObject tile) {
+        if (tile != null
+                && tile.getBean().getType().getVal().compareTo("Timer") == 0
+                && tile.getBean().getObjectSequence().getTimerProperties().getTriggerGpi().getVal())
+            openTimerCtrlPU.setVisible(true);
+        else
+            openTimerCtrlPU.setVisible(false);
         return popupMenuInstance;
     }
 
@@ -68,6 +82,7 @@ public class PopupMenuMV{
         //Finezze
         newObjectItemPU.setOpaque(false);
         editObjectItemPU.setOpaque(false);
+        openTimerCtrlPU.setOpaque(false);
         cutObjectItemPU.setOpaque(false);
         copyObjectItemPU.setOpaque(false);
         pasteObjectItemPU.setOpaque(false);
@@ -87,6 +102,7 @@ public class PopupMenuMV{
 
         newObjectItemPU.setText("New object");
         editObjectItemPU.setText("Edit object");
+        openTimerCtrlPU.setText("Open timer control");
         cutObjectItemPU.setText("Cut object");
         copyObjectItemPU.setText("Copy object");
         pasteObjectItemPU.setText("Paste object");
@@ -105,6 +121,7 @@ public class PopupMenuMV{
     private void setActionCommand() {
         newObjectItemPU.setActionCommand("Add");
         editObjectItemPU.setActionCommand("Edit");
+        openTimerCtrlPU.setActionCommand("OpenTimerControl");
         cutObjectItemPU.setActionCommand("Cut");
         copyObjectItemPU.setActionCommand("Copy");
         pasteObjectItemPU.setActionCommand("Paste");
@@ -134,6 +151,7 @@ public class PopupMenuMV{
         newObjectItemPU.setIcon(utils.getIcon("new-object.gif"));
         newObjectItemPUS.setIcon(utils.getIcon("new-object.gif"));
         editObjectItemPU.setIcon(utils.getIcon("edit.gif"));
+        openTimerCtrlPU.setIcon(utils.getIcon("empty.gif"));
         cutObjectItemPU.setIcon(utils.getIcon("cut.gif"));
         setupLayoutItemPUS.setIcon(utils.getIcon("setup-layout.gif"));
     }
@@ -153,6 +171,7 @@ public class PopupMenuMV{
         newObjectItemPU.addActionListener(listener);
         newObjectItemPUS.addActionListener(listener);
         editObjectItemPU.addActionListener(listener);
+        openTimerCtrlPU.addActionListener(listener);
         cutObjectItemPU.addActionListener(listener);
         setupLayoutItemPUS.addActionListener(listener);
     }
@@ -171,6 +190,7 @@ public class PopupMenuMV{
     newObjectItemPU = new JMenuItemBGGradient();
     newObjectItemPUS = new JMenuItemBGGradient();
     editObjectItemPU = new JMenuItemBGGradient();
+    openTimerCtrlPU = new JMenuItemBGGradient();
     cutObjectItemPU = new JMenuItemBGGradient();
     setupLayoutItemPUS = new JMenuItemBGGradient();
 
@@ -179,6 +199,7 @@ public class PopupMenuMV{
     private void addMenuItems() {
         popupMenuInstance.add(newObjectItemPU);
         popupMenuInstance.add(editObjectItemPU);
+        popupMenuInstance.add(openTimerCtrlPU);
         popupMenuInstance.add(cutObjectItemPU);
         popupMenuInstance.add(new JPopupMenu.Separator());
         popupMenuInstance.add(copyObjectItemPU);
