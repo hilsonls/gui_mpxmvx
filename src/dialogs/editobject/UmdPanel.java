@@ -24,9 +24,11 @@ public class UmdPanel extends JPanelBGGradient{
 
     private JCheckBox text1Check;
     private JTextField text1Field;
+    private JCheckBox text1UseSourceCheck;
 
     private JCheckBox text2Check;
     private JTextField text2Field;
+    private JCheckBox text2UseSourceCheck;
 
     private JLabel fontLabel;
     private JComboBox fontNameCombo;
@@ -68,11 +70,27 @@ public class UmdPanel extends JPanelBGGradient{
         text1Check.setSelected(bean.getUmdText(0).getEnabled().getVal());
         text1Check.addItemListener(mIL);
         text1Field = ComponentFactory.createTextField(bean.getUmdText(0).getText().getVal(), 40);
+        text1UseSourceCheck = new JCheckBoxTransBG("Use source name");
+        if (bean.getUmdText(0).getUseSource() != null) {
+            text1UseSourceCheck.setSelected(bean.getUmdText(0).getUseSource().getVal());
+            text1UseSourceCheck.addItemListener(mIL);
+        } else {
+            text1UseSourceCheck.setSelected(false);
+            text1UseSourceCheck.setVisible(false);
+        }
 
         text2Check = new JCheckBoxTransBG("Text 2nd line");
         text2Check.setSelected(bean.getUmdText(1).getEnabled().getVal());
         text2Check.addItemListener(mIL);
         text2Field = ComponentFactory.createTextField(bean.getUmdText(1).getText().getVal(), 40);
+        text2UseSourceCheck = new JCheckBoxTransBG("Use source name");
+        if (bean.getUmdText(1).getUseSource() != null) {
+            text2UseSourceCheck.setSelected(bean.getUmdText(1).getUseSource().getVal());
+            text2UseSourceCheck.addItemListener(mIL);
+        } else {
+            text2UseSourceCheck.setSelected(false);
+            text2UseSourceCheck.setVisible(false);
+        }
         
         fontLabel = new JLabel("Font");
         fontNameCombo = ComponentFactory.createComboBox(bean.getFont().getOptionsName(), bean.getFont().getVal());
@@ -110,8 +128,8 @@ public class UmdPanel extends JPanelBGGradient{
         visibleCheck.setSelected(bean.getVisible().getVal());
         
         layout.addGrid(new Component[][] {
-                {text1Check, text1Field},
-                {text2Check, text2Field},
+                {text1Check, text1Field, text1UseSourceCheck},
+                {text2Check, text2Field, text2UseSourceCheck},
         });
         layout.addGap();
         layout.addGrid(new Component[][] {
@@ -137,9 +155,14 @@ public class UmdPanel extends JPanelBGGradient{
     public void save() {
         bean.getUmdText(0).getEnabled().setVal(text1Check.isSelected());
         bean.getUmdText(0).getText().setVal(text1Field.getText());
+        if (bean.getUmdText(0).getUseSource() != null)
+            bean.getUmdText(0).getUseSource().setVal(text1UseSourceCheck.isSelected());
         
         bean.getUmdText(1).getEnabled().setVal(text2Check.isSelected());
         bean.getUmdText(1).getText().setVal(text2Field.getText());
+        if (bean.getUmdText(1).getUseSource() != null)
+            bean.getUmdText(1).getUseSource().setVal(text2UseSourceCheck.isSelected());
+        
         
         try{
             bean.getFont().setVal(fontNameCombo.getSelectedItem().toString());
@@ -182,8 +205,10 @@ public class UmdPanel extends JPanelBGGradient{
             transparentLabel.setEnabled(false);
             transparentSlider.setEnabled(false);
         }*/
-        text1Field.setEnabled(text1Check.isSelected());
-        text2Field.setEnabled(text2Check.isSelected());
+        text1Field.setEnabled(text1Check.isSelected() && !text1UseSourceCheck.isSelected());
+        text2Field.setEnabled(text2Check.isSelected() && !text2UseSourceCheck.isSelected());
+        text1UseSourceCheck.setEnabled(text1Check.isSelected());
+        text2UseSourceCheck.setEnabled(text2Check.isSelected());
         separatorCombo.setEnabled(separatorCheck.isSelected());
     }
     

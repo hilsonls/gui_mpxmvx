@@ -185,6 +185,42 @@ public class UmdTextDescriptor extends org.exolab.castor.xml.util.XMLClassDescri
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
+        //-- _useSource
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.UseSource.class, "_useSource", "useSource", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                UmdText target = (UmdText) object;
+                return target.getUseSource();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    UmdText target = (UmdText) object;
+                    target.setUseSource( (bean.UseSource) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.UseSource");
+        desc.setHandler(handler);
+        desc.setRequired(true);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _useSource
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(1);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
     }
 
 

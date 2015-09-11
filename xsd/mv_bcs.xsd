@@ -603,7 +603,10 @@
 			                                                    <element
 			                                                        ref="tns:text">
 			                                                    </element>
-
+                                                                <element
+                                                                    name="useSource"
+                                                                    type="tns:objectBooleanProperty">
+                                                                </element>
 			                                                </sequence>
 			                                                <attribute
 			                                                    name="id"

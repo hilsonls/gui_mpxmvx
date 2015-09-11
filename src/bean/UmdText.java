@@ -46,6 +46,11 @@ public class UmdText implements java.io.Serializable {
      */
     private bean.Text _text;
 
+    /**
+     * Field _useSource.
+     */
+    private bean.UseSource _useSource;
+
 
       //----------------/
      //- Constructors -/
@@ -95,6 +100,16 @@ public class UmdText implements java.io.Serializable {
     public bean.Text getText(
     ) {
         return this._text;
+    }
+
+    /**
+     * Returns the value of field 'useSource'.
+     * 
+     * @return the value of field 'UseSource'.
+     */
+    public bean.UseSource getUseSource(
+    ) {
+        return this._useSource;
     }
 
     /**
@@ -183,6 +198,16 @@ public class UmdText implements java.io.Serializable {
     public void setText(
             final bean.Text text) {
         this._text = text;
+    }
+
+    /**
+     * Sets the value of field 'useSource'.
+     * 
+     * @param useSource the value of field 'useSource'.
+     */
+    public void setUseSource(
+            final bean.UseSource useSource) {
+        this._useSource = useSource;
     }
 
     /**
