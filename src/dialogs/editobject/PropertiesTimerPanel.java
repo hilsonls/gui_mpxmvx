@@ -123,7 +123,7 @@ public class PropertiesTimerPanel extends JPanelBGGradient {
         timeOfDayRadio.addItemListener(mIL);
         timeOfDayRadio.setOpaque(false);
 
-        gpiRadio = new JRadioButton("Control with GPIs");
+        gpiRadio = new JRadioButton("Control with GPIs or local control panel");
         gpiRadio.setSelected(bean.getTriggerGpi().getVal());
         gpiRadio.addItemListener(mIL);
         gpiRadio.setOpaque(false);
