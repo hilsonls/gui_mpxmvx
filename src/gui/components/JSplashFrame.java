@@ -6,11 +6,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionAdapter;
 import java.net.URL;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -33,10 +35,10 @@ public class JSplashFrame extends JFrame {
     
     public static JPanel getJSplashPanel(String msg, Font font, ImageIcon imageicon){
         firstIcon = imageicon;
-        return getJSplashPanel(msg, font, (URL)null);
+        return getJSplashPanel(msg, font, (URL)null, (URL)null);
     }
     
-    public static JPanel getJSplashPanel(String msg, Font font, URL imgAddress){
+    public static JPanel getJSplashPanel(String msg, Font font, URL imgAddress1, URL imgAddress2){
         
         JPanel panel = new JPanel();
           
@@ -52,7 +54,7 @@ public class JSplashFrame extends JFrame {
         panel.setLocation((dimensioni.width / 8)*3, (dimensioni.height / 8)*3);
         panel.setSize(new Dimension(dimensioni.width / 4, dimensioni.height / 4));
         panel.setLayout(new GridLayout(2, 1));
-        panel.setOpaque(true);
+        panel.setOpaque(false);
         
                
         
@@ -75,12 +77,19 @@ public class JSplashFrame extends JFrame {
         }
 
         JButton but = null;
-        if (imgAddress != null) {
-            defaultIcon = imgAddress;
+        if (imgAddress1 != null) {
+            defaultIcon = imgAddress1;
             firstIcon = new ImageIcon(defaultIcon);
-            but = new JButton(firstIcon);
+            if (firstIcon.getImage().getWidth(null) > 0)
+                but = new JButton(firstIcon);
         }
-        else if(firstIcon!=null){
+        if (but == null && imgAddress2 != null) {
+            defaultIcon = imgAddress2;
+            firstIcon = new ImageIcon(defaultIcon);
+            if (firstIcon.getImage().getWidth(null) > 0)
+                but = new JButton(firstIcon);
+        }
+        if (but == null && firstIcon != null){
             but = new JButton(firstIcon);
         }
 
@@ -88,8 +97,8 @@ public class JSplashFrame extends JFrame {
             but.setBorderPainted(false);
             but.setEnabled(false);
             but.setDisabledIcon(firstIcon);
-            but.setOpaque(true);
-            but.setBackground(c);
+            but.setOpaque(false);
+//            but.setBackground(c);
             panel.add(but);
             //Cursor myPointer= Toolkit.getDefaultToolkit().createCustomCursor(firstIcon.getImage(), new Point(0,0), "Blah");
             //panel.setCursor(myPointer); 
@@ -101,32 +110,34 @@ public class JSplashFrame extends JFrame {
         return panel;
     }
    
-    public static JFrame getJSplashFrame(String msg, Font font, URL imgAddress) {
+    public static JFrame getJSplashFrame(String msg, Font font, URL imgAddress1, URL imgAddress2) {
         
         JFrame frame = new JFrame();
         
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setUndecorated(true);
+        frame.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
+        
+        JPanel pannello = getJSplashPanel(msg, font, imgAddress1, imgAddress2);
+
+        Image image = firstIcon.getImage();
+        int imageWidth = image.getWidth(null);
+        int imageHeight = image.getHeight(null);
         Dimension dimensioni = Toolkit.getDefaultToolkit().getScreenSize();
-        //frame.setLocation((dimensioni.width / 8)*3, (dimensioni.height / 8)*3);
-        //frame.setSize(new Dimension(dimensioni.width / 4, dimensioni.height / 4));
-         
-        frame.setLocation(dimensioni.width/2 - 160, dimensioni.height/2 - 128);
-        frame.setSize(320,256);
-        //frame.setLayout(new GridLayout(2, 1));
+        frame.setLocation((dimensioni.width - imageWidth) / 2, (dimensioni.height - imageHeight) / 2);
+        frame.setSize(imageWidth, imageHeight);
         frame.setTitle("Loading");
         
-        JPanel pannello = getJSplashPanel(msg, font, imgAddress);
         frame.add(pannello);
        
-        frame.setIconImage(firstIcon.getImage());
+        frame.setIconImage(image);
         
         frame.setVisible(true);
         
         return frame;
     }
     
-    public static JDialog getJSplashDialog(Frame frame, String msg, Font font, URL imgAddress){
+    public static JDialog getJSplashDialog(Frame frame, String msg, Font font, URL imgAddress1, URL imgAddress2){
          
         JDialog dialog = new JDialog(frame, true);
         
@@ -138,7 +149,7 @@ public class JSplashFrame extends JFrame {
         dialog.setSize(new Dimension(dimensioni.width / 4, dimensioni.height / 4));
         
         //dialog.setModal(true);
-        dialog.add(getJSplashPanel(msg, font, imgAddress));
+        dialog.add(getJSplashPanel(msg, font, imgAddress1, imgAddress2));
         
         dialog.setVisible(true);
         

@@ -29,16 +29,25 @@ public class MultiViewerBCS {
         }
 
         Font font = new Font("Lucida", Font.BOLD, 14);
-        URL splashURL;
+        URL splashURL1;
+        URL splashURL2;
 
         try {
-            splashURL = new URL(root.toString() + "splash.jpg");
+            splashURL1 = new URL(root.toString() + "splash.png");
 
         } catch (MalformedURLException ex) {
             System.out.println("Splash icon: malformed URL");
-            splashURL = null;
+            splashURL1 = null;
         }
-        JFrame splash = JSplashFrame.getJSplashFrame(null, font, splashURL);
+
+        try {
+            splashURL2 = new URL(root.toString() + "splash.jpg");
+
+        } catch (MalformedURLException ex) {
+            System.out.println("Splash icon: malformed URL");
+            splashURL2 = null;
+        }
+        JFrame splash = JSplashFrame.getJSplashFrame(null, font, splashURL1, splashURL2);
 
         if (CtrlWorkspace.getInstance() == null) {
             System.out.print("Unable to connect to server; Second retry\n");
