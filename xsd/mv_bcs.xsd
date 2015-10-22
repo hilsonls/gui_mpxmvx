@@ -1501,6 +1501,21 @@
 			                                                maxOccurs="1"
 			                                                minOccurs="0">
 			                                            </element>
+                                                        <element
+                                                            name="missingSourceColour"
+                                                            maxOccurs="1"
+                                                            minOccurs="0">
+                                                            <complexType>
+                                                                <complexContent>
+                                                                <extension base="tns:objectStringProperty">
+                                                                <attribute
+                                                                    name="optionsName"
+                                                                    type="string">
+                                                                 </attribute>
+                                                                </extension>
+                                                                </complexContent>
+                                                            </complexType>
+                                                         </element>
 			                                            <element
 			                                                ref="tns:bkcolour"
 			                                                maxOccurs="1"

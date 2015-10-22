@@ -57,6 +57,11 @@ public class ClockProperties implements java.io.Serializable {
     private bean.Colour _colour;
 
     /**
+     * Field _missingSourceColour.
+     */
+    private bean.MissingSourceColour _missingSourceColour;
+
+    /**
      * Field _bkcolour.
      */
     private bean.Bkcolour _bkcolour;
@@ -143,6 +148,16 @@ public class ClockProperties implements java.io.Serializable {
     public bean.Hour24time getHour24time(
     ) {
         return this._hour24time;
+    }
+
+    /**
+     * Returns the value of field 'missingSourceColour'.
+     * 
+     * @return the value of field 'MissingSourceColour'.
+     */
+    public bean.MissingSourceColour getMissingSourceColour(
+    ) {
+        return this._missingSourceColour;
     }
 
     /**
@@ -280,6 +295,17 @@ public class ClockProperties implements java.io.Serializable {
     public void setHour24time(
             final bean.Hour24time hour24time) {
         this._hour24time = hour24time;
+    }
+
+    /**
+     * Sets the value of field 'missingSourceColour'.
+     * 
+     * @param missingSourceColour the value of field
+     * 'missingSourceColour'.
+     */
+    public void setMissingSourceColour(
+            final bean.MissingSourceColour missingSourceColour) {
+        this._missingSourceColour = missingSourceColour;
     }
 
     /**

@@ -34,6 +34,9 @@ public class PropertiesClockPanel extends JPanelBGGradient {
     private JLabel foregroundLabel;
     private JComboBox foregroundCombo;
     
+    private JLabel missingSourceColourLabel;
+    private JComboBox missingSourceColourCombo;
+    
     private JLabel backgroundLabel;
     private JComboBox backgroundCombo;
 
@@ -66,10 +69,18 @@ public class PropertiesClockPanel extends JPanelBGGradient {
         offsetLabel = new JLabel("Offset (hours)");
         offsetCombo = ComponentFactory.createComboBox(bean.getOffset().getOptionsName(), bean.getOffset().getVal());
         
-        foregroundLabel = new JLabel("Foreground");
+        foregroundLabel = new JLabel("Foreground colour");
         foregroundCombo = ComponentFactory.createComboBox(bean.getColour().getOptionsName(), bean.getColour().getVal());
         
-        backgroundLabel = new JLabel("Background");
+        missingSourceColourLabel = new JLabel("Missing clock source colour");
+        missingSourceColourLabel.setToolTipText("Foreground colour when clock source is missing");
+        if (bean.getMissingSourceColour() == null)
+            missingSourceColourCombo = ComponentFactory.createComboBox(bean.getColour().getOptionsName(), bean.getColour().getVal());
+        else
+            missingSourceColourCombo = ComponentFactory.createComboBox(bean.getMissingSourceColour().getOptionsName(), bean.getMissingSourceColour().getVal());
+        missingSourceColourCombo.setToolTipText("Foreground colour when clock source is missing");
+        
+        backgroundLabel = new JLabel("Background colour");
         backgroundCombo = ComponentFactory.createComboBox(bean.getBkcolour().getOptionsName(), bean.getBkcolour().getVal());
 
         displayDateCheck = new JCheckBoxTransBG("Display Date");
@@ -84,11 +95,13 @@ public class PropertiesClockPanel extends JPanelBGGradient {
                 {timezoneCheck, timezoneCombo},
                 {offsetLabel, offsetCombo},
                 {foregroundLabel, foregroundCombo},
+                {missingSourceColourLabel, missingSourceColourCombo},
                 {backgroundLabel, backgroundCombo},
         });
         layout.add(displayDateCheck);
         layout.addRow(new Component[] {dateFormatLabel, dateFormatCombo});
         
+        checkComponentEnablingConditions();
     }
     
     public void save() {
@@ -98,6 +111,8 @@ public class PropertiesClockPanel extends JPanelBGGradient {
         bean.getTimezone().setVal(timezoneCombo.getSelectedItem().toString());
         bean.getOffset().setVal(offsetCombo.getSelectedItem().toString());
         bean.getColour().setVal(foregroundCombo.getSelectedItem().toString());
+        if (bean.getMissingSourceColour() != null)
+            bean.getMissingSourceColour().setVal(missingSourceColourCombo.getSelectedItem().toString());
         bean.getBkcolour().setVal(backgroundCombo.getSelectedItem().toString());
         bean.getDisplayDate().setVal(displayDateCheck.isSelected());
         bean.getDateFormat().setVal(dateFormatCombo.getSelectedItem().toString());

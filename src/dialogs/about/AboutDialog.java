@@ -38,7 +38,7 @@ public class AboutDialog extends JDialog {
         
          
         setTitle("About");
-        setResizable(false);
+        setResizable(true);
         setModal(true);
         setDefaultCloseOperation(2);
         setLocation(100, 100);

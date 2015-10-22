@@ -273,6 +273,40 @@ public class ClockPropertiesDescriptor extends org.exolab.castor.xml.util.XMLCla
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
+        //-- _missingSourceColour
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.MissingSourceColour.class, "_missingSourceColour", "missingSourceColour", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                ClockProperties target = (ClockProperties) object;
+                return target.getMissingSourceColour();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    ClockProperties target = (ClockProperties) object;
+                    target.setMissingSourceColour( (bean.MissingSourceColour) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.MissingSourceColour");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _missingSourceColour
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
         //-- _bkcolour
         desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Bkcolour.class, "_bkcolour", "bkcolour", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {

@@ -6,8 +6,11 @@ import bean.OptionsList;
 import controllori.CtrlProtocol;
 import eccezioni.MVException;
 import gui.MultiViewerBCS;
+import gui.components.VGroupLayout;
+
 import java.awt.Component;
 import java.util.Vector;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JLabel;
@@ -36,8 +39,8 @@ public class AboutPanel extends JPanel{
     
     public AboutPanel(int idModulo) throws MVException {
         //setto dimensione panel
-        setLayout(null);
-        setBounds(1, 30, 400, 400);
+        VGroupLayout layout = new VGroupLayout(this);
+        setLayout(layout);
         
         OptionsList optionsList = CtrlProtocol.getInstance().queryOptionName("about", false);
         int count = optionsList.getNameCount();
@@ -53,23 +56,15 @@ public class AboutPanel extends JPanel{
 
         
         infoTable = new JList(listaValori);
-        infoTable.setBounds(0,0,300,300);
         infoTable.setFixedCellHeight(12);
         //oggetti interfaccia utente
         JScrollPane scroll  = new JScrollPane(infoTable);
-        scroll = new JScrollPane();
         scroll.setOpaque(true);
-        add(scroll);
-        scroll.setBounds(10, 10, 300, 300);
-        
+        layout.add(scroll);
        
         infoTable.setBorder((BevelBorder)BorderFactory.createBevelBorder(0));
         scroll.getViewport().add(infoTable);
-        infoTable.setBounds(0, 0, 300, 300);
         infoTable.setCellRenderer(new AlarmPanelCellRenderer());
-        
-        add(scroll);
-
 
     }
 }

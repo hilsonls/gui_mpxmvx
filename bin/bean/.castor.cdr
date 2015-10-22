@@ -1,4 +1,4 @@
-#Fri Sep 11 14:42:56 AEST 2015
+#Wed Oct 21 16:32:37 AEDT 2015
 bean.ObjectErrorMsgSize=bean.descriptors.ObjectErrorMsgSizeDescriptor
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
@@ -62,6 +62,7 @@ bean.TtVisible=bean.descriptors.TtVisibleDescriptor
 bean.Title=bean.descriptors.TitleDescriptor
 bean.Enabled=bean.descriptors.EnabledDescriptor
 bean.Netmask=bean.descriptors.NetmaskDescriptor
+bean.MissingSourceColour=bean.descriptors.MissingSourceColourDescriptor
 bean.ClockProperties=bean.descriptors.ClockPropertiesDescriptor
 bean.IntervalName=bean.descriptors.IntervalNameDescriptor
 bean.CarrierLossAlarm=bean.descriptors.CarrierLossAlarmDescriptor
