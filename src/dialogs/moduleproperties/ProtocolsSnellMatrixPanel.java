@@ -95,10 +95,10 @@ public class ProtocolsSnellMatrixPanel extends JPanelBGGradient {
         routerTable.setColumnSelectionAllowed(true);
         //imposto custom editor per alcune colonne
         routerTable.getColumnModel().getColumn(COL_CONTROLLER).setCellEditor(new DefaultCellEditor(controllerCombo));
-        routerTable.getColumnModel().getColumn(COL_MATRIX_NUMBER).setCellEditor(new BoundedIntegerCellEditor(bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumMats().getMin(), bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumMats().getMax()));
-        routerTable.getColumnModel().getColumn(COL_MATRIX_LEVEL).setCellEditor(new BoundedIntegerCellEditor(bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumLvls().getMin(), bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumLvls().getMax()));
-        routerTable.getColumnModel().getColumn(COL_ROUTER_DESTINATION).setCellEditor(new BoundedIntegerCellEditor(bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumOuts().getMin(), bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumOuts().getMax()));
-        routerTable.getColumnModel().getColumn(COL_DESTINATION_ASSOCIATION).setCellEditor(new BoundedIntegerCellEditor(bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumDass().getMin(), bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumDass().getMax()));
+        routerTable.getColumnModel().getColumn(COL_MATRIX_NUMBER).setCellEditor(new BoundedIntegerCellEditor(bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumMats().getMin() + 1, bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumMats().getMax() + 1));
+        routerTable.getColumnModel().getColumn(COL_MATRIX_LEVEL).setCellEditor(new BoundedIntegerCellEditor(bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumLvls().getMin() + 1, bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumLvls().getMax() + 1));
+        routerTable.getColumnModel().getColumn(COL_ROUTER_DESTINATION).setCellEditor(new BoundedIntegerCellEditor(bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumOuts().getMin() + 1, bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumOuts().getMax() + 1));
+        routerTable.getColumnModel().getColumn(COL_DESTINATION_ASSOCIATION).setCellEditor(new BoundedIntegerCellEditor(bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumDass().getMin() + 1, bean.getSnellMatrixPhysMapInfo().getSnellMatrixNumDass().getMax() + 1));
         routerTable.addFocusListener(new FocusListener() {
 
             public void focusGained(FocusEvent e) {
@@ -308,10 +308,10 @@ public class ProtocolsSnellMatrixPanel extends JPanelBGGradient {
                 SnellMatrixIn in = (SnellMatrixIn) it.next();
                 data[i][COL_MV_INPUT] =                 new Integer(in.getId());
                 data[i][COL_CONTROLLER] =               new String(getControllerName(in.getCon()));
-                data[i][COL_MATRIX_NUMBER] =            new Integer(in.getMat());
-                data[i][COL_MATRIX_LEVEL] =             new Integer(in.getLvl());
-                data[i][COL_ROUTER_DESTINATION] =       new Integer(in.getOut());
-                data[i][COL_DESTINATION_ASSOCIATION] =  new Integer(in.getDass());
+                data[i][COL_MATRIX_NUMBER] =            new Integer(in.getMat() + 1);
+                data[i][COL_MATRIX_LEVEL] =             new Integer(in.getLvl() + 1);
+                data[i][COL_ROUTER_DESTINATION] =       new Integer(in.getOut() + 1);
+                data[i][COL_DESTINATION_ASSOCIATION] =  new Integer(in.getDass() + 1);
                 data[i][COL_CONNECTED] =                new Boolean(in.getEn());
             }
         }
@@ -390,10 +390,10 @@ public class ProtocolsSnellMatrixPanel extends JPanelBGGradient {
                 SnellMatrixIn in = new SnellMatrixIn();
                 in.setId(((Integer) data[i][COL_MV_INPUT]).intValue());
                 in.setCon(snellPanel.getControllerIndex(data[i][COL_CONTROLLER].toString()));
-                in.setMat(((Integer) data[i][COL_MATRIX_NUMBER]).intValue());
-                in.setLvl(((Integer) data[i][COL_MATRIX_LEVEL]).intValue());
-                in.setOut(((Integer) data[i][COL_ROUTER_DESTINATION]).intValue());
-                in.setDass(((Integer) data[i][COL_DESTINATION_ASSOCIATION]).intValue());
+                in.setMat(((Integer) data[i][COL_MATRIX_NUMBER]).intValue() - 1);
+                in.setLvl(((Integer) data[i][COL_MATRIX_LEVEL]).intValue() - 1);
+                in.setOut(((Integer) data[i][COL_ROUTER_DESTINATION]).intValue() - 1);
+                in.setDass(((Integer) data[i][COL_DESTINATION_ASSOCIATION]).intValue() - 1);
                 in.setEn(((Boolean) data[i][COL_CONNECTED]).booleanValue());
                 bean.getSnellMatrixPhysIns().addSnellMatrixIn(in);
             }
@@ -533,10 +533,11 @@ public class ProtocolsSnellMatrixPanel extends JPanelBGGradient {
 
             //Value was invalid.
             if ((intValue < minVal) || (intValue > maxVal)) {
-                if (intValue < minVal) {
-                    message = "<html>Please insert an integer value greater than " + (minVal + 1) + ((esc) ? " <br>or press esc to restore previous value<html>" : "");
-                } else { //amount is greater than MAX_AMOUNT
-                    message = "<html>Please insert an integer value lower than " + (maxVal + 1) + ((esc) ? " <br>or press esc to restore previous value</html>" : "");
+                if (intValue < minVal || intValue > maxVal) {
+                    message = "<html>Range: " + minVal + " to " + (maxVal) + ((esc) ? " <br>or press esc to restore previous value<html>" : "");
+//                    message = "<html>Please insert an integer value greater than " + (minVal + 1) + ((esc) ? " <br>or press esc to restore previous value<html>" : "");
+//                } else { //amount is greater than MAX_AMOUNT
+//                    message = "<html>Please insert an integer value lower than " + (maxVal + 1) + ((esc) ? " <br>or press esc to restore previous value</html>" : "");
                 }
                 return false;
             }
