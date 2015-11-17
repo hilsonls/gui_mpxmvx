@@ -2387,6 +2387,33 @@
 			                        </sequence>
 			                    </complexType>
 			                </element>
+                            <element name="tsl" maxOccurs="1" minOccurs="0">
+                                <complexType>
+                                    <sequence>
+                                        <element name="tab" maxOccurs="unbounded" minOccurs="0">
+                                            <complexType>
+                                                <attribute name="addr"
+                                                    type="int">
+                                                </attribute>
+                                                <attribute
+                                                    name="src"
+                                                    type="int">
+                                                </attribute>
+                                            </complexType>
+                                        </element>
+                                    </sequence>
+                                    <attribute name="ip"
+                                        type="boolean">
+                                    </attribute>
+                                    <attribute name="port" type="int">
+                                    </attribute>
+                                    <attribute name="addrMode" type="int">
+                                    </attribute>
+                                    <attribute name="addrOffset"
+                                        type="int">
+                                    </attribute>
+                                </complexType>
+                            </element>
 			            </sequence>
 			        </complexType>
 			    </element>

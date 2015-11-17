@@ -171,6 +171,40 @@ public class ProtocolsDescriptor extends org.exolab.castor.xml.util.XMLClassDesc
         { //-- local scope
         }
         desc.setValidator(fieldValidator);
+        //-- _tsl
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(bean.Tsl.class, "_tsl", "tsl", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Protocols target = (Protocols) object;
+                return target.getTsl();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Protocols target = (Protocols) object;
+                    target.setTsl( (bean.Tsl) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("bean.Tsl");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _tsl
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
     }
 
 

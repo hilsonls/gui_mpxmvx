@@ -19,6 +19,7 @@ public class ProtocolsPanel extends JPanelBGGradient {
     private ProtocolsSerialPanel protSerialPanel;
     private ProtocolsSierraPanel protSierraPanel;
     private ProtocolsSnellPanel protSnellPanel;
+    private ProtocolsTslPanel protTslPanel;
 
     public ProtocolsPanel(Protocols bean, int idModulo, Frame frame) throws MVException {
         setLayout(null);
@@ -30,30 +31,43 @@ public class ProtocolsPanel extends JPanelBGGradient {
         protSerialPanel = new ProtocolsSerialPanel(bean.getPorts(), idModulo, frame);
         protSierraPanel = new ProtocolsSierraPanel(bean.getSierraRouter());
 
+        int paneNumber = 0;
+        
         tabbedPane = new JDioTabbedPane();
         tabbedPane.setUI(new BasicTabbedPaneUI());
         tabbedPane.setBackground(StyleInterface.getInstance().getPropertiesTabbedPaneBackgroundColor());
         tabbedPane.addChangeListener(new ChangeListenerColorHandled(StyleInterface.getInstance().getPropertiesTabbedPaneBackgroundColor(), StyleInterface.getInstance().getTabbedPaneForegroundColor()));
         tabbedPane.setBounds(5, 1, 540, 520);
         tabbedPane.add(protSerialPanel);
-        tabbedPane.setTitleAt(0, "Serial Ports");
+        tabbedPane.setTitleAt(paneNumber, "Serial Ports");
+        paneNumber++;
 
         if (!StyleInterface.getCompany().equalsIgnoreCase("Snell")) { // Sierra & Chromatec
 
             tabbedPane.add(protSierraPanel);
-            tabbedPane.setTitleAt(1, "Sierra Router");
+            tabbedPane.setTitleAt(paneNumber, "Sierra Router");
+            paneNumber++;
         }
         if (StyleInterface.getCompany().equalsIgnoreCase("Chromatec")) {
 
             protSnellPanel = new ProtocolsSnellPanel(bean.getSnellRouter(), idModulo, frame);
             tabbedPane.add(protSnellPanel);
-            tabbedPane.setTitleAt(2, "Snell Router Network");
+            tabbedPane.setTitleAt(paneNumber, "Snell Router Network");
+            paneNumber++;
 
         } 
         if (StyleInterface.getCompany().equalsIgnoreCase("Snell")){ //Snell
             protSnellPanel = new ProtocolsSnellPanel(bean.getSnellRouter(), idModulo, frame);
             tabbedPane.add(protSnellPanel);
-            tabbedPane.setTitleAt(1, "Snell Router Network");
+            tabbedPane.setTitleAt(paneNumber, "Snell Router Network");
+            paneNumber++;
+        }
+        
+        if (bean.getTsl() != null) {
+            protTslPanel = new ProtocolsTslPanel(bean.getTsl(), idModulo, frame);
+            tabbedPane.add(protTslPanel);
+            tabbedPane.setTitleAt(paneNumber, "TSL UMD V3.1/V4.0");
+            paneNumber++;
         }
 
         //SNELL AUDIO VIDEO E DATAXX TABS
@@ -84,5 +98,7 @@ public class ProtocolsPanel extends JPanelBGGradient {
         if (StyleInterface.getCompany().equalsIgnoreCase("Snell") || StyleInterface.getCompany().equalsIgnoreCase("Chromatec")) {
             protSnellPanel.save();
         }
+        if (protTslPanel != null)
+            protTslPanel.save();
     }
 }

@@ -41,6 +41,11 @@ public class Protocols implements java.io.Serializable {
      */
     private bean.SnellRouter _snellRouter;
 
+    /**
+     * Field _tsl.
+     */
+    private bean.Tsl _tsl;
+
 
       //----------------/
      //- Constructors -/
@@ -83,6 +88,16 @@ public class Protocols implements java.io.Serializable {
     public bean.SnellRouter getSnellRouter(
     ) {
         return this._snellRouter;
+    }
+
+    /**
+     * Returns the value of field 'tsl'.
+     * 
+     * @return the value of field 'Tsl'.
+     */
+    public bean.Tsl getTsl(
+    ) {
+        return this._tsl;
     }
 
     /**
@@ -160,6 +175,16 @@ public class Protocols implements java.io.Serializable {
     public void setSnellRouter(
             final bean.SnellRouter snellRouter) {
         this._snellRouter = snellRouter;
+    }
+
+    /**
+     * Sets the value of field 'tsl'.
+     * 
+     * @param tsl the value of field 'tsl'.
+     */
+    public void setTsl(
+            final bean.Tsl tsl) {
+        this._tsl = tsl;
     }
 
     /**
