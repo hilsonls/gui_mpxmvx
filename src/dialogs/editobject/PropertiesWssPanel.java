@@ -5,6 +5,7 @@
 
 package dialogs.editobject;
 
+import bean.AspectDefault;
 import bean.Wss;
 import eccezioni.MVException;
 import gui.ComponentFactory;
@@ -35,6 +36,11 @@ public class PropertiesWssPanel extends JPanelBGGradient{
     
     private JCheckBox autoCheck;
     
+    private JLabel videoAspectLabel;
+    private JComboBox videoAspectCombo;
+    private static final String videoAspectSdHdString = "4:3 for SD, 16:9 for HD";
+    private int videoAspectSdHdIndex;
+    
     private JCheckBox indicatorCheck;
     
     
@@ -47,9 +53,20 @@ public class PropertiesWssPanel extends JPanelBGGradient{
         modeCombo = ComponentFactory.createComboBox(bean.getMode().getOptionsName(), bean.getMode().getVal());
         modeCombo.setToolTipText("Type of wide screen information to detect");
     
-        autoCheck = new JCheckBoxTransBG("Auto size video image to the correct aspect ratio");
+        autoCheck = new JCheckBoxTransBG("Auto size video image to the WSS/AFD aspect ratio");
         autoCheck.setSelected(bean.getAspectEnabled().getVal());
         autoCheck.setToolTipText("Size the video to the WSS/AFD information");
+        
+        videoAspectLabel = new JLabel("Default aspect ratio");
+        videoAspectCombo = ComponentFactory.createComboBox(bean.getAspectDefault().getOptionsName(), bean.getAspectDefault().getVal());
+        String hdValStr = bean.getAspectDefault().getHdVal();
+        if (hdValStr != null && !hdValStr.isEmpty()) {
+            videoAspectCombo.addItem(videoAspectSdHdString);
+            videoAspectSdHdIndex = videoAspectCombo.getItemCount() - 1;
+            if (hdValStr.compareTo("16:9") == 0 && bean.getAspectDefault().getVal().compareTo("4:3") == 0)
+                videoAspectCombo.setSelectedIndex(videoAspectSdHdIndex);
+        }
+        videoAspectCombo.setToolTipText("Aspect ratio to use when WSS/AFD detection is disabled or there is no WSS/AFD info");
         
         indicatorCheck = new JCheckBoxTransBG("Indicator on");
         indicatorCheck.setSelected(bean.getAspectIndicator().getVal());
@@ -61,6 +78,7 @@ public class PropertiesWssPanel extends JPanelBGGradient{
         layout.addRow(new Component[] {modeLabel, modeCombo});
         layout.addGap();
         layout.add(autoCheck);
+        layout.addRow(new Component[] {videoAspectLabel, videoAspectCombo});
         layout.addGap();
         layout.add(indicatorCheck);
         layout.addRow(new Component[] {colorLabel, colorCombo});
@@ -71,6 +89,17 @@ public class PropertiesWssPanel extends JPanelBGGradient{
         bean.getColour().setVal(colorCombo.getSelectedItem().toString());
         bean.getAspectEnabled().setVal(autoCheck.isSelected());
         bean.getAspectIndicator().setVal(indicatorCheck.isSelected());
+        if (videoAspectSdHdIndex == 0 || videoAspectCombo.getSelectedIndex() < videoAspectSdHdIndex) {
+            bean.getAspectDefault().setVal(videoAspectCombo.getSelectedItem().toString());
+            bean.getAspectDefault().setHdVal(videoAspectCombo.getSelectedItem().toString());
+        } else {
+            bean.getAspectDefault().setVal("4:3");
+            bean.getAspectDefault().setHdVal("16:9");
+        }
+    }
+    
+    public JComboBox getVideoAspectRatioCombo() {
+        return videoAspectCombo;
     }
 
 }

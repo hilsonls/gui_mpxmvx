@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
 
+import bean.AspectDefault;
 import bean.Oggetto;
 import bean.Source;
 import controllori.CtrlProtocol;
@@ -98,7 +99,23 @@ public class TileObject {
         parentLockRatio = bean.getParent().getLockSizeRatio().getVal();
 
         tileAspectRatio = aspectRatioStringToDimension(bean.getAspectRatio().getVal());
-        videoAspectRatio = aspectRatioStringToDimension(bean.getObjectSequence().getVideoProperties().getWss().getAspectDefault().getVal());
+
+        AspectDefault vidAspect = bean.getObjectSequence().getVideoProperties().getWss().getAspectDefault();
+        videoAspectRatio = aspectRatioStringToDimension(vidAspect.getVal());
+        String sdValStr = vidAspect.getVal();
+        String hdValStr = vidAspect.getHdVal();
+        if (sdValStr != null && hdValStr != null) {
+            if (sdValStr.compareTo(hdValStr) == 0) {
+                videoAspectRatio = aspectRatioStringToDimension(sdValStr);
+            } else {
+                videoAspectRatio.width = -1;
+                videoAspectRatio.height = -1;
+            }
+        } else {
+            videoAspectRatio.width = -1;
+            videoAspectRatio.height = -1;
+        }
+        
         extTop = tilesWorkspace.mvScreenToVirtualY(bean.getAspectRatio().getExtTop());
         extBottom = tilesWorkspace.mvScreenToVirtualY(bean.getAspectRatio().getExtBottom());
         extLeft = tilesWorkspace.mvScreenToVirtualX(bean.getAspectRatio().getExtLeft());
@@ -138,6 +155,8 @@ public class TileObject {
                 }
             }
         } catch(Exception e) {
+            d.width = -1;
+            d.height = -1;
         }
         
         return d;
@@ -393,7 +412,7 @@ public class TileObject {
     }
     
     public boolean isLockedToVideoAspectRatio() {
-        return bean.getAspectRatio().getUseVideo() && getItemType().equals("Video"); 
+        return videoAspectRatio.width > 0 && bean.getAspectRatio().getUseVideo() && getItemType().equals("Video"); 
     }
     
     public boolean hasObjectsOutsideVideo() {

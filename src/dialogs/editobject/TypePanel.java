@@ -60,6 +60,8 @@ public class TypePanel extends JPanelBGGradient{
     
     private JLabel videoAspectLabel;
     private JComboBox videoAspectCombo;
+    private static final String videoAspectSdHdString = "4:3 for SD, 16:9 for HD";
+    private int videoAspectSdHdIndex;
     
     private int extLeft;
     private int extRight;
@@ -67,7 +69,7 @@ public class TypePanel extends JPanelBGGradient{
     private int extBottom;
     
     private JCheckBoxTransBG tileAspectBasedOnVideo;
-        
+    
     public TypePanel(Oggetto bean, int modulo) throws MVException {
         
         VGroupLayout layout = new VGroupLayout(this);
@@ -109,6 +111,13 @@ public class TypePanel extends JPanelBGGradient{
         videoAspectLabel = new JLabel("Video Aspect Ratio");
         AspectDefault vidAspect = bean.getObjectSequence().getVideoProperties().getWss().getAspectDefault();
         videoAspectCombo = ComponentFactory.createComboBox(vidAspect.getOptionsName(), vidAspect.getVal());
+        String hdValStr = vidAspect.getHdVal();
+        if (hdValStr != null && !hdValStr.isEmpty()) {
+            videoAspectCombo.addItem(videoAspectSdHdString);
+            videoAspectSdHdIndex = videoAspectCombo.getItemCount() - 1;
+            if (hdValStr.compareTo("16:9") == 0 && vidAspect.getVal().compareTo("4:3") == 0)
+                videoAspectCombo.setSelectedIndex(videoAspectSdHdIndex);
+        }
         videoAspectCombo.addItemListener(aL);
         
         tileAspectBasedOnVideo = new JCheckBoxTransBG("Adjust tile dimensions based on the video aspect ratio");
@@ -148,7 +157,14 @@ public class TypePanel extends JPanelBGGradient{
         bean.getPosition().getWidth().setVal(Integer.parseInt(widthField.getText()));
         bean.getAspectRatio().setVal(tileAspectCombo.getSelectedItem().toString());
         bean.getAspectRatio().setUseVideo(tileAspectBasedOnVideo.isSelected());
-        bean.getObjectSequence().getVideoProperties().getWss().getAspectDefault().setVal(videoAspectCombo.getSelectedItem().toString());
+        AspectDefault vidAspect = bean.getObjectSequence().getVideoProperties().getWss().getAspectDefault();
+        if (videoAspectSdHdIndex == 0 || videoAspectCombo.getSelectedIndex() < videoAspectSdHdIndex) {
+            vidAspect.setVal(videoAspectCombo.getSelectedItem().toString());
+            vidAspect.setHdVal(videoAspectCombo.getSelectedItem().toString());
+        } else {
+            vidAspect.setVal("4:3");
+            vidAspect.setHdVal("16:9");
+        }
     }
     
     public void setTypeListener(TypeListener tL) {
@@ -160,12 +176,13 @@ public class TypePanel extends JPanelBGGradient{
      * setTypeChanged - needs to be called back from the TypeListener
      */
     public void setTypeChanged() {
+        updateHeight();
         if (typeCombo.getSelectedItem().toString().equals("Video")) {
             tileAspectBasedOnVideo.setVisible(true);
             videoAspectLabel.setVisible(true);
             videoAspectCombo.setVisible(true);
-            tileAspectCombo.setEnabled(!tileAspectBasedOnVideo.isSelected());
-            tileAspectLabel.setEnabled(!tileAspectBasedOnVideo.isSelected());
+            tileAspectCombo.setEnabled(!tileAspectBasedOnVideo.isSelected() || !tileAspectBasedOnVideo.isEnabled());
+            tileAspectLabel.setEnabled(!tileAspectBasedOnVideo.isSelected() || !tileAspectBasedOnVideo.isEnabled());
         } else {
             tileAspectBasedOnVideo.setVisible(false);
             videoAspectLabel.setVisible(false);
@@ -173,7 +190,10 @@ public class TypePanel extends JPanelBGGradient{
             tileAspectCombo.setEnabled(true);
             tileAspectLabel.setEnabled(true);
         }
-        updateHeight();
+    }
+    
+    public JComboBox getVideoAspectRatioCombo() {
+        return videoAspectCombo;
     }
     
     private void updateHeight()
@@ -193,6 +213,9 @@ public class TypePanel extends JPanelBGGradient{
         
         heightField.setEnabled(!isAspectLocked);
         heightLabel.setEnabled(!isAspectLocked);
+        tileAspectBasedOnVideo.setEnabled(var.width > 0);
+        tileAspectCombo.setEnabled(!tileAspectBasedOnVideo.isSelected() || !tileAspectBasedOnVideo.isEnabled());
+        tileAspectLabel.setEnabled(!tileAspectBasedOnVideo.isSelected() || !tileAspectBasedOnVideo.isEnabled());
         
         if (isAspectLocked) {
             int width = Integer.parseInt(widthField.getText());
@@ -256,6 +279,8 @@ public class TypePanel extends JPanelBGGradient{
                 }
             }
         } catch(Exception e) {
+            d.width = -1;
+            d.height = -1;
         }
         
         return d;

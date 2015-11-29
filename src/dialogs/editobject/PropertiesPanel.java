@@ -13,6 +13,7 @@ import gui.components.JDioTabbedPane;
 import gui.components.JPanelBGGradient;
 import gui.style.StyleInterface;
 
+import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
@@ -128,6 +129,10 @@ public class PropertiesPanel extends JPanelBGGradient{
     public void setTileType(int tileType) {
         this.tileType = tileType;
         checkTabsEnablingConditions();
+    }
+    
+    public JComboBox getWssVideoAspectRatioCombo() {
+        return propWssPanel.getVideoAspectRatioCombo();
     }
     
     private void checkTabsEnablingConditions() {

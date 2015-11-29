@@ -32,6 +32,11 @@ public class AspectDefault implements java.io.Serializable {
     private java.lang.String _val;
 
     /**
+     * Field _hdVal.
+     */
+    private java.lang.String _hdVal;
+
+    /**
      * Field _optionsName.
      */
     private java.lang.String _optionsName;
@@ -49,6 +54,16 @@ public class AspectDefault implements java.io.Serializable {
       //-----------/
      //- Methods -/
     //-----------/
+
+    /**
+     * Returns the value of field 'hdVal'.
+     * 
+     * @return the value of field 'HdVal'.
+     */
+    public java.lang.String getHdVal(
+    ) {
+        return this._hdVal;
+    }
 
     /**
      * Returns the value of field 'optionsName'.
@@ -115,6 +130,16 @@ public class AspectDefault implements java.io.Serializable {
             final org.xml.sax.ContentHandler handler)
     throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
         Marshaller.marshal(this, handler);
+    }
+
+    /**
+     * Sets the value of field 'hdVal'.
+     * 
+     * @param hdVal the value of field 'hdVal'.
+     */
+    public void setHdVal(
+            final java.lang.String hdVal) {
+        this._hdVal = hdVal;
     }
 
     /**

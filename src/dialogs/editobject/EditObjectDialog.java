@@ -12,6 +12,7 @@ import gui.components.ChangeListenerColorHandled;
 import gui.components.JDioTabbedPane;
 import gui.components.JPanelBGGradient;
 import gui.style.StyleInterface;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -27,8 +28,11 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.util.Vector;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -65,10 +69,15 @@ public class EditObjectDialog extends JDialog{
     private JButton okButton;
     private JButton cancelButton;
     
+    private JComboBox typeVideoAspectRatioCombo;
+    private JComboBox wssVideoAspectRatioCombo;
+    
     //tilesworkspace per lanciare comandi quali init show e repaint
     private TilesWorkspace tilesWorkspace;
     //idModulo per sapere di quale modulo fa parte l'oggetto in questione
     private int idModulo;
+    
+    private AspectListener arListener;
     
     public EditObjectDialog(Frame frame, TilesWorkspace tilesWorkspace, int idModulo) throws MVException {
         super(frame);
@@ -76,6 +85,8 @@ public class EditObjectDialog extends JDialog{
         //memorizzo il tileWorkspace e l'id del modulo;
         this.tilesWorkspace = tilesWorkspace;
         this.idModulo = idModulo;
+        
+        arListener = new AspectListener();
         
         Oggetto bean = tilesWorkspace.getSelectedObject().getBean();
         
@@ -126,9 +137,13 @@ public class EditObjectDialog extends JDialog{
         getContentPane().add(buttonsPanel, "South");
         
         typePanel = new TypePanel(bean, idModulo);
+        typeVideoAspectRatioCombo = typePanel.getVideoAspectRatioCombo();
+        typeVideoAspectRatioCombo.addItemListener(arListener);
         borderPanel = new BorderPanel(bean.getBorder());
         parentPanel = new ParentPanel(bean.getParent());
         propPanel = new PropertiesPanel(bean.getObjectSequence(), idModulo);
+        wssVideoAspectRatioCombo = propPanel.getWssVideoAspectRatioCombo();
+        wssVideoAspectRatioCombo.addItemListener(arListener);
         umdPanel = new UmdPanel(bean.getUmd());
         
         typePanel.setTypeListener(new TypeListener());
@@ -215,6 +230,21 @@ public class EditObjectDialog extends JDialog{
             else if(obj == cancelButton)
                 cancelAction();
         }
+    }
+    
+    private class AspectListener implements ItemListener {
+
+        @Override
+        public void itemStateChanged(ItemEvent itemevent) {
+            if (itemevent.getSource() == typeVideoAspectRatioCombo) {
+                if (wssVideoAspectRatioCombo.getSelectedIndex() != typeVideoAspectRatioCombo.getSelectedIndex())
+                    wssVideoAspectRatioCombo.setSelectedIndex(typeVideoAspectRatioCombo.getSelectedIndex());
+            } else if (itemevent.getSource() == wssVideoAspectRatioCombo) {
+                if (typeVideoAspectRatioCombo.getSelectedIndex() != wssVideoAspectRatioCombo.getSelectedIndex())
+                    typeVideoAspectRatioCombo.setSelectedIndex(wssVideoAspectRatioCombo.getSelectedIndex());
+            }
+        }
+        
     }
     
     private void okAction() {
