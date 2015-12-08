@@ -66,6 +66,7 @@ public class PropertiesVideoPanel extends JPanelBGGradient{
         overscanCheckBox.setVisible(false);
         overscanCheckBox.setOpaque(false);
         overscanCheckBox.setSelected(beanVideo.isOverscan());
+        overscanCheckBox.setToolTipText("Display image using 5% overscan");
         layout.add(overscanCheckBox);
 
         beanInRes = beanVideo.getInputResolutionDisplay();

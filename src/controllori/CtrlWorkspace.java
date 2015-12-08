@@ -943,7 +943,7 @@ public class CtrlWorkspace {
         }
         
         if (toRemove == null) 
-            throw new MVException("Snell controller not found in list");
+            throw new MVException("SAM controller not found in list");
         
         CtrlProtocol.getInstance().removeSnellController(idModulo, snellControllerId);
         snellRouter.removeSnellController(toRemove);

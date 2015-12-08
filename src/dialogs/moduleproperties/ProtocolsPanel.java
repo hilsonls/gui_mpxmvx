@@ -52,14 +52,14 @@ public class ProtocolsPanel extends JPanelBGGradient {
 
             protSnellPanel = new ProtocolsSnellPanel(bean.getSnellRouter(), idModulo, frame);
             tabbedPane.add(protSnellPanel);
-            tabbedPane.setTitleAt(paneNumber, "Snell Router Network");
+            tabbedPane.setTitleAt(paneNumber, "SAM Router Network");
             paneNumber++;
 
         } 
         if (StyleInterface.getCompany().equalsIgnoreCase("Snell")){ //Snell
             protSnellPanel = new ProtocolsSnellPanel(bean.getSnellRouter(), idModulo, frame);
             tabbedPane.add(protSnellPanel);
-            tabbedPane.setTitleAt(paneNumber, "Snell Router Network");
+            tabbedPane.setTitleAt(paneNumber, "SAM Router Network");
             paneNumber++;
         }
         

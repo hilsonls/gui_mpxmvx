@@ -46,7 +46,7 @@ public class SnellControllerEditDialog extends JDialog {
 
     public SnellControllerEditDialog(Frame frame, int idModulo, SnellController snellController, boolean edit, ProtocolsSnellPanel parentPanel) {
         super(frame, true);
-        setTitle("Snell Controller Configuration");
+        setTitle("SAM Controller Configuration");
         setResizable(false);
         setLocation(100, 100);
         
