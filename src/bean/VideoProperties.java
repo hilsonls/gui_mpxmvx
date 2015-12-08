@@ -27,6 +27,16 @@ public class VideoProperties implements java.io.Serializable {
     //--------------------------/
 
     /**
+     * Field _overscan.
+     */
+    private boolean _overscan;
+
+    /**
+     * keeps track of state for field: _overscan
+     */
+    private boolean _has_overscan;
+
+    /**
      * Field _tally.
      */
     private bean.Tally _tally;
@@ -71,6 +81,13 @@ public class VideoProperties implements java.io.Serializable {
     //-----------/
 
     /**
+     */
+    public void deleteOverscan(
+    ) {
+        this._has_overscan= false;
+    }
+
+    /**
      * Returns the value of field 'displayOnAllScreens'.
      * 
      * @return the value of field 'DisplayOnAllScreens'.
@@ -88,6 +105,16 @@ public class VideoProperties implements java.io.Serializable {
     public bean.InputResolutionDisplay getInputResolutionDisplay(
     ) {
         return this._inputResolutionDisplay;
+    }
+
+    /**
+     * Returns the value of field 'overscan'.
+     * 
+     * @return the value of field 'Overscan'.
+     */
+    public boolean getOverscan(
+    ) {
+        return this._overscan;
     }
 
     /**
@@ -128,6 +155,26 @@ public class VideoProperties implements java.io.Serializable {
     public bean.Wss getWss(
     ) {
         return this._wss;
+    }
+
+    /**
+     * Method hasOverscan.
+     * 
+     * @return true if at least one Overscan has been added
+     */
+    public boolean hasOverscan(
+    ) {
+        return this._has_overscan;
+    }
+
+    /**
+     * Returns the value of field 'overscan'.
+     * 
+     * @return the value of field 'Overscan'.
+     */
+    public boolean isOverscan(
+    ) {
+        return this._overscan;
     }
 
     /**
@@ -197,6 +244,17 @@ public class VideoProperties implements java.io.Serializable {
     public void setInputResolutionDisplay(
             final bean.InputResolutionDisplay inputResolutionDisplay) {
         this._inputResolutionDisplay = inputResolutionDisplay;
+    }
+
+    /**
+     * Sets the value of field 'overscan'.
+     * 
+     * @param overscan the value of field 'overscan'.
+     */
+    public void setOverscan(
+            final boolean overscan) {
+        this._overscan = overscan;
+        this._has_overscan = true;
     }
 
     /**

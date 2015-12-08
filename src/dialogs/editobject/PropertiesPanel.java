@@ -147,7 +147,7 @@ public class PropertiesPanel extends JPanelBGGradient{
             tabbedPane.addTab("VBI", propVbiScrollPane);
             tabbedPane.addTab("WSS", propWssScrollPane);
             tabbedPane.addTab("SAG", propSagScrollPane);
-            propVideoPanel.enableDisplayOnAllCheckBox(true);
+            propVideoPanel.enableVideoSpecificFields(true);
             break;
             
         case EditObjectDialog.TILE_TYPE_AUDIO:
@@ -155,7 +155,7 @@ public class PropertiesPanel extends JPanelBGGradient{
                 tabbedPane.addTab("Source", propVideoScrollPane);
             tabbedPane.addTab("Audio", propAudioScrollPane);
             tabbedPane.addTab("Error", propErrorScrollPane);
-            propVideoPanel.enableDisplayOnAllCheckBox(false);
+            propVideoPanel.enableVideoSpecificFields(false);
             break;
             
         case EditObjectDialog.TILE_TYPE_LOGO:

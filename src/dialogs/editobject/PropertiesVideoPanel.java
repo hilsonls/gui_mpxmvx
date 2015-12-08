@@ -42,6 +42,8 @@ public class PropertiesVideoPanel extends JPanelBGGradient{
     private JLabel resolutionColorLabel;
     private JComboBox resolutionColorCombo;
     
+    private JCheckBox overscanCheckBox;
+    
     public PropertiesVideoPanel(VidAudSource bean, VideoProperties beanVideo) throws MVException {
         VGroupLayout layout = new VGroupLayout(this);
         setLayout(layout);
@@ -59,6 +61,12 @@ public class PropertiesVideoPanel extends JPanelBGGradient{
         
         layout.addRow(new Component[] {sourceLabel, sourceCombo});
         layout.add(allScreenCheckBox);
+        
+        overscanCheckBox = new JCheckBox("Overscan");
+        overscanCheckBox.setVisible(false);
+        overscanCheckBox.setOpaque(false);
+        overscanCheckBox.setSelected(beanVideo.isOverscan());
+        layout.add(overscanCheckBox);
 
         beanInRes = beanVideo.getInputResolutionDisplay();
         if (beanInRes != null) {
@@ -77,7 +85,7 @@ public class PropertiesVideoPanel extends JPanelBGGradient{
         }
     }
 
-    public void enableDisplayOnAllCheckBox(boolean enable){
+    public void enableVideoSpecificFields(boolean enable) {
         if(CtrlWorkspace.getInstance().getModule(0).getScreen().getNumScreens().getVal()>1){
             if(enable){
                 allScreenCheckBox.setSelected(beanVideo.getDisplayOnAllScreens().getVal());
@@ -87,11 +95,14 @@ public class PropertiesVideoPanel extends JPanelBGGradient{
                 allScreenCheckBox.setVisible(false);
             }
         }
+
+        overscanCheckBox.setVisible(enable);
     }
     
     public void save() {
         bean.setVal(sourceCombo.getSelectedItem().toString());
         beanVideo.getDisplayOnAllScreens().setVal(allScreenCheckBox.isSelected());
+        beanVideo.setOverscan(overscanCheckBox.isSelected());
         if (beanInRes != null) {
             beanInRes.setOn(resolutionDisplayCheckBox.isSelected());
             beanInRes.getColour().setVal(resolutionColorCombo.getSelectedItem().toString());

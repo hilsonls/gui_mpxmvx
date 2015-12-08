@@ -67,6 +67,48 @@ public class VideoPropertiesDescriptor extends org.exolab.castor.xml.util.XMLCla
         org.exolab.castor.xml.FieldValidator               fieldValidator = null;
         //-- initialize attribute descriptors
         
+        //-- _overscan
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Boolean.TYPE, "_overscan", "overscan", org.exolab.castor.xml.NodeType.Attribute);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                VideoProperties target = (VideoProperties) object;
+                if (!target.hasOverscan()) { return null; }
+                return (target.getOverscan() ? java.lang.Boolean.TRUE : java.lang.Boolean.FALSE);
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    VideoProperties target = (VideoProperties) object;
+                    // if null, use delete method for optional primitives 
+                    if (value == null) {
+                        target.deleteOverscan();
+                        return;
+                    }
+                    target.setOverscan( ((java.lang.Boolean) value).booleanValue());
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("boolean");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        
+        //-- validation code for: _overscan
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+            org.exolab.castor.xml.validators.BooleanValidator typeValidator;
+            typeValidator = new org.exolab.castor.xml.validators.BooleanValidator();
+            fieldValidator.setValidator(typeValidator);
+        }
+        desc.setValidator(fieldValidator);
         //-- initialize element descriptors
         
         //-- _tally

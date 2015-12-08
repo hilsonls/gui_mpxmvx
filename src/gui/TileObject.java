@@ -281,6 +281,7 @@ public class TileObject {
 
         graphics2d.setColor(fgColor);
         long fontSize = (long) tileRect.getWidth() / 47 + 8;
+        long y = tileRect.y + 8 + fontSize;
         Font font = new Font("Lucida", Font.PLAIN, (int) fontSize);
         String itemName = getItemName();
         if (!isAudioMeterProduct && (getItemType().equals("Video")||getItemType().equals("Audio"))) {
@@ -291,14 +292,26 @@ public class TileObject {
             itemName += sorgente;
         }
         TextLayout textlayout = new TextLayout(itemName, font.deriveFont(Font.BOLD), graphics2d.getFontRenderContext());
-        textlayout.draw(graphics2d, tileRect.x + 10, tileRect.y + 8 + fontSize);
+        textlayout.draw(graphics2d, tileRect.x + 10, y);
+
         itemName = "" + tilesWorkspace.virtualToMVScreenX(width) + " X " + tilesWorkspace.virtualToMVScreenY(height);
         textlayout = new TextLayout(itemName, font, graphics2d.getFontRenderContext());
-        textlayout.draw(graphics2d, tileRect.x + 10, tileRect.y + 16 + fontSize * 2);
+        y += (float)fontSize * 1.2;
+        textlayout.draw(graphics2d, tileRect.x + 10, y);
+        
         if (hasObjectsOutsideVideo()) {
             itemName = "( " + tilesWorkspace.virtualToMVScreenX(width - extLeft - extRight) + " X " + tilesWorkspace.virtualToMVScreenY(height - extTop - extBottom) + " )";
             textlayout = new TextLayout(itemName, font.deriveFont(Math.max((float)fontSize-2 , 8)), graphics2d.getFontRenderContext());
-            textlayout.draw(graphics2d, tileRect.x + 10, (float)(tileRect.y + 16 + fontSize * 3.14));
+            y += (float)fontSize * 1.2;
+            textlayout.draw(graphics2d, tileRect.x + 10, (float)(y));
+        }
+        
+        if (hasOverscanVideo()) {
+            graphics2d.setColor(Color.RED);
+            itemName = "Overscan";
+            textlayout = new TextLayout(itemName, font.deriveFont(Math.max((float)fontSize-2 , 8)), graphics2d.getFontRenderContext());
+            y += (float)fontSize * 1.2;
+            textlayout.draw(graphics2d, tileRect.x + 10, (float)(y));
         }
 
     }
@@ -417,6 +430,10 @@ public class TileObject {
     
     public boolean hasObjectsOutsideVideo() {
         return getItemType().equals("Video") && (extLeft != 0 || extRight != 0 || extTop != 0 || extBottom != 0);
+    }
+    
+    public boolean hasOverscanVideo() {
+        return getItemType().equals("Video") && bean.getObjectSequence().getVideoProperties().isOverscan();
     }
     
     /**
