@@ -19,7 +19,7 @@ public class AudioMonitorPanel extends AudioOutputPanelGeneric {
     @Override public void save() {
         for (int i=0; i<numOutputs; i++) {
             Aout audioOutput = bean.getAout(i);
-            audioOutput.setSource(sourceCombo[audioOutput.getId()].getSelectedIndex());
+            audioOutput.setSource(sourceComboToMv(audioOutput.getId()));
             audioOutput.setPair(pairCombo[audioOutput.getId()].getSelectedIndex() - 1);
         }
     }

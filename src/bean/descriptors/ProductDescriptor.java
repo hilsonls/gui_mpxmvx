@@ -178,6 +178,94 @@ public class ProductDescriptor extends org.exolab.castor.xml.util.XMLClassDescri
             typeValidator.setWhiteSpace("preserve");
         }
         desc.setValidator(fieldValidator);
+        //-- _numVidInputs
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Integer.TYPE, "_numVidInputs", "numVidInputs", org.exolab.castor.xml.NodeType.Attribute);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Product target = (Product) object;
+                if (!target.hasNumVidInputs()) { return null; }
+                return new java.lang.Integer(target.getNumVidInputs());
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Product target = (Product) object;
+                    // if null, use delete method for optional primitives 
+                    if (value == null) {
+                        target.deleteNumVidInputs();
+                        return;
+                    }
+                    target.setNumVidInputs( ((java.lang.Integer) value).intValue());
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("int");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        
+        //-- validation code for: _numVidInputs
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+            org.exolab.castor.xml.validators.IntValidator typeValidator;
+            typeValidator = new org.exolab.castor.xml.validators.IntValidator();
+            fieldValidator.setValidator(typeValidator);
+            typeValidator.setMinInclusive(-2147483648);
+            typeValidator.setMaxInclusive(2147483647);
+        }
+        desc.setValidator(fieldValidator);
+        //-- _maxVidInputs
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.Integer.TYPE, "_maxVidInputs", "maxVidInputs", org.exolab.castor.xml.NodeType.Attribute);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Product target = (Product) object;
+                if (!target.hasMaxVidInputs()) { return null; }
+                return new java.lang.Integer(target.getMaxVidInputs());
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Product target = (Product) object;
+                    // if null, use delete method for optional primitives 
+                    if (value == null) {
+                        target.deleteMaxVidInputs();
+                        return;
+                    }
+                    target.setMaxVidInputs( ((java.lang.Integer) value).intValue());
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("int");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        
+        //-- validation code for: _maxVidInputs
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+            org.exolab.castor.xml.validators.IntValidator typeValidator;
+            typeValidator = new org.exolab.castor.xml.validators.IntValidator();
+            fieldValidator.setValidator(typeValidator);
+            typeValidator.setMinInclusive(-2147483648);
+            typeValidator.setMaxInclusive(2147483647);
+        }
+        desc.setValidator(fieldValidator);
         //-- initialize element descriptors
         
     }

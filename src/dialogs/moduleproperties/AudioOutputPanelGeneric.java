@@ -17,9 +17,11 @@ import gui.components.JPanelBGGradient;
 import gui.components.VGroupLayout;
 
 public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
-    private final int NUM_VIDEO_SOURCES = 64;
     private static final int NUM_EMBEDDED_PAIRS = 8;
     private static final int NUM_EXTERNAL_PAIRS = 128;
+    
+    private int numVideoSources;
+    private int mvExternalSource;
 
     private MyItemListener mIL;
 
@@ -38,6 +40,15 @@ public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
         setLayout(layout);
         
         isAudioMeterProduct = (CtrlWorkspace.getInstance().getProductType(idModulo) == ProductType.ProductTypeAM);
+        numVideoSources = (CtrlWorkspace.getInstance().getProductMaxVideoInputs(idModulo));
+        if (numVideoSources <= 0) {
+            // older revision - 0-63 are the video sources, 64 is the external audio source
+            numVideoSources = 64;
+            mvExternalSource = 64;
+        } else {
+            // newer revision - 0 to numVideoSources-1 are the video sources, -2 is the external audio source (-1 is reserved for none, but not used here)
+            mvExternalSource = -2;
+        }
         
         numOutputs = getAoutCount();
         mIL = new MyItemListener();
@@ -94,7 +105,7 @@ public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
         createSourceComboContents();
         for (int i = 0; i < numOutputs; i++) {
             int aoutId = getAoutId(i);
-            int aoutSource = getAoutSource(i);
+            int aoutSource = mvSourceToCombo(getAoutSource(i));
             
             if (isAudioMeterProduct)
                 sourceCombo[aoutId].setSelectedItem("External Audio");
@@ -110,7 +121,7 @@ public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
     
     private void createSourceComboContents() {
         for (int i = 0; i < numOutputs; i++) {
-            for (int j = 0; j < NUM_VIDEO_SOURCES; j++) {
+            for (int j = 0; j < numVideoSources; j++) {
                 sourceCombo[i].addItem("Source " + (j+1));
             }
             sourceCombo[i].addItem("External Audio");
@@ -154,6 +165,27 @@ public abstract class AudioOutputPanelGeneric extends JPanelBGGradient {
                 }
             }
         }
+    }
+    
+    protected int sourceComboToMv(int sourceComboNumber) {
+        int ret;
+        if (0 <= sourceComboNumber && sourceComboNumber < sourceCombo.length) {
+            ret = sourceCombo[sourceComboNumber].getSelectedIndex();
+            if (ret >= numVideoSources)
+                ret = mvExternalSource;
+        } else {
+            ret = mvExternalSource;
+        }
+        return ret;
+    }
+    
+    private int mvSourceToCombo(int mvSourceNumber) {
+        int ret;
+        if (0 <= mvSourceNumber && mvSourceNumber < numVideoSources)
+            ret = mvSourceNumber;
+        else
+            ret = numVideoSources;
+        return ret;
     }
 
     public abstract void save();

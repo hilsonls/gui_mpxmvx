@@ -643,6 +643,15 @@ public class CtrlWorkspace {
             return ProductType.ProductTypeAM;
         return ProductType.ProductTypeMV;
     }
+    
+    // Max video inputs is the maximum number of inputs that any MV can have,
+    // not necessarily the maximum number of this particular frame.
+    public int getProductMaxVideoInputs(int idModulo) {
+        Module mod = getModule(idModulo);
+        if (mod == null)
+            return 64;
+        return mod.getProduct().getMaxVidInputs();
+    }
 
     public void loadConfigFromMV() throws MVException {
         //try {

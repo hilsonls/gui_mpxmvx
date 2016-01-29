@@ -41,6 +41,26 @@ public class Product implements java.io.Serializable {
      */
     private java.lang.String _type;
 
+    /**
+     * Field _numVidInputs.
+     */
+    private int _numVidInputs;
+
+    /**
+     * keeps track of state for field: _numVidInputs
+     */
+    private boolean _has_numVidInputs;
+
+    /**
+     * Field _maxVidInputs.
+     */
+    private int _maxVidInputs;
+
+    /**
+     * keeps track of state for field: _maxVidInputs
+     */
+    private boolean _has_maxVidInputs;
+
 
       //----------------/
      //- Constructors -/
@@ -56,6 +76,20 @@ public class Product implements java.io.Serializable {
     //-----------/
 
     /**
+     */
+    public void deleteMaxVidInputs(
+    ) {
+        this._has_maxVidInputs= false;
+    }
+
+    /**
+     */
+    public void deleteNumVidInputs(
+    ) {
+        this._has_numVidInputs= false;
+    }
+
+    /**
      * Returns the value of field 'company'.
      * 
      * @return the value of field 'Company'.
@@ -63,6 +97,16 @@ public class Product implements java.io.Serializable {
     public java.lang.String getCompany(
     ) {
         return this._company;
+    }
+
+    /**
+     * Returns the value of field 'maxVidInputs'.
+     * 
+     * @return the value of field 'MaxVidInputs'.
+     */
+    public int getMaxVidInputs(
+    ) {
+        return this._maxVidInputs;
     }
 
     /**
@@ -76,6 +120,16 @@ public class Product implements java.io.Serializable {
     }
 
     /**
+     * Returns the value of field 'numVidInputs'.
+     * 
+     * @return the value of field 'NumVidInputs'.
+     */
+    public int getNumVidInputs(
+    ) {
+        return this._numVidInputs;
+    }
+
+    /**
      * Returns the value of field 'type'.
      * 
      * @return the value of field 'Type'.
@@ -83,6 +137,26 @@ public class Product implements java.io.Serializable {
     public java.lang.String getType(
     ) {
         return this._type;
+    }
+
+    /**
+     * Method hasMaxVidInputs.
+     * 
+     * @return true if at least one MaxVidInputs has been added
+     */
+    public boolean hasMaxVidInputs(
+    ) {
+        return this._has_maxVidInputs;
+    }
+
+    /**
+     * Method hasNumVidInputs.
+     * 
+     * @return true if at least one NumVidInputs has been added
+     */
+    public boolean hasNumVidInputs(
+    ) {
+        return this._has_numVidInputs;
     }
 
     /**
@@ -143,6 +217,17 @@ public class Product implements java.io.Serializable {
     }
 
     /**
+     * Sets the value of field 'maxVidInputs'.
+     * 
+     * @param maxVidInputs the value of field 'maxVidInputs'.
+     */
+    public void setMaxVidInputs(
+            final int maxVidInputs) {
+        this._maxVidInputs = maxVidInputs;
+        this._has_maxVidInputs = true;
+    }
+
+    /**
      * Sets the value of field 'model'.
      * 
      * @param model the value of field 'model'.
@@ -150,6 +235,17 @@ public class Product implements java.io.Serializable {
     public void setModel(
             final java.lang.String model) {
         this._model = model;
+    }
+
+    /**
+     * Sets the value of field 'numVidInputs'.
+     * 
+     * @param numVidInputs the value of field 'numVidInputs'.
+     */
+    public void setNumVidInputs(
+            final int numVidInputs) {
+        this._numVidInputs = numVidInputs;
+        this._has_numVidInputs = true;
     }
 
     /**
