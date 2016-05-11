@@ -11,7 +11,7 @@
         <jar destfile="Applet.jar" filesetmanifest="mergewithoutmain" duplicate="preserve">
             <manifest>
                 <attribute name="Main-Class" value="gui.MultiViewerBCS"/>
-                <attribute name="Class-Path" value="."/>
+                <attribute name="Application-Name" value="MultiviewerBCS"/>
                 <attribute name="Implementation-Version" value="2.0-build_${buildDate}"/>
             	<attribute name="Permissions" value="all-permissions"/>
                 <attribute name="Trusted-Only" value="true"/>
@@ -42,7 +42,7 @@
             <arg value="-tsa"/>
             <arg value="http://timestamp.globalsign.com/scripts/timestamp.dll"/>
             <arg value="Applet.jar"/>
-        	<arg value="storepass"/>
+        	<arg value="-storepass"/>
         	<arg value="chrom456"/>
         	<arg value="&quot;multiviewer&quot;"/>
         </exec>
