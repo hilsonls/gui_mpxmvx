@@ -37,6 +37,7 @@ public class SourcePropertiesDialog extends JDialog {
     private AudioPanel audioPanel;
     private AlarmPanel alarmPanel;
     private CopySourcePanel copySourcePanel;
+    private OverscanSourcePanel overscanSourcePanel;
     
     private JPanel buttonsPanel;
     private JButton okButton;
@@ -106,18 +107,26 @@ public class SourcePropertiesDialog extends JDialog {
         copySourcePanel = new CopySourcePanel(bean, idModulo);
         copySourcePanel.setActionListenerSetupAudioAlarmsButton(buttonActionListener);
         
+        if (bean.getOverscanRect() != null)
+            overscanSourcePanel = new OverscanSourcePanel(bean);
+        
         tabbedPane = new JDioTabbedPane(true);
         tabbedPane.addChangeListener(new ChangeListenerColorHandled());
         tabbedPane.setBounds(1, 1, 400, 480);
         //Aggiungo i vari panel al tabbedPane
         tabbedPane.add(audioPanel);
         tabbedPane.add(alarmPanel);
+        if (overscanSourcePanel != null)
+            tabbedPane.add(overscanSourcePanel);
         tabbedPane.add(copySourcePanel);
                 
         tabbedPane.setSelectedComponent(alarmPanel);
-        tabbedPane.setTitleAt(0, "Audio");
-        tabbedPane.setTitleAt(1, "Alarm");
-        tabbedPane.setTitleAt(2, "Copy");
+        int tabIndex = 0;
+        tabbedPane.setTitleAt(tabIndex++, "Audio");
+        tabbedPane.setTitleAt(tabIndex++, "Alarm");
+        if (overscanSourcePanel != null)
+            tabbedPane.setTitleAt(tabIndex++, "Overscan");
+        tabbedPane.setTitleAt(tabIndex++, "Copy");
         
         getContentPane().add(tabbedPane, "Center");
         setVisible(true);
@@ -130,6 +139,8 @@ public class SourcePropertiesDialog extends JDialog {
             audioPanel.save();
             alarmPanel.save();
             copySourcePanel.save();
+            if (overscanSourcePanel != null)
+                overscanSourcePanel.save();
             
             //UPLOADO IL PORCO XML A H
             
@@ -170,6 +181,7 @@ public class SourcePropertiesDialog extends JDialog {
         int[] selSources = copySourcePanel.getSelectedSources();
         boolean alarmCheck = copySourcePanel.alarmCheck.isSelected();
         boolean audioCheck = copySourcePanel.audioCheck.isSelected();
+        boolean overscanCheck = copySourcePanel.isOverscanSelected();
         setCursor(new Cursor(Cursor.WAIT_CURSOR));
         this.okButton.setEnabled(false);
         this.cancelButton.setEnabled(false);
@@ -181,8 +193,11 @@ public class SourcePropertiesDialog extends JDialog {
             if(audioCheck){
                 audioPanel.save(beanToCopy.getAudio0dBRef(), beanToCopy.getAudioDigitalRef(), beanToCopy.getAudioAlarmSettings());
             }
+            if (overscanCheck) {
+                overscanSourcePanel.save(beanToCopy);
+            }
             try {
-                if(alarmCheck || audioCheck)
+                if(alarmCheck || audioCheck || overscanCheck)
                     CtrlProtocol.getInstance().saveSourceToMV(idModulo, beanToCopy);
             } catch (MVException ex) {
                 //TODO: effettuare l'undo sul bean

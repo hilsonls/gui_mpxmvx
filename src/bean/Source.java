@@ -66,6 +66,11 @@ public class Source implements java.io.Serializable {
      */
     private bean.Audio0dBRef _audio0dBRef;
 
+    /**
+     * Field _overscanRect.
+     */
+    private bean.OverscanRect _overscanRect;
+
 
       //----------------/
      //- Constructors -/
@@ -135,6 +140,16 @@ public class Source implements java.io.Serializable {
     public int getId(
     ) {
         return this._id;
+    }
+
+    /**
+     * Returns the value of field 'overscanRect'.
+     * 
+     * @return the value of field 'OverscanRect'.
+     */
+    public bean.OverscanRect getOverscanRect(
+    ) {
+        return this._overscanRect;
     }
 
     /**
@@ -264,6 +279,16 @@ public class Source implements java.io.Serializable {
             final int id) {
         this._id = id;
         this._has_id = true;
+    }
+
+    /**
+     * Sets the value of field 'overscanRect'.
+     * 
+     * @param overscanRect the value of field 'overscanRect'.
+     */
+    public void setOverscanRect(
+            final bean.OverscanRect overscanRect) {
+        this._overscanRect = overscanRect;
     }
 
     /**

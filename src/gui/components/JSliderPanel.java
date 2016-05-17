@@ -163,12 +163,15 @@ public class JSliderPanel extends JPanel {
 
  
 
+    public void setDoubleRange(double min, double max) {
+        int val = jSlider.getValue();
+        jSlider.setMinimum((int)(min * Math.pow(10D, numDecimals)));
+        jSlider.setMaximum((int)(max * Math.pow(10D, numDecimals)));
+        jSlider.setValue(val);
+    }
 
     public void setRange(int min, int max) {
-        int val = getValue();
-        jSlider.setMinimum((int)((double)min*Math.pow(10D, numDecimals)));
-        jSlider.setMaximum((int)((double)max*Math.pow(10D, numDecimals)));
-        setValue(val);
+        setDoubleRange((double)min, (double)max);
     }
 
     public int getMinimum() {
@@ -182,7 +185,11 @@ public class JSliderPanel extends JPanel {
     public void setMaximum(int max) {
         setRange(jSlider.getMinimum(), max);
     }
-
+    
+    public void setDoubleMaximum(double max) {
+        setDoubleRange((double)jSlider.getMinimum(), max);
+    }
+    
     public void setValue(int val) {
         jSlider.setValue((int)((double)val*Math.pow(10D, numDecimals)));
         setTextField();
@@ -197,7 +204,11 @@ public class JSliderPanel extends JPanel {
         try {
             setValue(Integer.parseInt(stringValue));
         } catch (Exception exception) {
-            //niente
+            try {
+                setValue(Double.parseDouble(stringValue));
+            } catch (Exception e) {
+                // niente
+            }
         }
     }
 

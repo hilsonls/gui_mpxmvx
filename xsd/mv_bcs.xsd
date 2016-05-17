@@ -325,6 +325,9 @@
 			                            <element
 			                                ref="tns:audio0dBRef">
 			                            </element>
+                                        <element
+                                            ref="tns:overscanRect">
+                                        </element>
 			                        </sequence>
 			                        <attribute name="id" type="int"
 			                            use="required">
@@ -2898,6 +2901,15 @@
             <attribute name="val" type="int"></attribute>
             <attribute name="min" type="int"></attribute>
             <attribute name="max" type="int"></attribute>
+        </complexType>
+    </element>
+    
+    <element name="overscanRect">
+        <complexType>
+            <attribute name="left" type="int"></attribute>
+            <attribute name="width" type="int"></attribute>
+            <attribute name="top" type="int"></attribute>
+            <attribute name="height" type="int"></attribute>
         </complexType>
     </element>
 

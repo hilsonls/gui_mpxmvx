@@ -32,6 +32,7 @@ public class CopySourcePanel extends JPanelBGGradient{
         private JLabel settingsLabel;
         protected JCheckBox audioCheck;
         protected JCheckBox alarmCheck;
+        private JCheckBox overscanCheck;
         
         private JButton selectAllButton;
         private JButton selectNoneButton;
@@ -101,7 +102,15 @@ public class CopySourcePanel extends JPanelBGGradient{
         alarmCheck.setText("Alarm");
         alarmCheck.setBounds(30, 80, 100, 20);
         alarmCheck.setSelected(false);
-        add(alarmCheck);        
+        add(alarmCheck);
+        
+        if (bean.getOverscanRect() != null) {
+            overscanCheck = new JCheckBoxTransBG();
+            overscanCheck.setText("Overscan");
+            overscanCheck.setBounds(30, 110, 100, 20);
+            overscanCheck.setSelected(false);
+            add(overscanCheck);
+        }
         
         selectAllButton = new JButton("Select All");
         selectAllButton.setActionCommand("selectAll");
@@ -163,5 +172,11 @@ public class CopySourcePanel extends JPanelBGGradient{
    
     public int[] getSelectedSources(){
         return this.sourceList.getSelectedIndices();
+    }
+    
+    public boolean isOverscanSelected() {
+        if (overscanCheck != null)
+            return overscanCheck.isSelected();
+        return false;
     }
 }

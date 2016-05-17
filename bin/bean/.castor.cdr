@@ -1,4 +1,4 @@
-#Mon May 02 17:39:44 AEST 2016
+#Mon May 16 11:13:36 AEST 2016
 bean.ObjectErrorMsgSize=bean.descriptors.ObjectErrorMsgSizeDescriptor
 bean.ModuleScreenAspectRatio=bean.descriptors.ModuleScreenAspectRatioDescriptor
 bean.Ports=bean.descriptors.PortsDescriptor
@@ -213,6 +213,7 @@ bean.Port=bean.descriptors.PortDescriptor
 bean.Hostname=bean.descriptors.HostnameDescriptor
 bean.PhaseAlarm=bean.descriptors.PhaseAlarmDescriptor
 bean.TtIndicator=bean.descriptors.TtIndicatorDescriptor
+bean.OverscanRect=bean.descriptors.OverscanRectDescriptor
 bean.SierraRouter=bean.descriptors.SierraRouterDescriptor
 bean.GpiOutTaskTable=bean.descriptors.GpiOutTaskTableDescriptor
 bean.LogFiles=bean.descriptors.LogFilesDescriptor
